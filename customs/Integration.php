@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * @package ST Theme
+ * @author Diego Andrés <diegoandres_cortes@outlook.com>
+ * @copyright Copyright (c) 2021, SMF Tricks
+ * @license MIT
+ */
+
 namespace ThemeCustoms;
 
 if (!defined('SMF'))
@@ -45,19 +52,13 @@ class Integration
 				continue;
 			}
 	
-			// get the relative class name
 			$relativeClass = substr($class, $len);
-	
-			// replace the namespace prefix with the base directory, replace namespace
-			// separators with directory separators in the relative class name, append
-			// with .php
 			$fileName = $dirName . strtr($relativeClass, '\\', '/') . '.php';
 	
 			// if the file exists, require it
 			if (file_exists($fileName = $settings['theme_dir'] . '/' . $fileName))
 			{
 				require_once $fileName;
-	
 				return;
 			}
 		}
