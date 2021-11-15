@@ -173,8 +173,6 @@ function template_body_above()
 
 	// Wrapper div now echoes permanently for better layout options. h1 a is now target for "Go up" links.
 	echo '
-
-	testing <i class="fab fa-accusoft"></i>
 	<div id="top_section">
 		<div class="inner_wrap">';
 

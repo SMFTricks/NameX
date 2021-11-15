@@ -9,6 +9,7 @@ class Theme
 {
 	public function addCSS()
 	{
+		// Font Awesome
 		loadCSSFile('fontawesome.min.css', ['minimize' => false]);
 	}
 }

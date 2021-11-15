@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "scripts": {
     "fontawesome-fonts": "copy-and-watch node_modules/@fortawesome/fontawesome-free/webfonts/* webfonts/",
-    "fontawesome-css": "sass --no-source-map  node_modules/@fortawesome/fontawesome-free/css/all.min.css css/fontawesome.min.css",
-    "build": "npm run fontawesome-fonts && npm run fontawesome-css"
+    "fontawesome-css": "sass --no-source-map  node_modules/@fortawesome/fontawesome-free/css/all.min.css css/fontawesome.min.css --style compressed",
+    "bootstrap-css": "copy-and-watch  node_modules/bootstrap/dist/css/bootstrap.min.css css/",
+	"bootstrap-js": "copy-and-watch  node_modules/bootstrap/dist/js/bootstrap.bundle.min.js scripts/",
+    "build": "npm run fontawesome-fonts && npm run fontawesome-css && npm run bootstrap-css && npm run bootstrap-js"
   },
   "repository": {
     "type": "git",
@@ -16,6 +18,7 @@
     "@fortawesome/fontawesome-free": "^5.15.4"
   },
   "dependencies": {
+    "bootstrap": "^5.1.3",
     "copy-and-watch": "^0.1.6",
     "sass": "^1.43.4"
   }
