@@ -1,19 +1,23 @@
 {
   "name": "namex",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "fontawesome-fonts": "copy-and-watch node_modules/@fortawesome/fontawesome-free/webfonts/* webfonts/",
+    "fontawesome-css": "sass --no-source-map  node_modules/@fortawesome/fontawesome-free/css/all.min.css css/fontawesome.min.css",
+
+    "build": "npm run fontawesome-fonts && npm run fontawesome-css"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SMFTricks/NameX.git"
+    "url": "https://github.com/SMFTricks/NameX.git"
   },
   "author": "SMF Tricks",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/SMFTricks/NameX/issues"
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4"
   },
-  "homepage": "https://github.com/SMFTricks/NameX#readme"
+  "dependencies": {
+    "copy-and-watch": "^0.1.6",
+    "sass": "^1.43.4"
+  }
 }

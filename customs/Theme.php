@@ -7,8 +7,8 @@ if (!defined('SMF'))
 
 class Theme
 {
-	protected static function addCSS()
+	public function addCSS()
 	{
-		
+		loadCSSFile('fontawesome.min.css', ['minimize' => false]);
 	}
 }

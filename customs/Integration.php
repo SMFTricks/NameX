@@ -14,6 +14,9 @@ class Integration
 
 		// Main hooks
 		$this->loadHooks();
+
+		// CSS
+		Theme::addCSS();
 	}
 
 	/**
