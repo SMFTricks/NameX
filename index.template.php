@@ -10,31 +10,6 @@
  * @version 2.1 RC4
  */
 
-/*	This template is, perhaps, the most important template in the theme. It
-	contains the main template layer that displays the header and footer of
-	the forum, namely with main_above and main_below. It also contains the
-	menu sub template, which appropriately displays the menu; the init sub
-	template, which is there to set the theme up; (init can be missing.) and
-	the linktree sub template, which sorts out the link tree.
-
-	The init sub template should load any data and set any hardcoded options.
-
-	The main_above sub template is what is shown above the main content, and
-	should contain anything that should be shown up there.
-
-	The main_below sub template, conversely, is shown after the main content.
-	It should probably contain the copyright statement and some other things.
-
-	The linktree sub template should display the link tree, using the data
-	in the $context['linktree'] variable.
-
-	The menu sub template should display all the relevant buttons the user
-	wants and or needs.
-
-	For more information on the templating system, please see the site at:
-	https://www.simplemachines.org/
-*/
-
 // use ThemeCustoms\Integration;
 
 /**
@@ -43,8 +18,6 @@
 function template_init()
 {
 	global $settings, $txt;
-
-	/* $context, $options and $txt may be available for use, but may not be fully populated yet. */
 
 	// The version this template/theme is for. This should probably be the version of SMF it was created for.
 	$settings['theme_version'] = '2.1';
@@ -391,7 +364,6 @@ function template_body_below()
 	echo '
 		</div>
 	</div><!-- #footer -->';
-
 }
 
 /**
