@@ -10,8 +10,6 @@
  * @version 2.1 RC4
  */
 
-use ThemeCustoms\Theme;
-
 /**
  * Initialize the template... mainly little settings.
  */
