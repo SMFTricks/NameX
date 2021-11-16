@@ -14,16 +14,18 @@ if (!defined('SMF'))
 
 class Integration
 {
+	protected $_load_theme;
+
 	public function initialize()
-	{
+	{	
 		// Autoload
 		spl_autoload_register(__CLASS__ . '::autoload');
 
+		// Theme Settings
+		$this->_load_theme = new Theme;
+
 		// Main hooks
 		$this->loadHooks();
-
-		// CSS
-		Theme::addCSS();
 	}
 
 	/**
@@ -37,7 +39,7 @@ class Integration
 		global $settings;
 
 		$classMap = array(
-			'ThemeCustoms\\' => 'customs/',
+			'ThemeCustoms\\' => 'themecustoms/',
 		);
 
 		// Do any third-party scripts want in on the fun?

@@ -10,5 +10,5 @@
 	<!-- Template layers to use, defaults to "html,body". -->
 	<layers>html,body</layers>
 	<!-- Templates to load on startup. Default is "index". -->
-	<templates>index</templates>
+	<templates>index,themecustoms/templates/theme</templates>
 </theme-info>

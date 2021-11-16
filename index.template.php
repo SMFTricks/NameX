@@ -47,8 +47,8 @@ function template_init()
 	if (!isset($settings['disable_files']))
 		$settings['disable_files'] = array();
 
-	// Integration hooks, and other fun stuff
-	add_integration_function('integrate_load_theme', 'ThemeCustoms\Integration::initialize#', false, $settings['theme_dir'] . '/customs/Integration.php');
+	// Initialize theme customs
+	loadSubTemplate('customs_init');
 }
 
 /**
@@ -56,7 +56,7 @@ function template_init()
  */
 function template_html_above()
 {
-	global $context, $scripturl, $txt, $modSettings;
+	global $context, $scripturl, $txt, $modSettings, $settings;
 
 	// Show right to left, the language code, and the character set for ease of translating.
 	echo '<!DOCTYPE html>
