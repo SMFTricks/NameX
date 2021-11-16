@@ -10,13 +10,18 @@
  * @version 2.1 RC4
  */
 
-use ThemeCustoms\Theme;
-
 /**
  * Initialize the template... mainly little settings.
  */
 function template_init()
 {
+	global $settings;
+
+	// Allow css/js files to be disabled for this specific theme.
+	// Add the identifier as an array key. IE array('smf_script'); Some external files might not add identifiers, on those cases SMF uses its filename as reference.
+	if (!isset($settings['disable_files']))
+		$settings['disable_files'] = array();
+
 	// Initialize theme customs
 	loadSubTemplate('customs_init');
 }
@@ -326,10 +331,7 @@ function template_body_below()
 			<li class="copyright">', theme_copyright(), '</li>
 		</ul>';
 
-
-	// DevCenter - Show load average.
-	if (!empty($modSettings['devcenter_displayserverload']))
-		echo '<p>', sprintf($txt['devcenter_load'], $context['dc_load'][0], $context['dc_load'][1], $context['dc_load'][2]), '</p>';	// Show the load time?
+	// Show the load time?
 	if ($context['show_load_time'])
 		echo '
 		<p>', sprintf($txt['page_created_full'], $context['load_time'], $context['load_queries']), '</p>';
