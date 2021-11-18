@@ -248,3 +248,7 @@ $txt['rollIn'] = 'rollIn';
 // Profile
 $txt['st_profile_cover'] = 'Profile cover';
 $txt['theme'] = 'Look and Layout';
+
+
+$txt['variant_blue'] = 'Blue';
+$txt['variant_green'] = 'Green';

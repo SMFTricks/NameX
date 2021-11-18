@@ -9,6 +9,8 @@
 
 namespace ThemeCustoms;
 
+use ThemeCustoms\Color\Variants;
+
 if (!defined('SMF'))
 	die('No direct access...');
 
@@ -45,9 +47,59 @@ class Settings
 	 */
 	public function themeSettings()
 	{
+		// Create the custom settings
+		$this->createSettings();
+
+		// Add theme settings
+		$this->addSettings();
+
+		// Remove unwanted settings
+		$this->removeSettings();
+	}
+
+	/**
+	 * Settings::addSettings()
+	 *
+	 * Inserts the theme settings in the array
+	 */
+	private function addSettings()
+	{
+		global $context;
+
+		// I need to add a break line because later on I might do silly things
+		if (!empty($this->_theme_settings))
+			$context['theme_settings'][] = '';
+
+		// Insert the new theme settings in the array
+		$context['theme_settings'] = array_merge($context['theme_settings'], $this->_theme_settings);
+	}
+
+	/**
+	 * Settings::removeSettings()
+	 *
+	 * Remove any unwanted settings from the array
+	 */
+	private function removeSettings()
+	{
+		global $context;
+
+		// Remove Settings
+		if (!empty($this->_remove_settings))
+			foreach ($context['theme_settings'] as $key => $theme_setting)
+				if (isset($theme_setting['id']) && in_array($theme_setting['id'], $this->_remove_settings))
+					unset($context['theme_settings'][$key]);
+	}
+
+	/**
+	 * Settings::createSettings()
+	 *
+	 * Creates the settings array
+	 */
+	private function createSettings()
+	{
 		global $txt;
 
-		// Theme Settings
+		// Theme Settings Array
 		$this->_theme_settings = [
 			[
 				'id' => 'st_disable_fa_icons',
@@ -111,44 +163,5 @@ class Settings
 				'theme_type' => 'social',
 			],
 		];
-
-		// Add theme settings
-		$this->addSettings();
-
-		// Remove unwanted settings
-		$this->removeSettings();
-	}
-
-	/**
-	 * Settings::addSettings()
-	 *
-	 * Inserts the theme settings in the array
-	 */
-	private function addSettings()
-	{
-		global $context;
-
-		// I need to add a break line because later on I might do silly things
-		if (!empty($this->_theme_settings))
-			$context['theme_settings'][] = '';
-
-		// Insert the new theme settings in the array
-		$context['theme_settings'] = array_merge($context['theme_settings'], $this->_theme_settings);
-	}
-
-	/**
-	 * Settings::removeSettings()
-	 *
-	 * Remove any unwanted settings from the array
-	 */
-	private function removeSettings()
-	{
-		global $context;
-
-		// Remove Settings
-		if (!empty($this->_remove_settings))
-			foreach ($context['theme_settings'] as $key => $theme_setting)
-				if (isset($theme_setting['id']) && in_array($theme_setting['id'], $this->_remove_settings))
-					unset($context['theme_settings'][$key]);
 	}
 }

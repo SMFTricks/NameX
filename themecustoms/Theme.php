@@ -9,6 +9,8 @@
 
 namespace ThemeCustoms;
 
+use ThemeCustoms\Color\Variants;
+
 if (!defined('SMF'))
 	die('No direct access...');
 
@@ -32,12 +34,12 @@ class Theme
 	/**
 	 * @var array The theme color variants (red, green, blue, etc)
 	 */
-	private $_theme_variants = [];
+	public static $_theme_variants = ['green', 'blue'];
 
 	/**
-	 * @var array The theme modes (dark, light, etc.)
+	 * @var array Enable dark/light mode
 	 */
-	private $_theme_modes = [];
+	private $_theme_darkmode = false;
 
 	/**
 	 * @var array The libraries or frameworks to load, populated in libOptions()
@@ -74,11 +76,11 @@ class Theme
 	 */
 	public function __construct()
 	{
-		// Main Settings
-		$this->startSettings();
-
 		// Load Theme Strings
 		loadLanguage('ThemeStrings/');
+
+		// Main Settings
+		$this->startSettings();
 
 		// Include any libraries or frameworks
 		$this->libOptions();
@@ -90,10 +92,11 @@ class Theme
 		$this->addJS();
 
 		/** @TODO */
-		// Theme Variants
-
-		/** @TODO */
 		// Theme Modes
+
+		// Theme Variants
+		// if (!empty($this->_theme_variants))
+		// 	Variants::init($this->_theme_variants);
 
 		// Add Theme Settings
 		add_integration_function('integrate_theme_settings', 'ThemeCustoms\Settings::themeSettings#', false);
