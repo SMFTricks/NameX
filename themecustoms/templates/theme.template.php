@@ -1,21 +1,21 @@
 <?php
 
 /**
- * @package ST Theme
+ * @package Theme Customs
  * @author Diego Andrés <diegoandres_cortes@outlook.com>
  * @copyright Copyright (c) 2021, SMF Tricks
  * @license MIT
  */
 
  /**
- * Initialize the customs template, and other setting that are mainly ignored, so I brought them over here.
+ * Initialize the customs template along with the theme version and the custom files
  */
 function template_customs_init()
 {
 	global $settings;
 
 	// The version this template/theme is for. This should probably be the version of SMF it was created for.
-	$settings['theme_version'] = true;
+	$settings['theme_version'] = '2.1';
 
 	// Integration hooks, and other fun stuff
 	add_integration_function('integrate_load_theme', 'ThemeCustoms\Integration::initialize#', false, $settings['theme_dir'] . '/themecustoms/Integration.php');

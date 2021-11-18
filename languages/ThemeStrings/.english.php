@@ -146,21 +146,21 @@ $txt['st_the_board'] = 'the board';
 
 // Social Networks
 $txt['st_social'] = 'Social Media';
-$txt['st_facebook_username'] = 'Facebook username';
 $txt['st_facebook'] = 'Facebook';
-$txt['st_twitter_username'] = 'Twitter username';
+$txt['st_facebook_username'] = 'Facebook username';
 $txt['st_twitter'] = 'Twitter';
-$txt['st_youtube_link'] = 'Youtube link';
+$txt['st_twitter_username'] = 'Twitter username';
 $txt['st_youtube'] = 'YouTube';
-$txt['st_instagram_username'] = 'Instagram username';
+$txt['st_youtube_link'] = 'Youtube link';
 $txt['st_instagram'] = 'Instagram';
-$txt['st_discord_link'] = 'Discord link';
+$txt['st_instagram_username'] = 'Instagram username';
 $txt['st_discord'] = 'Discord';
-$txt['st_twitch_username'] = 'Twitch username';
+$txt['st_discord_link'] = 'Discord link';
 $txt['st_twitch'] = 'Twitch';
+$txt['st_twitch_username'] = 'Twitch username';
 $txt['st_rss_url'] = 'RSS URL';
 $txt['st_rss'] = 'RSS Feed';
-$txt['st_social_desc'] = 'Write the username, id or link to show the button';
+$txt['st_social_desc'] = 'Leave blank to disable.';
 $txt['st_rss_url_desc'] = 'The default forum URL is: <i>'.$scripturl. '?action=.xml;type=rss</i>';
 
 // Carousel
