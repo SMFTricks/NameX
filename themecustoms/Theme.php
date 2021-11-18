@@ -34,7 +34,7 @@ class Theme
 	/**
 	 * @var array The theme color variants (red, green, blue, etc)
 	 */
-	public static $_theme_variants = ['green', 'blue'];
+	public $_theme_variants = ['green', 'blue'];
 
 	/**
 	 * @var array Enable dark/light mode
@@ -95,8 +95,8 @@ class Theme
 		// Theme Modes
 
 		// Theme Variants
-		// if (!empty($this->_theme_variants))
-		// 	Variants::init($this->_theme_variants);
+		if (!empty($this->_theme_variants))
+			Variants::init($this->_theme_variants);
 
 		// Add Theme Settings
 		add_integration_function('integrate_theme_settings', 'ThemeCustoms\Settings::themeSettings#', false);
