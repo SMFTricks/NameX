@@ -16,7 +16,8 @@
 function template_init()
 {
 	// Initialize theme customs
-	loadSubTemplate('customs_init');
+	// Could also use loadSubTemplate('customs_init')
+	template_customs_init();
 }
 
 /**
@@ -114,6 +115,13 @@ function template_body_above()
 
 	// Wrapper div now echoes permanently for better layout options. h1 a is now target for "Go up" links.
 	echo '
+
+	This is just for testing right?
+	<br/>
+	<button class="theme-variant-toggle" data-color="default">Default</button>
+	<button class="theme-variant-toggle" data-color="blue">Blue</button>
+	<button class="theme-variant-toggle" data-color="green">Green</button>
+	<br/>
 	<div id="top_section">
 		<div class="inner_wrap">';
 
@@ -160,6 +168,9 @@ function template_body_above()
 			</ul>';
 	}
 	// Otherwise they're a guest. Ask them to either register or login.
+	/**
+	 * @todo use our own login overlay (if needed) because the ajax one breaks the variants
+	 */
 	elseif (empty($maintenance))
 		echo '
 			<ul class="floatleft welcome">
@@ -251,7 +262,26 @@ function template_body_above()
 		', empty($settings['site_slogan']) ? '<img id="smflogo" src="' . $settings['images_url'] . '/smflogo.svg" alt="Simple Machines Forum" title="Simple Machines Forum">' : '<div id="siteslogan">' . $settings['site_slogan'] . '</div>', '';
 
 	echo '
-	</div>
+	</div>';
+
+	// Show the menu here, according to the menu sub template, followed by the navigation tree.
+	// Load mobile menu here
+	echo '
+	<nav id="main_menu">
+		<a class="menu_icon mobile_user_menu"></a>
+		<div id="nav_wrapper">
+			<div id="mobile_user_menu" class="popup_container">
+				<div class="popup_window description">
+					<div class="popup_heading">', $txt['mobile_user_menu'], '
+						<a href="javascript:void(0);" class="main_icons hide_popup"></a>
+					</div>
+					', template_menu(), '
+				</div>
+			</div>
+		</div>
+	</nav>';
+
+	echo '
 	<div id="wrapper">
 		<div id="upper_section">
 			<div id="inner_section">
@@ -272,21 +302,7 @@ function template_body_above()
 					<hr class="clear">
 				</div>';
 
-	// Show the menu here, according to the menu sub template, followed by the navigation tree.
-	// Load mobile menu here
-	echo '
-				<a class="menu_icon mobile_user_menu"></a>
-				<div id="main_menu">
-					<div id="mobile_user_menu" class="popup_container">
-						<div class="popup_window description">
-							<div class="popup_heading">', $txt['mobile_user_menu'], '
-								<a href="javascript:void(0);" class="main_icons hide_popup"></a>
-							</div>
-							', template_menu(), '
-						</div>
-					</div>
-				</div>';
-
+	// Theme LInktree
 	theme_linktree();
 
 	echo '

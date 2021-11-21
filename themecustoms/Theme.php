@@ -55,7 +55,9 @@ class Theme
 	 * @var array The theme custom css files
 	 */
 	private $_css_files = [
-		'theme_colors',
+		'theme_colors' => [
+			'order_pos' => 100,
+		],
 		'app',
 	];
 
@@ -85,18 +87,21 @@ class Theme
 		// Include any libraries or frameworks
 		$this->libOptions();
 
+		// Theme Variants
+		if (!empty($this->_theme_variants))
+			Variants::init($this->_theme_variants);
+
+		/** @TODO */
+		// Theme Modes
+
 		// Load the CSS
 		$this->addCSS();
 
 		// Load the JS
 		$this->addJS();
 
-		/** @TODO */
-		// Theme Modes
-
-		// Theme Variants
-		if (!empty($this->_theme_variants))
-			Variants::init($this->_theme_variants);
+		// Theme JS Vars
+		$this->addJavaScriptVars();
 
 		// Add Theme Settings
 		add_integration_function('integrate_theme_settings', 'ThemeCustoms\Settings::themeSettings#', false);
@@ -106,6 +111,8 @@ class Theme
 	 * Theme::startSettings()
 	 *
 	 * Start some of the minimal and default settings
+	 * 
+	 * @return void
 	 */
 	protected function startSettings()
 	{
@@ -131,6 +138,8 @@ class Theme
 	 *
 	 * Load the default libraries and frameworks.
 	 * Some can be disabled with theme settings.
+	 * 
+	 * @return void
 	 */
 	public function libOptions()
 	{
@@ -167,9 +176,24 @@ class Theme
 					'minified' => true,
 				],
 			],
+			// jQuery UI
+			'jqueryui' => [
+				'include' => true,
+				'js' => [
+					'file' => 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js',
+					'external' => true,
+				]
+			],
 		];
 	}
 
+	/**
+	 * Theme::addCSS()
+	 *
+	 * Add the theme css files
+	 * 
+	 * @return void
+	 */
 	public function addCSS()
 	{
 		// Add the css libraries first
@@ -191,7 +215,7 @@ class Theme
 		if (!empty($this->_css_files))
 			foreach ($this->_css_files as $file => $options)
 				loadCSSFile(
-					$file . '.css',
+					(!empty($file) ? $file : $options) . '.css',
 					[
 						'minimize' => !empty($options['minimize']),
 						'attributes' => !empty($options['attributes']) ? $options['attributes'] : [],
@@ -201,6 +225,13 @@ class Theme
 				);
 	}
 
+	/**
+	 * Theme::addJS()
+	 *
+	 * Add the theme js files
+	 * 
+	 * @return void
+	 */
 	public function addJS()
 	{
 		// Add the js libraries first
@@ -223,15 +254,30 @@ class Theme
 
 		// Now add the theme js files
 		if (!empty($this->_js_files))
-			foreach ($this->_js_files as $file)
+			foreach ($this->_js_files as $file => $options)
 				loadJavaScriptFile(
-					$file . '.js',
+					(!empty($file) ? $file : $options) . '.js',
 					[
-						'defer'  =>  false,
-						'async'  =>  false,
-						'minimize'  =>  false,
+						'defer'  =>  !empty($options['defer']),
+						'async'  =>  !empty($options['async']),
+						'minimize'  =>  !empty($options['minimize']),
 					],
 					'smftheme_js_' . $file
 				);
+	}
+
+	/**
+	 * Theme::addJSVars()
+	 *
+	 * Add the theme js variables
+	 * 
+	 * @return void
+	 */
+	public function addJavaScriptVars()
+	{
+		global $settings;
+
+		// Theme ID
+		addJavaScriptVar('smf_theme_id', $settings['theme_id']);
 	}
 }

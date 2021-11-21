@@ -32,7 +32,7 @@ class Settings
 	 * @var array Setting types. Will allow to separate the settings if needed
 	 * No type means the setting is either a default setting or a main setting of the theme.
 	 */
-	public $_setting_types = [
+	private $_setting_types = [
 		'carousel',
 		'color',
 		'social',
@@ -68,6 +68,9 @@ class Settings
 		if (!empty($this->_theme_settings))
 			$context['theme_settings'][] = '';
 
+		// Add the setting types
+		$context['st_setting_types'] = $this->_setting_types;
+
 		// Insert the new theme settings in the array
 		$context['theme_settings'] = array_merge($context['theme_settings'], $this->_theme_settings);
 	}
@@ -95,7 +98,7 @@ class Settings
 	 */
 	private function createSettings()
 	{
-		global $txt;
+		global $txt, $settings;
 
 		// Theme Settings Array
 		$this->_theme_settings = [
@@ -161,5 +164,37 @@ class Settings
 				'theme_type' => 'social',
 			],
 		];
+
+		// Add compatibility for the 'disable icon' setting
+		if (!isset($settings['disable_menu_icons']))
+			$this->_theme_settings[] = [
+				'id' => 'st_disable_menu_icons',
+				'label' => $txt['st_disable_menu_icons'],
+				'type' => 'checkbox',
+			];
+	}
+
+	/**
+	 * Settings::admin_areas()
+	 *
+	 * Mainly I'll just use this one to hook back the news files,
+	 * because for some odd reason they cause issues in the template.
+	 * 
+	 * @param array $areas. The admin areas
+	 * 
+	 * @return void
+	 */
+	public function admin_areas(&$areas)
+	{
+		global $modSettings, $scripturl;
+
+		// Disable the smf_js so it doesn't do silly things when loading the admin page
+		$modSettings['disable_smf_js'] = true;
+
+		// The below functions include all the scripts needed from the simplemachines.org site. The language and format are passed for internationalization.
+		if (!empty($modSettings['disable_smf_js']))
+		echo '
+					<script src="', $scripturl, '?action=viewsmfile;filename=current-version.js"></script>
+					<script src="', $scripturl, '?action=viewsmfile;filename=latest-news.js"></script>';
 	}
 }

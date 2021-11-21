@@ -1,5 +1,5 @@
 $(function() {
-	$('ul.dropmenu, ul.quickbuttons').superfish({delay : 250, speed: 100, sensitivity : 8, interval : 50, timeout : 1});
+	$('ul.quickbuttons').superfish({delay : 250, speed: 100, sensitivity : 8, interval : 50, timeout : 1});
 
 	// tooltips
 	$('.preview').SMFtooltip();
@@ -58,3 +58,7 @@ function smf_addButton(stripId, image, options)
 		'</a>'
 	);
 }
+
+$(function() {
+	$( "#st_settings_tabs" ).tabs({});
+});

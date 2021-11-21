@@ -47,6 +47,7 @@ $txt['st_game_serverip'] = 'Server IP: ';
 $txt['st_game_sampver'] = 'SAMP version: ';
 
 // Main Menu
+$txt['st_disable_menu_icons'] = 'Disable icons in the main menu';
 $txt['st_remove_items'] = 'Remove Menu items';
 $txt['st_remove_items_desc'] = 'Here you can put any action you want to remove from the menu. Each action has to be separated with a comma. e.g. <i>admin,profile,mlist</i>';
 $txt['st_enable_community'] = 'Enable community button';
@@ -252,6 +253,7 @@ $txt['theme'] = 'Look and Layout';
 // Color Variants
 $txt['st_color_variants'] = 'Theme Color Variants';
 $txt['variant_pick'] = 'Select Color Variant';
+$txt['variant_default'] = 'Default';
 $txt['variant_red'] = 'Red';
 $txt['variant_blue'] = 'Blue';
 $txt['variant_green'] = 'Green';

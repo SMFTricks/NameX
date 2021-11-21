@@ -76,13 +76,40 @@ class Integration
 	{
 		$hooks = [
 			'menu_buttons' => 'main_menu',
-			// 'actions' => 'hookActions',
-			// 'buffer' => 'hookBuffer',
+			'current_action' => 'current_action',
+			'actions' => 'hookActions',
 		];
 		foreach ($hooks as $point => $callable)
 			add_integration_function('integrate_' . $point, __CLASS__ . '::' . $callable, false);
 	}
 
+	/**
+	 * Integration::hookActions()
+	 *
+	 * Insert any additional hooks needed in very specific cases
+	 * @param array $actions An array containing all possible SMF actions. This includes loading different hooks for certain areas.
+	 * @return void
+	 */
+	public static function hookActions(&$actions)
+	{
+		// Add some hooks by action
+		if (isset($_REQUEST['action']))
+			switch ($_REQUEST['action'])
+			{
+				// Admin News
+				case 'admin':
+					add_integration_function('integrate_admin_areas', __NAMESPACE__ . '\Settings::admin_areas#', false);
+					break;
+			}
+	}
+
+	/**
+	 * Integration::main_menu()
+	 *
+	 * Add or change menu buttons
+	 * @param array $buttons
+	 * @return void
+	 */
 	public function main_menu(&$buttons)
 	{
 		global $txt, $scripturl, $settings;
@@ -94,5 +121,30 @@ class Integration
 			'show' => allowedTo('admin_forum'),
 		];
 		$buttons['admin']['sub_buttons'] = array_merge([$current_theme], $buttons['admin']['sub_buttons']);
+	}
+
+	/**
+	 * Integration::current_action()
+	 *
+	 * Hook our menu icons setting for enabling/disabling.
+	 * It's done just in case users haven't updated their forums to the final version 
+	 * Or for whatever reason they are missing the setting.
+	 * 
+	 * @return void
+	 */
+	public function current_action()
+	{
+		global $context, $settings;
+
+		// Disable menu icons?
+		if (isset($settings['st_disable_menu_icons']) && !empty($settings['st_disable_menu_icons']))
+		{
+			$current_menu = $context['menu_buttons'];
+			foreach ($context['menu_buttons'] as $key => $button)
+			{
+				$current_menu[$key]['icon'] = '';
+			}
+			$context['menu_buttons'] = $current_menu;
+		}
 	}
 }

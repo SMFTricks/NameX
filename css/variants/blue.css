@@ -1,0 +1,6 @@
+:root,
+:root.theme-blue {
+	/* Primary color */
+		/* Hue */
+		--primary-color-hue: 250;
+}
