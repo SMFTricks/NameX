@@ -109,6 +109,9 @@ class Variants
 	{
 		global $context, $settings, $options, $txt;
 
+		// Let's define the variants so we can use them for other purposes (like displaying the color switcher)
+		$settings['theme_variants'] = self::$_theme_variants;
+
 		// Is user selection enabled?
 		if (!empty($settings['disable_user_variant']) && !allowedTo('admin_forum'))
 			return;
