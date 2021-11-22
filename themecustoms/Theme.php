@@ -22,6 +22,11 @@ class Theme
 	public $_theme_version = '1.0';
 
 	/**
+	 * @var string The theme name
+	 */
+	public $_theme_name = 'NameX';
+
+	/**
 	 * @var bool Enable avatars on topic list
 	 */
 	private $_avatars_on_indexes = true;
@@ -34,7 +39,10 @@ class Theme
 	/**
 	 * @var array The theme color variants (red, green, blue, etc)
 	 */
-	public $_theme_variants = ['green', 'blue'];
+	private $_theme_variants = [
+		'green',
+		'blue',
+	];
 
 	/**
 	 * @var array Enable dark/light mode
@@ -105,6 +113,12 @@ class Theme
 
 		// Add Theme Settings
 		add_integration_function('integrate_theme_settings', 'ThemeCustoms\Settings::themeSettings#', false);
+
+		// Remove the values from those undesired settings
+		$this->undoSettings();
+
+		// Add width setting with inline style because it's just faster
+		$this->insertForumWidth();
 	}
 
 	/**
@@ -117,6 +131,12 @@ class Theme
 	protected function startSettings()
 	{
 		global $settings;
+
+		// The actual version of the theme
+		$settings['theme_real_version'] = $this->_theme_version;
+
+		// The theme name
+		$settings['theme_real_name'] = $this->_theme_name;
 
 		// Set the following variable to true if this theme wants to display the avatar of the user that posted the last and the first post on the message index and recent pages.
 		$settings['avatars_on_indexes'] = $this->_avatars_on_indexes;
@@ -279,5 +299,55 @@ class Theme
 
 		// Theme ID
 		addJavaScriptVar('smf_theme_id', $settings['theme_id']);
+	}
+
+	/**
+	 * Theme::undoSettings()
+	 *
+	 * Prevents undesired settings from affecting the forum.
+	 * It obviously doesn't remove any setting from the database, just "disables" them.
+	 * 
+	 * @return void
+	 */
+	private function undoSettings()
+	{
+		global $settings;
+
+		// Good riddance!
+		if (!empty(Settings::$_remove_settings))
+			foreach (Settings::$_remove_settings as $remove_setting)
+				unset($settings[$remove_setting]);
+	}
+
+	/**
+	 * Theme::insertForumWidth()
+	 *
+	 * It adjusts the forum width to match the setting
+	 * Thanks to Sycho for the idea from his Forum Width Mod
+	 * https://custom.simplemachines.org/index.php?mod=4223
+	 * 
+	 * @return void
+	 */
+	private function insertForumWidth()
+	{
+		global $settings;
+
+		// Adjust the max-width accorrdinly
+		if (!empty($settings['st_custom_width']))
+			addInlineCss('
+			#top_section .inner_wrap, #wrapper, #header, #footer .inner_wrap, #nav_wrapper
+			{
+				max-width: '.$settings['st_custom_width'].';
+				width: unset;
+			}
+			@media screen and (max-width: 720px)
+			{
+				#top_section .inner_wrap, #wrapper, #header, #footer .inner_wrap
+				{
+					max-width: unset;
+					width: 100%;
+				}
+			}
+		');
 	}
 }

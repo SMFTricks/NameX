@@ -20,15 +20,6 @@ class Settings
 	private $_theme_settings;
 
 	/**
-	 * @var array Unwanted settings from the default theme (or custom theme even)
-	 */
-	private $_remove_settings = [
-		'site_slogan',
-		'enable_news',
-		'forum_width',
-	];
-
-	/**
 	 * @var array Setting types. Will allow to separate the settings if needed
 	 * No type means the setting is either a default setting or a main setting of the theme.
 	 */
@@ -36,6 +27,15 @@ class Settings
 		'carousel',
 		'color',
 		'social',
+	];
+
+	/**
+	 * @var array Unwanted settings from the default theme (or custom theme even).
+	 */
+	public static $_remove_settings = [
+		'site_slogan',
+		'enable_news',
+		'forum_width',
 	];
 
 	/**
@@ -78,29 +78,39 @@ class Settings
 	/**
 	 * Settings::removeSettings()
 	 *
-	 * Remove any unwanted settings from the array
+	 * Remove any unwanted settingss
 	 */
 	private function removeSettings()
 	{
-		global $context;
+		global $context, $settings;
 
 		// Remove Settings
-		if (!empty($this->_remove_settings))
+		if (!empty(self::$_remove_settings))
 			foreach ($context['theme_settings'] as $key => $theme_setting)
-				if (isset($theme_setting['id']) && in_array($theme_setting['id'], $this->_remove_settings))
+				if (isset($theme_setting['id']) && in_array($theme_setting['id'], self::$_remove_settings))
 					unset($context['theme_settings'][$key]);
 	}
 
 	/**
 	 * Settings::createSettings()
 	 *
-	 * Creates the settings array
+	 * Adds custom settings to the theme
 	 */
 	private function createSettings()
 	{
-		global $txt, $settings;
+		global $txt, $settings, $context;
 
-		// Theme Settings Array
+		// Insert forum width setting at the beginning
+		$context['theme_settings'] = array_merge([
+			[
+				'id' => 'st_custom_width',
+				'label' => $txt['st_custom_width'],
+				'description' => $txt['st_custom_width_desc'],
+				'type' => 'text',
+			]
+		], $context['theme_settings']);
+
+		// Theme Custom Settings
 		$this->_theme_settings = [
 			[
 				'id' => 'st_disable_fa_icons',
@@ -191,7 +201,8 @@ class Settings
 		// Disable the smf_js so it doesn't do silly things when loading the admin page
 		$modSettings['disable_smf_js'] = true;
 
-		// The below functions include all the scripts needed from the simplemachines.org site. The language and format are passed for internationalization.
+		// The below functions include all the scripts needed from the simplemachines.org site.
+		// The language and format are passed for internationalization.
 		if (!empty($modSettings['disable_smf_js']))
 		echo '
 					<script src="', $scripturl, '?action=viewsmfile;filename=current-version.js"></script>

@@ -26,7 +26,7 @@
 
 	/* Body */
 		/* Background */
-		--body-bg: hsl(var(--primary-color-hue), 15%, 35%);
+		--body-bg: hsl(var(--primary-color-hue), 35%, 80%);
 		/* Color */
 		--body-txt-color: hsl(0, 0%, 0%);
 
@@ -89,16 +89,11 @@
 
 	/* Catbg */
 		/* Background */
-		--catbg-bg: var(--primary-color);
+		--catbg-bg: hsl(var(--primary-color-hue), 35%, 35%);
 		/* Font */
 		--catbg-font-size: 1em;
-		/* Height */
-		--catbg-height: 40px;
-		--catbg-grid-height: 35px;
 		/* Color */
-		--catbg-txt-color-hue: var(--primary-color-hue);
-		--catbg-txt-color-sat: 15%;
-		--catbg-txt-color: hsl(var(--catbg-txt-color-hue), var(--catbg-txt-color-sat), 25%);
+		--catbg-txt-color: hsl(var(--primary-color-hue), 0%, 100%);
 		--catbg-txt-color-hover: hsl(var(--catbg-txt-color-hue), var(--catbg-txt-color-sat), 30%);
 		/* Border */
 		--catbg-border-width: 0 0 2px 0;
@@ -132,16 +127,8 @@
 		--titlebg-box-shadow: none;
 
 	/* Windowbg */
-		/* Windowbg1*/
-		--windowbg-hue: var(--primary-color-hue);
-		--windowbg-sat: 40%;
-		--windowbg-lum: 95%;
-		/* Windowbg2 */
-		--windowbg2-hue: var(--secondary-color-hue);
-		--windowbg2-sat: var(--windowbg-sat);
-		--windowbg2-lum: 95%;
 		/* Background */
-		--windowbg-bg: hsl(var(--windowbg-hue), var(--windowbg-sat), var(--windowbg-lum));
+		--windowbg-bg: linear-gradient(to top, hsl(0, 0%, 96%) 0, hsl(var(--primary-color-hue), 20%, 85%) 98%);
 		--windowbg2-bg: hsl(var(--windowbg2-hue), var(--windowbg2-sat), var(--windowbg2-lum));
 		/* Color */
 		--windowbg-txt-color: var(--body-txt-color);
@@ -172,15 +159,11 @@
 		/* Links */
 		--footer-links-color: var(--body-link-color);
 
-	/* Main Nav */
-		/* Background */
-		--nav-bg: linear-gradient(to bottom, hsl(0, 0%, 100%) 0%, hsl(0, 0%, 92%) 75%);
-
 	/* Main Nav Items */
 		/* Background */
 		--nav-item-bg: transparent;
 		--nav-item-bg-hover: transparent;
-		--nav-item-bg-active: hsl(var(--primary-color-hue), 35%, 35%);
+		--nav-item-bg-active: var(--catbg-bg);
 		/* Color */
 		--nav-item-txt-color: hsl(0, 0%, 15%);
 		--nav-item-txt-color-hover: hsl(var(--primary-color-hue), 25%, 40%);
@@ -188,19 +171,14 @@
 
 	/* Main Nav Drodown */
 		/* Background */
-		--nav-dropdown-bg: hsl(0, 0%, 10%);
-		/* Border */
-		--nav-dropdown-border-width: 1px;
-		--nav-dropdown-border-style: solid;
-		--nav-dropdown-border-color: var(--secondary-color);
-		--nav-dropdown-border-radius: 3px;
+		--nav-dropdown-bg: hsl(0, 0%, 97%);
 
 	/* Main Nav Drodown Items */
 		/* Background */
 		--nav-dropdown-item-bg: transparent;
-		--nav-dropdown-item-bg-hover: hsl(var(--primary-color-hue), 35%, 35%);
+		--nav-dropdown-item-bg-hover: var(--nav-item-bg-active);
 		/* Color */
-		--nav-dropdown-item-txt-color: hsl(0, 0%, 90%);
+		--nav-dropdown-item-txt-color: hsl(0, 0%, 12%);
 		--nav-dropdown-item-txt-color-hover: hsl(0, 0%, 100%);
 
 	/* Button List */

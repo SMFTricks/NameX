@@ -15,6 +15,7 @@ function template_customs_init()
 	global $settings;
 
 	// The version this template/theme is for. This should probably be the version of SMF it was created for.
+	// SMF cries if it's not defined around here.
 	$settings['theme_version'] = '2.1';
 
 	// Integration hooks, and other fun stuff

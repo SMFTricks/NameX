@@ -4,9 +4,12 @@ html {
 	background-color: transparent;
 }
 body {
-	background: var(--body-bg);
+	background-color: var(--body-bg);
 	font-family: 'Segoe UI', 'Helvetica', 'Arial';
 	color: var(--body-txt-color);
+}
+#footerfix {
+	flex: 111 133 10 2;
 }
 
 /* Header */
@@ -21,11 +24,13 @@ header {
 	width: 90%;
 }
 nav#main_menu {
-	background: var(--nav-bg);
+	background: hsl(0, 0%, 93%);
+	margin: 0 0 25px;
+	box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.1);
 }
 nav#main_menu ul.menu_nav {
 	display: flex;
-	min-height: 80px;
+	min-height: 60px;
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -38,7 +43,7 @@ nav#main_menu ul.menu_nav li {
 	display: flex;
 }
 nav#main_menu ul.menu_nav li a {
-	min-height: 45px;
+	min-height: 40px;
 	margin: auto 0;
 	padding: 0 10px;
 	display: flex;
@@ -49,6 +54,7 @@ nav#main_menu ul.menu_nav li a {
 	border-radius: 3px;
 	text-shadow: none;
 	box-shadow: none;
+	font-weight: 600;
 }
 nav#main_menu ul.menu_nav li a:hover {
 	color: var(--nav-item-txt-color-hover);
@@ -59,10 +65,23 @@ nav#main_menu ul.menu_nav li a.active {
 	color: var(--nav-item-txt-color-active);
 	background: var(--nav-item-bg-active);
 }
+nav#main_menu ul.menu_nav li a span.amt {
+	background-color: var(--nav-item-bg-active);
+	font-size: 0.8em;
+	display: inline-block;
+	border-radius: 5px;
+}
+nav#main_menu ul.menu_nav li a.active span.amt {
+	background-color: hsl(var(--primary-color-hue), 100%, 15%);
+	font-size: 0.8em;
+	display: inline-block;
+	border-radius: 5px;
+}
 nav#main_menu ul.menu_nav ul {
-	top: 80px;
+	top: 60px;
 	background: var(--nav-dropdown-bg);
-	border: none;
+	border: 1px solid hsl(0, 0%, 90%);
+	border-radius: 5px;
 	box-shadow: none;
 }
 nav#main_menu ul.menu_nav ul li {
@@ -73,30 +92,93 @@ nav#main_menu ul.menu_nav ul li {
 nav#main_menu ul.menu_nav ul li a {
 	background: var(--nav-dropdown-item-bg);
 	color: var(--nav-dropdown-item-txt-color);
+	font-weight: normal;
 }
 nav#main_menu ul.menu_nav ul li a:hover {
 	border-radius: 3px;
 	background: var(--nav-dropdown-item-bg-hover);
 	color: var(--nav-dropdown-item-txt-color-hover);
 }
-
-.cat_bar {
-	background: #557ea0;
-	border-bottom: 1px solid #777;
-	padding: 0;
-	border-radius: 6px 6px 0 0;
-	box-shadow: 0 16px 20px rgba(255,255,255,.15) inset;
-	text-shadow: -1px -1px 1px rgba(0,0,0,.2);
+nav#main_menu ul.menu_nav ul li a span.amt {
+	background-color: var(--nav-dropdown-item-bg-hover);
+	color: var(--nav-dropdown-item-txt-color-hover);
+	font-size: 0.9em;
+	display: inline-block;
+	border-radius: 5px;
+	padding: 0 8px;
+	font-weight: bold;
 }
-
-
-
+nav#main_menu ul.menu_nav ul li a:hover span.amt {
+	background-color: hsl(var(--primary-color-hue), 100%, 15%);
+}
+/* Content Section */
+#wrapper {
+	border-radius: 10px;
+	background: transparent;
+	border: none;
+}
+#upper_section {
+	border-radius: 10px 10px 0 0;
+	background-color: hsl(0, 0%, 90%);
+	padding: 0;
+}
+#inner_section {
+	border-radius: 10px 10px 0 0;
+	padding: 20px 25px 10px;
+}
+#inner_section, #top_section, .button, .dropmenu li li a:focus, .dropmenu li li a:hover, .dropmenu li li:hover, .dropmenu li li:hover > a, .dropmenu li ul, .inline_mod_check, .notify_dropdown a:focus, .notify_dropdown a:hover, .popup_window, .post_options ul, .post_options ul a:focus, .post_options ul a:hover, .quickbuttons li ul, .quickbuttons li ul li a:hover, .quickbuttons ul li a:focus, .quickbuttons > li, .top_menu {
+	background: linear-gradient(hsl(var(--primary-color-hue), 20%, 90%) 0,hsl(0, 0%, 99%) 70%);
+}
+#content_section {
+	background-color: hsl(0, 0%, 100%);
+	border-radius: 0 0 10px 10px;
+	padding: 0 15px 10px;
+}
+/* Containers */
+.navigate_section ul, .popup_content, .up_contain {
+	background: hsl(var(--primary-color-hue), 25%, 95%);
+	margin: 0;
+}
+.up_contain {
+	border-width: 0 0 1px;
+}
+.up_contain:first-child {
+	border-radius: 5px 5px 0 0;
+}
+.up_contain:last-child {
+	border-radius: 0 0 5px 5px;
+}
+/* Cat Bar */
+div.cat_bar {
+	background: var(--catbg-bg);
+	display: flex;
+	min-height: 40px;
+	color: var(--catbg-txt-color);
+	align-items: center;
+	border-radius: 4px;
+	box-shadow: 0 10px 30px rgba(0,0,0,0.1) inset;
+	margin: 1px 0 2px;
+}
+.catbg {
+	width: 100%;
+}
+h3.catbg, h3.catbg a, h3.catbg a:hover {
+	text-shadow: 0px 1px 1px rgba(0,0,0,0.4);
+	font-weight: normal;
+	color: var(--catbg-txt-color);
+}
+/* BoardIndex */
+.boardindex_table > div.main_container div.desc {
+	padding: 3px 8px;
+	background-color: hsl(var(--primary-color-hue), 35%, 90%);
+	margin: -1px 0 2px;
+	border-radius: 3px;
+}
 
 /* Settings Tabs */
 #st_settings_tabs {
 
 }
-
 
 .ui-tabs {
 	position: relative;/* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */

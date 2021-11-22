@@ -97,14 +97,6 @@ $txt['st_colorpicker_allowuser'] = 'Allow users to change theme color';
 $txt['st_colpick_primary'] = 'Primary color';
 $txt['st_colpick_secondary'] = 'Secondary color';
 
-// Alerts
-$txt['st_alerts_delay'] = 'Alerts Delay';
-$txt['st_alerts_delay_desc'] = 'Time in miliseconds, use 1000 for 1 second. <span class="smalltext"><i>If you set 0 the alerts won\'t disappear. <strong>0 is the default value</strong></i></span>';
-
-// PM's
-$txt['st_nopm'] = 'You have not received any private messages.';
-$txt['st_viewall'] = 'View All';
-
 // Topbar
 $txt['st_enable_topbar'] = 'Enable the topbar links';
 $txt['st_enable_topbar_desc'] = 'With this you can enable or disable the links from topbar';
@@ -199,7 +191,7 @@ $txt['st_enable_colcategories_desc'] = 'It will display two categories per row i
 
 // Font Awesome
 $txt['st_disable_fa_icons'] = 'Disable FontAwesome icons';
-$txt['st_disable_fa_icons_desc'] = 'This option will disable all the FontAwesome icons (exccept from navs).';
+$txt['st_disable_fa_icons_desc'] = 'This option will disable all the FontAwesome icons.';
 
 // Theme Effects
 $txt['st_enable_tooltips'] = 'Enable title tooltips';
@@ -207,7 +199,7 @@ $txt['st_enable_tooltips_desc'] = 'It will enable tooltips on mouse hover if the
 $txt['st_enable_nice_scroll'] = 'Enable NiceScroll';
 $txt['st_enable_nice_scroll_desc'] = 'This option will change the style of the scrollbar.';
 $txt['st_disable_theme_effects'] = 'Disable theme effects';
-$txt['st_disable_theme_effects_desc'] = 'This option will disable animations from dropdowns';
+$txt['st_disable_theme_effects_desc'] = 'This option will disable animations used in the theme.';
 $txt['st_enable_tooltips'] = 'Enable title tooltips';
 $txt['st_enable_tooltips_desc'] = 'It will enable tooltips on mouse hover if the element has a title attribute';
 $txt['st_animation'] = 'Dropdown animation';
@@ -248,12 +240,23 @@ $txt['rollIn'] = 'rollIn';
 
 // Profile
 $txt['st_profile_cover'] = 'Profile cover';
-$txt['theme'] = 'Look and Layout';
+
+// Width
+$txt['st_custom_width'] = 'Forum width';
+$txt['st_custom_width_desc'] = 'Set the forum width. Examples: 950px, 80%, 1240px.';
 
 // Color Variants
 $txt['st_color_variants'] = 'Theme Color Variants';
 $txt['variant_pick'] = 'Select Color Variant';
 $txt['variant_default'] = 'Default';
 $txt['variant_red'] = 'Red';
-$txt['variant_blue'] = 'Blue';
 $txt['variant_green'] = 'Green';
+$txt['variant_blue'] = 'Blue';
+$txt['variant_yellow'] = 'Yellow';
+$txt['variant_orange'] = 'Orange';
+$txt['variant_purple'] = 'Purple';
+$txt['variant_pink'] = 'Pink';
+$txt['variant_brown'] = 'Brown';
+$txt['variant_grey'] = 'Grey';
+$txt['variant_black'] = 'Black';
+$txt['variant_white'] = 'White';

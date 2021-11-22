@@ -111,17 +111,10 @@ function template_html_above()
  */
 function template_body_above()
 {
-	global $context, $settings, $scripturl, $txt, $modSettings, $maintenance;
+	global $context, $settings, $scripturl, $txt, $modSettings, $maintenance, $settings;
 
 	// Wrapper div now echoes permanently for better layout options. h1 a is now target for "Go up" links.
 	echo '
-
-	This is just for testing right?
-	<br/>
-	<button class="theme-variant-toggle" data-color="default">Default</button>
-	<button class="theme-variant-toggle" data-color="blue">Blue</button>
-	<button class="theme-variant-toggle" data-color="green">Green</button>
-	<br/>
 	<div id="top_section">
 		<div class="inner_wrap">';
 
@@ -253,6 +246,12 @@ function template_body_above()
 	</div><!-- #top_section -->';
 
 	echo '
+	This is just for testing right?
+	<br/>
+	<button class="theme-variant-toggle" data-color="default">Default</button>
+	<button class="theme-variant-toggle" data-color="blue">Blue</button>
+	<button class="theme-variant-toggle" data-color="green">Green</button>
+	<br/>
 	<div id="header">
 		<h1 class="forumtitle">
 			<a id="top" href="', $scripturl, '">', empty($context['header_logo_url_html_safe']) ? $context['forum_name_html_safe'] : '<img src="' . $context['header_logo_url_html_safe'] . '" alt="' . $context['forum_name_html_safe'] . '">', '</a>
