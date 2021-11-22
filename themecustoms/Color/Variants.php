@@ -61,7 +61,7 @@ class Variants
 		// Theme variants... Add the default style to it just for presentation.
 		self::$_theme_variants = array_merge(['default'], $variants);
 
-		// Insert the variants using the theme settings
+		// Insert the variants using the theme settings.
 		add_integration_function('integrate_theme_settings', __CLASS__ . '::setVariants', false);
 
 		// Add the variants to the list of available themes
@@ -109,8 +109,8 @@ class Variants
 	{
 		global $context, $settings, $options, $txt;
 
-		// Let's define the variants so we can use them for other purposes (like displaying the color switcher)
-		$settings['theme_variants'] = self::$_theme_variants;
+		// Re-load the variants so they become available eveywhere
+		self::setVariants();
 
 		// Is user selection enabled?
 		if (!empty($settings['disable_user_variant']) && !allowedTo('admin_forum'))
@@ -195,7 +195,7 @@ class Variants
 	 *
 	 * @return void
 	 */
-	public static function variantCSS($load_all = false)
+	protected static function variantCSS($load_all = false)
 	{
 		global $context, $settings, $options;
 
@@ -244,7 +244,7 @@ class Variants
 	 *
 	 * @return void
 	 */
-	public static function addJavaScriptVars()
+	protected static function addJavaScriptVars()
 	{
 		global $options, $settings;
 
@@ -262,7 +262,7 @@ class Variants
 	 *
 	 * @return void
 	 */
-	public static function variantJS()
+	protected static function variantJS()
 	{
 		global $settings;
 
