@@ -30,6 +30,10 @@
 		/* Color */
 		--body-txt-color: hsl(0, 0%, 0%);
 
+	/* Links */
+		/* Color */
+		--body-link-color: hsl(var(--primary-color-hue), 40%, 40%);
+
 	/* Inputs */
 		/* Background */
 		--input-bg: hsl(0, 0%, 100%);
@@ -42,11 +46,6 @@
 		/* Color */
 		--input-txt-color: hsl(0, 0%, 0%);
 		--input-accent-color: hsl(var(--primary-color-hue), 50%, 75%);
-
-	/* Links */
-		/* Color */
-		--body-link-color: var(--primary-color-acc);
-		--body-link-color-hover: var(--secondary-color-acc);
 
 	/* Button */
 		/* Height */
@@ -69,49 +68,15 @@
 		/* Color */
 		--newbutton-txt-color: hsl(0, 0%, 100%);
 
-	/* Main Content */
-		/* Background */
-		--main-content-bg: hsl(0, 0%, 100%);
-		/* Border */
-		--main-content-border-width: 0;
-		--main-content-border-style: solid;
-		--main-content-border-color: hsl(var(--primary-color-hue), 25%, 50%);
-		/* Shadow */
-		--main-content-shadow-box: 0px 2px 4px -1px rgba(0, 76, 117, 0.1);
-
-	/* Content Border */
-		/* Border */
-		--content-border-color: hsl(var(--primary-color-hue), 25%, 85%);
-
-	/* Boards Title */
-		/* Color */
-		--main-boards-title: hsl(var(--primary-color-hue), var(--primary-color-sat), 25%);
-
 	/* Catbg */
 		/* Background */
-		--catbg-bg: hsl(var(--primary-color-hue), 35%, 35%);
-		/* Font */
-		--catbg-font-size: 1em;
+		--catbg-bg: hsl(var(--primary-color-hue), 25%, 45%);
 		/* Color */
-		--catbg-txt-color: hsl(var(--primary-color-hue), 0%, 100%);
-		--catbg-txt-color-hover: hsl(var(--catbg-txt-color-hue), var(--catbg-txt-color-sat), 30%);
-		/* Border */
-		--catbg-border-width: 0 0 2px 0;
-		--catbg-border-style: solid;
-		--catbg-border-radius: 3px;
-		--catbg-border-color: var(--primary-color-acc);
-		/* Shadow */
-		--catbg-txt-shadow: 1px 1px 1px hsl(var(--catbg-txt-color-hue) var(--catbg-txt-color-sat) 100% / 0.2);
-		--catbg-box-shadow: none;
+		--catbg-txt-color: hsl(var(--primary-color-hue), 5%, 95%);
 
 	/* Titlebg */
 		/* Background */
 		--titlebg-bg: var(--secondary-color);
-		/* Font */
-		--titlebg-font-size: 1em;
-		/* Height */
-		--titlebg-height: 40px;
-		--titlebg-grid-height: 35px;
 		/* Color */
 		--titlebg-txt-color-hue: var(--secondary-color-hue);
 		--titlebg-txt-color-sat: 25%;
@@ -183,13 +148,13 @@
 
 	/* Button List */
 		/* Background */
-		--buttonlist-bg: var(--windowbg-bg);
-		--buttonlist-bg-hover: var(--roundframe-bg);
-		--buttonlist-bg-active: var(--primary-color);
+		--buttonlist-bg: hsl(var(--primary-color-hue), 15%, 90%);
+		--buttonlist-bg-hover: hsl(var(--primary-color-hue), 15%, 85%);
+		--buttonlist-bg-active: var(--catbg-bg);
 		/* Color */
 		--buttonlist-txt-color: hsl(0, 0%, 10%);
-		--buttonlist-txt-color-hover: hsl(0, 0%, 40%);
-		--buttonlist-txt-color-active: hsl(0, 0%, 100%);
+		--buttonlist-txt-color-hover: hsl(0, 0%, 15%);
+		--buttonlist-txt-color-active: hsl(0, 0%, 95%);
 
 	/* Subnav Dropdown */
 		/* Border */

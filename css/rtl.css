@@ -91,9 +91,6 @@ h3.titlebg, h4.titlebg, .titlebg, h3.subbg, h4.subbg, .subbg {
 
 /* Styles for the standard dropdown menus.
 ------------------------------------------------------- */
-#main_menu {
-	float: right;
-}
 #menu_nav {
 	padding: 0;
 }
@@ -684,4 +681,22 @@ h3 .collapse {
 code.bbc_code, pre.file_content {
 	text-align: left;
 	direction: ltr;
+}
+
+/* Theme Stuff */
+.custom_search select,
+.custom_search input, .custom_search input.button,
+.custom_search button {
+	border-radius: 8px;
+	border: 1px solid hsl(var(--primary-color-hue), 25%, 75%);
+}
+.custom_search select{
+	border-right: none;
+	border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+}
+.custom_search button {
+	border-left: none;
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
 }

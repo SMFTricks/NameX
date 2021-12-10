@@ -40,6 +40,7 @@ class Theme
 	 * @var array The theme color variants (red, green, blue, etc)
 	 */
 	private $_theme_variants = [
+		'red',
 		'green',
 		'blue',
 	];
@@ -75,6 +76,11 @@ class Theme
 	private $_js_files = [];
 
 	/**
+	 * @var bool Use font awesome icons
+	 */
+	private $_use_fontawesome = true;
+
+	/**
 	 * @var bool Use bootstrap
 	 */
 	private $_use_bootstrap = false;
@@ -86,21 +92,14 @@ class Theme
 	 */
 	public function __construct()
 	{
-		// Load Theme Strings
-		loadLanguage('ThemeStrings/');
-
 		// Main Settings
 		$this->startSettings();
 
 		// Include any libraries or frameworks
 		$this->libOptions();
 
-		// Theme Variants
-		if (!empty($this->_theme_variants))
-			Variants::init($this->_theme_variants);
-
-		/** @TODO */
-		// Theme Modes
+		// Load any custom templates
+		$this->loadTemplates();
 
 		// Load the CSS
 		$this->addCSS();
@@ -111,14 +110,15 @@ class Theme
 		// Theme JS Vars
 		$this->addJavaScriptVars();
 
-		// Add Theme Settings
-		add_integration_function('integrate_theme_settings', 'ThemeCustoms\Settings::themeSettings#', false);
-
-		// Remove the values from those undesired settings
-		$this->undoSettings();
-
-		// Add width setting with inline style because it's just faster
+		// Add width setting to the forum using inline style
 		$this->insertForumWidth();
+
+		// Theme Variants
+		if (!empty($this->_theme_variants))
+			Variants::init($this->_theme_variants);
+
+		/** @todo */
+		// Theme Modes
 	}
 
 	/**
@@ -128,7 +128,7 @@ class Theme
 	 * 
 	 * @return void
 	 */
-	protected function startSettings()
+	private function startSettings()
 	{
 		global $settings;
 
@@ -161,14 +161,14 @@ class Theme
 	 * 
 	 * @return void
 	 */
-	public function libOptions()
+	private function libOptions()
 	{
 		global $settings;
 
 		$this->_lib_options = [
 			// FontAwesome
 			'fontawesome' => [
-				'include' => !isset($settings['st_disable_fa_icons']) || empty($settings['st_disable_fa_icons']),
+				'include' => $this->_use_fontawesome,
 				'css' => [
 					'file' => 'https://use.fontawesome.com/releases/v5.15.4/css/all.css',
 					'external' => true,
@@ -208,13 +208,41 @@ class Theme
 	}
 
 	/**
+	 * Theme::loadTemplates()
+	 *
+	 * Load the custom templates
+	 * 
+	 * @return void
+	 */
+	private function loadTemplates()
+	{
+		global $context, $board, $topic;
+
+		// Load templates depending on our current action
+		if (!empty($context['current_action']))
+		{
+			switch ($context['current_action'])
+			{
+				case 'forum':
+					loadTemplate('themecustoms/templates/board');
+					break;
+				default:
+					break;
+			}
+		}
+		// Board
+		elseif(empty($topic))
+			loadTemplate('themecustoms/templates/board');
+	}
+
+	/**
 	 * Theme::addCSS()
 	 *
 	 * Add the theme css files
 	 * 
 	 * @return void
 	 */
-	public function addCSS()
+	private function addCSS()
 	{
 		// Add the css libraries first
 		if (!empty($this->_lib_options))
@@ -252,7 +280,7 @@ class Theme
 	 * 
 	 * @return void
 	 */
-	public function addJS()
+	private function addJS()
 	{
 		// Add the js libraries first
 		if (!empty($this->_lib_options))
@@ -293,30 +321,12 @@ class Theme
 	 * 
 	 * @return void
 	 */
-	public function addJavaScriptVars()
+	private function addJavaScriptVars()
 	{
 		global $settings;
 
 		// Theme ID
 		addJavaScriptVar('smf_theme_id', $settings['theme_id']);
-	}
-
-	/**
-	 * Theme::undoSettings()
-	 *
-	 * Prevents undesired settings from affecting the forum.
-	 * It obviously doesn't remove any setting from the database, just "disables" them.
-	 * 
-	 * @return void
-	 */
-	private function undoSettings()
-	{
-		global $settings;
-
-		// Good riddance!
-		if (!empty(Settings::$_remove_settings))
-			foreach (Settings::$_remove_settings as $remove_setting)
-				unset($settings[$remove_setting]);
 	}
 
 	/**
@@ -334,20 +344,42 @@ class Theme
 
 		// Adjust the max-width accorrdinly
 		if (!empty($settings['st_custom_width']))
+		{
 			addInlineCss('
-			#top_section .inner_wrap, #wrapper, #header, #footer .inner_wrap, #nav_wrapper
-			{
-				max-width: '.$settings['st_custom_width'].';
-				width: unset;
-			}
-			@media screen and (max-width: 720px)
-			{
-				#top_section .inner_wrap, #wrapper, #header, #footer .inner_wrap
+				#top_section .inner_wrap, #wrapper, #header, footer .inner_wrap, #nav_wrapper
 				{
-					max-width: unset;
-					width: 100%;
+					max-width: ' . $settings['st_custom_width'] . ';
+					width: unset;
 				}
-			}
-		');
+				@media screen and (max-width: 767px)
+				{
+					#top_section .inner_wrap, #wrapper, #header, footer .inner_wrap, #nav_wrapper
+					{
+						max-width: 95%;
+						width: 100%;
+					}
+				}
+			');
+		}
+	}
+
+	/**
+	 * Theme::unspeakable()
+	 *
+	 * It does nasty things to the theme footer
+	 * 
+	 * @return string Surprise!
+	 */
+	public static function unspeakable(&$buffer)
+	{
+		global $settings;
+
+		// Do not remove the copyright without permission!
+		if (!isset($settings['theme_remove_copyright']) || empty($settings['theme_remove_copyright']))
+			$buffer = preg_replace(
+				'~(<li class="smf_copyright">)~',
+				'<li>Theme by <a href="https://smftricks.com">SMF Tricks</a></li>' . "$1 ",
+				$buffer
+			);
 	}
 }

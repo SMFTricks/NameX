@@ -1,6 +1,4 @@
-:root,
 :root.theme-green {
 	--primary-color-hue: 105;
-	--body-bg: hsl(var(--primary-color-hue), 35%, 85%); 
-	--catbg-bg: hsl(var(--primary-color-hue), 70%, 30%);
+	--body-bg: hsl(var(--primary-color-hue), 25%, 85%); 
 }

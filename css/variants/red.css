@@ -1,5 +1,5 @@
-:root.theme-blue {
-	--primary-color-hue: 205;
+:root.theme-red {
+	--primary-color-hue: 360;
 	--body-bg: hsl(var(--primary-color-hue), 40%, 85%); 
 	--catbg-bg: hsl(var(--primary-color-hue), 40%, 45%);
 	--buttonlist-bg-active: hsl(var(--primary-color-hue), 30%, 50%);

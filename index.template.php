@@ -48,10 +48,8 @@ function template_html_above()
 	{
 		echo '
 	<meta';
-
 		foreach ($meta_tag as $meta_key => $meta_value)
 			echo ' ', $meta_key, '="', $meta_value, '"';
-
 		echo '>';
 	}
 
@@ -194,112 +192,21 @@ function template_body_above()
 			</form>';
 	}
 
-	if ($context['allow_search'])
-	{
-		echo '
-			<form id="search_form" class="floatright" action="', $scripturl, '?action=search2" method="post" accept-charset="', $context['character_set'], '">
-				<input type="search" name="search" value="">&nbsp;';
-
-		// Using the quick search dropdown?
-		$selected = !empty($context['current_topic']) ? 'current_topic' : (!empty($context['current_board']) ? 'current_board' : 'all');
-
-		echo '
-				<select name="search_selection">
-					<option value="all"', ($selected == 'all' ? ' selected' : ''), '>', $txt['search_entireforum'], ' </option>';
-
-		// Can't limit it to a specific topic if we are not in one
-		if (!empty($context['current_topic']))
-			echo '
-					<option value="topic"', ($selected == 'current_topic' ? ' selected' : ''), '>', $txt['search_thistopic'], '</option>';
-
-		// Can't limit it to a specific board if we are not in one
-		if (!empty($context['current_board']))
-			echo '
-					<option value="board"', ($selected == 'current_board' ? ' selected' : ''), '>', $txt['search_thisboard'], '</option>';
-
-		// Can't search for members if we can't see the memberlist
-		if (!empty($context['allow_memberlist']))
-			echo '
-					<option value="members"', ($selected == 'members' ? ' selected' : ''), '>', $txt['search_members'], ' </option>';
-
-		echo '
-				</select>';
-
-		// Search within current topic?
-		if (!empty($context['current_topic']))
-			echo '
-				<input type="hidden" name="sd_topic" value="', $context['current_topic'], '">';
-
-		// If we're on a certain board, limit it to this board ;).
-		elseif (!empty($context['current_board']))
-			echo '
-				<input type="hidden" name="sd_brd" value="', $context['current_board'], '">';
-
-		echo '
-				<input type="submit" name="search2" value="', $txt['search'], '" class="button">
-				<input type="hidden" name="advanced" value="0">
-			</form>';
-	}
-
 	echo '
 		</div><!-- .inner_wrap -->
 	</div><!-- #top_section -->';
 
-	echo '
-	This is just for testing right?
-	<br/>
-	<button class="theme-variant-toggle" data-color="default">Default</button>
-	<button class="theme-variant-toggle" data-color="blue">Blue</button>
-	<button class="theme-variant-toggle" data-color="green">Green</button>
-	<br/>
-	<div id="header">
-		<h1 class="forumtitle">
-			<a id="top" href="', $scripturl, '">', empty($context['header_logo_url_html_safe']) ? $context['forum_name_html_safe'] : '<img src="' . $context['header_logo_url_html_safe'] . '" alt="' . $context['forum_name_html_safe'] . '">', '</a>
-		</h1>';
-
-	echo '
-		', empty($settings['site_slogan']) ? '<img id="smflogo" src="' . $settings['images_url'] . '/smflogo.svg" alt="Simple Machines Forum" title="Simple Machines Forum">' : '<div id="siteslogan">' . $settings['site_slogan'] . '</div>', '';
-
-	echo '
-	</div>';
+	// Header
+	themecustoms_header();
 
 	// Show the menu here, according to the menu sub template, followed by the navigation tree.
 	// Load mobile menu here
-	echo '
-	<nav id="main_menu">
-		<a class="menu_icon mobile_user_menu"></a>
-		<div id="nav_wrapper">
-			<div id="mobile_user_menu" class="popup_container">
-				<div class="popup_window description">
-					<div class="popup_heading">', $txt['mobile_user_menu'], '
-						<a href="javascript:void(0);" class="main_icons hide_popup"></a>
-					</div>
-					', template_menu(), '
-				</div>
-			</div>
-		</div>
-	</nav>';
+	template_menu();
 
 	echo '
 	<div id="wrapper">
 		<div id="upper_section">
-			<div id="inner_section">
-				<div id="inner_wrap">
-					<div class="user">
-						', $context['current_time'], '
-					</div>';
-
-	// Show a random news item? (or you could pick one from news_lines...)
-	if (!empty($settings['enable_news']) && !empty($context['random_news_line']))
-		echo '
-					<div class="news">
-						<h2>', $txt['news'], ': </h2>
-						<p>', $context['random_news_line'], '</p>
-					</div>';
-
-	echo '
-					<hr class="clear">
-				</div>';
+			<div id="inner_section">';
 
 	// Theme LInktree
 	theme_linktree();
@@ -328,28 +235,7 @@ function template_body_below()
 </div><!-- #footerfix -->';
 
 	// Show the footer with copyright, terms and help links.
-	echo '
-	<div id="footer">
-		<div class="inner_wrap">';
-
-	// There is now a global "Go to top" link at the right.
-	echo '
-		<ul>
-			<li class="floatright"><a href="', $scripturl, '?action=help">', $txt['help'], '</a> ', (!empty($modSettings['requireAgreement'])) ? '| <a href="' . $scripturl . '?action=agreement">' . $txt['terms_and_rules'] . '</a>' : '', ' | <a href="#top_section">', $txt['go_up'], ' &#9650;</a></li>
-			<li class="copyright">', theme_copyright(), '</li>
-		</ul>';
-
-
-	// DevCenter - Show load average.
-	if (!empty($modSettings['devcenter_displayserverload']))
-		echo '<p>', sprintf($txt['devcenter_load'], $context['dc_load'][0], $context['dc_load'][1], $context['dc_load'][2]), '</p>';	// Show the load time?
-	if ($context['show_load_time'])
-		echo '
-		<p>', sprintf($txt['page_created_full'], $context['load_time'], $context['load_queries']), '</p>';
-
-	echo '
-		</div>
-	</div><!-- #footer -->';
+	themecustoms_footer();
 }
 
 /**
@@ -373,6 +259,10 @@ function template_html_below()
 function theme_linktree($force_show = false)
 {
 	global $context, $shown_linktree, $scripturl, $txt;
+
+	// Don't show the linktree if we are at home
+	if (empty($context['current_action']) && empty($context['current_board']) && empty($context['current_topic']))
+		return;
 
 	// If linktree is empty, just return - also allow an override.
 	if (empty($context['linktree']) || (!empty($context['dont_default_linktree']) && !$force_show))
@@ -433,63 +323,77 @@ function theme_linktree($force_show = false)
  */
 function template_menu()
 {
-	global $context;
+	global $context, $txt;
 
 	echo '
-					<ul class="dropmenu menu_nav">';
+	<nav id="main_nav">
+		<div id="nav_wrapper">
+			<a class="menu_icon mobile_user_menu"></a>
+			<div id="main_menu">
+				<div id="mobile_user_menu" class="popup_container">
+					<div class="popup_window description">
+						<div class="popup_heading">', $txt['mobile_user_menu'], '
+							<a href="javascript:void(0);" class="main_icons hide_popup"></a>
+						</div>
+						<ul class="dropmenu menu_nav">';
 
 	// Note: Menu markup has been cleaned up to remove unnecessary spans and classes.
 	foreach ($context['menu_buttons'] as $act => $button)
 	{
 		echo '
-						<li class="button_', $act, '', !empty($button['sub_buttons']) ? ' subsections"' : '"', '>
-							<a', $button['active_button'] ? ' class="active"' : '', ' href="', $button['href'], '"', isset($button['target']) ? ' target="' . $button['target'] . '"' : '', '>
-								', $button['icon'], '<span class="textmenu">', $button['title'], !empty($button['amt']) ? ' <span class="amt">' . $button['amt'] . '</span>' : '', '</span>
-							</a>';
+							<li class="button_', $act, '', !empty($button['sub_buttons']) ? ' subsections"' : '"', '>
+								<a', $button['active_button'] ? ' class="active"' : '', ' href="', $button['href'], '"', isset($button['target']) ? ' target="' . $button['target'] . '"' : '', '>
+									', $button['icon'], '<span class="textmenu">', $button['title'], !empty($button['amt']) ? ' <span class="amt">' . $button['amt'] . '</span>' : '', '</span>
+								</a>';
 
 		// 2nd level menus
 		if (!empty($button['sub_buttons']))
 		{
 			echo '
-							<ul>';
+								<ul>';
 
 			foreach ($button['sub_buttons'] as $childbutton)
 			{
 				echo '
-								<li', !empty($childbutton['sub_buttons']) ? ' class="subsections"' : '', '>
-									<a href="', $childbutton['href'], '"', isset($childbutton['target']) ? ' target="' . $childbutton['target'] . '"' : '', '>
-										', $childbutton['title'], !empty($childbutton['amt']) ? ' <span class="amt">' . $childbutton['amt'] . '</span>' : '', '
-									</a>';
+									<li', !empty($childbutton['sub_buttons']) ? ' class="subsections"' : '', '>
+										<a href="', $childbutton['href'], '"', isset($childbutton['target']) ? ' target="' . $childbutton['target'] . '"' : '', '>
+											', $childbutton['title'], !empty($childbutton['amt']) ? ' <span class="amt">' . $childbutton['amt'] . '</span>' : '', '
+										</a>';
 				// 3rd level menus :)
 				if (!empty($childbutton['sub_buttons']))
 				{
 					echo '
-									<ul>';
+										<ul>';
 
 					foreach ($childbutton['sub_buttons'] as $grandchildbutton)
 						echo '
-										<li>
-											<a href="', $grandchildbutton['href'], '"', isset($grandchildbutton['target']) ? ' target="' . $grandchildbutton['target'] . '"' : '', '>
-												', $grandchildbutton['title'], !empty($grandchildbutton['amt']) ? ' <span class="amt">' . $grandchildbutton['amt'] . '</span>' : '', '
-											</a>
-										</li>';
+											<li>
+												<a href="', $grandchildbutton['href'], '"', isset($grandchildbutton['target']) ? ' target="' . $grandchildbutton['target'] . '"' : '', '>
+													', $grandchildbutton['title'], !empty($grandchildbutton['amt']) ? ' <span class="amt">' . $grandchildbutton['amt'] . '</span>' : '', '
+												</a>
+											</li>';
 
 					echo '
-									</ul>';
+										</ul>';
 				}
 
 				echo '
-								</li>';
+									</li>';
 			}
 			echo '
-							</ul>';
+								</ul>';
 		}
 		echo '
-						</li>';
+							</li>';
 	}
 
 	echo '
-					</ul><!-- .menu_nav -->';
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav><!-- .menu_nav -->';
 }
 
 /**

@@ -17,13 +17,13 @@ class Settings
 	/**
 	 * @var array The theme settings
 	 */
-	private $_theme_settings;
+	private static $_settings;
 
 	/**
 	 * @var array Setting types. Will allow to separate the settings if needed
 	 * No type means the setting is either a default setting or a main setting of the theme.
 	 */
-	private $_setting_types = [
+	private static $_setting_types = [
 		'carousel',
 		'color',
 		'social',
@@ -32,11 +32,25 @@ class Settings
 	/**
 	 * @var array Unwanted settings from the default theme (or custom theme even).
 	 */
-	public static $_remove_settings = [
+	private static $_remove_settings = [
 		'site_slogan',
 		'enable_news',
 		'forum_width',
 	];
+
+	/**
+	 * Settings::__construct()
+	 *
+	 * It handles the settings side of the theme
+	 */
+	public function __construct()
+	{
+		// Hook the theme settings
+		add_integration_function('integrate_theme_settings', __CLASS__ . '::themeSettings', false);
+
+		// Remove the values from those undesired settings
+		self::undoSettings();
+	}
 
 	/**
 	 * Settings::themeSettings()
@@ -46,13 +60,13 @@ class Settings
 	public function themeSettings()
 	{
 		// Create the custom settings
-		$this->createSettings();
-
-		// Add theme settings
-		$this->addSettings();
+		self::createSettings();
 
 		// Remove unwanted settings
-		$this->removeSettings();
+		self::removeSettings();
+
+		// Add theme settings
+		self::addSettings();
 	}
 
 	/**
@@ -60,19 +74,19 @@ class Settings
 	 *
 	 * Inserts the theme settings in the array
 	 */
-	private function addSettings()
+	private static function addSettings()
 	{
 		global $context;
 
-		// I need to add a break line because later on I might do silly things
-		if (!empty($this->_theme_settings))
+		// I need to add a line break because later on I might do silly things
+		if (!empty(self::$_settings))
 			$context['theme_settings'][] = '';
 
 		// Add the setting types
-		$context['st_setting_types'] = $this->_setting_types;
+		$context['st_setting_types'] = self::$_setting_types;
 
 		// Insert the new theme settings in the array
-		$context['theme_settings'] = array_merge($context['theme_settings'], $this->_theme_settings);
+		$context['theme_settings'] = array_merge($context['theme_settings'], self::$_settings);
 	}
 
 	/**
@@ -80,9 +94,9 @@ class Settings
 	 *
 	 * Remove any unwanted settingss
 	 */
-	private function removeSettings()
+	private static function removeSettings()
 	{
-		global $context, $settings;
+		global $context;
 
 		// Remove Settings
 		if (!empty(self::$_remove_settings))
@@ -96,7 +110,7 @@ class Settings
 	 *
 	 * Adds custom settings to the theme
 	 */
-	private function createSettings()
+	private static function createSettings()
 	{
 		global $txt, $settings, $context;
 
@@ -111,18 +125,17 @@ class Settings
 		], $context['theme_settings']);
 
 		// Theme Custom Settings
-		$this->_theme_settings = [
-			[
-				'id' => 'st_disable_fa_icons',
-				'label' => $txt['st_disable_fa_icons'],
-				'description' => $txt['st_disable_fa_icons_desc'],
-				'type' => 'checkbox',
-			],
+		self::$_settings = [
 			[
 				'id' => 'st_disable_theme_effects',
 				'label' => $txt['st_disable_theme_effects'],
 				'description' => $txt['st_disable_theme_effects_desc'],
 				'type' => 'checkbox'
+			],
+			[
+				'id' => 'st_enable_avatars_boards',
+				'label' => $txt['st_enable_avatars_boards'],
+				'type' => 'checkbox',
 			],
 			[
 				'id' => 'st_facebook',
@@ -177,11 +190,29 @@ class Settings
 
 		// Add compatibility for the 'disable icon' setting
 		if (!isset($settings['disable_menu_icons']))
-			$this->_theme_settings[] = [
+			self::$_settings[] = [
 				'id' => 'st_disable_menu_icons',
 				'label' => $txt['st_disable_menu_icons'],
 				'type' => 'checkbox',
 			];
+	}
+
+	/**
+	 * Settings::undoSettings()
+	 *
+	 * Prevents undesired settings from affecting the forum.
+	 * It obviously doesn't remove any setting from the database, just "disables" them.
+	 * 
+	 * @return void
+	 */
+	private static function undoSettings()
+	{
+		global $settings;
+
+		// Good riddance!
+		if (!empty(self::$_remove_settings))
+			foreach (self::$_remove_settings as $remove_setting)
+				unset($settings[$remove_setting]);
 	}
 
 	/**
