@@ -95,7 +95,7 @@ class Integration
 			'menu_buttons' => 'main_menu',
 			'current_action' => 'current_action',
 			'actions' => 'hookActions',
-			'buffer' => 'hookBuffer',
+			'buffer' => 'hookBuffer#',
 		];
 		foreach ($hooks as $point => $callable)
 			add_integration_function('integrate_' . $point, __CLASS__ . '::' . $callable, false);
@@ -174,7 +174,7 @@ class Integration
 	public function hookBuffer($buffer)
 	{
 		// Do unspeakable things to the footer
-		Theme::unspeakable($buffer);
+		$this->_load_theme->unspeakable($buffer);
 
 		// Return the buffer
 		return $buffer;

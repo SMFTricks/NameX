@@ -370,7 +370,7 @@ class Theme
 	 * 
 	 * @return string Surprise!
 	 */
-	public static function unspeakable(&$buffer)
+	public function unspeakable(&$buffer)
 	{
 		global $settings;
 
