@@ -93,7 +93,7 @@ class Integration
 	{
 		$hooks = [
 			'menu_buttons' => 'main_menu',
-			'current_action' => 'current_action',
+			'current_action' => 'disable_icons',
 			'actions' => 'hookActions',
 			'buffer' => 'hookBuffer#',
 		];
@@ -142,7 +142,7 @@ class Integration
 	}
 
 	/**
-	 * Integration::current_action()
+	 * Integration::disable_icons()
 	 *
 	 * Hook our menu icons setting for enabling/disabling.
 	 * It's done just in case users haven't updated their forums to the final version 
@@ -151,7 +151,7 @@ class Integration
 	 * 
 	 * @return void
 	 */
-	public function current_action()
+	public function disable_icons()
 	{
 		global $context, $settings, $txt;
 

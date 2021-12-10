@@ -34,12 +34,23 @@ header {
 	display: flex;
 	padding: 0;
 	min-height: 100px;
-	/* align-items: center; */
 }
-#header h1.forumtitle {
+header h1.forumtitle {
 	align-self: center;
-	padding: 5px 0 15px;
+	padding: 8px 0;
 }
+header h1.forumtitle a {
+	text-decoration: none;
+}
+/* header h1.forumtitle span {
+	background-image: url(../images/theme/logo.png);
+	color: transparent;
+	text-shadow: none;
+	background-repeat: no-repeat;
+	height: 70px;
+	display: block;
+	line-height: 85px;
+} */
 
 /* Socials */
 .social_icons {
@@ -89,6 +100,7 @@ header {
 #main_menu {
 	margin: 0;
 	width: 100%;
+	z-index: 101;
 }
 #nav_wrapper {
 	max-width: 1200px;
@@ -99,7 +111,7 @@ header {
 	align-items: center;
 }
 nav#main_nav {
-	background: hsl(0, 0%, 93%);
+	background: hsl(0, 0%, 95%);
 	margin: 0 0 25px;
 	box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.1);
 }
@@ -215,8 +227,11 @@ nav#main_nav ul.menu_nav ul li a:hover span.amt {
 	padding: 0 15px 10px;
 }
 /* Containers */
+.navigate_section ul, .popup_content, .up_contain,
+.roundframe, .windowbg, .windowbg:nth-of-type(2n), #forumposts .windowbg {
+	background: var(--windowbg-bg);
+}
 .navigate_section ul, .popup_content, .up_contain {
-	background: hsl(var(--primary-color-hue), 25%, 95%);
 	margin: 0;
 }
 /* Cat Bar */
@@ -379,7 +394,6 @@ p.moderators > :is(a, a:visited, a:hover) {
 }
 /* Buttonlist */
 .buttonlist, .buttonrow, .pagelinks {
-	z-index: 0;
 	margin: 3px 0;
 	padding: 0;
 }
@@ -448,7 +462,7 @@ p.moderators > :is(a, a:visited, a:hover) {
 }
 /* Search */
 .custom_search {
-	background-color: hsl(0, 0%, 93%);
+	background-color: hsl(0, 0%, 95%);
 	padding: 5px 10px;
 	display: flex;
 	align-self: flex-end;
@@ -543,8 +557,9 @@ p.moderators > :is(a, a:visited, a:hover) {
 /* Footer */
 footer {
 	margin: 25px 0 0;
-	padding: 20px 0;
+	padding: 15px 0;
 	background: var(--footer-bg);
+	box-shadow: 0px -5px 8px -5px rgba(0,0,0,0.1);
 }
 footer .inner_wrap {
 	margin: 0 auto;
@@ -559,18 +574,31 @@ footer ul.copyright {
 	width: 50%;
 }
 footer ul.copyright li {
-	margin: 2px 0;
+	margin: 5px 0;
 }
 footer div.footer-other {
 	flex-grow: 1;
-}
-footer div.footer-other ul {
-	margin: 10px 0 0;
+	display: flex;
+	gap: 5px;
+	flex-direction: column;
+	align-items: flex-end;
+	text-align: right;
 }
 footer .inner_wrap p {
 	text-align: center;
 	font-size: 0.8em;
 	margin: 10px 0 0;
+}
+footer .footer-other span.help-links {
+	display: flex;
+	gap: 3px;
+	font-size: 0.9em;
+}
+footer .footer-other span.help-links a:not(:last-child)::after {
+	content: " |";
+}
+footer .footer-other span.help-links a i.fa {
+	font-size: 0.8em;
 }
 
 /**** FontAwesome ****/

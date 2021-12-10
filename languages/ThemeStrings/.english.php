@@ -48,6 +48,7 @@ $txt['st_game_sampver'] = 'SAMP version: ';
 
 // Main Menu
 $txt['st_disable_menu_icons'] = 'Disable icons in the main menu';
+$txt['st_disable_menu_icons_desc'] = 'This will disable main menu icons, either images or font awesome.';
 $txt['st_remove_items'] = 'Remove Menu items';
 $txt['st_remove_items_desc'] = 'Here you can put any action you want to remove from the menu. Each action has to be separated with a comma. e.g. <i>admin,profile,mlist</i>';
 $txt['st_enable_community'] = 'Enable community button';
@@ -67,9 +68,9 @@ $txt['st_special_menu'] = 'Special Menu items';
 
 // Avatar settings
 $txt['st_enable_avatars'] = 'Enable the avatars'; // Deprecated setting
-$txt['st_enable_avatars_boards'] = 'Enable avatar on board';
-$txt['st_enable_avatars_topics'] = 'Enable avatar on topic list';
-$txt['st_enable_avatars_recent'] = 'Enable avatar on recent posts stats';
+$txt['st_enable_avatars_boards'] = 'Enable avatars on board';
+$txt['st_enable_avatars_topics'] = 'Enable avatars on topic list';
+$txt['st_enable_avatars_recent'] = 'Enable avatars on recent posts stats';
 
 // General strings
 $txt['current_theme'] = 'Theme settings';

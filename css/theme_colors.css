@@ -7,7 +7,7 @@
 		--primary-color-sat: 50%;
 		/* Lightness */
 		--primary-color-lum: 75%;
-		/* Color (Can replace with HEX, RGB) */
+		/* Color */
 		--primary-color: hsl(var(--primary-color-hue), var(--primary-color-sat), var(--primary-color-lum));
 		/* Color Accent */
 		--primary-color-acc: hsl(var(--primary-color-hue), var(--primary-color-sat), 30%);
@@ -19,7 +19,7 @@
 		--secondary-color-sat: 30%;
 		/* Lightness */
 		--secondary-color-lum: 65%;
-		/* Color (Can replace with HEX, RGB) */
+		/* Color */
 		--secondary-color: hsl(var(--secondary-color-hue), var(--secondary-color-sat), var(--secondary-color-lum));
 		/* Color Accent */
 		--secondary-color-acc: hsl(var(--secondary-color-hue), var(--secondary-color-sat), 35%);
@@ -38,26 +38,14 @@
 		/* Background */
 		--input-bg: hsl(0, 0%, 100%);
 		--input-bg-disabled: hsl(0, 0%, 85%);
-		/* Border */
-		--input-border-width: 1px;
-		--input-border-style: solid;
-		--input-border-color: var(--secondary-color);
-		--input-border-radius: 3px;
 		/* Color */
 		--input-txt-color: hsl(0, 0%, 0%);
 		--input-accent-color: hsl(var(--primary-color-hue), 50%, 75%);
 
 	/* Button */
-		/* Height */
-		--button-height: 30px;
 		/* Background */
 		--button-bg: var(--secondary-color);
 		--button-bg-hover: var(--primary-color);
-		/* Border */
-		--button-border-width: 1px;
-		--button-border-style: solid;
-		--button-border-color: var(--secondary-color);
-		--button-border-radius: 3px;
 		/* Color */
 		--button-txt-color: hsl(0, 0%, 95%);
 		--button-txt-color-hover: hsl(0, 0%, 20%);
@@ -78,39 +66,16 @@
 		/* Background */
 		--titlebg-bg: var(--secondary-color);
 		/* Color */
-		--titlebg-txt-color-hue: var(--secondary-color-hue);
-		--titlebg-txt-color-sat: 25%;
 		--titlebg-txt-color: hsl(var(--titlebg-txt-color-hue), var(--titlebg-txt-color-sat), 25%);
-		--titlebg-txt-color-hover: hsl(var(--titlebg-txt-color-hue), var(--titlebg-txt-color-sat), 35%);
-		/* Border */
-		--titlebg-border-width: 0 0 2px 0;
-		--titlebg-border-style: solid;
-		--titlebg-border-radius: 3px;
-		--titlebg-border-color: var(--secondary-color-acc);
-		/* Shadow */
-		--titlebg-txt-shadow: 1px 1px 1px hsl(var(--titlebg-txt-color-hue) var(--titlebg-txt-color-sat) 100% / 0.2);
-		--titlebg-box-shadow: none;
 
 	/* Windowbg */
 		/* Background */
-		--windowbg-bg: linear-gradient(to top, hsl(0, 0%, 96%) 0, hsl(var(--primary-color-hue), 20%, 85%) 98%);
+		--windowbg-bg: hsl(var(--primary-color-hue), 25%, 95%);
 		--windowbg2-bg: hsl(var(--windowbg2-hue), var(--windowbg2-sat), var(--windowbg2-lum));
-		/* Color */
-		--windowbg-txt-color: var(--body-txt-color);
-		/* Border */
-		--windowbg-border-radius: 2px;
 
 	/* Roundframe */
-	--roundframe-hue: var(--secondary-color-hue);
-	--roundframe-sat: 30%;
-	--roundframe-lum: 95%;
 		/* Background */
-		--roundframe-bg: hsl(var(--roundframe-hue), var(--roundframe-sat), var(--roundframe-lum));
-		/* Border */
-		--roundframe-border-width: 1px;
-		--roundframe-border-style: solid;
-		--roundframe-border-color: hsl(var(--roundframe-hue), 25%, 90%);
-		--roundframe-border-radius: 2px;
+		--roundframe-bg: var(--windowbg-bg);
 
 	/* Header */
 		/* Background */
@@ -119,10 +84,6 @@
 	/* Footer */
 		/* Background */
 		--footer-bg: hsl(var(--primary-color-hue), 50%, 92%);
-		/* Color */
-		--footer-txt-color: hsl(0, 0%, 0%);
-		/* Links */
-		--footer-links-color: var(--body-link-color);
 
 	/* Main Nav Items */
 		/* Background */

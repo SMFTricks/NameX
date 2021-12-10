@@ -41,13 +41,13 @@ function themecustoms_header()
 {
 	global $scripturl, $context;
 
-	themecustoms_colorpicker();
+	// themecustoms_colorpicker();
 
 	echo '
 	<header>
 		<div id="header">
 			<h1 class="forumtitle">
-				<a id="top" href="', $scripturl, '">', empty($context['header_logo_url_html_safe']) ? $context['forum_name_html_safe'] : '<img src="' . $context['header_logo_url_html_safe'] . '" alt="' . $context['forum_name_html_safe'] . '">', '</a>
+				<a id="top" href="', $scripturl, '">', empty($context['header_logo_url_html_safe']) ? '<span>' . $context['forum_name_html_safe'] . '</span>' : '<img src="' . $context['header_logo_url_html_safe'] . '" alt="' . $context['forum_name_html_safe'] . '">', '</a>
 			</h1>';
 
 			// Theme Variants
@@ -70,17 +70,22 @@ function themecustoms_footer()
 					<li class="smf_copyright">', theme_copyright(), '</li>
 				</ul>
 				<div class="footer-other">
+					<a href="', $scripturl, '">', $context['forum_name'], ' &copy; ', date('Y'), '</a>
+					<span class="help-links">
+						<a href="', $scripturl, '?action=help">', $txt['help'], '</a>', (!empty($modSettings['requireAgreement'])) ? '
+						<a href="' . $scripturl . '?action=agreement">' . $txt['terms_and_rules'] . '</a>' : '', '
+						<a href="#top_section">', $txt['go_up'], ' ', themecustoms_icon('fa fa-arrow-up'), '</a>
+					</span>
 					', themecustoms_socials(), '
-					<ul>
-						<li class="floatright"><a href="', $scripturl, '?action=help">', $txt['help'], '</a> ', (!empty($modSettings['requireAgreement'])) ? '| <a href="' . $scripturl . '?action=agreement">' . $txt['terms_and_rules'] . '</a>' : '', ' | <a href="#top_section">', $txt['go_up'], ' &#9650;</a></li>
-					</ul>
 				</div>
 			</div>';
 
 	// Show the load time?
 	if ($context['show_load_time'])
 		echo '
-			<p>', sprintf($txt['page_created_full'], $context['load_time'], $context['load_queries']), '</p>';
+			<p>
+				', sprintf($txt['page_created_full'], $context['load_time'], $context['load_queries']), '
+			</p>';
 
 	echo '
 		</div>
@@ -97,7 +102,7 @@ function themecustoms_socials()
 	// Facebook
 	if (!empty($settings['st_facebook']))
 		echo '
-		<a href="https://www.facebook.com/' . $settings['st_facebook'] . '" target="_blank" rel="noopener" class="facebook">', themecustoms_icon('fab fa-facebook-f'), '</a>';
+		<a href="https://facebook.com/' . $settings['st_facebook'] . '" target="_blank" rel="noopener" class="facebook">', themecustoms_icon('fab fa-facebook-f'), '</a>';
 
 	// Twitter
 	if (!empty($settings['st_twitter']))
@@ -107,17 +112,17 @@ function themecustoms_socials()
 	// Instagram
 	if (!empty($settings['st_instagram']))
 		echo '
-		<a href="https://www.instagram.com/' . $settings['st_instagram'] . '" target="_blank" rel="noopener" class="instagram">', themecustoms_icon('fab fa-instagram'), '</a>';
+		<a href="https://instagram.com/' . $settings['st_instagram'] . '" target="_blank" rel="noopener" class="instagram">', themecustoms_icon('fab fa-instagram'), '</a>';
 
 	// Youtube
 	if (!empty($settings['st_youtube']))
 		echo '
-		<a href="https://www.youtube.com/' . $settings['st_youtube'] . '" target="_blank" rel="noopener" class="youtube">', themecustoms_icon('fab fa-youtube'), '</a>';
+		<a href="' . $settings['st_youtube'] . '" target="_blank" rel="noopener" class="youtube">', themecustoms_icon('fab fa-youtube'), '</a>';
 
 	// Twitch
 	if (!empty($settings['st_twitch']))
 		echo '
-		<a href="https://www.twitch.tv/' . $settings['st_twitch'] . '" target="_blank" rel="noopener" class="twitch">', themecustoms_icon('fab fa-twitch'), '</a>';
+		<a href="https://twitch.tv/' . $settings['st_twitch'] . '" target="_blank" rel="noopener" class="twitch">', themecustoms_icon('fab fa-twitch'), '</a>';
 
 	// Discord
 	if (!empty($settings['st_discord']))

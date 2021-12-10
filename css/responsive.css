@@ -508,6 +508,17 @@
 	#pm_menu, #alerts_menu {
 		padding-right: 9px;
 	}
+	footer .footer_links {
+		flex-direction: column-reverse;
+	}
+	footer ul.copyright{
+		width: 100%;
+	}
+	footer ul.copyright,
+	footer div.footer-other{
+		text-align: center;
+		align-items: center;
+	}
 }
 
 /* Tricky menu */
