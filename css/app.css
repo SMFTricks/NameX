@@ -480,9 +480,10 @@ p.moderators > :is(a, a:visited, a:hover) {
 	background: hsl(0, 0%, 97%);
 }
 .custom_search input[name="search"] {
-	border-width: 1px 0;
-	border-radius: 0;
-	padding: 1px 3px;
+	border-right: none;
+	border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+	padding: 1px 8px;
 	width: 6em;
 	transition: width 0.5s ease-in-out;
 }
@@ -490,9 +491,8 @@ p.moderators > :is(a, a:visited, a:hover) {
 	width: 18em;
 }
 .custom_search button {
-	border-right: none;
-	border-bottom-right-radius: 0;
-	border-top-right-radius: 0;
+	border-width: 1px 0;
+	border-radius: 0;
 	padding: 1px 10px;
 }
 .custom_search button:hover {
@@ -557,6 +557,9 @@ footer .footer_links {
 footer ul.copyright {
 	list-style: none;
 	width: 50%;
+}
+footer ul.copyright li {
+	margin: 2px 0;
 }
 footer div.footer-other {
 	flex-grow: 1;
