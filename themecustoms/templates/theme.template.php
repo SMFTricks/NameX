@@ -41,7 +41,7 @@ function themecustoms_header()
 {
 	global $scripturl, $context;
 
-	// themecustoms_colorpicker();
+	themecustoms_colorpicker();
 
 	echo '
 	<header>

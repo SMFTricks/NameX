@@ -64,9 +64,9 @@
 
 	/* Titlebg */
 		/* Background */
-		--titlebg-bg: var(--secondary-color);
+		--titlebg-bg: linear-gradient(to bottom, hsl(var(--primary-color-hue), 35%, 90%) 0%,var(--windowbg-bg) 100%);
 		/* Color */
-		--titlebg-txt-color: hsl(var(--titlebg-txt-color-hue), var(--titlebg-txt-color-sat), 25%);
+		--titlebg-txt-color: hsl(var(--primary-color-hue), 10%, 25%);
 
 	/* Windowbg */
 		/* Background */
@@ -84,6 +84,10 @@
 	/* Footer */
 		/* Background */
 		--footer-bg: hsl(var(--primary-color-hue), 50%, 92%);
+
+	/* Nav */
+		/* Background */
+		--nav-bg: hsl(0, 0%, 95%);
 
 	/* Main Nav Items */
 		/* Background */

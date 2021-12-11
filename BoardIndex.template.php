@@ -154,60 +154,37 @@ function template_info_center()
 
 	// Here's where the "Info Center" starts...
 	echo '
-	<div class="roundframe" id="info_center">
-		<div class="title_bar">
-			<h3 class="titlebg">
-				<span class="toggle_up floatright" id="upshrink_ic" title="', $txt['hide_infocenter'], '" style="display: none;"></span>
-				<a href="#" id="upshrink_link">', sprintf($txt['info_center_title'], $context['forum_name_html_safe']), '</a>
-			</h3>
-		</div>
-		<div id="upshrink_stats"', empty($options['collapse_header_ic']) ? '' : ' style="display: none;"', '>';
+	<div id="upshrink_stats"', empty($options['collapse_header_ic']) ? '' : ' style="display: none;"', '>
+		<div id="info_center_blocks">
+			<ul>';
 
+	// Info Center Elements for tabs
 	foreach ($context['info_center'] as $block)
 	{
-		$func = 'template_ic_block_' . $block['tpl'];
-		$func();
+		echo '
+			<li class="title_bar">
+				<a href="#block-' . $block['txt'] . '" class="titlebg">
+					', $txt[$block['txt']], '
+				</a>
+			</li>';
 	}
 
 	echo '
-		</div><!-- #upshrink_stats -->
-	</div><!-- #info_center -->';
+			</ul>';
 
-	// Info center collapse object.
+	// Load the blocks
+	foreach ($context['info_center'] as $block)
+	{
+		$func = 'template_ic_block_' . $block['tpl'];
+		echo '
+		<div id="block-' . $block['txt'] . '" class="windowbg">
+			', $func(), '
+		</div>';
+	}
+
 	echo '
-	<script>
-		var oInfoCenterToggle = new smc_Toggle({
-			bToggleEnabled: true,
-			bCurrentlyCollapsed: ', empty($options['collapse_header_ic']) ? 'false' : 'true', ',
-			aSwappableContainers: [
-				\'upshrink_stats\'
-			],
-			aSwapImages: [
-				{
-					sId: \'upshrink_ic\',
-					altExpanded: ', JavaScriptEscape($txt['hide_infocenter']), ',
-					altCollapsed: ', JavaScriptEscape($txt['show_infocenter']), '
-				}
-			],
-			aSwapLinks: [
-				{
-					sId: \'upshrink_link\',
-					msgExpanded: ', JavaScriptEscape(sprintf($txt['info_center_title'], $context['forum_name_html_safe'])), ',
-					msgCollapsed: ', JavaScriptEscape(sprintf($txt['info_center_title'], $context['forum_name_html_safe'])), '
-				}
-			],
-			oThemeOptions: {
-				bUseThemeSettings: ', $context['user']['is_guest'] ? 'false' : 'true', ',
-				sOptionName: \'collapse_header_ic\',
-				sSessionId: smf_session_id,
-				sSessionVar: smf_session_var,
-			},
-			oCookieOptions: {
-				bUseCookie: ', $context['user']['is_guest'] ? 'true' : 'false', ',
-				sCookieName: \'upshrinkIC\'
-			}
-		});
-	</script>';
+		</div><!-- #info_center_blocks -->
+	</div><!-- #upshrink_stats -->';
 }
 
 /**
@@ -215,7 +192,7 @@ function template_info_center()
  */
 function template_ic_block_recent()
 {
-	global $context, $scripturl, $settings, $txt;
+	global $context, $scripturl, $txt;
 
 	// This is the "Recent Posts" bar.
 	echo '
@@ -226,17 +203,8 @@ function template_ic_block_recent()
 			</div>
 			<div id="recent_posts_content">';
 
-	// Only show one post.
-	if ($settings['number_recent_posts'] == 1)
-	{
-		// latest_post has link, href, time, subject, short_subject (shortened with...), and topic. (its id.)
-		echo '
-				<p id="infocenter_onepost" class="inline">
-					<a href="', $scripturl, '?action=recent">', $txt['recent_view'], '</a> ', sprintf($txt['is_recent_updated'], '&quot;' . $context['latest_post']['link'] . '&quot;'), ' (', $context['latest_post']['time'], ')<br>
-				</p>';
-	}
 	// Show lots of posts.
-	elseif (!empty($context['latest_posts']))
+	if (!empty($context['latest_posts']))
 	{
 		echo '
 				<table id="ic_recentposts">
@@ -329,20 +297,35 @@ function template_ic_block_stats()
 
 	// Show statistical style information...
 	echo '
-			<div class="sub_bar">
-				<h4 class="subbg">
-					<a href="', $scripturl, '?action=stats" title="', $txt['more_stats'], '"><span class="main_icons stats"></span> ', $txt['forum_stats'], '</a>
-				</h4>
-			</div>
-			<p class="inline">
-				', $context['common_stats']['boardindex_total_posts'], '', !empty($settings['show_latest_member']) ? ' - ' . $txt['latest_member'] . ': <strong> ' . $context['common_stats']['latest_member']['link'] . '</strong>' : '', '<br>
-				', (!empty($context['latest_post']) ? $txt['latest_post'] . ': <strong>&quot;' . $context['latest_post']['link'] . '&quot;</strong>  (' . $context['latest_post']['time'] . ')<br>' : ''), '
-				<a href="', $scripturl, '?action=recent">', $txt['recent_view'], '</a>
-			</p>';
+		<div class="total_members">
+			', themecustoms_icon('fas fa-users'), '
+			<span>', $context['common_stats']['total_members'], '</span>
+		</div>
+		<div class="total_posts">
+			', themecustoms_icon('fas fa-comments'), '
+			<span>', $context['common_stats']['total_posts'], '</span>
+		</div>
+		<div class="total_topics">
+			', themecustoms_icon('fas fa-file-alt'), '
+			<span>', $context['common_stats']['total_posts'], '</span>
+		</div>
+		', !empty($settings['show_latest_member']) ? '
+		<div class="latest_member">
+			' . themecustoms_icon('fas fa-user') . '
+			<span>' . $context['common_stats']['latest_member']['link'] . '</span>
+		</div>' : '',
+		!empty($context['latest_post']) ? '
+		<div class="latest_post">
+			' . themecustoms_icon('fas fa-comment-dots') . '
+			<span>' . $context['latest_post']['link'] . '</span>
+		</div>' : '', '
+		<span>
+			<a href="', $scripturl, '?action=stats" class="stats_link">', $txt['more_stats'], '</a>
+		</span>';
 }
 
 /**
- * The who's online section of the admin center
+ * The who's online section of the info center
  */
 function template_ic_block_online()
 {

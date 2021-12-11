@@ -59,6 +59,13 @@ function smf_addButton(stripId, image, options)
 	);
 }
 
+// Some theme bits
 $(function() {
-	$( "#st_settings_tabs" ).tabs({});
+	// Settings tabs
+	$( '#st_settings_tabs').tabs();
+	// Info center tabs
+	$( '#info_center_blocks').tabs({
+		active: 1,
+	});
+
 });
