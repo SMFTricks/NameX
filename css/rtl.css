@@ -702,3 +702,17 @@ code.bbc_code, pre.file_content {
 .custom_search button {
 	border-width: 1px 0;
 }
+.ui-tabs .ui-tabs-nav li.title_bar.ui-tabs-active {
+	background: var(--titlebg-bg-left);
+}
+.ui-tabs .ui-tabs-nav li:first-child {
+	border-top-left-radius: 0;
+	border-top-right-radius: 4px;
+}
+.ui-tabs .ui-tabs-nav li:last-child {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 4px;
+}
+#info_center_blocks ul li.ui-tabs-active {
+	border-width: 0 3px 0 0;
+}

@@ -65,7 +65,7 @@ $(function() {
 	$( '#st_settings_tabs').tabs();
 	// Info center tabs
 	$( '#info_center_blocks').tabs({
-		active: 1,
+
 	});
 
 });

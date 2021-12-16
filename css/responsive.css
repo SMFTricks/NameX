@@ -519,6 +519,12 @@
 		text-align: center;
 		align-items: center;
 	}
+	#info_center_blocks #block-forum_stats div {
+		flex-basis: 100%;
+	}
+	#info_center_blocks #block-forum_stats > span {
+		margin: 0 auto;
+	}
 }
 
 /* Tricky menu */
@@ -546,7 +552,24 @@
 }
 
 /* Entry level phones */
-@media (max-width: 480px) {
+@media (max-width: 576px) {
+	#info_center_blocks {
+		flex-direction: column;
+	}
+	#info_center_blocks ul {
+		flex-direction: row;
+		margin: 0 15px;
+	}
+	#info_center_blocks .ui-tabs-nav li.title_bar.ui-tabs-active {
+		background: var(--titlebg-bg);
+	}
+	#info_center_blocks .ui-tabs-nav li:last-child {
+		border-bottom-left-radius: 0;
+		border-top-right-radius: 4px;
+	}
+	#info_center_blocks ul li.ui-tabs-active {
+		border-width: 3px 0 0;
+	}
 	.forum_date {
 		display: none;
 	}

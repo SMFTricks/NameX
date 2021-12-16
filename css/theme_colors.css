@@ -60,13 +60,15 @@
 		/* Background */
 		--catbg-bg: hsl(var(--primary-color-hue), 25%, 45%);
 		/* Color */
-		--catbg-txt-color: hsl(var(--primary-color-hue), 5%, 95%);
+		--catbg-txt-color: hsl(var(--primary-color-hue), 40%, 95%);
 
 	/* Titlebg */
 		/* Background */
 		--titlebg-bg: linear-gradient(to bottom, hsl(var(--primary-color-hue), 35%, 90%) 0%,var(--windowbg-bg) 100%);
+		--titlebg-bg-right: linear-gradient(to right, hsl(var(--primary-color-hue), 35%, 90%) 0%,var(--windowbg-bg) 100%);
+		--titlebg-bg-left: linear-gradient(to left, hsl(var(--primary-color-hue), 35%, 90%) 0%,var(--windowbg-bg) 100%);
 		/* Color */
-		--titlebg-txt-color: hsl(var(--primary-color-hue), 10%, 25%);
+		--titlebg-txt-color: hsl(var(--primary-color-hue), 25%, 40%);
 
 	/* Windowbg */
 		/* Background */

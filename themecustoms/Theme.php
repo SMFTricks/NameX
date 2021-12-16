@@ -37,20 +37,6 @@ class Theme
 	private $_avatars_on_boardIndex = true;
 
 	/**
-	 * @var array The theme color variants (red, green, blue, etc)
-	 */
-	private $_theme_variants = [
-		'red',
-		'green',
-		'blue',
-	];
-
-	/**
-	 * @var array Enable dark/light mode
-	 */
-	private $_theme_darkmode = false;
-
-	/**
 	 * @var array The libraries or frameworks to load, populated in libOptions()
 	 */
 	private $_lib_options = [];
@@ -86,6 +72,21 @@ class Theme
 	private $_use_bootstrap = false;
 
 	/**
+	 * @var object The theme color variants
+	 */
+	protected $_theme_variants;
+
+	/**
+	 * @var object Enable dark/light mode
+	 */
+	protected $_theme_darkmode;
+
+	/**
+	 * @var object Inline CSS styles
+	 */
+	protected $_css_inline;
+
+	/**
 	 * Theme::__construct()
 	 *
 	 * Load the theme essentials
@@ -110,12 +111,11 @@ class Theme
 		// Theme JS Vars
 		$this->addJavaScriptVars();
 
-		// Add width setting to the forum using inline style
-		$this->insertForumWidth();
+		// Add inline styles for any setting that requires it
+		$this->_css_inline = new Styles;
 
 		// Theme Variants
-		if (!empty($this->_theme_variants))
-			Variants::init($this->_theme_variants);
+		$this->_theme_variants = new Variants;
 
 		/** @todo */
 		// Theme Modes

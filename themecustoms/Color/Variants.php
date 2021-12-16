@@ -17,32 +17,36 @@ class Variants
 	/**
 	 * @var array The theme color variants (red, green, blue, etc)
 	 */
-	private static $_theme_variants;
+	private $_theme_variants = [
+		'red',
+		'green',
+		'blue',
+	];
 
 	/**
 	 * @var array The variant options for user selection
 	 */
-	private static $_variant_options;
+	private $_variant_options;
 
 	/**
 	 * @var array The theme user options
 	 */
-	private static $_theme_options;
+	private $_theme_options;
 
 	/**
 	 * @var int Order position for the css variants
 	 */
-	private static $_order_position = 101;
+	private $_order_position = 101;
 
 	/**
 	 * @var int Order position for the css rtl variants
 	 */
-	private static $_order_position_rtl = 4200;
+	private $_order_position_rtl = 4200;
 
 	/**
 	 * @var bool Enable a styleswitcher using JS
 	 */
-	private static $_enable_styleswitcher = true;
+	private $_enable_styleswitcher = true;
 
 	/**
 	 * Variants::init()
@@ -56,30 +60,34 @@ class Variants
 	 * 
 	 * @return void
 	 */
-	public static function init($variants)
+	public function __construct()
 	{
+		// Check if we actually have any variants
+		if (empty($this->_theme_variants))
+			return;
+
 		// Theme variants... Add the default style to it just for presentation.
-		self::$_theme_variants = array_merge(['default'], $variants);
+		$this->_theme_variants = array_merge(['default'], $this->_theme_variants);
 
 		// Insert the variants using the theme settings.
-		add_integration_function('integrate_theme_settings', __CLASS__ . '::setVariants', false);
+		add_integration_function('integrate_theme_settings', __CLASS__ . '::setVariants#', false);
 
 		// Add the variants to the list of available themes
-		add_integration_function('integrate_theme_context', __CLASS__ . '::userSelection', false);
+		add_integration_function('integrate_theme_context', __CLASS__ . '::userSelection#', false);
 
 		// Add the theme variants as a theme option too
-		add_integration_function('integrate_theme_options', __CLASS__ . '::userOptions', false);
+		add_integration_function('integrate_theme_options', __CLASS__ . '::userOptions#', false);
 
 		// Load the variants CSS
 		// Set to true when loading all of the variants at once (for styleswitching)
-		self::variantCSS(self::$_enable_styleswitcher);
+		$this->variantCSS($this->_enable_styleswitcher);
 
 		// Insert the variants JS vars
-		if (!empty(self::$_enable_styleswitcher))
-			self::addJavaScriptVars();
+		if (!empty($this->_enable_styleswitcher))
+			$this->addJavaScriptVars();
 
 		// Load the JS file for the variants
-		self::variantJS();
+		$this->variantJS();
 	}
 
 	/**
@@ -89,12 +97,12 @@ class Variants
 	 *
 	 * @return void
 	 */
-	public static function setVariants()
+	public function setVariants()
 	{
 		global $settings;
 
 		// Add the color variants to the settings
-		$settings['theme_variants'] = self::$_theme_variants;
+		$settings['theme_variants'] = $this->_theme_variants;
 	}
 
 	/**
@@ -105,12 +113,12 @@ class Variants
 	 *
 	 * @return void
 	 */
-	public static function userSelection()
+	public function userSelection()
 	{
 		global $context, $settings, $options, $txt;
 
 		// Re-load the variants so they become available eveywhere
-		self::setVariants();
+		$this->setVariants();
 
 		// Is user selection enabled?
 		if (!empty($settings['disable_user_variant']) && !allowedTo('admin_forum'))
@@ -126,16 +134,16 @@ class Variants
 				if ($theme['id'] == $settings['theme_id'])
 				{
 					// Add the variants with their label and thumbnail
-					foreach(self::$_theme_variants as $variant)
+					foreach($this->_theme_variants as $variant)
 						$context['available_themes'][$id]['variants'][$variant] = [
 							'label' => isset($txt['variant_' . $variant]) ? $txt['variant_' . $variant] : $variant,
 							'thumbnail' => !file_exists($theme['theme_dir'] . '/images/thumbnail.png') || file_exists($theme['theme_dir'] . '/images/thumbnail_' . $variant . '.png') ? $theme['images_url'] . '/thumbnail_' . $variant . '.png' : ($theme['images_url'] . '/thumbnail.png'),
 						];
 
 					// The selected variant
-					$context['available_themes'][$id]['selected_variant'] = isset($_GET['vrt']) ? $_GET['vrt'] : (!empty($options['theme_variant']) && in_array($options['theme_variant'], self::$_theme_variants) ? $options['theme_variant'] : (!empty($settings['default_variant']) ? $settings['default_variant'] : self::$_theme_variants[0]));
+					$context['available_themes'][$id]['selected_variant'] = isset($_GET['vrt']) ? $_GET['vrt'] : (!empty($options['theme_variant']) && in_array($options['theme_variant'], $this->_theme_variants) ? $options['theme_variant'] : (!empty($settings['default_variant']) ? $settings['default_variant'] : $this->_theme_variants[0]));
 					if (!isset($context['available_themes'][$id]['variants'][$context['available_themes'][$id]['selected_variant']]['thumbnail']))
-						$context['available_themes'][$id]['selected_variant'] = self::$_theme_variants[0];
+						$context['available_themes'][$id]['selected_variant'] = $this->_theme_variants[0];
 					// Thumbnail
 					$context['available_themes'][$id]['thumbnail_href'] = $context['available_themes'][$id]['variants'][$context['available_themes'][$id]['selected_variant']]['thumbnail'];
 					// Allow themes to override the text.
@@ -153,7 +161,7 @@ class Variants
 	 *
 	 * @return void
 	 */
-	public static function userOptions()
+	public function userOptions()
 	{
 		global $context, $txt, $settings, $options;
 
@@ -162,27 +170,27 @@ class Variants
 			return;
 
 		// Create the variant options, using text strings
-		foreach(self::$_theme_variants as $variant)
-			self::$_variant_options[$variant] = $txt['variant_' . $variant];
+		foreach($this->_theme_variants as $variant)
+			$this->_variant_options[$variant] = $txt['variant_' . $variant];
 
 		// Create the theme options
-		self::$_theme_options = [
+		$this->_theme_options = [
 			$txt['st_color_variants'],
 			[
 				'id' => 'theme_variant',
 				'label' => isset($txt['variant_pick']) ? $txt['variant_pick'] : $txt['theme_pick_variant'],
-				'options' => self::$_variant_options,
+				'options' => $this->_variant_options,
 				'default' => false,
-				'enabled' => !empty(self::$_theme_variants),
+				'enabled' => !empty($this->_theme_variants),
 			]
 		];
 
 		// Set forum default as the default variant
 		if (!isset($options['theme_variant']))
-			$options['theme_variant'] = (isset($settings['default_variant']) && !empty($settings['default_variant']) ? $settings['default_variant'] : self::$_theme_variants[0]);
+			$options['theme_variant'] = (isset($settings['default_variant']) && !empty($settings['default_variant']) ? $settings['default_variant'] : $this->_theme_variants[0]);
 
 		// Insert the theme options
-		$context['theme_options'] = array_merge(self::$_theme_options, $context['theme_options']);
+		$context['theme_options'] = array_merge($this->_theme_options, $context['theme_options']);
 	}
 
 	/**
@@ -195,7 +203,7 @@ class Variants
 	 *
 	 * @return void
 	 */
-	protected static function variantCSS($load_all = false)
+	protected function variantCSS($load_all = false)
 	{
 		global $context, $settings, $options;
 
@@ -204,11 +212,11 @@ class Variants
 			$_SESSION['id_variant'] = $_REQUEST['variant'];
 		// User selection?
 		if (empty($settings['disable_user_variant']) || allowedTo('admin_forum'))
-			$context['theme_variant'] = !empty($_SESSION['id_variant']) && in_array($_SESSION['id_variant'], self::$_theme_variants) ? $_SESSION['id_variant'] : (!empty($options['theme_variant']) && in_array($options['theme_variant'], self::$_theme_variants) ? $options['theme_variant'] : '');
+			$context['theme_variant'] = !empty($_SESSION['id_variant']) && in_array($_SESSION['id_variant'], $this->_theme_variants) ? $_SESSION['id_variant'] : (!empty($options['theme_variant']) && in_array($options['theme_variant'], $this->_theme_variants) ? $options['theme_variant'] : '');
 
 		// If not a user variant, select the default.
-		if ($context['theme_variant'] == '' || !in_array($context['theme_variant'], self::$_theme_variants))
-			$context['theme_variant'] = !empty($settings['default_variant']) && in_array($settings['default_variant'], self::$_theme_variants) ? $settings['default_variant'] : self::$_theme_variants[0];
+		if ($context['theme_variant'] == '' || !in_array($context['theme_variant'], $this->_theme_variants))
+			$context['theme_variant'] = !empty($settings['default_variant']) && in_array($settings['default_variant'], $this->_theme_variants) ? $settings['default_variant'] : $this->_theme_variants[0];
 
 		// Do this to keep things easier in the templates.
 		$context['theme_variant_url'] = $context['theme_variant'] . '/';
@@ -216,24 +224,26 @@ class Variants
 		// Add the CSS file for the variant only if it's not the default.
 		if (!empty($context['theme_variant']) && $context['theme_variant'] != 'default' && empty($load_all))
 		{
-			loadCSSFile('variants/' . $context['theme_variant'] . '.css', ['order_pos' => self::$_order_position], 'smf_index_' . $context['theme_variant']);
+			loadCSSFile('variants/' . $context['theme_variant'] . '.css', ['order_pos' => $this->_order_position], 'smf_index_' . $context['theme_variant']);
 			if ($context['right_to_left'])
-				loadCSSFile('variants/rtl.' . $context['theme_variant'] . '.css', ['order_pos' => self::$_order_position_rtl], 'smf_rtl' . $context['theme_variant']);
+				loadCSSFile('variants/rtl.' . $context['theme_variant'] . '.css', ['order_pos' => $this->_order_position_rtl], 'smf_rtl' . $context['theme_variant']);
 		}
 		// Load all of the styles
 		elseif (!empty($load_all) && (empty($settings['disable_user_variant']) || allowedTo('admin_forum')))
 		{
 			// For styleswitch we load all of the variants at once.
-			foreach (self::$_theme_variants as $variant)
+			foreach ($this->_theme_variants as $variant)
+			{
 				// Only if it's not the default
 				if ($variant != 'default')
 				{
 					// Load the css file
-					loadCSSFile('variants/' . $variant . '.css', ['order_pos' => self::$_order_position++], 'smf_index_' . $variant);
+					loadCSSFile('variants/' . $variant . '.css', ['order_pos' => $this->_order_position++], 'smf_index_' . $variant);
 					// RLT?
 					if ($context['right_to_left'])
-						loadCSSFile('variants/rtl.' . $variant . '.css', ['order_pos' => self::$_order_position_rtl++], 'smf_rtl' . $context['theme_variant']);
+						loadCSSFile('variants/rtl.' . $variant . '.css', ['order_pos' => $this->_order_position_rtl++], 'smf_rtl' . $context['theme_variant']);
 				}
+			}
 		}
 	}
 
@@ -244,12 +254,12 @@ class Variants
 	 *
 	 * @return void
 	 */
-	protected static function addJavaScriptVars()
+	protected function addJavaScriptVars()
 	{
 		global $options, $settings;
 
 		// Theme Variant
-		addJavaScriptVar('smf_theme_variant', '\'' . (!empty($_REQUEST['variant']) && in_array($_REQUEST['variant'], self::$_theme_variants) ? $_REQUEST['variant'] : (!empty($options['theme_variant']) && in_array($options['theme_variant'], self::$_theme_variants) ? $options['theme_variant'] : (!empty($settings['default_variant']) ? $settings['default_variant'] : self::$_theme_variants[0]))) . '\'');
+		addJavaScriptVar('smf_theme_variant', '\'' . (!empty($_REQUEST['variant']) && in_array($_REQUEST['variant'], $this->_theme_variants) ? $_REQUEST['variant'] : (!empty($options['theme_variant']) && in_array($options['theme_variant'], $this->_theme_variants) ? $options['theme_variant'] : (!empty($settings['default_variant']) ? $settings['default_variant'] : $this->_theme_variants[0]))) . '\'');
 
 		// Obtain a variant from the URL for higher priority
 		addJavaScriptVar('smf_request_variant',  (!empty($_REQUEST['variant']) ? 'true' : 'false'));
@@ -262,12 +272,12 @@ class Variants
 	 *
 	 * @return void
 	 */
-	protected static function variantJS()
+	protected function variantJS()
 	{
 		global $settings;
 
 		// Load the file only if the swtylswitch is enabled and the user can change variants
-		if ((!empty(self::$_enable_styleswitcher) && empty($settings['disable_user_variant'])) || allowedTo('admin_forum'))
+		if ((!empty($this->_enable_styleswitcher) && empty($settings['disable_user_variant'])) || allowedTo('admin_forum'))
 			loadJavascriptFile(
 				'variants.js',
 				[
