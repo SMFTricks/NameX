@@ -15,7 +15,7 @@ if (!defined('SMF'))
 class Variants
 {
 	/**
-	 * @var array The theme color variants (red, green, blue, etc)
+	 * @var array The theme color variants (red, green, blue, etc). It adds the "default" variant automatically.
 	 */
 	private $_theme_variants = [
 		'red',
@@ -52,9 +52,8 @@ class Variants
 	 * Variants::init()
 	 *
 	 * Initializes the theme color variants because
-	 * SMF scans the index.template.php for the theme variants.
-	 * It's nice because it can show the variants when
-	 * the theme is NOT selected, but I don't care.
+	 * SMF scans the index.template.php for the theme variants and
+	 * it's nice because it can show the variants when the theme is NOT selected, but I don't care.
 	 * 
 	 * @param array $theme_variants The defined color variants
 	 * 

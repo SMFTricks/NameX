@@ -193,11 +193,16 @@ function template_info_center()
  */
 function template_ic_block_recent()
 {
-	global $context, $txt;
+	global $context, $txt, $scripturl;
 
 	// This is the "Recent Posts" bar.
 	echo '
-			<div id="recent_posts_content">';
+		<div class="sub_bar">
+			<h4 class="subbg">
+				<a href="', $scripturl, '?action=recent">', $txt['recent_posts'], '</a>
+			</h4>
+		</div>
+		<div id="recent_posts_content">';
 
 	// Show lots of posts.
 	if (!empty($context['latest_posts']))
@@ -235,6 +240,13 @@ function template_ic_block_recent()
 function template_ic_block_calendar()
 {
 	global $context, $scripturl, $txt;
+
+	echo '
+		<div class="sub_bar">
+			<h4 class="subbg">
+				<a href="', $scripturl, '?action=calendar">', $context['calendar_only_today'] ? $txt['calendar_today'] : $txt['calendar_upcoming'], '</a>
+			</h4>
+		</div>';
 
 	// Show information about events, birthdays, and holidays on the calendar.
 	// Holidays like "Christmas", "Chanukah", and "We Love [Unknown] Day" :P
@@ -286,6 +298,11 @@ function template_ic_block_stats()
 
 	// Show statistical style information...
 	echo '
+		<div class="sub_bar">
+			<h4 class="subbg">
+				<a href="', $scripturl, '?action=stats">', $txt['forum_stats'], '</a>
+			</h4>
+		</div>
 		<div class="total_members">
 			', themecustoms_icon('fas fa-users'), '
 			<span>', $context['common_stats']['total_members'], '</span>
@@ -321,6 +338,11 @@ function template_ic_block_online()
 	global $context, $scripturl, $txt, $modSettings, $settings;
 	// "Users online" - in order of activity.
 	echo '
+			<div class="sub_bar">
+				<h4 class="subbg">
+					', $context['show_who'] ? '<a href="' . $scripturl . '?action=who">' : '', $txt['online_users'], $context['show_who'] ? '</a>' : '', '
+				</h4>
+			</div>
 			<p class="inline">
 				', $context['show_who'] ? '<a href="' . $scripturl . '?action=who">' : '', '<strong>', $txt['online'], ': </strong>', comma_format($context['num_guests']), ' ', $context['num_guests'] == 1 ? $txt['guest'] : $txt['guests'], ', ', comma_format($context['num_users_online']), ' ', $context['num_users_online'] == 1 ? $txt['user'] : $txt['users'];
 

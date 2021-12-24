@@ -204,6 +204,14 @@ class Theme
 					'external' => true,
 				]
 			],
+			// Passion One Font
+			'notosansfont' => [
+				'include' => empty($context['header_logo_url_html_safe']),
+				'css' => [
+					'file' => 'https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap',
+					'external' => true,
+				]
+			],
 		];
 	}
 
@@ -327,40 +335,6 @@ class Theme
 
 		// Theme ID
 		addJavaScriptVar('smf_theme_id', $settings['theme_id']);
-	}
-
-	/**
-	 * Theme::insertForumWidth()
-	 *
-	 * It adjusts the forum width to match the setting
-	 * Thanks to Sycho for the idea from his Forum Width Mod
-	 * https://custom.simplemachines.org/index.php?mod=4223
-	 * 
-	 * @return void
-	 */
-	private function insertForumWidth()
-	{
-		global $settings;
-
-		// Adjust the max-width accorrdinly
-		if (!empty($settings['st_custom_width']))
-		{
-			addInlineCss('
-				#top_section .inner_wrap, #wrapper, #header, footer .inner_wrap, #nav_wrapper
-				{
-					max-width: ' . $settings['st_custom_width'] . ';
-					width: unset;
-				}
-				@media screen and (max-width: 767px)
-				{
-					#top_section .inner_wrap, #wrapper, #header, footer .inner_wrap, #nav_wrapper
-					{
-						max-width: 95%;
-						width: 100%;
-					}
-				}
-			');
-		}
 	}
 
 	/**
