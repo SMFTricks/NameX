@@ -88,7 +88,7 @@ function template_bi_board_lastpost($board)
 		echo '
 		<div class="lastpost">
 			', !empty($settings['st_enable_avatars_boards']) ? themecustoms_avatar($board['last_post']['member']['avatar']['href'], $board['last_post']['member']['id']) : '', '
-			<p>	', $board['last_post']['link'], ' ', $txt['by'], ' ', $board['last_post']['member']['link'], ' <span><i class="far fa-clock"></i> ', timeformat($board['last_post']['time']), '</span></p>
+			<p>	', $board['last_post']['link'], ' ', $txt['by'], ' ', $board['last_post']['member']['link'], ' <span><i class="far fa-clock"></i> ', timeformat($board['last_post']['timestamp']), '</span></p>
 		</div>';
 }
 
