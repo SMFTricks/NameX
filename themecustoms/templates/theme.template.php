@@ -39,7 +39,7 @@ function themecustoms_page_index()
 
 function themecustoms_header()
 {
-	global $scripturl, $context;
+	global $scripturl, $context, $settings;
 
 	themecustoms_colorpicker();
 
@@ -47,7 +47,7 @@ function themecustoms_header()
 	<header>
 		<div id="header">
 			<h1 class="forumtitle">
-				<a id="top" href="', $scripturl, '">', empty($context['header_logo_url_html_safe']) ? '<span>' . $context['forum_name_html_safe'] . '</span>' : '<img src="' . $context['header_logo_url_html_safe'] . '" alt="' . $context['forum_name_html_safe'] . '">', '</a>
+				<a id="top" href="', $scripturl, '">', empty($context['header_logo_url_html_safe']) ? '<span class="theme-logo"><span>' . substr_replace($settings['theme_real_name'], '', -1) . '</span><span>' . substr_replace($settings['theme_real_name'], '', 0, 4). '</span></span>' : '<img src="' . $context['header_logo_url_html_safe'] . '" alt="' . $context['forum_name_html_safe'] . '">', '</a>
 			</h1>';
 
 			// Theme Variants
