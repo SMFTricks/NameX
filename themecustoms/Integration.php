@@ -130,7 +130,9 @@ class Integration
 	 */
 	public function main_menu(&$buttons)
 	{
-		global $txt, $scripturl, $settings;
+		global $txt, $scripturl, $settings, $context;
+
+		$context['profile_items'] = array();
 
 		// Add the theme settings to the admin button
 		$current_theme = [

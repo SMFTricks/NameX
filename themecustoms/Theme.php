@@ -54,6 +54,7 @@ class Theme
 			'order_pos' => 100,
 		],
 		'app',
+		'icons'
 	];
 
 	/**
@@ -271,13 +272,13 @@ class Theme
 		if (!empty($this->_css_files))
 			foreach ($this->_css_files as $file => $options)
 				loadCSSFile(
-					(!empty($file) ? $file : $options) . '.css',
+					(!is_array($options) ? $options : $file) . '.css',
 					[
 						'minimize' => !empty($options['minimize']),
 						'attributes' => !empty($options['attributes']) ? $options['attributes'] : [],
 						'order_pos' => !empty($options['order_pos']) ? $options['order_pos'] : abs($this->_css_order++),
 					],
-					'smftheme_css_' . $file
+					'smftheme_css_' . (!is_array($options) ? $options : $file)
 				);
 	}
 
@@ -312,13 +313,13 @@ class Theme
 		if (!empty($this->_js_files))
 			foreach ($this->_js_files as $file => $options)
 				loadJavaScriptFile(
-					(!empty($file) ? $file : $options) . '.js',
+					(!is_array($options) ? $options : $file) . '.js',
 					[
 						'defer'  =>  !empty($options['defer']),
 						'async'  =>  !empty($options['async']),
 						'minimize'  =>  !empty($options['minimize']),
 					],
-					'smftheme_js_' . $file
+					'smftheme_js_' . (!is_array($options) ? $options : $file)
 				);
 	}
 

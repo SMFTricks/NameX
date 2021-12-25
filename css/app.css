@@ -194,7 +194,7 @@ nav#main_nav ul.menu_nav li a {
 	box-shadow: none;
 	font-weight: 600;
 	display: flex;
-	gap: 4px;
+	gap: 5px;
 }
 nav#main_nav ul.menu_nav li a:hover {
 	color: var(--nav-item-txt-color-hover);
@@ -894,135 +894,59 @@ footer .footer-other span.help-links a i.fa {
 	border-width: 0;
 }
 
-/**** FontAwesome ****/
-/* Mark Read */
-.fa-markread::before,
-.fa-markselectread::before {
-	content: "\f00c";
+/* Some more content stuff */
+
+
+/* User Area bits */
+.top_menu {
+	background: var(--nav-dropdown-bg);
+	border: 1px solid hsl(0, 0%, 90%);
+	border-radius: 5px;
+	box-shadow: none;
+	min-width: 20em;
 }
-/* Not Read */
-.fa-mark_unread::before {
-	content: "\f00d";
+.profile_username {
+	line-height: 0.8em;
 }
-/* Read all */
-.fa-readall::before {
-	content: "\f06e";
+.profile_username a {
+	font-size: 0.7em;
 }
-/* Send Topic */
-.fa-send::before {
-	content: "\f1d8";
+.profile_user_avatar img.avatar {
+	border-radius: 50%;
+	width: 64px;
+	height: 64px;
 }
-/* Notify */
-.fa-notify::before {
-	content: "\f0f3";
+.profile_user_links ol {
+	column-count: 1;
 }
-/* New Poll */
-.fa-post_poll::before,
-.fa-add_poll::before {
-	content: "\f681";
+.profile_user_links li {
+	background: var(--nav-dropdown-item-bg);
+	min-height: 30px;
+	display: flex;
+	align-items: center;
+	text-indent: initial;
+	padding: 0 10px;
 }
-/* Delete Poll */
-.fa-remove_poll::before {
-	content: "\f2ed";
+.profile_user_links ol a {
+	color: var(--nav-dropdown-item-txt-color);
+	font-weight: normal;
+	font-size: 1.1em;
+	flex: 1;
 }
-/* New Topic */
-.fa-new_topic::before {
-	content: "\f15b";
+.profile_user_links ol li:hover {
+	border-radius: 3px;
+	background: var(--nav-dropdown-item-bg-hover);
 }
-/* Move Topic */
-.fa-move::before {
-	content: "\f0b2";
+.profile_user_links ol li:hover a,
+.profile_user_links ol li a:hover {
+	color: var(--nav-dropdown-item-txt-color-hover);
+	text-decoration: none;
 }
-/* Delete Topic */
-.fa-delete::before {
-	content: "\f2ed";
-}
-/* Sticky Topic */
-.fa-sticky::before {
-	content: "\f08d";
-}
-/* Merge Topic */
-.fa-merge::before {
-	content: "\f248";
-}
-/* View All Members */
-.fa-view_all_members::before {
-	content: "\f0c0";
-}
-/* Find Member */
-.fa-mlist_search::before {
-	content: "\f4fc";
-}
-/* Calendar Menu */
-.fa-calendar::before {
-	content: "\f073";
-}
-/* Register */
-.fa-register::before {
-	content: "\f234";
-}
-/* Login */
-.fa-login::before {
-	content: "\f2f6";
-}
-/* Community */
-.menu_icon.fa-community::before {
-	content: "\f022";
-}
-.menu_icon.fa-forum::before,
-.fa-forum::before {
-	content: "\f07c";
-}
-/* FA Nav */
-nav#main_nav ul.menu_nav li a i.fa-portal::before {
-	content: "\f015";
-}
-.fa-help::before {
-	content: "\f128";
-}
-.fa-admin::before {
-	content: "\f085";
-}
-.fa-moderate::before {
-	content: "\f7d9";
-}
-.fa-profile::before {
-	content: "\f007";
-}
-.fa-pm::before {
-	content: "\f0e0";
-}
-.fa-mlist::before {
-	content: "\f0c0";
-}
-.fa-logout::before {
-	content: "\f2f5";
-}
-.fa-team::before {
-	content: "\f509";
-}
-.fa-shop::before {
-	content: "\f07a";
-}
-/* Stats icons */
-.fa-recent_posts::before {
-	content: "\f550";
-}
-.fa-forum_stats::before {
-	content: "\f200";
-}
-.fa-online_users::before {
-	content: "\f4fd";
-}
-.fa-calendar_upcoming::before {
-	content: "\f073";
-}
-/**** FontAwesome *****/
 
 /* Settings Tabs */
-#st_settings_tabs {
+/* #st_settings_tabs {
 
-}
+} */
 .ui-tabs {
 	position: relative;/* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
 	padding: .2em;

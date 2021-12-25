@@ -1,0 +1,123 @@
+/* Mark Read */
+.fa-markread::before,
+.fa-markselectread::before {
+	content: "\f00c";
+}
+/* Not Read */
+.fa-mark_unread::before {
+	content: "\f00d";
+}
+/* Read all */
+.fa-readall::before {
+	content: "\f06e";
+}
+/* Send Topic */
+.fa-send::before {
+	content: "\f1d8";
+}
+/* Notify */
+.fa-notify::before {
+	content: "\f0f3";
+}
+/* New Poll */
+.fa-post_poll::before,
+.fa-add_poll::before {
+	content: "\f681";
+}
+/* Delete Poll */
+.fa-remove_poll::before {
+	content: "\f2ed";
+}
+/* New Topic */
+.fa-new_topic::before {
+	content: "\f15b";
+}
+/* Move Topic */
+.fa-move::before {
+	content: "\f0b2";
+}
+/* Delete Topic */
+.fa-delete::before {
+	content: "\f2ed";
+}
+/* Sticky Topic */
+.fa-sticky::before {
+	content: "\f08d";
+}
+/* Merge Topic */
+.fa-merge::before {
+	content: "\f248";
+}
+/* View All Members */
+.fa-view_all_members::before {
+	content: "\f0c0";
+}
+/* Find Member */
+.fa-mlist_search::before {
+	content: "\f4fc";
+}
+/* Calendar Menu */
+.fa-calendar::before {
+	content: "\f073";
+}
+/* Register */
+.fa-register::before {
+	content: "\f234";
+}
+/* Login */
+.fa-login::before {
+	content: "\f2f6";
+}
+
+/* Community */
+.menu_icon.fa-community::before {
+	content: "\f022";
+}
+.menu_icon.fa-forum::before,
+.fa-forum::before {
+	content: "\f07c";
+}
+/* FA Nav */
+nav#main_nav ul.menu_nav li a i.fa-portal::before {
+	content: "\f015";
+}
+.fa-help::before {
+	content: "\f128";
+}
+.fa-admin::before {
+	content: "\f085";
+}
+.fa-moderate::before {
+	content: "\f7d9";
+}
+.fa-profile::before {
+	content: "\f007";
+}
+.fa-pm::before {
+	content: "\f0e0";
+}
+.fa-mlist::before {
+	content: "\f0c0";
+}
+.fa-logout::before {
+	content: "\f2f5";
+}
+.fa-team::before {
+	content: "\f509";
+}
+.fa-shop::before {
+	content: "\f07a";
+}
+/* Stats icons */
+.fa-recent_posts::before {
+	content: "\f550";
+}
+.fa-forum_stats::before {
+	content: "\f200";
+}
+.fa-online_users::before {
+	content: "\f4fd";
+}
+.fa-calendar_upcoming::before {
+	content: "\f073";
+}
