@@ -846,9 +846,10 @@ footer .footer-other span.help-links a i.fa {
 	align-items: center;
 	height: 40px;
 }
-#info_center_blocks #block-forum_stats div i {
+#info_center_blocks #block-forum_stats div span.title {
+	flex-basis: 60%;
 	min-width: 50px;
-	font-size: 1.2em;
+	font-size: 0.75em;
 	color: hsl(0, 0%, 92%);
 	text-shadow: 0px 1px 5px rgba(0,0,0,0.1);
 	background: var(--catbg-bg);
@@ -856,20 +857,23 @@ footer .footer-other span.help-links a i.fa {
 	border-bottom-left-radius: 5px;
 	box-shadow: -2px 0px 1px 0px rgba(0, 0, 0, 0.1);
 }
-#info_center_blocks #block-forum_stats div span  {
+#info_center_blocks #block-forum_stats div span.title i {
+	margin-right: 5px;
+}
+#info_center_blocks #block-forum_stats div span.totals  {
 	width: 100%;
 	background: var(--header-bg);
 	border-top-right-radius: 5px;
 	border-bottom-right-radius: 5px;
-	padding: 0 15px;
+	padding: 0;
 	font-size: 0.8em;
 	box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.1) inset;
 }
-#info_center_blocks #block-forum_stats div span,
-#info_center_blocks #block-forum_stats div span a {
+#info_center_blocks #block-forum_stats div span.totals,
+#info_center_blocks #block-forum_stats div span.totals a {
 	color:hsl(0, 0%, 25%)
 }
-#info_center_blocks #block-forum_stats div span a:hover {
+#info_center_blocks #block-forum_stats div span.totals a:hover {
 	text-decoration: none;
 }
 #info_center_blocks #block-forum_stats > span {
@@ -932,6 +936,7 @@ footer .footer-other span.help-links a i.fa {
 	font-weight: normal;
 	font-size: 1.1em;
 	flex: 1;
+	margin-left: 10px;
 }
 .profile_user_links ol li:hover {
 	border-radius: 3px;

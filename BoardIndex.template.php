@@ -304,26 +304,36 @@ function template_ic_block_stats()
 			</h4>
 		</div>
 		<div class="total_members">
-			', themecustoms_icon('fas fa-users'), '
-			<span>', $context['common_stats']['total_members'], '</span>
+			<span class="title">
+				', themecustoms_icon('fas fa-users'), ' ',  $txt['total_members'], '
+			</span>
+			<span class="totals">', $context['common_stats']['total_members'], '</span>
 		</div>
 		<div class="total_posts">
-			', themecustoms_icon('fas fa-comments'), '
-			<span>', $context['common_stats']['total_posts'], '</span>
+			<span class="title">
+				', themecustoms_icon('fas fa-comments'), ' ', $txt['total_posts'], '
+			</span>
+			<span class="totals">', $context['common_stats']['total_posts'], '</span>
 		</div>
 		<div class="total_topics">
-			', themecustoms_icon('fas fa-file-alt'), '
-			<span>', $context['common_stats']['total_posts'], '</span>
+			<span class="title">
+				', themecustoms_icon('fas fa-file-alt'), ' ', $txt['total_topics'], '
+			</span>
+			<span class="totals">', $context['common_stats']['total_topics'], '</span>
 		</div>
 		', !empty($settings['show_latest_member']) ? '
 		<div class="latest_member">
-			' . themecustoms_icon('fas fa-user') . '
-			<span>' . $context['common_stats']['latest_member']['link'] . '</span>
+			<span class="title">
+				' . themecustoms_icon('fas fa-user') . ' ' . $txt['latest_member'] . '
+			</span>
+			<span class="totals">' . $context['common_stats']['latest_member']['link'] . '</span>
 		</div>' : '',
 		!empty($context['latest_post']) ? '
 		<div class="latest_post">
-			' . themecustoms_icon('fas fa-comment-dots') . '
-			<span>' . $context['latest_post']['link'] . '</span>
+			<span class="title">
+				' . themecustoms_icon('fas fa-comment-dots') . ' ' . $txt['latest_post'] . '
+			</span>
+			<span class="totals">' . $context['latest_post']['link'] . '</span>
 		</div>' : '', '
 		<span>
 			<a href="', $scripturl, '?action=stats" class="stats_link">', $txt['more_stats'], '</a>

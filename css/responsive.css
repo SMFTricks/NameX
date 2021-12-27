@@ -384,6 +384,15 @@
 	.inlineblock_720 {
 		display: inline-block;
 	}
+	#info_center_blocks #block-forum_stats {
+		flex-direction: row;
+	}
+	#info_center_blocks #block-forum_stats div:not(.sub_bar) {
+		flex-basis: 100%;
+	}
+	#info_center_blocks #block-forum_stats > span {
+		text-align: center;
+	}
 }
 
 @media (min-width: 768px) 
