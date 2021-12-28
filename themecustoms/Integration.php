@@ -9,6 +9,8 @@
 
 namespace ThemeCustoms;
 
+use ThemeCustoms\Color\Variants;
+
 if (!defined('SMF'))
 	die('No direct access...');
 
@@ -30,7 +32,7 @@ class Integration
 	 * initiallize the custom theme configuration
 	 */
 	public function initialize()
-	{	
+	{
 		// Autoload
 		spl_autoload_register(__CLASS__ . '::autoload');
 

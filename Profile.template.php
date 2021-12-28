@@ -48,10 +48,12 @@ function template_profile_below()
  */
 function template_profile_popup()
 {
-	global $context, $scripturl;
+	global $context, $scripturl, $txt;
+
+	// Load the template for this area
+	loadTemplate('themecustoms/templates/theme');
 
 	// Unlike almost every other template, this is designed to be included into the HTML directly via $().load()
-
 	echo '
 		<div class="profile_user_avatar floatleft">
 			<a href="', $scripturl, '?action=profile;u=', $context['user']['id'], '">', $context['member']['avatar']['image'], '</a>
@@ -59,6 +61,23 @@ function template_profile_popup()
 		<div class="profile_user_info floatleft">
 			<span class="profile_username"><a href="', $scripturl, '?action=profile;u=', $context['user']['id'], '">', $context['user']['name'], '</a></span>
 			<span class="profile_group">', $context['member']['group'], '</span>
+			', themecustoms_languageselector(), '
+		</div>
+		<div class="profile_user_links unread_buttons">
+			<ol>
+				<li>
+					<a href="', $scripturl, '?action=unreadreplies" title="', $txt['show_unread_replies'], '">
+						', themecustoms_icon('fas fa-comment-dots'), '
+						<span>', $txt['unread_replies'], '</span>
+					</a>
+				</li>
+				<li>
+					<a href="', $scripturl, '?action=unread" title="', $txt['unread_since_visit'], '">
+						', themecustoms_icon('fas fa-book-open'), '
+						<span>', $txt['view_unread_category'], '</span>
+					</a>
+				</li>
+			</ol>
 		</div>
 		<div class="profile_user_links">
 			<ol>';
@@ -70,7 +89,10 @@ function template_profile_popup()
 		$item_url = (isset($item['url']) ? $item['url'] : (isset($area['url']) ? $area['url'] : $menu_context['base_url'] . ';area=' . $item['area'])) . $menu_context['extra_parameters'];
 		echo '
 				<li>
-					<i class="fa fa-', $area['plain_class'], '"></i> <a href="', $item_url, '">', !empty($item['title']) ? $item['title'] : $area['label'], '</a>
+					<a href="', $item_url, '">
+						<i class="fa fa-', $area['plain_class'], '"></i>
+						<span>', !empty($item['title']) ? $item['title'] : $area['label'], '</span>
+					</a>
 				</li>';
 	}
 

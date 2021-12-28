@@ -125,6 +125,9 @@ h3.titlebg, h4.titlebg, .titlebg, h3.subbg, h4.subbg, .subbg {
 h1.forumtitle {
 	float: right;
 }
+header h1.forumtitle span.theme-logo {
+	flex-direction: row-reverse;
+}
 /* float these items to the left */
 #siteslogan, img#smflogo {
 	float: left;

@@ -24,8 +24,9 @@
 .fa-add_poll::before {
 	content: "\f681";
 }
-/* Delete Poll */
-.fa-remove_poll::before {
+/* Delete */
+.fa-remove_poll::before,
+.fa-delete::before {
 	content: "\f2ed";
 }
 /* New Topic */
@@ -36,10 +37,6 @@
 .fa-move::before {
 	content: "\f0b2";
 }
-/* Delete Topic */
-.fa-delete::before {
-	content: "\f2ed";
-}
 /* Sticky Topic */
 .fa-sticky::before {
 	content: "\f08d";
@@ -48,16 +45,18 @@
 .fa-merge::before {
 	content: "\f248";
 }
-/* View All Members */
-.fa-view_all_members::before {
+/* Members */
+.fa-view_all_members::before,
+.fa-mlist::before {
 	content: "\f0c0";
 }
 /* Find Member */
 .fa-mlist_search::before {
 	content: "\f4fc";
 }
-/* Calendar Menu */
-.fa-calendar::before {
+/* Calendar */
+.fa-calendar::before,
+.fa-calendar_upcoming::before {
 	content: "\f073";
 }
 /* Register */
@@ -67,6 +66,24 @@
 /* Login */
 .fa-login::before {
 	content: "\f2f6";
+}
+/* Notifications */
+.fa-notifications::before,
+.fa-mail::before {
+	content: "\f0f3";
+}
+/* Pokes */
+.fa-pokes::before,
+.fa-poke::before {
+	content: "\f0a4";
+}
+/* Posts */
+.fa-posts::before {
+	content: "\f086";
+}
+/* Drafts */
+.fa-drafts::before {
+	content: "\f0ea";
 }
 
 /* Community */
@@ -81,30 +98,35 @@
 nav#main_nav ul.menu_nav li a i.fa-portal::before {
 	content: "\f015";
 }
+/* Help */
 .fa-help::before {
 	content: "\f128";
 }
+/* Admin */
 .fa-admin::before {
 	content: "\f085";
 }
+/* Mod */
 .fa-moderate::before {
 	content: "\f7d9";
 }
+/* Profile */
 .fa-profile::before {
 	content: "\f007";
 }
+/* PM */
 .fa-pm::before {
 	content: "\f0e0";
 }
-.fa-mlist::before {
-	content: "\f0c0";
-}
+/* Logout */
 .fa-logout::before {
 	content: "\f2f5";
 }
+/* Team */
 .fa-team::before {
 	content: "\f509";
 }
+/* Shop */
 .fa-shop::before {
 	content: "\f07a";
 }
@@ -118,6 +140,19 @@ nav#main_nav ul.menu_nav li a i.fa-portal::before {
 .fa-online_users::before {
 	content: "\f4fd";
 }
-.fa-calendar_upcoming::before {
-	content: "\f073";
+/* Profile Account */
+.fa-maintain::before {
+	content: "\f505";
+}
+/* Profile Details */
+.fa-members::before {
+	content: "\f7d9";
+}
+/* Look and Layout */
+.fa-features::before {
+	content: "\f5fd";
+}
+/* Ignore List */
+.fa-frenemy::before {
+	content: "\f502";
 }

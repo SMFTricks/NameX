@@ -92,6 +92,66 @@ function themecustoms_footer()
 	</footer>';
 }
 
+function themecustoms_userarea()
+{
+	global $context, $scripturl, $maintenance, $txt;
+
+	// If the user is logged in, display some things that might be useful.
+	if ($context['user']['is_logged'])
+	{
+		// Firstly, the user's menu
+		echo '
+			<ul id="top_info">
+				<li>
+					<a href="', $scripturl, '?action=profile"', !empty($context['self_profile']) || $context['current_action'] == 'unread'  || $context['current_action'] == 'unreadreplies' ? ' class="active"' : '', ' id="profile_menu_top" onclick="return false;">
+						', $context['user']['avatar']['image'], '
+					</a>
+					<div id="profile_menu" class="top_menu"></div>
+				</li>';
+
+		// Secondly, PMs if we're doing them
+		if ($context['allow_pm'])
+			echo '
+				<li>
+					<a href="', $scripturl, '?action=pm"', !empty($context['self_pm']) ? ' class="active"' : '', ' id="pm_menu_top">', themecustoms_icon('fa fa-envelope'), !empty($context['user']['unread_messages']) ? ' <span class="amt">' . $context['user']['unread_messages'] . '</span>' : '', '</a>
+					<div id="pm_menu" class="top_menu scrollable"></div>
+				</li>';
+
+		// Thirdly, alerts
+		echo '
+				<li>
+					<a href="', $scripturl, '?action=profile;area=showalerts;u=', $context['user']['id'], '"', !empty($context['self_alerts']) ? ' class="active"' : '', ' id="alerts_menu_top">', themecustoms_icon('fa fa-bell'), !empty($context['user']['alerts']) ? ' <span class="amt">' . $context['user']['alerts'] . '</span>' : '', '</a>
+					<div id="alerts_menu" class="top_menu scrollable"></div>
+				</li>';
+
+		// A logout button for people without JavaScript.
+		echo '
+				<li id="nojs_logout">
+					<a href="', $scripturl, '?action=logout;', $context['session_var'], '=', $context['session_id'], '">', $txt['logout'], '</a>
+					<script>document.getElementById("nojs_logout").style.display = "none";</script>
+				</li>';
+
+		// And now we're done.
+		echo '
+			</ul>';
+	}
+	// Otherwise they're a guest. Ask them to either register or login.
+	/**
+	 * @todo use our own login overlay (if needed) because the ajax one breaks the variants
+	 */
+	elseif (empty($maintenance))
+		echo '
+			<ul class="floatleft welcome">
+				<li>', sprintf($txt[$context['can_register'] ? 'welcome_guest_register' : 'welcome_guest'], $context['forum_name_html_safe'], $scripturl . '?action=login', 'return reqOverlayDiv(this.href, ' . JavaScriptEscape($txt['login']) . ');', $scripturl . '?action=signup'), '</li>
+			</ul>';
+	else
+		// In maintenance mode, only login is allowed and don't show OverlayDiv
+		echo '
+			<ul class="floatleft welcome">
+				<li>', sprintf($txt['welcome_guest'], $context['forum_name_html_safe'], $scripturl . '?action=login', 'return true;'), '</li>
+			</ul>';
+}
+
 function themecustoms_socials()
 {
 	global $settings;
@@ -207,6 +267,29 @@ function themecustoms_search()
 
 		echo '
 				<input type="hidden" name="advanced" value="0">
+			</form>';
+	}
+}
+
+function themecustoms_languageselector()
+{
+	global $modSettings, $context, $txt;
+
+	if (!empty($modSettings['userLanguage']) && !empty($context['languages']) && count($context['languages']) > 1)
+	{
+		echo '
+			<form id="languages_form" method="get">
+				<select id="language_select" name="language" onchange="this.form.submit()">';
+
+		foreach ($context['languages'] as $language)
+			echo '
+					<option value="', $language['filename'], '"', isset($context['user']['language']) && $context['user']['language'] == $language['filename'] ? ' selected="selected"' : '', '>', str_replace('-utf8', '', $language['name']), '</option>';
+
+		echo '
+				</select>
+				<noscript>
+					<input type="submit" value="', $txt['quick_mod_go'], '">
+				</noscript>
 			</form>';
 	}
 }

@@ -109,88 +109,15 @@ function template_html_above()
  */
 function template_body_above()
 {
-	global $context, $settings, $scripturl, $txt, $modSettings, $maintenance, $settings;
+	global $context, $settings, $scripturl, $txt, $maintenance, $settings;
 
 	// Wrapper div now echoes permanently for better layout options. h1 a is now target for "Go up" links.
 	echo '
 	<div id="top_section">
 		<div class="inner_wrap">';
 
-	// If the user is logged in, display some things that might be useful.
-	if ($context['user']['is_logged'])
-	{
-		// Firstly, the user's menu
-		echo '
-			<ul class="floatleft" id="top_info">
-				<li>
-					<a href="', $scripturl, '?action=profile"', !empty($context['self_profile']) ? ' class="active"' : '', ' id="profile_menu_top" onclick="return false;">';
-
-		if (!empty($context['user']['avatar']))
-			echo $context['user']['avatar']['image'];
-
-		echo $context['user']['name'], '</a>
-					<div id="profile_menu" class="top_menu"></div>
-				</li>';
-
-		// Secondly, PMs if we're doing them
-		if ($context['allow_pm'])
-			echo '
-				<li>
-					<a href="', $scripturl, '?action=pm"', !empty($context['self_pm']) ? ' class="active"' : '', ' id="pm_menu_top">', $txt['pm_short'], !empty($context['user']['unread_messages']) ? ' <span class="amt">' . $context['user']['unread_messages'] . '</span>' : '', '</a>
-					<div id="pm_menu" class="top_menu scrollable"></div>
-				</li>';
-
-		// Thirdly, alerts
-		echo '
-				<li>
-					<a href="', $scripturl, '?action=profile;area=showalerts;u=', $context['user']['id'], '"', !empty($context['self_alerts']) ? ' class="active"' : '', ' id="alerts_menu_top">', $txt['alerts'], !empty($context['user']['alerts']) ? ' <span class="amt">' . $context['user']['alerts'] . '</span>' : '', '</a>
-					<div id="alerts_menu" class="top_menu scrollable"></div>
-				</li>';
-
-		// A logout button for people without JavaScript.
-		echo '
-				<li id="nojs_logout">
-					<a href="', $scripturl, '?action=logout;', $context['session_var'], '=', $context['session_id'], '">', $txt['logout'], '</a>
-					<script>document.getElementById("nojs_logout").style.display = "none";</script>
-				</li>';
-
-		// And now we're done.
-		echo '
-			</ul>';
-	}
-	// Otherwise they're a guest. Ask them to either register or login.
-	/**
-	 * @todo use our own login overlay (if needed) because the ajax one breaks the variants
-	 */
-	elseif (empty($maintenance))
-		echo '
-			<ul class="floatleft welcome">
-				<li>', sprintf($txt[$context['can_register'] ? 'welcome_guest_register' : 'welcome_guest'], $context['forum_name_html_safe'], $scripturl . '?action=login', 'return reqOverlayDiv(this.href, ' . JavaScriptEscape($txt['login']) . ');', $scripturl . '?action=signup'), '</li>
-			</ul>';
-	else
-		// In maintenance mode, only login is allowed and don't show OverlayDiv
-		echo '
-			<ul class="floatleft welcome">
-				<li>', sprintf($txt['welcome_guest'], $context['forum_name_html_safe'], $scripturl . '?action=login', 'return true;'), '</li>
-			</ul>';
-
-	if (!empty($modSettings['userLanguage']) && !empty($context['languages']) && count($context['languages']) > 1)
-	{
-		echo '
-			<form id="languages_form" method="get" class="floatright">
-				<select id="language_select" name="language" onchange="this.form.submit()">';
-
-		foreach ($context['languages'] as $language)
-			echo '
-					<option value="', $language['filename'], '"', isset($context['user']['language']) && $context['user']['language'] == $language['filename'] ? ' selected="selected"' : '', '>', str_replace('-utf8', '', $language['name']), '</option>';
-
-		echo '
-				</select>
-				<noscript>
-					<input type="submit" value="', $txt['quick_mod_go'], '">
-				</noscript>
-			</form>';
-	}
+	// User Area and Login
+	themecustoms_userarea();
 
 	echo '
 		</div><!-- .inner_wrap -->
@@ -270,13 +197,6 @@ function theme_linktree($force_show = false)
 	echo '
 				<div class="navigate_section">
 					<ul>';
-
-	if ($context['user']['is_logged'])
-		echo '
-						<li class="unread_links">
-							<a href="', $scripturl, '?action=unread" title="', $txt['unread_since_visit'], '">', $txt['view_unread_category'], '</a>
-							<a href="', $scripturl, '?action=unreadreplies" title="', $txt['show_unread_replies'], '">', $txt['unread_replies'], '</a>
-						</li>';
 
 	// Each tree item has a URL and name. Some may have extra_before and extra_after.
 	foreach ($context['linktree'] as $link_num => $tree)

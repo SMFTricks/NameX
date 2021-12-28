@@ -75,17 +75,17 @@ class Theme
 	/**
 	 * @var object The theme color variants
 	 */
-	protected $_theme_variants;
+	public $_theme_variants;
 
 	/**
 	 * @var object Enable dark/light mode
 	 */
-	protected $_theme_darkmode;
+	public $_theme_darkmode;
 
 	/**
 	 * @var object Inline CSS styles
 	 */
-	protected $_css_inline;
+	public $_css_inline;
 
 	/**
 	 * Theme::__construct()
