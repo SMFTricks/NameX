@@ -73,6 +73,11 @@ class Theme
 	private $_use_bootstrap = false;
 
 	/**
+	 * @var bool Use google font/s
+	 */
+	private $_use_googlefonts = true;
+
+	/**
 	 * @var object The theme color variants
 	 */
 	public $_theme_variants;
@@ -114,6 +119,9 @@ class Theme
 
 		// Add inline styles for any setting that requires it
 		$this->_css_inline = new Styles;
+
+		// Add any additional hooks for the boards or topics
+		$this->hookBoard();
 
 		// Theme Variants
 		$this->_theme_variants = new Variants;
@@ -207,9 +215,17 @@ class Theme
 			],
 			// Passion One Font
 			'notosansfont' => [
-				'include' => empty($context['header_logo_url_html_safe']),
+				'include' => empty($context['header_logo_url_html_safe']) && $this->_use_googlefonts,
 				'css' => [
 					'file' => 'https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap',
+					'external' => true,
+				]
+			],
+			// Lato Font
+			'latofont' => [
+				'include' => $this->_use_googlefonts,
+				'css' => [
+					'file' => 'https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap',
 					'external' => true,
 				]
 			],
@@ -242,6 +258,32 @@ class Theme
 		// Board
 		elseif(empty($topic))
 			loadTemplate('themecustoms/templates/board');
+		// Topic
+		// elseif(!empty($topic) && !empty($board))
+	}
+
+	/**
+	 * Theme::hookBoard()
+	 *
+	 * Load additional hooks involving board or topic view
+	 * 
+	 * @return void
+	 */
+	public function hookBoard()
+	{
+		global $board, $topic;
+
+		// Both
+		if (!empty($board) || !empty($topic))
+		{
+			// Buttons
+			add_integration_function('integrate_display_buttons', __NAMESPACE__ . '\Buttons::normalButtons', false);
+			add_integration_function('integrate_messageindex_buttons', __NAMESPACE__ . '\Buttons::normalButtons', false);
+		}
+		// Board View / Message Index
+		elseif (empty($topic))
+		{
+		}
 	}
 
 	/**

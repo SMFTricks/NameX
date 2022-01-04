@@ -126,7 +126,7 @@ function template_main()
 		}
 
 		echo '
-			<div class="title_bar" id="topic_header">';
+			<div class="cat_bar" id="topic_header">';
 
 		// Are there actually any topics to show?
 		if (!empty($context['topics']))
@@ -169,10 +169,38 @@ function template_main()
 		echo '
 			<div id="topic_container">';
 
+		$stickybar = false;
+		$normalbar = false;
 		foreach ($context['topics'] as $topic)
 		{
+
+			// Separate sticky topics from normal topics
+			if (!empty($settings['st_separate_sticky_locked']))
+			{
+				if ($topic['is_sticky'] && !$stickybar)
+				{
+					echo '
+					<div class="title_bar">
+						<h3 class="titlebg">
+							', $txt['st_sticky_topic'], '
+						</h3>
+					</div>';
+					$stickybar = true;
+				}
+				elseif (!$topic['is_sticky'] && $stickybar && !$normalbar)
+				{
+					echo '
+					<div class="title_bar">
+						<h3 class="titlebg">
+							', $txt['st_normal_topic'], '
+						</h3>
+					</div>';
+					$normalbar = true;
+				}
+			}
+
 			echo '
-				<div class="', $topic['css_class'], '">
+				<div class="up_contain ', $topic['css_class'], '">
 					<div class="board_icon">
 						<img src="', $topic['first_post']['icon_url'], '" alt="">
 						', $topic['is_posted_in'] ? '<img class="posted" src="' . $settings['images_url'] . '/icons/profile_sm.png" alt="">' : '', '
@@ -221,9 +249,13 @@ function template_main()
 						</div><!-- #topic_[first_post][id] -->
 					</div><!-- .info -->
 					<div class="board_stats centertext">
-						<p>', $txt['replies'], ': ', $topic['replies'], '<br>', $txt['views'], ': ', $topic['views'], '</p>
+						<p>
+							<strong>', $topic['replies'], '</strong> ', $txt['replies'], '<br>
+							<strong>', $topic['views'], '</strong> ', $txt['views'], '
+						</p>
 					</div>
 					<div class="lastpost">
+						', !empty($settings['st_enable_avatars_topics']) ? themecustoms_avatar($topic['last_post']['member']['avatar']['href'], $topic['last_post']['member']['id']) : '', '
 						<p>', sprintf($txt['last_post_topic'], '<a href="' . $topic['last_post']['href'] . '">' . $topic['last_post']['time'] . '</a>', $topic['last_post']['member']['link']), '</p>
 					</div>';
 

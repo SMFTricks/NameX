@@ -1,6 +1,8 @@
 /* Mark Read */
 .fa-markread::before,
-.fa-markselectread::before {
+.fa-mark_read_short::before,
+.fa-markselectread::before,
+.fa-mark_as_read::before {
 	content: "\f00c";
 }
 /* Not Read */
@@ -16,34 +18,51 @@
 	content: "\f1d8";
 }
 /* Notify */
-.fa-notify::before {
+.fa-notify::before,
+.fa-unnotify::before {
 	content: "\f0f3";
 }
 /* New Poll */
 .fa-post_poll::before,
+.fa-new_poll::before,
 .fa-add_poll::before {
 	content: "\f681";
 }
 /* Delete */
 .fa-remove_poll::before,
-.fa-delete::before {
+.fa-delete::before,
+.fa-remove_topic::before {
 	content: "\f2ed";
+}
+/* Restore */
+.fa-restore_topic::before {
+	content: "\f829";
 }
 /* New Topic */
 .fa-new_topic::before {
 	content: "\f15b";
 }
 /* Move Topic */
-.fa-move::before {
+.fa-move::before,
+.fa-move_topic::before {
 	content: "\f0b2";
 }
 /* Sticky Topic */
-.fa-sticky::before {
+.fa-set_sticky::before,
+.fa-set_nonsticky::before {
 	content: "\f08d";
+}
+/* Lock Topic */
+.fa-set_lock::before {
+	content: "\f023";
 }
 /* Merge Topic */
 .fa-merge::before {
 	content: "\f248";
+}
+/* LInk Calendar */
+.fa-calendar_link::before {
+	content: "\f274";
 }
 /* Members */
 .fa-view_all_members::before,
@@ -58,6 +77,10 @@
 .fa-calendar::before,
 .fa-calendar_upcoming::before {
 	content: "\f073";
+}
+/* Post Event */
+.fa-calendar_post_event::before {
+	content: "\f271";
 }
 /* Register */
 .fa-register::before {

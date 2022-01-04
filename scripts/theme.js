@@ -61,11 +61,33 @@ function smf_addButton(stripId, image, options)
 
 // Some theme bits
 $(function() {
+
 	// Settings tabs
 	$( '#st_settings_tabs').tabs();
 	// Info center tabs
-	$( '#info_center_blocks').tabs({
+	$( '#info_center_blocks').tabs();
 
+	// Change the behaviour of the notify button
+	$('.normal_button_strip_notify').next().find('a').click(function (e) {
+		var $obj = $(this);
+		// All of the sub buttons are now without the active class if they had it.
+		$('.notify_dropdown .viewport .overview a').removeClass('active');
+		// Toggle this new selection as active
+		$obj.toggleClass('active');
+		e.preventDefault();
+		ajax_indicator(true);
+		$.get($obj.attr('href') + ';xml', function () {
+			ajax_indicator(false);
+			$('.normal_button_strip_notify > span').text($obj.find('em').text());
+		});
+
+		return false;
 	});
 
+	// Fixing the other popups because of the flexbox stuff...
+	$('#profile_menu, #pm_menu, #alerts_menu').each(function(index, item) {
+		$(item).prev().click(function(e) {
+			$(item).css('top', $(this).offset().top + $(this).height());
+		});
+	});
 });

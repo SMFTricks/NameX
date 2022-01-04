@@ -41,8 +41,6 @@ function themecustoms_header()
 {
 	global $scripturl, $context, $settings;
 
-	themecustoms_colorpicker();
-
 	echo '
 	<header>
 		<div id="header">
@@ -127,9 +125,12 @@ function themecustoms_userarea()
 		// A logout button for people without JavaScript.
 		echo '
 				<li id="nojs_logout">
-					<a href="', $scripturl, '?action=logout;', $context['session_var'], '=', $context['session_id'], '">', $txt['logout'], '</a>
+					<a href="', $scripturl, '?action=logout;', $context['session_var'], '=', $context['session_id'], '">', themecustoms_icon('fa fa-sign-out-alt'), '</a>
 					<script>document.getElementById("nojs_logout").style.display = "none";</script>
 				</li>';
+
+		// Add the color selection
+		themecustoms_colorpicker();
 
 		// And now we're done.
 		echo '
@@ -200,22 +201,29 @@ function themecustoms_icon($icon)
 
 function themecustoms_colorpicker()
 {
-	global $settings, $txt;
+	global $settings, $txt, $scripturl, $options;
 
-	if (!empty($settings['theme_variants']) && empty($settings['disable_user_variant']))
+	if (!empty($settings['theme_variants']) && count($settings['theme_variants']) > 1 && empty($settings['disable_user_variant']))
 	{
 		echo '
-		<div class="st_styleswitcher">';
+		<li id="user_colorpicker">
+			<a href="javascript:void(0);">', themecustoms_icon('fa fa-palette'), '</a>
+			<ul id="colorpicker_menu" class="top_menu dropmenu">';
 		
 		// Theme variants
 		foreach ($settings['theme_variants'] as $variant)
+		{
 			echo '
-			<button class="theme-variant-toggle" data-color="', $variant, '">
-				', $txt['variant_'. $variant], '
-			</button>';
+				<li>
+					<a href="', $scripturl, '?variant=' . $variant . '" class="theme-variant-toggle', ($options['theme_variant'] == $variant ? ' active' : '') , '" data-color="', $variant, '">
+						', $txt['variant_'. $variant], '
+					</a>
+				</li>';
+		}
 
 		echo '
-		</div>';
+			</ul>
+		</li>';
 	}
 }
 

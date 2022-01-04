@@ -110,9 +110,9 @@ class Integration
 	 * @param array $actions An array containing all possible SMF actions. This includes loading different hooks for certain areas.
 	 * @return void
 	 */
-	public function hookActions(&$actions)
+	public function hookActions()
 	{
-		// Add some hooks by action
+		// Let the action do some work
 		if (isset($_REQUEST['action']))
 			switch ($_REQUEST['action'])
 			{

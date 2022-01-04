@@ -147,6 +147,12 @@ class Settings
 				'type' => 'checkbox'
 			],
 			[
+				'id' => 'st_separate_sticky_locked',
+				'label' => $txt['st_separate_sticky_locked'],
+				'description' => $txt['st_separate_sticky_locked_desc'],
+				'type' => 'checkbox'
+			],
+			[
 				'id' => 'st_enable_avatars_boards',
 				'label' => $txt['st_enable_avatars_boards'],
 				'type' => 'checkbox',

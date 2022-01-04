@@ -109,15 +109,14 @@ function template_html_above()
  */
 function template_body_above()
 {
-	global $context, $settings, $scripturl, $txt, $maintenance, $settings;
+	global $settings, $settings;
 
-	// Wrapper div now echoes permanently for better layout options. h1 a is now target for "Go up" links.
 	echo '
 	<div id="top_section">
 		<div class="inner_wrap">';
 
-	// User Area and Login
-	themecustoms_userarea();
+			// User Area and Login button
+			themecustoms_userarea();
 
 	echo '
 		</div><!-- .inner_wrap -->
@@ -126,8 +125,7 @@ function template_body_above()
 	// Header
 	themecustoms_header();
 
-	// Show the menu here, according to the menu sub template, followed by the navigation tree.
-	// Load mobile menu here
+	// Show the menu here
 	template_menu();
 
 	echo '
@@ -135,15 +133,12 @@ function template_body_above()
 		<div id="upper_section">
 			<div id="inner_section">';
 
-	// Theme LInktree
-	theme_linktree();
+				// Theme LInktree
+				theme_linktree();
 
 	echo '
 			</div><!-- #inner_section -->
-		</div><!-- #upper_section -->';
-
-	// The main content should go here.
-	echo '
+		</div><!-- #upper_section -->
 		<div id="content_section">
 			<div id="main_content_section">';
 }
@@ -341,7 +336,10 @@ function template_button_strip($button_strip, $direction = '', $strip_options = 
 				$value['id'] = $key;
 
 			$button = '
-				<a class="button button_strip_' . $key . (!empty($value['active']) ? ' active' : '') . (isset($value['class']) ? ' ' . $value['class'] : '') . '" ' . (!empty($value['url']) ? 'href="' . $value['url'] . '"' : '') . ' ' . (isset($value['custom']) ? ' ' . $value['custom'] : '') . '>'.(!empty($value['icon']) ? '<span class="main_icons '.$value['icon'].'"></span>' : '').'' . $txt[$value['text']] . '</a>';
+				<a class="button normal_button_strip_' . $key . (!empty($value['active']) ? ' active' : '') . (isset($value['class']) ? ' ' . $value['class'] : '') . (!empty($value['sub_buttons']) ? ' buttonlist_sub' : '') . '" ' . (!empty($value['url']) ? 'href="' . $value['url'] . '"' : '') . ' ' . (isset($value['custom']) ? ' ' . $value['custom'] : '') . '>
+					<i class="fa fa-'.(!empty($value['icon']) ? $value['icon'] : $value['text']) .'"></i>
+					<span>' . $txt[$value['text']] . '</span>
+				</a>';
 
 			if (!empty($value['sub_buttons']))
 			{
@@ -355,10 +353,17 @@ function template_button_strip($button_strip, $direction = '', $strip_options = 
 						continue;
 
 					$button .= '
-								<a href="' . $element['url'] . '"><strong>' . $txt[$element['text']] . '</strong>';
+								<a href="' . $element['url'] . '"' . (!empty($element['active']) ? ' class="active"' : '') . '>
+									<strong>' . $txt[$element['text']] . '</strong>';
 					if (isset($txt[$element['text'] . '_desc']))
-						$button .= '<br><span>' . $txt[$element['text'] . '_desc'] . '</span>';
-					$button .= '</a>';
+						$button .= '
+									<span>' . $txt[$element['text'] . '_desc'] . '</span>';
+					// Surprise mechanic
+					if (isset($element['notify_status']))
+						$button .= '
+									<em style="display:none;">' . $element['notify_status'] . '</em>';
+					$button .= '
+								</a>';
 				}
 				$button .= '
 							</div><!-- .overview -->
@@ -497,7 +502,4 @@ function template_maint_warning_above()
 /**
  * The lower part of the maintenance warning box.
  */
-function template_maint_warning_below()
-{
-
-}
+function template_maint_warning_below() {}

@@ -23,6 +23,8 @@ let switchVariant = (setColor) =>
 	// Add the selected theme variant
 	document.documentElement.classList.toggle('theme-' + localVariant);
 
+
+
 	// Update the variant in the user settings/options
 	if (themeColor !== null || (themeColor === null && localVariant !== themeVariant))
 	{
@@ -43,4 +45,34 @@ $(".theme-variant-toggle").click(function() {
 	themeColor = $(this).attr('data-color');
   	// Switch the theme variant with the selected color
 	switchVariant(themeColor);
+
+	return false;
+});
+
+// Some bits for the color picker, borrowed from the buttonlist stuff
+$(function() {
+	$('#colorpicker_menu').each(function(index, item) {
+		$(item).prev().click(function(e) {
+			e.stopPropagation();
+			e.preventDefault();
+
+			if ($(item).is(':visible')) {
+				$(item).css('display', 'none');
+				return true;
+			}
+			$(item).css('display', 'block');
+			$(item).css('top', $(this).offset().top + $(this).height());
+		});
+		$(document).click(function() {
+			$(item).css('display', 'none');
+		});
+	});
+
+	$('li#user_colorpicker > a').next().find('a').click(function (e) {
+		var $obj = $(this);
+		// All of the variants are now without the active class if they had it.
+		$('ul#colorpicker_menu li a').removeClass('active');
+		// Toggle this new selection as active
+		$obj.toggleClass('active');
+	});
 });

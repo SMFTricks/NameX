@@ -3,26 +3,6 @@
 	/* Primary color */
 		/* Hue */
 		--primary-color-hue: 200;
-		/* Saturation */
-		--primary-color-sat: 50%;
-		/* Lightness */
-		--primary-color-lum: 75%;
-		/* Color */
-		--primary-color: hsl(var(--primary-color-hue), var(--primary-color-sat), var(--primary-color-lum));
-		/* Color Accent */
-		--primary-color-acc: hsl(var(--primary-color-hue), var(--primary-color-sat), 30%);
-
-	/* Secondary color */
-		/* Hue */
-		--secondary-color-hue: var(--primary-color-hue);
-		/* Saturation */
-		--secondary-color-sat: 30%;
-		/* Lightness */
-		--secondary-color-lum: 65%;
-		/* Color */
-		--secondary-color: hsl(var(--secondary-color-hue), var(--secondary-color-sat), var(--secondary-color-lum));
-		/* Color Accent */
-		--secondary-color-acc: hsl(var(--secondary-color-hue), var(--secondary-color-sat), 35%);
 
 	/* Body */
 		/* Background */
@@ -52,9 +32,9 @@
 
 	/* New Button */
 		/* Background */
-		--newbutton-bg: var(--primary-color);
+		--newbutton-bg: linear-gradient(var(--catbg-bg), hsl(var(--primary-color-hue), 35%, 60%));
 		/* Color */
-		--newbutton-txt-color: hsl(0, 0%, 100%);
+		--newbutton-txt-color: hsl(var(--primary-color-hue), 45%, 90%);
 
 	/* Catbg */
 		/* Background */
@@ -81,7 +61,7 @@
 
 	/* Header */
 		/* Background */
-		--header-bg: hsl(var(--primary-color-hue), 50%, 92%);
+		--header-bg: hsl(var(--primary-color-hue), 60%, 90%);
 
 	/* Footer */
 		/* Background */
@@ -117,18 +97,11 @@
 		/* Background */
 		--buttonlist-bg: hsl(var(--primary-color-hue), 15%, 90%);
 		--buttonlist-bg-hover: hsl(var(--primary-color-hue), 15%, 85%);
-		--buttonlist-bg-active: var(--catbg-bg);
+		--buttonlist-bg-active: var(--header-bg);
 		/* Color */
 		--buttonlist-txt-color: hsl(0, 0%, 10%);
 		--buttonlist-txt-color-hover: hsl(0, 0%, 15%);
-		--buttonlist-txt-color-active: hsl(0, 0%, 95%);
-
-	/* Subnav Dropdown */
-		/* Border */
-		--subnav-dropdown-border-width: 1px;
-		--subnav-dropdown-border-color: var(--primary-color);
-		--subnav-dropdown-border-style: solid;
-		--subnav-dropdown-border-radius: 3px;
+		--buttonlist-txt-color-active: hsl(0, 0%, 25%);
 
 	/* Profile Cover */
 		/* Top Height */
@@ -142,14 +115,14 @@
 
 	/* Status Colors */
 		/* Sticky */
-		--status-sticky-bg: hsl(22, 35%, 86%);
+		--status-sticky-bg: hsl(var(--primary-color-hue), 30%, 90%);
 		--status-sticky-txt-color: var(--primary-color);
 		/* Locked */
-		--status-locked-bg: hsl(206, 19%, 86%);
+		--status-locked-bg: hsl(var(--primary-color-hue), 15%, 75%);
 		--status-locked-txt-color: var(--secondary-color-accent);
 		/* Approve */
-		--status-approve-bg: hsl(21, 66%, 69%);
+		--status-approve-bg: hsl(5, 45%, 80%);
 		--status-approve-txt-color: hsl(8, 46%, 57%);
 		/* Approve Topic */
-		--status-approvet-bg: hsl(0, 100%, 96%);
+		--status-approvet-bg: hsl(0, 55%, 90%);
 }
