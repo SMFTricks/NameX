@@ -336,7 +336,7 @@ function template_ic_block_stats()
 			<span class="totals">' . $context['latest_post']['link'] . '</span>
 		</div>' : '', '
 		<span>
-			<a href="', $scripturl, '?action=stats" class="stats_link">', $txt['more_stats'], '</a>
+			<a class="button" href="', $scripturl, '?action=stats" class="stats_link">', $txt['more_stats'], '</a>
 		</span>';
 }
 

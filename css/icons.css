@@ -31,8 +31,17 @@
 /* Delete */
 .fa-remove_poll::before,
 .fa-delete::before,
-.fa-remove_topic::before {
+.fa-remove_topic::before,
+.fa-remove_button::before {
 	content: "\f2ed";
+}
+/* Solved */
+.fa-solve_topic::before {
+	content: "\f00c";
+}
+/* Unsolved */
+.fa-unsolve_topic::before {
+	content: "\f00d";
 }
 /* Restore */
 .fa-restore_topic::before {
@@ -107,6 +116,29 @@
 /* Drafts */
 .fa-drafts::before {
 	content: "\f0ea";
+}
+/* Ignore */
+.fa-ignore::before {
+	content: "\f057";
+}
+/* Details */
+.fa-details::before {
+	content: "\f05a";
+}
+/* Reply */
+.fa-reply_button::before {
+	content: "\f3e5";
+}
+/* Quote */
+.fa-quote::before {
+	content: "\f10e";
+}
+/* Likes */
+.fa-like::before {
+	content: "\f164";
+}
+.fa-unlike::before {
+	content: "\f165";
 }
 
 /* Community */

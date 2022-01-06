@@ -84,6 +84,43 @@ $(function() {
 		return false;
 	});
 
+	// Likes on quickbuttons
+	$(document).on('click', 'ul.quickbuttons li.smflikebutton > a', function(event){
+		var obj = $(this);
+		event.preventDefault();
+		ajax_indicator(true);
+		$.ajax({
+			type: 'GET',
+			url: obj.attr('href') + ';js=1',
+			headers: {
+				"X-SMF-AJAX": 1
+			},
+			xhrFields: {
+				withCredentials: typeof allow_xhjr_credentials !== "undefined" ? allow_xhjr_credentials : false
+			},
+			cache: false,
+			dataType: 'html',
+			success: function(html){
+				obj.parent().replaceWith($(html).first('li'));
+			},
+			error: function (html){
+			},
+			complete: function (){
+				ajax_indicator(false);
+			}
+		});
+
+		return false;
+	});
+
+	// Likes count for messages.
+	$(document).on('click', '.buttonlike_count', function(e){
+		e.preventDefault();
+		var title = $(this).find('em').text();
+			url = $(this).attr('href') + ';js=1';
+		return reqOverlayDiv(url, title, 'post/thumbup.png');
+	});
+
 	// Fixing the other popups because of the flexbox stuff...
 	$('#profile_menu, #pm_menu, #alerts_menu').each(function(index, item) {
 		$(item).prev().click(function(e) {

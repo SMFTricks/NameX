@@ -50,7 +50,7 @@ function template_profile_popup()
 {
 	global $context, $scripturl, $txt;
 
-	// Load the template for this area
+	// Load the custom template
 	loadTemplate('themecustoms/templates/theme');
 
 	// Unlike almost every other template, this is designed to be included into the HTML directly via $().load()
@@ -61,8 +61,12 @@ function template_profile_popup()
 		<div class="profile_user_info floatleft">
 			<span class="profile_username"><a href="', $scripturl, '?action=profile;u=', $context['user']['id'], '">', $context['user']['name'], '</a></span>
 			<span class="profile_group">', $context['member']['group'], '</span>
-		</div>
-		', themecustoms_languageselector(), '
+		</div>';
+
+		// Load the languages, if any
+		themecustoms_languageselector();
+
+	echo '
 		<div class="profile_user_links unread_buttons">
 			<ol>
 				<li>

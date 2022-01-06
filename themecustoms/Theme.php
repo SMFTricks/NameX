@@ -273,16 +273,16 @@ class Theme
 	{
 		global $board, $topic;
 
-		// Both
-		if (!empty($board) || !empty($topic))
+		// Topic View
+		if (!empty($topic))
 		{
-			// Buttons
 			add_integration_function('integrate_display_buttons', __NAMESPACE__ . '\Buttons::normalButtons', false);
-			add_integration_function('integrate_messageindex_buttons', __NAMESPACE__ . '\Buttons::normalButtons', false);
+			add_integration_function('integrate_prepare_display_context', __NAMESPACE__ . '\Buttons::quickButtons', false);
 		}
-		// Board View / Message Index
-		elseif (empty($topic))
+		// Board View
+		elseif (!empty($board) && empty($topic))
 		{
+			add_integration_function('integrate_messageindex_buttons', __NAMESPACE__ . '\Buttons::normalButtons', false);
 		}
 	}
 

@@ -438,8 +438,10 @@ function template_quickbuttons($list_items, $list_class = null, $output_method =
 		else
 			$html .= '
 				<a href="' . (!empty($li['href']) ? $li['href'] : 'javascript:void(0);') . '"' . (!empty($li['javascript']) ? ' ' . $li['javascript'] : '') . '>
-					' . (!empty($li['icon']) ? '<span class="main_icons ' . $li['icon'] . '"></span>' : '') . (!empty($li['label']) ? $li['label'] : '') . '
-				</a>';
+					' . (!empty($li['icon']) ? '<span class="fa fa-' . $li['icon'] . '"></span>
+					' : '') . (!empty($li['label']) ? $li['label'] : '') . '
+				</a>
+				' . (!empty($li['extra_content']) ? $li['extra_content'] : '');
 
 		$html .= '
 			</li>';

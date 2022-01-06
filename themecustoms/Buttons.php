@@ -43,4 +43,34 @@ class Buttons
 			}
 		}
 	}
+
+	/**
+	 * Buttons::quickButtons()
+	 * 
+	 * @param array $output It receives the message information
+	 * 
+	 * @return void
+	 */
+	public function quickButtons(&$output)
+	{
+		global $context, $scripturl, $txt, $modSettings;
+
+		// Add likes button to the quick buttons if they are not ignoring the user
+		if (!$output['is_ignored'])
+		{
+			$output['quickbuttons'] = array_merge([
+				'likes' => [
+					'label' => $output['likes']['you'] ? $txt['unlike'] : $txt['like'],
+					'icon' => $output['likes']['you'] ? 'unlike' : 'like',
+					'class' => 'smflikebutton',
+					'href' => $scripturl . '?action=likes;quickbuttonlike;ltype=msg;sa=like;like=' . $output['id'] . ';' . $context['session_var'] . '=' . $context['session_id'],
+					'show' => $output['likes']['can_like'] && !empty($modSettings['enable_likes']),
+					'extra_content' => (!empty($output['likes']['count']) ? '
+						<span class="amt">
+							<a class="buttonlike_count" href="' . $scripturl . '?action=likes;sa=view;ltype=msg;js=1;like=' . $output['id'] . ';' . $context['session_var'] . '=' . $context['session_id'] . '"><em style="display: none;">'. $txt['likes'] . '</em>' . $output['likes']['count'] . '</a>
+						</span>' : ''),
+				],
+			], $output['quickbuttons']);
+		}
+	}
 }

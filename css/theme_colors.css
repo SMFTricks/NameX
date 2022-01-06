@@ -24,11 +24,11 @@
 
 	/* Button */
 		/* Background */
-		--button-bg: var(--secondary-color);
-		--button-bg-hover: var(--primary-color);
+		--button-bg: var(--catbg-bg);
+		--button-bg-hover: var(--catbg-bg);
 		/* Color */
-		--button-txt-color: hsl(0, 0%, 95%);
-		--button-txt-color-hover: hsl(0, 0%, 20%);
+		--button-txt-color: hsl(0, 0%, 90%);
+		--button-txt-color-hover: hsl(0, 0%, 95%);
 
 	/* New Button */
 		/* Background */
