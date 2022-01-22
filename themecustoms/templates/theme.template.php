@@ -129,6 +129,10 @@ function themecustoms_userarea()
 					<script>document.getElementById("nojs_logout").style.display = "none";</script>
 				</li>';
 
+
+		// Add the mode selector
+		themecustoms_darkmode();
+
 		// Add the color selection
 		themecustoms_colorpicker();
 
@@ -201,7 +205,7 @@ function themecustoms_icon($icon)
 
 function themecustoms_colorpicker()
 {
-	global $settings, $txt, $scripturl, $options;
+	global $settings, $txt, $scripturl, $context;
 
 	if (!empty($settings['theme_variants']) && count($settings['theme_variants']) > 1 && empty($settings['disable_user_variant']))
 	{
@@ -215,7 +219,7 @@ function themecustoms_colorpicker()
 		{
 			echo '
 				<li>
-					<a href="', $scripturl, '?variant=' . $variant . '" class="theme-variant-toggle', ($options['theme_variant'] == $variant ? ' active' : '') , '" data-color="', $variant, '">
+					<a href="', $scripturl, '?variant=' . $variant . '" class="theme-variant-toggle', ($context['theme_variant'] == $variant ? ' active' : '') , '" data-color="', $variant, '">
 						', $txt['variant_'. $variant], '
 					</a>
 				</li>';
@@ -223,6 +227,21 @@ function themecustoms_colorpicker()
 
 		echo '
 			</ul>
+		</li>';
+	}
+}
+
+function themecustoms_darkmode()
+{
+	global $options, $settings;
+	
+	if (!empty($settings['st_enable_dark_mode']))
+	{
+		echo '
+		<li id="user_thememode">
+			<a href="javascript:void(0);" class="theme-mode-toggle">
+				<span></span>
+			</a>
 		</li>';
 	}
 }

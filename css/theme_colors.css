@@ -9,15 +9,24 @@
 		--body-bg: hsl(var(--primary-color-hue), 35%, 80%);
 		/* Color */
 		--body-txt-color: hsl(0, 0%, 0%);
+		/* Color Strong */
+		--body-txt-color-strong: hsl(0, 0%, 27%);
 
 	/* Links */
 		/* Color */
 		--body-link-color: hsl(var(--primary-color-hue), 40%, 40%);
 
+	/* Mode Icon */
+		--mode-icon-content: "\f185";
+
 	/* Inputs */
 		/* Background */
 		--input-bg: hsl(0, 0%, 100%);
 		--input-bg-disabled: hsl(0, 0%, 85%);
+		/* Border */
+		--input-border-color: hsl(0, 0%, 80%);
+		/* Shadow */
+		--input-shadow-color: rgba(180, 180, 180, 0.3);
 		/* Color */
 		--input-txt-color: hsl(0, 0%, 0%);
 		--input-accent-color: hsl(var(--primary-color-hue), 50%, 75%);
@@ -29,12 +38,14 @@
 		/* Color */
 		--button-txt-color: hsl(0, 0%, 90%);
 		--button-txt-color-hover: hsl(0, 0%, 95%);
+		/* Border */
+		--button-border-color: hsl(var(--primary-color-hue), 35%, 65%);
 
 	/* New Button */
 		/* Background */
 		--newbutton-bg: linear-gradient(var(--catbg-bg), hsl(var(--primary-color-hue), 35%, 60%));
 		/* Color */
-		--newbutton-txt-color: hsl(var(--primary-color-hue), 45%, 90%);
+		--newbutton-txt-color: hsl(var(--primary-color-hue), 30%, 95%);
 
 	/* Catbg */
 		/* Background */
@@ -44,9 +55,9 @@
 
 	/* Titlebg */
 		/* Background */
-		--titlebg-bg: linear-gradient(to bottom, hsl(var(--primary-color-hue), 35%, 90%) 0%,var(--windowbg-bg) 100%);
-		--titlebg-bg-right: linear-gradient(to right, hsl(var(--primary-color-hue), 35%, 90%) 0%,var(--windowbg-bg) 100%);
-		--titlebg-bg-left: linear-gradient(to left, hsl(var(--primary-color-hue), 35%, 90%) 0%,var(--windowbg-bg) 100%);
+		--titlebg-bg: linear-gradient(to bottom, hsl(var(--primary-color-hue), 35%, 90%) 0%, var(--windowbg-bg) 100%);
+		--titlebg-bg-right: linear-gradient(to right, hsl(var(--primary-color-hue), 35%, 90%) 0%, var(--windowbg-bg) 100%);
+		--titlebg-bg-left: linear-gradient(to left, hsl(var(--primary-color-hue), 35%, 90%) 0%, var(--windowbg-bg) 100%);
 		/* Color */
 		--titlebg-txt-color: hsl(var(--primary-color-hue), 25%, 40%);
 
@@ -62,6 +73,12 @@
 	/* Header */
 		/* Background */
 		--header-bg: hsl(var(--primary-color-hue), 60%, 90%);
+		/* Border */
+		--header-border-color: hsl(var(--primary-color-hue), 45%, 80%);
+
+	/* Logo */
+		/* Background */
+		--logo-bg-hover: hsl(0, 0%, 30%);
 
 	/* Footer */
 		/* Background */
@@ -125,4 +142,41 @@
 		--status-approve-txt-color: hsl(8, 46%, 57%);
 		/* Approve Topic */
 		--status-approvet-bg: hsl(0, 55%, 90%);
+
+	/* Content Section */
+		/* Background */
+		--content-section-bg: hsl(0, 0%, 100%);
+
+	/* Other Sections */
+		/* Background */
+		--uppersection-bg: hsl(0, 0%, 90%);
+		--forumsections-bg: linear-gradient(hsl(var(--primary-color-hue), 20%, 90%) 0,hsl(0, 0%, 99%) 70%);
+
+	/* Forum News */
+		/* Background */
+		--forumnews-bg: hsl(var(--primary-color-hue), 25%, 95%);
+		/* Inactive Background */
+		--forumnews-bg-inactive: hsl(var(--primary-color-hue), 20%, 85%);
+
+	/* Board Moderators */
+		/* Background */
+		--boardmoderators-bg: hsl(var(--primary-color-hue), 10%, 90%);
+	
+	/* Board Description */
+		/* Background */
+		--boarddescription-bg: hsl(var(--primary-color-hue), 35%, 90%);
+
+	/* Sub Boards */
+		/* Background */
+		--subboards-bg: hsl(var(--primary-color-hue), 25%, 92%);
+
+	/* Tab Items */
+		/* Background */
+		--themetab-item-bg: hsl(0, 0%, 98%);
+		/* Color */
+		--themetab-item-txt-color: hsl(0, 0%, 35%);
+
+	/* Popup Container */
+		/* Background */
+		--popup-container-bg: rgba(0, 0, 0, 0.7);
 }

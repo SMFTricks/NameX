@@ -341,7 +341,7 @@ function template_main()
 				sButtonStripDisplay: \'moderationbuttons_strip\',
 				bUseImageButton: false,
 				bCanRemove: ', $context['can_remove_post'] ? 'true' : 'false', ',
-				sRemoveButtonLabel: \'', $txt['quickmod_delete_selected'], '\',
+				sRemoveButtonLabel: \'', themecustoms_icon('fas fa-minus-circle') .  $txt['quickmod_delete_selected'], '\',
 				sRemoveButtonImage: \'delete_selected.png\',
 				sRemoveButtonConfirm: \'', $txt['quickmod_confirm'], '\',
 				bCanRestore: ', $context['can_restore_msg'] ? 'true' : 'false', ',
@@ -349,7 +349,7 @@ function template_main()
 				sRestoreButtonImage: \'restore_selected.png\',
 				sRestoreButtonConfirm: \'', $txt['quickmod_confirm'], '\',
 				bCanSplit: ', $context['can_split'] ? 'true' : 'false', ',
-				sSplitButtonLabel: \'', $txt['quickmod_split_selected'], '\',
+				sSplitButtonLabel: \'', themecustoms_icon('fa fa-columns') . $txt['quickmod_split_selected'], '\',
 				sSplitButtonImage: \'split_selected.png\',
 				sSplitButtonConfirm: \'', $txt['quickmod_confirm'], '\',
 				sFormId: \'quickModForm\'

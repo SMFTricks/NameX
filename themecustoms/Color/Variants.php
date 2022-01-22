@@ -49,13 +49,11 @@ class Variants
 	private $_enable_styleswitcher = true;
 
 	/**
-	 * Variants::init()
+	 * Variants::__construct()
 	 *
 	 * Initializes the theme color variants because
 	 * SMF scans the index.template.php for the theme variants and
 	 * it's nice because it can show the variants when the theme is NOT selected, but I don't care.
-	 * 
-	 * @param array $theme_variants The defined color variants
 	 * 
 	 * @return void
 	 */
@@ -81,12 +79,14 @@ class Variants
 		// Set to true when loading all of the variants at once (for styleswitching)
 		$this->variantCSS($this->_enable_styleswitcher);
 
-		// Insert the variants JS vars
+		// Style Switcher
 		if (!empty($this->_enable_styleswitcher))
+		{
+			// Insert the JS vars for the variants
 			$this->addJavaScriptVars();
-
-		// Load the JS file for the variants
-		$this->variantJS();
+			// Load the JS file for the variants
+			$this->variantJS();
+		}
 	}
 
 	/**
@@ -120,7 +120,7 @@ class Variants
 		$this->setVariants();
 
 		// Is user selection enabled?
-		if (!empty($settings['disable_user_variant']) && !allowedTo('admin_forum'))
+		if (!empty($settings['disable_user_variant']))
 			return;
 
 		// Check only for the themes page
@@ -165,7 +165,7 @@ class Variants
 		global $context, $txt, $settings, $options;
 
 		// Check if the user is allowed to change color variants
-		if (!empty($settings['disable_user_variant']) && !allowedTo('admin_forum'))
+		if (!empty($settings['disable_user_variant']))
 			return;
 
 		// Create the variant options, using text strings
@@ -210,8 +210,8 @@ class Variants
 		if (!empty($_REQUEST['variant']))
 			$_SESSION['id_variant'] = $_REQUEST['variant'];
 		// User selection?
-		if (empty($settings['disable_user_variant']) || allowedTo('admin_forum'))
-			$context['theme_variant'] = !empty($_SESSION['id_variant']) && in_array($_SESSION['id_variant'], $this->_variants) ? $_SESSION['id_variant'] : (!empty($options['theme_variant']) && in_array($options['theme_variant'], $this->_variants) ? $options['theme_variant'] : '');
+		if (empty($settings['disable_user_variant']))
+			$context['theme_variant'] = !empty($_SESSION['id_variant']) && in_array($_SESSION['id_variant'], $this->_variants) && empty($this->_enable_styleswitcher) ? $_SESSION['id_variant'] : (!empty($options['theme_variant']) && in_array($options['theme_variant'], $this->_variants) ? $options['theme_variant'] : '');
 
 		// If not a user variant, select the default.
 		if ($context['theme_variant'] == '' || !in_array($context['theme_variant'], $this->_variants))
@@ -221,14 +221,14 @@ class Variants
 		$context['theme_variant_url'] = $context['theme_variant'] . '/';
 
 		// Add the CSS file for the variant only if it's not the default.
-		if (!empty($context['theme_variant']) && $context['theme_variant'] != 'default' && empty($load_all))
+		if (!empty($context['theme_variant']) && $context['theme_variant'] != 'default' && (!empty($settings['disable_user_variant']) || empty($load_all)))
 		{
 			loadCSSFile('variants/' . $context['theme_variant'] . '.css', ['order_pos' => $this->_order_position], 'smf_index_' . $context['theme_variant']);
 			if ($context['right_to_left'])
 				loadCSSFile('variants/rtl.' . $context['theme_variant'] . '.css', ['order_pos' => $this->_order_position_rtl], 'smf_rtl' . $context['theme_variant']);
 		}
 		// Load all of the styles
-		elseif (!empty($load_all) && (empty($settings['disable_user_variant']) || allowedTo('admin_forum')))
+		elseif (!empty($load_all) && empty($settings['disable_user_variant']))
 		{
 			// For styleswitch we load all of the variants at once.
 			foreach ($this->_variants as $variant)
@@ -275,8 +275,8 @@ class Variants
 	{
 		global $settings;
 
-		// Load the file only if the swtylswitch is enabled and the user can change variants
-		if ((!empty($this->_enable_styleswitcher) && empty($settings['disable_user_variant'])) || allowedTo('admin_forum'))
+		// Load the file only if the user can change variants
+		if (empty($settings['disable_user_variant']))
 			loadJavascriptFile(
 				'variants.js',
 				[

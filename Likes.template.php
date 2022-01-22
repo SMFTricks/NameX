@@ -58,28 +58,31 @@ function template_like()
 {
 	global $context, $scripturl, $txt;
 
+	// Like Count
+	if (!empty($context['data']['count']))
+	{
+		$context['some_likes'] = true;
+		$count = $context['data']['count'];
+		$base = 'likes_';
+
+		if ($context['data']['already_liked'])
+		{
+			$base = 'you_' . $base;
+			$count--;
+		}
+
+		$base .= (isset($txt[$base . $count])) ? $count : 'n';
+	}
+
 	// Quick like button?
 	if (isset($_REQUEST['quickbuttonlike']))
 	{
 		if (!empty($context['data']['can_like']))
 		echo '
 		<li class="smflikebutton" id="', $context['data']['type'], '_', $context['data']['id_content'], '_likes"', '>
-			<a href="', $scripturl, '?action=likes;ltype=', $context['data']['type'], ';sa=like;quickbuttonlike;like=', $context['data']['id_content'], ';', $context['session_var'], '=', $context['session_id'], '" class="', $context['data']['type'], '_quicklike"><span class="fa fa-', $context['data']['already_liked'] ? 'unlike' : 'like', '"></span>', $context['data']['already_liked'] ? $txt['unlike'] : $txt['like'], '</a>';
+			<a href="', $scripturl, '?action=likes;ltype=', $context['data']['type'], ';sa=like;quickbuttonlike;like=', $context['data']['id_content'], ';', $context['session_var'], '=', $context['session_id'], '" class="', $context['data']['type'], '_quicklike"><i class="fa fa-', $context['data']['already_liked'] ? 'unlike' : 'like', '"></i>', $context['data']['already_liked'] ? $txt['unlike'] : $txt['like'], '</a>';
 
-		if (!empty($context['data']['count']))
-		{
-			$context['some_likes'] = true;
-			$count = $context['data']['count'];
-			$base = 'likes_';
-
-			if ($context['data']['already_liked'])
-			{
-				$base = 'you_' . $base;
-				$count--;
-			}
-
-			$base .= (isset($txt[$base . $count])) ? $count : 'n';
-
+		if (!empty($context['some_likes']))
 			echo '
 			<span class="amt">
 				<a class="buttonlike_count" href="' . $scripturl . '?action=likes;sa=view;ltype=' . $context['data']['type'] . ';js=1;like=' . $context['data']['id_content'] . ';' . $context['session_var'] . '=' . $context['session_id'], '">
@@ -87,7 +90,6 @@ function template_like()
 					' . $context['data']['count'] . '
 				</a>
 			</span>';
-		}
 
 		echo '
 		</li>';
@@ -105,23 +107,9 @@ function template_like()
 				<a href="', $scripturl, '?action=likes;ltype=', $context['data']['type'], ';sa=like;like=', $context['data']['id_content'], ';', $context['session_var'], '=', $context['session_id'], '" class="', $context['data']['type'], '_like"><span class="main_icons ', $context['data']['already_liked'] ? 'unlike' : 'like', '"></span> ', $context['data']['already_liked'] ? $txt['unlike'] : $txt['like'], '</a>
 			</li>';
 
-		if (!empty($context['data']['count']))
-		{
-			$context['some_likes'] = true;
-			$count = $context['data']['count'];
-			$base = 'likes_';
-
-			if ($context['data']['already_liked'])
-			{
-				$base = 'you_' . $base;
-				$count--;
-			}
-
-			$base .= (isset($txt[$base . $count])) ? $count : 'n';
-
+		if ($context['some_likes'])
 			echo '
 			<li class="like_count smalltext">', sprintf($txt[$base], $scripturl . '?action=likes;sa=view;ltype=' . $context['data']['type'] . ';js=1;like=' . $context['data']['id_content'] . ';' . $context['session_var'] . '=' . $context['session_id'], comma_format($count)), '</li>';
-		}
 
 		echo '
 		</ul>';

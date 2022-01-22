@@ -15,15 +15,12 @@ let switchVariant = (setColor) =>
 {
 	// Replace the theme variant currently in use
 	document.documentElement.classList.remove('theme-' + themeVariant, 'theme-' + localVariant);
-
 	// Update the local Variant
 	localStorage.setItem('themeVariant', setColor);
 	// Define the var again cuz... idk actually
 	localVariant = localStorage.getItem('themeVariant');
 	// Add the selected theme variant
 	document.documentElement.classList.toggle('theme-' + localVariant);
-
-
 
 	// Update the variant in the user settings/options
 	if (themeColor !== null || (themeColor === null && localVariant !== themeVariant))
@@ -49,25 +46,8 @@ $(".theme-variant-toggle").click(function() {
 	return false;
 });
 
-// Some bits for the color picker, borrowed from the buttonlist stuff
+// Select the active variant
 $(function() {
-	$('#colorpicker_menu').each(function(index, item) {
-		$(item).prev().click(function(e) {
-			e.stopPropagation();
-			e.preventDefault();
-
-			if ($(item).is(':visible')) {
-				$(item).css('display', 'none');
-				return true;
-			}
-			$(item).css('display', 'block');
-			$(item).css('top', $(this).offset().top + $(this).height());
-		});
-		$(document).click(function() {
-			$(item).css('display', 'none');
-		});
-	});
-
 	$('li#user_colorpicker > a').next().find('a').click(function (e) {
 		var $obj = $(this);
 		// All of the variants are now without the active class if they had it.

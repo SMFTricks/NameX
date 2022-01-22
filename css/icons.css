@@ -6,7 +6,8 @@
 	content: "\f00c";
 }
 /* Not Read */
-.fa-mark_unread::before {
+.fa-mark_unread::before,
+.fa-unread_button::before {
 	content: "\f00d";
 }
 /* Read all */
@@ -44,7 +45,8 @@
 	content: "\f00d";
 }
 /* Restore */
-.fa-restore_topic::before {
+.fa-restore_topic::before,
+.fa-restore_button::before {
 	content: "\f829";
 }
 /* New Topic */
@@ -117,10 +119,6 @@
 .fa-drafts::before {
 	content: "\f0ea";
 }
-/* Ignore */
-.fa-ignore::before {
-	content: "\f057";
-}
 /* Details */
 .fa-details::before {
 	content: "\f05a";
@@ -129,16 +127,52 @@
 .fa-reply_button::before {
 	content: "\f3e5";
 }
+/* Reply to all */
+.fa-reply_all_button::before {
+	content: "\f122";
+}
 /* Quote */
 .fa-quote::before {
 	content: "\f10e";
+}
+/* Quote Selected */
+.fa-quote_selected::before {
+	content: "\f10d";
 }
 /* Likes */
 .fa-like::before {
 	content: "\f164";
 }
+/* Unlike */
 .fa-unlike::before {
 	content: "\f165";
+}
+/* Edit */
+.fa-quick_edit_button::before,
+.fa-modify_button::before {
+	content: "\f044";
+}
+/* Report */
+.fa-error::before,
+.fa-report::before {
+	content: "\f024";
+}
+/* Warning */
+.fa-warn_button::before {
+	content: "\f071";
+}
+/* Approve */
+.fa-approve_button::before {
+	content: "\f14a";
+}
+/* Ignore */
+.fa-ignore::before,
+.fa-unapprove_button::before {
+	content: "\f057";
+}
+/* Split */
+.fa-split_button::before {
+	content: "\f0db";
 }
 
 /* Community */

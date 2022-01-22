@@ -121,10 +121,33 @@ $(function() {
 		return reqOverlayDiv(url, title, 'post/thumbup.png');
 	});
 
+	// Color Picker Menu and Theme Mode
+	$('#colorpicker_menu').each(function(index, item) {
+		$(item).prev().click(function(e) {
+			e.stopPropagation();
+			e.preventDefault();
+
+			if ($(item).is(':visible')) {
+				$(item).css('display', 'none');
+				return true;
+			}
+			$(item).css('display', 'block');
+			$(item).css('top', $(this).offset().top + $(this).height());
+		});
+		$(document).click(function() {
+			$(item).css('display', 'none');
+		});
+	});
+
 	// Fixing the other popups because of the flexbox stuff...
 	$('#profile_menu, #pm_menu, #alerts_menu').each(function(index, item) {
 		$(item).prev().click(function(e) {
 			$(item).css('top', $(this).offset().top + $(this).height());
 		});
+	});
+
+	// Linktree toggler
+	$(document).on('click', '.navigate_section ul li.trigger a', function(e){
+		$('.navigate_section ul li').toggleClass('show');
 	});
 });

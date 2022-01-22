@@ -261,3 +261,10 @@ $txt['variant_brown'] = 'Brown';
 $txt['variant_grey'] = 'Grey';
 $txt['variant_black'] = 'Black';
 $txt['variant_white'] = 'White';
+
+// Dark Mode
+$txt['st_theme_mode'] = 'Theme Mode';
+$txt['st_theme_mode_select'] = 'Select Theme Mode';
+$txt['st_dark_mode'] = 'Dark Mode';
+$txt['st_light_mode'] = 'Light Mode';
+$txt['st_enable_dark_mode'] = 'Enable Dark Mode selection';

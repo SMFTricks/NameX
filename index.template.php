@@ -56,7 +56,7 @@ function template_html_above()
 	/*	What is your Lollipop's color?
 		Theme Authors, you can change the color here to make sure your theme's main color gets visible on tab */
 	echo '
-	<meta name="theme-color" content="#557EA0">';
+	<meta name="theme-color" content="#567c8f">';
 
 	// Please don't index these Mr Robot.
 	if (!empty($context['robot_no_index']))
@@ -191,7 +191,12 @@ function theme_linktree($force_show = false)
 		return;
 	echo '
 				<div class="navigate_section">
-					<ul>';
+					<ul>
+						<li class="trigger">
+							<a href="javascript:void(0);">
+								', themecustoms_icon('fa fa-bars'), '
+							</a>
+						</li>';
 
 	// Each tree item has a URL and name. Some may have extra_before and extra_after.
 	foreach ($context['linktree'] as $link_num => $tree)
@@ -202,9 +207,10 @@ function theme_linktree($force_show = false)
 		// Don't show a separator for the first one.
 		// Better here. Always points to the next level when the linktree breaks to a second line.
 		// Picked a better looking HTML entity, and added support for RTL plus a span for styling.
-		if ($link_num != 0)
+		/*if ($link_num != 0)
 			echo '
 							<span class="dividers">', $context['right_to_left'] ? ' &#9668; ' : ' &#9658; ', '</span>';
+		*/
 
 		// Show something before the link?
 		if (isset($tree['extra_before']))
@@ -438,8 +444,8 @@ function template_quickbuttons($list_items, $list_class = null, $output_method =
 		else
 			$html .= '
 				<a href="' . (!empty($li['href']) ? $li['href'] : 'javascript:void(0);') . '"' . (!empty($li['javascript']) ? ' ' . $li['javascript'] : '') . '>
-					' . (!empty($li['icon']) ? '<span class="fa fa-' . $li['icon'] . '"></span>
-					' : '') . (!empty($li['label']) ? $li['label'] : '') . '
+					' . (!empty($li['icon']) ? '<i class="fa fa-' . $li['icon'] . '"></i>' : '') .  '
+					<span>' . (!empty($li['label']) ? $li['label'] : '') . '</span>
 				</a>
 				' . (!empty($li['extra_content']) ? $li['extra_content'] : '');
 
@@ -456,8 +462,11 @@ function template_quickbuttons($list_items, $list_class = null, $output_method =
 		{
 			$output .= '
 			<li class="post_options">
-				<a href="javascript:void(0);">' . $txt['post_options'] . '</a>
-				<ul>';
+				<a href="javascript:void(0);">
+					' . themecustoms_icon('fas fa-ellipsis-v') . '
+					<span>' . $txt['post_options'] . '</span>
+					</a>
+				<ul class="dropmenu">';
 
 			foreach ($li as $subli)
 				$output .= $list_item_format($subli);

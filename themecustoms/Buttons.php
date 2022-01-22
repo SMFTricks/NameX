@@ -55,7 +55,7 @@ class Buttons
 	{
 		global $context, $scripturl, $txt, $modSettings;
 
-		// Add likes button to the quick buttons if they are not ignoring the user
+		// Like/Unlike button
 		if (!$output['is_ignored'])
 		{
 			$output['quickbuttons'] = array_merge([

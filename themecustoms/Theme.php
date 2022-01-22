@@ -10,6 +10,7 @@
 namespace ThemeCustoms;
 
 use ThemeCustoms\Color\Variants;
+use ThemeCustoms\Color\DarkMode;
 
 if (!defined('SMF'))
 	die('No direct access...');
@@ -126,8 +127,8 @@ class Theme
 		// Theme Variants
 		$this->_theme_variants = new Variants;
 
-		/** @todo */
 		// Theme Modes
+		$this->_theme_darkmode = new DarkMode;
 	}
 
 	/**

@@ -1,5 +1,5 @@
 /* Some very big stuff? Dunno... */
-@media (min-width: 856px) and (max-width: 1024px) {
+@media (min-width: 991px) and (max-width: 1024px) {
 	#alerts .alert_time {
 		display: none;
 	}
@@ -54,6 +54,16 @@
 	#list_integration_hooks th#header_list_integration_hooks_remove, #list_integration_hooks td.remove {
 		display: none;
 	}
+	.pagesection {
+		flex-wrap: wrap;
+		gap: 5px;
+	}
+	.pagesection > div {
+		flex-basis: 100%;
+	}
+	.pagesection .pagelinks {
+		order: 2;
+	}
 	/* New Mobile Action/Mod Pop (Test) */
 	.moderationbuttons_check {
 		display: none;
@@ -61,12 +71,12 @@
 	.moderationbuttons_mobile_check {
 		display: inline-block;
 	}
+	.buttonlist > .top_menu.dropmenu {
+		max-width: 100%;
+	}
 	#mobile_action .button, #mobile_moderation .button, #mobile_action .top_menu {
 		width: 100%;
 		margin: 0;
-		border-radius: 0;
-		border-left: 0;
-		border-right: 0;
 		text-indent: 5px;
 	}
 	#mobile_action .button, #mobile_moderation .button {
@@ -78,9 +88,12 @@
 		left: 0 !important;
 		position: relative;
 	}
+	.buttonlist > .top_menu.dropmenu.notify_dropdown a {
+		min-height: 30px;
+	}
 	#mobile_action .top_menu {
-		padding: 0;
-		margin: 0 auto;
+		margin: -2px 5px 0;
+		padding: 5px;
 	}
 	#mobile_action .notify_dropdown a {
 		border-bottom: 1px solid #999;
@@ -91,17 +104,22 @@
 	#mobile_action .notify_dropdown span {
 		display: none;
 	}
-	.mobile_buttons {
-		margin: 5px 0;
+	.pagesection > div.mobile_buttons {
+		display: block;
+		text-align: right;
 	}
-	.mobile_buttons .button {
+	.mobile_buttons a.button {
 		margin: 0;
+		display: inline-block;
 	}
 	.pagesection .buttonlist, #moderationbuttons {
 		display: none;
 	}
-	.mobile_buttons {
-		display: block;
+
+	.post_wrapper .postarea .keyinfo,
+	.post_wrapper .postarea .under_message {
+		flex-basis: 100%;
+		flex-grow: 1;
 	}
 
 	/* Stuff */
@@ -235,8 +253,28 @@
 	}
 
 	/* Display (Topics) */
+	.poster .user_info li.poster_ip,
+	.poster .user_info li.custom,
+	.poster .user_info li.postcount,
+	.poster .user_info li.profile {
+		display: none;
+	}
 	.poster {
 		float: none;
+		width: auto;
+		margin-left: 69px;
+		position: relative;
+	}
+	.poster ul.user_info li.avatar {
+		position: absolute;
+		right: 100%;
+		top: 0;
+	}
+	.poster ul.user_info li.avatar img.avatar {
+		width: 64px;
+		height: 64px;
+		border-radius: 50%;
+		margin: 0 5px 0 0;
 	}
 	.postarea {
 		margin: 0;
@@ -246,15 +284,16 @@
 	}
 	.keyinfo h5 .modified {
 		float: none;
+		display: block;
 	}
 	img.icon, #forumposts .catbg img {
 		display: none;
 	}
 	.user_info li {
-		display: inline-block;
+		display: block;
 	}
-	.user_info li.avatar, .user_info li.poster_ip {
-		display: none;
+	.user_info {
+		width: auto;
 	}
 	.button.mobile {
 		margin: 0 0 5px 0;
@@ -407,6 +446,12 @@
 
 @media (max-width: 767px)
 {
+	.navigate_section ul li:not(:last-child, :first-child, :nth-child(2)) {
+		display: none;
+	}
+	.navigate_section ul li.show {
+		display: flex;
+	}
 	#header {
 		flex-direction: column;
 	}
@@ -477,15 +522,9 @@
 		width: 100%;
 		padding: 0;
 		margin: 0;
-		border-left: 0;
-		border-right: 0;
-	}
-	.dropmenu li a, .dropmenu li:hover a {
-		padding: 5px 0;
 	}
 	.dropmenu li a, .dropmenu li a:hover {
 		text-indent: 10px;
-		border-radius: 0;
 	}
 	.dropmenu li a, .dropmenu li:hover a,
 	.dropmenu li a.active, .dropmenu li a.active:hover,

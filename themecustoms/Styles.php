@@ -71,7 +71,7 @@ class Styles
 				max-width: ' . $settings['st_custom_width'] . ';
 				width: unset;
 			}
-			@media screen and (max-width: 767px)
+			@media screen and (max-width: 991px)
 			{
 				#top_section .inner_wrap, #wrapper, #header, footer .inner_wrap, #nav_wrapper
 				{
