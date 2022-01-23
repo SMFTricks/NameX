@@ -162,7 +162,8 @@
 	content: "\f071";
 }
 /* Approve */
-.fa-approve_button::before {
+.fa-approve_button::before,
+.fa-approve::before {
 	content: "\f14a";
 }
 /* Ignore */

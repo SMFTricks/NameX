@@ -148,8 +148,6 @@ function template_body_above()
  */
 function template_body_below()
 {
-	global $context, $txt, $scripturl, $modSettings;
-
 	echo '
 			</div><!-- #main_content_section -->
 		</div><!-- #content_section -->
@@ -180,7 +178,7 @@ function template_html_below()
  */
 function theme_linktree($force_show = false)
 {
-	global $context, $shown_linktree, $scripturl, $txt;
+	global $context, $shown_linktree;
 
 	// Don't show the linktree if we are at home
 	if (empty($context['current_action']) && empty($context['current_board']) && empty($context['current_topic']))

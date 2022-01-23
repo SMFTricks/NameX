@@ -2,6 +2,9 @@
 
 global $scripturl;
 
+// Additional Settings
+$txt['st_additional_settings'] = 'Additional Settings';
+
 // Regular description
 $txt['st_description'] = 'Add your own description';
 $txt['st_about'] = 'About ';
@@ -67,8 +70,8 @@ $txt['st_footer_actions_desc'] = 'Here you can put any action you want to displa
 $txt['st_special_menu'] = 'Special Menu items';
 
 // Avatar settings
-$txt['st_enable_avatars'] = 'Enable the avatars'; // Deprecated setting
-$txt['st_enable_avatars_boards'] = 'Enable avatars on board';
+$txt['st_avatar_settings'] = 'Avatar Settings'; // Deprecated setting
+$txt['st_enable_avatars_boards'] = 'Enable avatars on boards';
 $txt['st_enable_avatars_topics'] = 'Enable avatars on topic list';
 $txt['st_enable_avatars_recent'] = 'Enable avatars on recent posts stats';
 
@@ -247,6 +250,7 @@ $txt['st_custom_width'] = 'Forum width';
 $txt['st_custom_width_desc'] = 'Set the forum width. Examples: 950px, 80%, 1240px.';
 
 // Color Variants
+$txt['st_color'] = 'Color Settings';
 $txt['st_color_variants'] = 'Theme Color Variants';
 $txt['variant_pick'] = 'Select Color Variant';
 $txt['variant_default'] = 'Default';
@@ -267,4 +271,6 @@ $txt['st_theme_mode'] = 'Theme Mode';
 $txt['st_theme_mode_select'] = 'Select Theme Mode';
 $txt['st_dark_mode'] = 'Dark Mode';
 $txt['st_light_mode'] = 'Light Mode';
+$txt['st_theme_mode_default'] = 'Select the default mode.';
+$txt['st_theme_mode_default_desc'] = 'If user selection is disabled, this will be the default and locked mode.';
 $txt['st_enable_dark_mode'] = 'Enable Dark Mode selection';

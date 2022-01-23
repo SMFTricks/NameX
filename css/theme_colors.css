@@ -8,16 +8,19 @@
 		/* Background */
 		--body-bg: hsl(var(--primary-color-hue), 35%, 80%);
 		/* Color */
-		--body-txt-color: hsl(0, 0%, 0%);
+		--body-txt-color: hsl(0, 0%, 15%);
 		/* Color Strong */
-		--body-txt-color-strong: hsl(0, 0%, 27%);
+		--body-txt-color-strong: hsl(0, 0%, 35%);
 
 	/* Links */
 		/* Color */
 		--body-link-color: hsl(var(--primary-color-hue), 40%, 40%);
 
-	/* Mode Icon */
+	/* Mode Toggle */
+		/* Icon */
 		--mode-icon-content: "\f185";
+		/* Color */
+		--mode-icon-color: hsl(41, 90%, 65%);
 
 	/* Inputs */
 		/* Background */
@@ -65,10 +68,14 @@
 		/* Background */
 		--windowbg-bg: hsl(var(--primary-color-hue), 25%, 95%);
 		--windowbg2-bg: hsl(var(--windowbg2-hue), var(--windowbg2-sat), var(--windowbg2-lum));
+		/* Shadow */
+		--windowbg-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.1) inset, 0px -1px 1px 0px rgba(0, 0, 0, 0.1) inset;
 
 	/* Roundframe */
 		/* Background */
 		--roundframe-bg: var(--windowbg-bg);
+		/* Shadow */
+		--roundframe-shadow: var(--windowbg-shadow);
 
 	/* Header */
 		/* Background */
@@ -115,10 +122,18 @@
 		--buttonlist-bg: hsl(var(--primary-color-hue), 15%, 90%);
 		--buttonlist-bg-hover: hsl(var(--primary-color-hue), 15%, 85%);
 		--buttonlist-bg-active: var(--header-bg);
+		/* Shadow */
+		--buttonlist-shadow: 1px -1px 0px 0px rgba(0, 0, 0, 0.1) inset, 0px 1px rgba(255,255,255,0.7) inset;
+		/* Border */
+		--buttonlist-border-color: hsl(var(--primary-color-hue), 15%, 85%);
+		--buttonlist-border-color-hover: hsl(var(--primary-color-hue), 15%, 80%);
+		--buttonlist-border-color-active: hsl(var(--primary-color-hue), 15%, 75%);
 		/* Color */
 		--buttonlist-txt-color: hsl(0, 0%, 10%);
 		--buttonlist-txt-color-hover: hsl(0, 0%, 15%);
 		--buttonlist-txt-color-active: hsl(0, 0%, 25%);
+		/* Text Shadow */
+		--buttonlist-txt-shadow: 0px 1px 0px rgba(255,255,255,0.4);
 
 	/* Profile Cover */
 		/* Top Height */
@@ -133,15 +148,16 @@
 	/* Status Colors */
 		/* Sticky */
 		--status-sticky-bg: hsl(var(--primary-color-hue), 30%, 90%);
-		--status-sticky-txt-color: var(--primary-color);
 		/* Locked */
 		--status-locked-bg: hsl(var(--primary-color-hue), 15%, 75%);
-		--status-locked-txt-color: var(--secondary-color-accent);
 		/* Approve */
-		--status-approve-bg: hsl(5, 45%, 80%);
-		--status-approve-txt-color: hsl(8, 46%, 57%);
+		--status-approve-bg: hsl(5, 45%, 85%);
 		/* Approve Topic */
 		--status-approvet-bg: hsl(0, 55%, 90%);
+	
+	/* Tables and Lists */
+		/* Border */
+		--table-border-color: hsl(var(--primary-color-hue), 25%, 90%);
 
 	/* Content Section */
 		/* Background */
@@ -179,4 +195,39 @@
 	/* Popup Container */
 		/* Background */
 		--popup-container-bg: rgba(0, 0, 0, 0.7);
+
+	/* Linktree */
+		/* Before */
+		--linktree-li-before-border-color: rgba(0, 0, 0, 0.1);
+
+	/* ScEditor Group */
+		/* Background */
+		--sceditor-group-bg: hsl(var(--primary-color-hue), 25%, 95%);
+		--sceditor-group-bg-active: hsl(var(--primary-color-hue), 25%, 98%);
+		/* Border */
+		--sceditor-group-border-color: hsl(var(--primary-color-hue), 25%, 67%);
+
+	/* NoticeBox */
+		/* Background */
+		--noticebox-bg: hsl(50, 100%, 90%);
+		/* Border */
+		--noticebox-border-color: hsl(48, 95%, 50%);
+		/* Color */
+		--noticebox-txt-color: hsl(0, 0%, 15%);
+
+	/* ErrorBox */
+		/* Background */
+		--errorbox-bg: hsl(0, 100%, 90%);
+		/* Border */
+		--errorbox-border-color: hsl(0, 95%, 50%);
+		/* Color */
+		--errorbox-txt-color: var(--noticebox-txt-color);
+
+	/* InfoBox */
+		/* Background */
+		--infobox-bg: hsl(120, 100%, 90%);
+		/* Border */
+		--infobox-border-color: hsl(120, 95%, 50%);
+		/* Color */
+		--infobox-txt-color: var(--noticebox-txt-color);
 }

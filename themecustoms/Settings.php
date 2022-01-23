@@ -24,7 +24,7 @@ class Settings
 	 * No type means the setting is either a default setting or a main setting of the theme.
 	 */
 	private $_setting_types = [
-		'carousel',
+		// 'carousel',
 		'color',
 		'social',
 	];
@@ -65,9 +65,6 @@ class Settings
 		// Remove unwanted settings
 		$this->removeSettings();
 
-		// // Add theme custom settings
-		// $this->customSettings();
-
 		// Add theme settings
 		$this->addSettings();
 	}
@@ -81,12 +78,9 @@ class Settings
 	{
 		global $context;
 
-		// I need to add a line break because later on I might do silly things
-		if (!empty($this->_settings))
-			$context['theme_settings'][] = '';
-
 		// Add the setting types
-		$context['st_setting_types'] = $this->_setting_types;
+		if (!empty($this->_setting_types))
+			$context['st_themecustoms_setting_types'] = array_merge([''], $this->_setting_types);
 
 		// Insert the new theme settings in the array
 		$context['theme_settings'] = array_merge($context['theme_settings'], $this->_settings);
@@ -141,18 +135,15 @@ class Settings
 		// Theme Settings
 		$this->_settings = [
 			[
-				'id' => 'st_disable_theme_effects',
-				'label' => $txt['st_disable_theme_effects'],
-				'description' => $txt['st_disable_theme_effects_desc'],
-				'type' => 'checkbox'
-			],
-			[
+				'section_title' => $txt['st_additional_settings'],
 				'id' => 'st_separate_sticky_locked',
 				'label' => $txt['st_separate_sticky_locked'],
 				'description' => $txt['st_separate_sticky_locked_desc'],
 				'type' => 'checkbox'
 			],
+			'',
 			[
+				'section_title' => $txt['st_avatar_settings'],
 				'id' => 'st_enable_avatars_boards',
 				'label' => $txt['st_enable_avatars_boards'],
 				'type' => 'checkbox',
@@ -249,11 +240,12 @@ class Settings
 		// Disable the smf_js so it doesn't do silly things when loading the admin page
 		$modSettings['disable_smf_js'] = true;
 
-		// The below functions include all the scripts needed from the simplemachines.org site.
+		// The below code include all the scripts needed for the simplemachines.org site news and version.
 		// The language and format are passed for internationalization.
 		if (!empty($modSettings['disable_smf_js']))
-			echo '
-				<script src="', $scripturl, '?action=viewsmfile;filename=current-version.js"></script>
-				<script src="', $scripturl, '?action=viewsmfile;filename=latest-news.js"></script>';
+		{
+			loadJavaScriptFile($scripturl . '?action=viewsmfile;filename=current-version.js', ['external' => true, 'defer' => true]);
+			loadJavaScriptFile($scripturl . '?action=viewsmfile;filename=latest-news.js', ['external' => true, 'defer' => true]);
+		}
 	}
 }

@@ -13,17 +13,21 @@ body {
 	flex-direction: column;
 	min-height: 100vh;
 }
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6,
+dl, dt, dd,
+#detailedinfo dt, #tracking dt {
 	color: var(--body-txt-color);
 }
-.strong, strong {
+.strong, strong,
+fieldset legend {
 	color: var(--body-txt-color-strong);
 }
 a, a:visited {
 	color: var(--body-link-color);
 }
 hr {
-	box-shadow: 0 1px 0 hsl(var(--primary-color-hue), 25%, 75%) inset;
+	box-shadow: 0 1px 0 var(--header-border-color) inset;
+	background: var(--titlebg-bg);
 }
 
 /* Inputs */
@@ -75,8 +79,15 @@ input[type="submit"]:hover, input[type="submit"]:focus,
 .popup_container {
 	background: var(--popup-container-bg);
 }
-.popup_window {
+.popup_window, .list_posts, .boardslist a,
+.attachments, .custom_fields_above_signature,
+.custom_fields_below_signature, .signature, .under_message {
 	border-color: var(--catbg-bg);
+}
+.attachments, .custom_fields_above_signature,
+.custom_fields_below_signature, .signature, .under_message,
+.list_posts {
+	box-shadow: none;
 }
 .popup_content {
 	color: var(--body-txt-color);
@@ -348,10 +359,10 @@ nav#main_nav ul.menu_nav ul li a:hover span.amt {
 .dropmenu li a.active:hover,
 .dropmenu li:hover a.active {
 	color: var(--buttonlist-txt-color-active);
-	background: var(--titlebg-bg);
-	border: 1px solid hsl(var(--primary-color-hue), 15%, 85%);
-	box-shadow: 1px -1px 0px 0px rgba(0,0,0,.1) inset, 0px 1px rgba(255,255,255,0.7) inset;
-	text-shadow: 0px 1px 0px rgba(255,255,255,0.4);
+	background: var(--buttonlist-bg);
+	border: 1px solid var(--buttonlist-border-color);
+	box-shadow: var(--buttonlist-shadow);
+	text-shadow: var(--buttonlist-txt-shadow);
 }
 .dropmenu li a:hover,
 .dropmenu li:hover a {
@@ -363,15 +374,20 @@ nav#main_nav ul.menu_nav ul li a:hover span.amt {
 .dropmenu ul {
 	display: block;
 }
+.dropmenu li li:hover {
+	background: transparent;
+}
 .dropmenu li li ul,
 .dropmenu li li:hover ul{
 	margin-top: -1.8em;
 }
 .dropmenu li ul li a,
 .dropmenu li li a, .dropmenu li:hover li a,
-.dropmenu > li:hover > a {
+.dropmenu > li:hover > a,
+.dropmenu > li > a:focus {
 	background: var(--nav-dropdown-item-bg);
 	color: var(--nav-dropdown-item-txt-color);
+	border-width: 0;
 	box-shadow: none;
 }
 .dropmenu ul li a img,
@@ -443,7 +459,8 @@ tr.windowbg:hover, tr.bg:hover,
 tr:hover {
 	background: var(--header-bg);
 }
-.information, tr.windowbg, tr.bg, tr {
+.information, tr.windowbg, tr.bg, tr,
+#messageindex .information, #topic_icons .information {
 	border-width: 0 1px 1px;
 	border-color: var(--catbg-bg);
 	border-style: solid;
@@ -452,7 +469,7 @@ tr:hover {
 	margin: 0 0 5px;
 }
 tr.windowbg, tr.bg, tr {
-	border-bottom-color: hsl(var(--primary-color-hue), 25%, 90%);
+	border-bottom-color: var(--table-border-color);
 }
 .action_admin .table_grid td {
 	border: revert !important;
@@ -467,20 +484,21 @@ tr:last-child {
 }
 .roundframe {
 	padding: 8px 10px;
-	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.1) inset, 0px -1px 1px 0px rgba(0, 0, 0, 0.1) inset;
+	box-shadow: var(--roundframe-shadow);
 	border-color: var(--catbg-bg);
 	border-width: 0 2px;
 	border-radius: 4px 4px;
 }
 .approvebg, .approvebg2, .generic_list_wrapper, .windowbg {
-	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.1) inset, 0px -1px 1px 0px rgba(0, 0, 0, 0.1) inset;
+	color: var(--body-txt-color);
+	box-shadow: var(--windowbg-shadow);
 	border-radius: 4px;
 	border-width: 0 1px;
 	border-color: var(--catbg-bg);
 	margin: 7px 0 0;
 }
 #admin_content .windowbg {
-	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.1) inset, 0px -1px 1px 0px rgba(0, 0, 0, 0.1) inset !important;
+	box-shadow: var(--windowbg-shadow);
 	margin: 0 0 2px !important;
 }
 #admin_content .admin_group {
@@ -749,7 +767,8 @@ p.moderators > :is(a, a:visited, a:hover) {
 #topic_container .windowbg.locked {
 	background: var(--status-locked-bg);
 }
-#topic_container .windowbg.approvepost {
+#topic_container .windowbg.approvepost,
+.approvebg {
 	background: var(--status-approve-bg);
 }
 #topic_container .windowbg.approvetopic {
@@ -773,6 +792,7 @@ p.moderators > :is(a, a:visited, a:hover) {
 	display: flex;
 	flex-basis: 0;
 	flex-grow: 1;
+	gap: 0.5em;
 }
 .pagesection > div.mobile_buttons {
 	display: none;
@@ -806,8 +826,8 @@ p.moderators > :is(a, a:visited, a:hover) {
 	background-color: var(--buttonlist-bg);
 	color: var(--buttonlist-txt-color);
 	border-radius: 4px;
-	border: 1px solid hsl(var(--primary-color-hue), 15%, 85%);
-	box-shadow: 1px -1px 0px 0px rgba(0,0,0,.1) inset, 0px 1px rgba(255,255,255,0.7) inset;
+	border: 1px solid var(--buttonlist-border-color);
+	box-shadow: var(--buttonlist-shadow);
 	padding: 0 12px;
 	margin: 2px 0;
 	height: auto;
@@ -815,7 +835,7 @@ p.moderators > :is(a, a:visited, a:hover) {
 	line-height: 30px;
 	text-transform: none;
 	font-size: 0.8em;
-	text-shadow: 0px 1px 0px rgba(255,255,255,0.4);
+	text-shadow: var(--buttonlist-txt-shadow);
 	transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 .mobile_buttons a.button:hover, .mobile_buttons a.button:focus,
@@ -824,21 +844,22 @@ p.moderators > :is(a, a:visited, a:hover) {
 	background-image: none;
 	background-color: var(--buttonlist-bg-hover);
 	color: var(--buttonlist-txt-color-hover);
-	box-shadow: 1px -1px 0px 0px rgba(0,0,0,.1) inset, 0px 1px rgba(255,255,255,0.7) inset;
-	border-color: hsl(var(--primary-color-hue), 15%, 80%);
+	box-shadow: var(--buttonlist-shadow);
+	border-color: var(--buttonlist-border-color-hover);
 }
 .buttonlist a.active,
-.buttonlist a.button.active {
+.buttonlist a.button.active,
+.button.active {
 	background-image: none;
 	background-color: var(--buttonlist-bg-active);
 	font-weight: normal;
 	color: var(--buttonlist-txt-color-active);
-	text-shadow: 0px 1px 0px rgba(255,255,255,0.3);
-	border-color: hsl(var(--primary-color-hue), 15%, 80%);
+	text-shadow: var(--buttonlist-txt-shadow);
+	border-color: var(--buttonlist-border-color-hover);
 }
 .buttonlist a.active:hover,
 .buttonlist a.button.active:hover {
-	border-color: hsl(var(--primary-color-hue), 30%, 75%);
+	border-color: var(--buttonlist-border-color-active)
 }
 .buttonlist a > span.amt {
 	position: absolute;
@@ -1139,6 +1160,7 @@ footer .footer-other span.help-links a i.fa {
 /* Info Center */
 .sub_bar {
 	border-color: var(--catbg-bg);
+	box-shadow: none;
 }
 #info_center_blocks {
 	display: flex;
@@ -1220,10 +1242,6 @@ footer .footer-other span.help-links a i.fa {
 	font-size: 0.8em;
 	box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.1) inset;
 }
-#info_center_blocks #block-forum_stats div span.totals,
-#info_center_blocks #block-forum_stats div span.totals a {
-	color:hsl(0, 0%, 25%)
-}
 #info_center_blocks #block-forum_stats div span.totals a:hover {
 	text-decoration: none;
 }
@@ -1239,6 +1257,11 @@ footer .footer-other span.help-links a i.fa {
 }
 #info_center_blocks #ic_recentposts {
 	margin: 0;
+}
+#recent_posts_content ul {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0.5em;
 }
 
 /* Profile */
@@ -1344,6 +1367,11 @@ ul.quickbuttons li span.amt a {
 }
 
 /* Theme Mode */
+li#user_thememode a,
+li#user_thememode a:hover,
+li#user_thememode a:focus {
+	color: var(--mode-icon-color);
+}
 li#user_thememode a span::before {
 	font-family: "Font Awesome 5 Free";
 	display: inline-block;
@@ -1501,7 +1529,11 @@ li#user_thememode a span::before {
 	order: 	2;
 	flex-grow: 1;
 	flex-basis: 100%;
-	font-size: 120%;
+	font-size: 115%;
+}
+.inner {
+	box-shadow: none;
+	border-width: 0;
 }
 .post_wrapper .postarea .attachments {
 	order: 3;
@@ -1535,7 +1567,8 @@ li#user_thememode a span::before {
 	border-width: 0;
 }
 .quickbuttons li a,
-.quickbuttons li a:hover {
+.quickbuttons li a:hover,
+.quickbuttons li a:focus {
 	display: flex;
 	align-items: center;
 	gap: 3px;
@@ -1590,6 +1623,60 @@ ul.quickbuttons li ul.dropmenu li a:focus {
 	float: none;
 }
 
+/* Pagination */
+.pagination_container {
+	display: inline-flex;
+	align-items: center;
+	margin: 1px 0 3px;
+}
+.topic_pages .pagination_container {
+	margin: 0;
+}
+
+.pagination_container span.pages {
+	padding: 0;
+	margin: 0 4px 0 0;
+}
+.pagination_container span.current_page,
+.pagination_container a.nav_page,
+.pagination_container span.expand_pages {
+	font-size: 0.75em;
+	line-height: normal;
+	padding: 5px 9px;
+	background: var(--buttonlist-bg);
+	border-style: solid;
+	border-color: var(--buttonlist-border-color);
+	border-width: 1px;
+	text-align: center;
+	color: var(--buttonlist-txt-color);
+}
+.pagination_container a.nav_page:hover,
+.pagination_container a.nav_page:focus {
+	background: var(--buttonlist-bg-hover);
+	border-color: var(--buttonlist-border-color-hover);
+	color: var(--buttonlist-txt-color-hover);
+	text-decoration: none;
+}
+.pagination_container > *:nth-child(2) {
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+.pagination_container > *:last-child {
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+.pagination_container span.current_page {
+	background: var(--buttonlist-bg-active);
+	border-style: solid;
+	border-color: var(--buttonlist-border-color-active);
+	border-width: 1px;
+	color: var(--buttonlist-txt-color-active);
+}
+.pagination_container span.current_page::before,
+.pagination_container span.current_page::after {
+	content: "";
+}
+
 /* LInktree */
 .navigate_section {
 	padding: 0;
@@ -1614,9 +1701,9 @@ ul.quickbuttons li ul.dropmenu li a:focus {
 	line-height: normal;
 	text-shadow: 0px 1px 0px rgba(255,255,255,0.3);
 	color: var(--buttonlist-txt-color);
-	box-shadow: 1px -1px 0px 0px rgba(0,0,0,.1) inset, 0px 1px rgba(255,255,255,0.7) inset;
+	box-shadow: var(--buttonlist-shadow);
 	border-width: 1px 0;
-	border-color: hsl(var(--primary-color-hue), 15%, 85%);
+	border-color: var(--buttonlist-border-color);
 	border-style: solid;
 }
 .navigate_section ul li::after,
@@ -1634,7 +1721,7 @@ ul.quickbuttons li ul.dropmenu li a:focus {
 	left: 100%;
 }
 .navigate_section ul li::before {
-	border-color: transparent transparent transparent rgba(0,0,0,.1);
+	border-color: transparent transparent transparent var(--linktree-li-before-border-color);
 	border-width: 18px 0 18px 15px;
 	left: calc(100% + 1px);
 }
@@ -1689,7 +1776,21 @@ ul.quickbuttons li ul.dropmenu li a:focus {
 .errorbox, .noticebox, .infobox {
 	border-width: 1px 2px;
 }
-
+.noticebox {
+	background: var(--noticebox-bg);
+	border-color: var(--noticebox-border-color);
+	color: var(--noticebox-txt-color);
+}
+.errorbox {
+	background: var(--errorbox-bg);
+	border-color: var(--errorbox-border-color);
+	color: var(--errorbox-txt-color);
+}
+.infobox {
+	background: var(--infobox-bg);
+	border-color: var(--infobox-border-color);
+	color: var(--infobox-txt-color);
+}
 
 /* Admin stuff */
 fieldset.admin_group legend {
@@ -1766,5 +1867,5 @@ fieldset.admin_group a {
 .ui-tabs .ui-tabs-panel {
 	display: block;
 	border-width: 0;
-	padding: 1em 1.4em;
+	padding: 0;
 }

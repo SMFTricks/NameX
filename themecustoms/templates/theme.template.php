@@ -27,13 +27,13 @@ function themecustoms_page_index()
 	global $txt;
 
 	return array(
-		'extra_before' => '<span class="pages">' . $txt['pages'] . '</span>',
-		'previous_page' => '<span class="main_icons previous_page"></span>',
+		'extra_before' => '<div class="pagination_container"><span class="pages">' . $txt['pages'] . '</span>',
+		'previous_page' => themecustoms_icon('fa fa-angle-left'),
 		'current_page' => '<span class="current_page">%1$d</span> ',
 		'page' => '<a class="nav_page" href="{URL}">%2$s</a> ',
 		'expand_pages' => '<span class="expand_pages" onclick="expandPages(this, {LINK}, {FIRST_PAGE}, {LAST_PAGE}, {PER_PAGE});"> ... </span>',
-		'next_page' => '<span class="main_icons next_page"></span>',
-		'extra_after' => '',
+		'next_page' => themecustoms_icon('fa fa-angle-right'),
+		'extra_after' => '</div>',
 	);
 }
 

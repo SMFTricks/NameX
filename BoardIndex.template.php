@@ -208,27 +208,21 @@ function template_ic_block_recent()
 	if (!empty($context['latest_posts']))
 	{
 		echo '
-				<table id="ic_recentposts">
-					<tr class="windowbg">
-						<th class="recentpost">', $txt['message'], '</th>
-						<th class="recentposter">', $txt['author'], '</th>
-						<th class="recentboard">', $txt['board'], '</th>
-						<th class="recenttime">', $txt['date'], '</th>
-					</tr>';
+				<ul>';
 
 		/* Each post in latest_posts has:
 			board (with an id, name, and link.), topic (the topic's id.), poster (with id, name, and link.),
 			subject, short_subject (shortened with...), time, link, and href. */
 		foreach ($context['latest_posts'] as $post)
 			echo '
-					<tr class="windowbg">
-						<td class="recentpost"><strong>', $post['link'], '</strong></td>
-						<td class="recentposter">', $post['poster']['link'], '</td>
-						<td class="recentboard">', $post['board']['link'], '</td>
-						<td class="recenttime">', $post['time'], '</td>
-					</tr>';
+					<li class="windowbg">
+						<h6>', $post['link'], '</h6>
+						<span class="smalltext poster_link">', themecustoms_icon('fa fa-user'), ' ', $post['poster']['link'], '</span>
+						<span class="smalltext">', themecustoms_icon('fa fa-clock'), ' ', $post['time'], '</span><br>
+						<span class="smalltext">', themecustoms_icon('fa fa-folder'), ' ', $post['board']['link'], '</span>
+					</li>';
 		echo '
-				</table>';
+				</ul>';
 	}
 	echo '
 			</div><!-- #recent_posts_content -->';

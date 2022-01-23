@@ -66,6 +66,7 @@ class DarkMode
 
 		// Inset the dark mode setting
 		$context['theme_settings'][] = [
+			'section_title' => $txt['st_dark_mode'],
 			'id' => 'st_enable_dark_mode',
 			'label' => $txt['st_enable_dark_mode'],
 			'type' => 'checkbox',

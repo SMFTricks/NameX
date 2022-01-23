@@ -463,226 +463,254 @@ function template_set_settings()
 				</h3>
 			</div>
 			<div id="st_settings_tabs">
-  <ul>
-    <li class="title_bar"><a href="#tabs-1">Nunc tincidunt</a></li>
-    <li class="title_bar"><a href="#tabs-2">Proin dolor</a></li>
-    <li class="title_bar"><a href="#tabs-3">Aenean lacinia</a></li>
-  </ul>
-  <div id="tabs-1">
-    <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
-  </div>
-  <div id="tabs-2">
-    <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
-  </div>
-  <div id="tabs-3">
-    <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
-    <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
-  </div>
-</div>
-			<div class="windowbg">';
+  				<ul>
+    				<li class="title_bar"><a href="#settingtype-main">', $txt['theme_settings'], '</a></li>';
+
+			// Get the rest of the setting types
+			foreach ($context['st_themecustoms_setting_types'] as $setting_type)
+			{
+				if (!empty($setting_type))
+					echo '
+					<li class="title_bar"><a href="#settingtype-', $setting_type, '">', $txt['st_' . $setting_type], '</a></li>';
+			}
+
+			echo '
+					<li class="title_bar"><a href="#settingtype-configuration">', $txt['st_config'], '</a></li>
+  				</ul>
+				<div class="windowbg">
+					<div id="settingtype-configuration">';
 
 	// @todo Why can't I edit the default theme popup.
 	if ($context['theme_settings']['theme_id'] != 1)
 		echo '
-				<div class="title_bar">
-					<h3 class="titlebg config_hd">
-						', $txt['theme_edit'], '
-					</h3>
-				</div>
-				<div class="windowbg">
-					<ul>
-						<li>
-							<a href="', $scripturl, '?action=admin;area=theme;th=', $context['theme_settings']['theme_id'], ';', $context['session_var'], '=', $context['session_id'], ';sa=edit;filename=index.template.php">', $txt['theme_edit_index'], '</a>
-						</li>
-						<li>
-							<a href="', $scripturl, '?action=admin;area=theme;th=', $context['theme_settings']['theme_id'], ';', $context['session_var'], '=', $context['session_id'], ';sa=edit;directory=css">', $txt['theme_edit_style'], '</a>
-						</li>
-					</ul>
-				</div>';
+						<div class="title_bar">
+							<h3 class="titlebg config_hd">
+								', $txt['theme_edit'], '
+							</h3>
+						</div>
+						<div class="windowbg">
+							<ul>
+								<li>
+									<a href="', $scripturl, '?action=admin;area=theme;th=', $context['theme_settings']['theme_id'], ';', $context['session_var'], '=', $context['session_id'], ';sa=edit;filename=index.template.php">', $txt['theme_edit_index'], '</a>
+								</li>
+								<li>
+									<a href="', $scripturl, '?action=admin;area=theme;th=', $context['theme_settings']['theme_id'], ';', $context['session_var'], '=', $context['session_id'], ';sa=edit;directory=css">', $txt['theme_edit_style'], '</a>
+								</li>
+							</ul>
+						</div>';
 
 	echo '
-				<div class="title_bar">
-					<h3 class="titlebg config_hd">
-						', $txt['theme_url_config'], '
-					</h3>
-				</div>
-				<dl class="settings">
-					<dt>
-						<label for="theme_name">', $txt['actual_theme_name'], '</label>
-					</dt>
-					<dd>
-						<input type="text" id="theme_name" name="options[name]" value="', $context['theme_settings']['name'], '" size="32">
-					</dd>
-					<dt>
-						<label for="theme_url">', $txt['actual_theme_url'], '</label>
-					</dt>
-					<dd>
-						<input type="text" id="theme_url" name="options[theme_url]" value="', $context['theme_settings']['actual_theme_url'], '" size="50">
-					</dd>
-					<dt>
-						<label for="images_url">', $txt['actual_images_url'], '</label>
-					</dt>
-					<dd>
-						<input type="text" id="images_url" name="options[images_url]" value="', $context['theme_settings']['actual_images_url'], '" size="50">
-					</dd>
-					<dt>
-						<label for="theme_dir">', $txt['actual_theme_dir'], '</label>
-					</dt>
-					<dd>
-						<input type="text" id="theme_dir" name="options[theme_dir]" value="', $context['theme_settings']['actual_theme_dir'], '" size="50">
-					</dd>
-				</dl>';
+						<div class="title_bar">
+							<h3 class="titlebg config_hd">
+								', $txt['theme_url_config'], '
+							</h3>
+						</div>
+						<dl class="settings">
+							<dt>
+								<label for="theme_name">', $txt['actual_theme_name'], '</label>
+							</dt>
+							<dd>
+								<input type="text" id="theme_name" name="options[name]" value="', $context['theme_settings']['name'], '" size="32">
+							</dd>
+							<dt>
+								<label for="theme_url">', $txt['actual_theme_url'], '</label>
+							</dt>
+							<dd>
+								<input type="text" id="theme_url" name="options[theme_url]" value="', $context['theme_settings']['actual_theme_url'], '" size="50">
+							</dd>
+							<dt>
+								<label for="images_url">', $txt['actual_images_url'], '</label>
+							</dt>
+							<dd>
+								<input type="text" id="images_url" name="options[images_url]" value="', $context['theme_settings']['actual_images_url'], '" size="50">
+							</dd>
+							<dt>
+								<label for="theme_dir">', $txt['actual_theme_dir'], '</label>
+							</dt>
+							<dd>
+								<input type="text" id="theme_dir" name="options[theme_dir]" value="', $context['theme_settings']['actual_theme_dir'], '" size="50">
+							</dd>
+						</dl>
+					</div>';
 
-	// Do we allow theme variants?
-	if (!empty($context['theme_variants']))
-	{
-		echo '
-				<div class="title_bar">
-					<h3 class="titlebg config_hd">
-						', $txt['theme_variants'], '
-					</h3>
-				</div>
-				<dl class="settings">
-					<dt>
-						<label for="variant">', $txt['theme_variants_default'], '</label>:
-					</dt>
-					<dd>
-						<select id="variant" name="options[default_variant]" onchange="changeVariant(this.value)">';
-
-		foreach ($context['theme_variants'] as $key => $variant)
-			echo '
-							<option value="', $key, '"', $context['default_variant'] == $key ? ' selected' : '', '>', $variant['label'], '</option>';
-
-		echo '
-						</select>
-					</dd>
-					<dt>
-						<label for="disable_user_variant">', $txt['theme_variants_user_disable'], '</label>:
-					</dt>
-					<dd>
-						<input type="hidden" name="options[disable_user_variant]" value="0">
-						<input type="checkbox" name="options[disable_user_variant]" id="disable_user_variant"', !empty($context['theme_settings']['disable_user_variant']) ? ' checked' : '', ' value="1">
-					</dd>
-				</dl>
-				<img src="', $context['theme_variants'][$context['default_variant']]['thumbnail'], '" id="variant_preview" alt="">';
-	}
-
-	echo '
-				<div class="title_bar">
-					<h3 class="titlebg config_hd">
-						', $txt['theme_options'], '
-					</h3>
-				</div>
-				<dl class="settings">';
+	// echo '
+	// 				<div class="title_bar">
+	// 					<h3 class="titlebg config_hd">
+	// 						', $txt['theme_options'], '
+	// 					</h3>
+	// 				</div>';
 
 	$skeys = array_keys($context['settings']);
 	$first_setting_key = array_shift($skeys);
 	$titled_section = false;
 
-	foreach ($context['settings'] as $i => $setting)
+	foreach ($context['st_themecustoms_setting_types'] as $setting_type)
 	{
-		// Is this a separator?
-		if (empty($setting) || !is_array($setting))
-		{
-			// We don't need a separator before the first list element
-			if ($i !== $first_setting_key)
-				echo '
-				</dl>
-				<hr>
-				<dl class="settings">';
-
-			// Add a fake heading?
-			if (is_string($setting) && !empty($setting))
-			{
-				$titled_section = true;
-				echo '
-					<dt><strong>' . $setting . '</strong></dt>
-					<dd></dd>';
-			}
-			else
-				$titled_section = false;
-
-			continue;
-		}
-
 		echo '
-					<dt>
-						<label for="options_', $setting['id'], '">', !$titled_section ? '<strong>' : '', $setting['label'], !$titled_section ? '</strong>' : '', '</label>:';
+					<div id="settingtype-', (!empty($setting_type) ? $setting_type : 'main'), '">';
 
-		if (isset($setting['description']))
-			echo '<br>
-						<span class="smalltext">', $setting['description'], '</span>';
-
-		echo '
-					</dt>';
-
-		// A checkbox?
-		if ($setting['type'] == 'checkbox')
-			echo '
-					<dd>
-						<input type="hidden" name="', !empty($setting['default']) ? 'default_' : '', 'options[', $setting['id'], ']" value="0">
-						<input type="checkbox" name="', !empty($setting['default']) ? 'default_' : '', 'options[', $setting['id'], ']" id="options_', $setting['id'], '"', !empty($setting['value']) ? ' checked' : '', ' value="1">
-					</dd>';
-
-		// A list with options?
-		elseif ($setting['type'] == 'list')
-		{
-			echo '
-					<dd>
-						<select name="', !empty($setting['default']) ? 'default_' : '', 'options[', $setting['id'], ']" id="options_', $setting['id'], '">';
-
-			foreach ($setting['options'] as $value => $label)
-				echo '
-							<option value="', $value, '"', $value == $setting['value'] ? ' selected' : '', '>', $label, '</option>';
-
-			echo '
-						</select>
-					</dd>';
-		}
-		// A Textarea?
-		elseif ($setting['type'] == 'textarea')
-		{
-			echo '
-					<dd>
-						<textarea rows="4" style="width: 95%;" cols="40" name="', !empty($setting['default']) ? 'default_' : '', 'options[', $setting['id'], ']" id="options_', $setting['id'], '">', $setting['value'], '</textarea>
-					</dd>';
-		}
-		// A regular input box, then?
-		else
-		{
-			echo '
-					<dd>';
-
-			if (isset($setting['type']) && $setting['type'] == 'number')
+			// Do we allow theme variants?
+			if (!empty($context['theme_variants']) && $setting_type === 'color')
 			{
-				$min = isset($setting['min']) ? ' min="' . $setting['min'] . '"' : ' min="0"';
-				$max = isset($setting['max']) ? ' max="' . $setting['max'] . '"' : '';
-				$step = isset($setting['step']) ? ' step="' . $setting['step'] . '"' : '';
+				echo '
+						<div class="title_bar">
+							<h3 class="titlebg">
+								', $txt['theme_variants'], '
+							</h3>
+						</div>
+						<dl class="settings">
+							<dt>
+								<label for="variant">', $txt['theme_variants_default'], '</label>:
+							</dt>
+							<dd>
+								<select id="variant" name="options[default_variant]" onchange="changeVariant(this.value)">';
+
+				foreach ($context['theme_variants'] as $key => $variant)
+					echo '
+									<option value="', $key, '"', $context['default_variant'] == $key ? ' selected' : '', '>', $variant['label'], '</option>';
 
 				echo '
-						<input type="number"', $min . $max . $step;
+								</select>
+							</dd>
+							<dt>
+								<label for="disable_user_variant">', $txt['theme_variants_user_disable'], '</label>:
+							</dt>
+							<dd>
+								<input type="hidden" name="options[disable_user_variant]" value="0">
+								<input type="checkbox" name="options[disable_user_variant]" id="disable_user_variant"', !empty($context['theme_settings']['disable_user_variant']) ? ' checked' : '', ' value="1">
+							</dd>
+						</dl>
+						<img src="', $context['theme_variants'][$context['default_variant']]['thumbnail'], '" id="variant_preview" alt="">';
 			}
-			elseif (isset($setting['type']) && $setting['type'] == 'url')
-				echo '
-						<input type="url"';
-			elseif (isset($setting['type']) && $setting['type'] == 'color')
-				echo '
-						<input type="color"';
-			else
-				echo '
-						<input type="text"';
 
-			echo ' name="', !empty($setting['default']) ? 'default_' : '', 'options[', $setting['id'], ']" id="', $setting['id'], '" value="', $setting['value'], '"', $setting['type'] == 'number' ? ' size="5"' : (empty($setting['size']) ? ' size="40"' : ' size="' . $setting['size'] . '"'), '>
-					</dd>';
+				echo '
+						<dl class="settings">';
+
+		foreach ($context['settings'] as $i => $setting)
+		{
+			// Check if the setting type is the same
+			if (empty($setting_type) && isset($setting['theme_type']))
+				continue;
+			elseif (!empty($setting_type) && (!isset($setting['theme_type']) || $setting['theme_type'] != $setting_type))
+				continue;
+
+			// Is this a separator?
+			if (empty($setting) || !is_array($setting) || isset($setting['section_title']))
+			{
+				// We don't need a separator before the first list element
+				if ($i !== $first_setting_key)
+					echo '
+						</dl>';
+
+				// Add a fake heading?
+				if ((is_string($setting) && !empty($setting)) || !empty($setting['section_title']))
+				{
+					$titled_section = false;
+					echo '
+						<div class="title_bar">
+							<h3 class="titlebg">
+								', (!empty($setting['section_title']) ? $setting['section_title'] : $setting), '
+							</h3>
+						</div>';
+				}
+				else
+				{
+					echo '
+						<hr>';
+				}
+
+				echo '
+						<dl class="settings">';
+
+				if (empty($setting) || !is_array($setting))
+					continue;
+			}
+
+			echo '
+							<dt>
+								<label for="options_', $setting['id'], '">', !$titled_section ? '<strong>' : '', $setting['label'], !$titled_section ? '</strong>' : '', '</label>:';
+
+			if (isset($setting['description']))
+				echo '
+								<br>
+								<span class="smalltext">', $setting['description'], '</span>';
+
+			echo '
+							</dt>';
+
+			// A checkbox?
+			if ($setting['type'] == 'checkbox')
+				echo '
+							<dd>
+								<input type="hidden" name="', !empty($setting['default']) ? 'default_' : '', 'options[', $setting['id'], ']" value="0">
+								<input type="checkbox" name="', !empty($setting['default']) ? 'default_' : '', 'options[', $setting['id'], ']" id="options_', $setting['id'], '"', !empty($setting['value']) ? ' checked' : '', ' value="1">
+							</dd>';
+
+			// A list with options?
+			elseif ($setting['type'] == 'list')
+			{
+				echo '
+							<dd>
+								<select name="', !empty($setting['default']) ? 'default_' : '', 'options[', $setting['id'], ']" id="options_', $setting['id'], '">';
+
+				foreach ($setting['options'] as $value => $label)
+					echo '
+									<option value="', $value, '"', $value == $setting['value'] ? ' selected' : '', '>', $label, '</option>';
+
+				echo '
+								</select>
+							</dd>';
+			}
+			// A Textarea?
+			elseif ($setting['type'] == 'textarea')
+			{
+				echo '
+							<dd>
+								<textarea rows="4" style="width: 95%;" cols="40" name="', !empty($setting['default']) ? 'default_' : '', 'options[', $setting['id'], ']" id="options_', $setting['id'], '">', $setting['value'], '</textarea>
+							</dd>';
+			}
+			// A regular input box, then?
+			else
+			{
+				echo '
+							<dd>';
+
+				if (isset($setting['type']) && $setting['type'] == 'number')
+				{
+					$min = isset($setting['min']) ? ' min="' . $setting['min'] . '"' : ' min="0"';
+					$max = isset($setting['max']) ? ' max="' . $setting['max'] . '"' : '';
+					$step = isset($setting['step']) ? ' step="' . $setting['step'] . '"' : '';
+
+					echo '
+								<input type="number"', $min . $max . $step;
+				}
+				elseif (isset($setting['type']) && $setting['type'] == 'url')
+					echo '
+								<input type="url"';
+				elseif (isset($setting['type']) && $setting['type'] == 'color')
+					echo '
+								<input type="color"';
+				else
+					echo '
+								<input type="text"';
+
+				echo '
+								name="', !empty($setting['default']) ? 'default_' : '', 'options[', $setting['id'], ']" id="', $setting['id'], '" value="', $setting['value'], '"', $setting['type'] == 'number' ? ' size="5"' : (empty($setting['size']) ? ' size="40"' : ' size="' . $setting['size'] . '"'), '>
+							</dd>';
+			}
 		}
-	}
 
 	echo '
-				</dl>
-				<input type="submit" name="save" value="', $txt['save'], '" class="button">
-				<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
-				<input type="hidden" name="', $context['admin-sts_token_var'], '" value="', $context['admin-sts_token'], '">
-			</div><!-- .windowbg -->
+						</dl>
+					</div>';
+	}
+	
+		echo '
+					<input type="submit" name="save" value="', $txt['save'], '" class="button">
+					<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
+					<input type="hidden" name="', $context['admin-sts_token_var'], '" value="', $context['admin-sts_token'], '">
+				</div><!-- .windowbg -->
+			</div>
 		</form>
 	</div><!-- #admin_form_wrapper -->';
 

@@ -1,10 +1,13 @@
 /* Some very big stuff? Dunno... */
-@media (min-width: 991px) and (max-width: 1024px) {
+@media (max-width: 1024px) {
 	#alerts .alert_time {
 		display: none;
 	}
 	#alerts .alert_inline_time {
 		display: block;
+	}
+	#recent_posts_content ul {
+		grid-template-columns: 1fr;
 	}
 }
 
@@ -907,9 +910,7 @@
 	.inlineblock_480 {
 		display: inline-block;
 	}
-}
-
-/* iPhone Tests */
-@media (max-width: 320px) {
-
+	#recent_posts_content ul li span.poster_link {
+		display: block;
+	}
 }

@@ -1,0 +1,29 @@
+.sceditor-container,
+div.sceditor-grip,
+div.sceditor-toolbar {
+	border-color: var(--input-border-color);
+}
+div.sceditor-grip {
+	border-width: 1px 0 0 1px;
+	border-style: solid;
+}
+.sceditor-container textarea,
+.sceditor-container {
+	background: var(--input-bg);
+	color: var(--input-txt-color);
+}
+.sceditor-container textarea:hover {
+	box-shadow: none;
+}
+div.sceditor-toolbar {
+	background: var(--titlebg-bg);
+}
+div.sceditor-group {
+	background: var(--sceditor-group-bg);
+	border-color: var(--sceditor-group-border-color);
+}
+.sceditor-button:active,
+.sceditor-button.active,
+.sceditor-button:hover {
+	background: var(--sceditor-group-bg-active);
+}
