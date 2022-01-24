@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines https://www.simplemachines.org
- * @copyright 2021 Simple Machines and individual contributors
+ * @copyright 2022 Simple Machines and individual contributors
  * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 RC4
@@ -88,7 +88,7 @@ function template_main()
 			</div>
 			', !empty($category['description']) ? '
 			<div class="desc">' . $category['description'] . '</div>' : '', '
-			<div id="category_', $category['id'], '_boards" ', (!empty($category['css_class']) ? ('class="' . $category['css_class'] . '"') : ''), '>';
+			<div id="category_', $category['id'], '_boards" ', (!empty($category['css_class']) ? ('class="' . $category['css_class'] . '"') : ''), $category['is_collapsed'] ? ' style="display: none;"' : '', '>';
 
 		/* Each board in each category's boards has:
 		new (is it new?), id, name, description, moderators (see below), link_moderators (just a list.),

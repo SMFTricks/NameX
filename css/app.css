@@ -4,7 +4,7 @@ html {
 	background-color: transparent;
 }
 body {
-	background-color: var(--body-bg);
+	background: var(--body-bg);
 	font-family: 'Lato', 'Segoe UI', 'Helvetica', 'Arial';
 	color: var(--body-txt-color);
 	font-size: 1rem;
@@ -53,12 +53,13 @@ input[type="submit"],
 .pagesection .button {
 	background: var(--button-bg);
 	color: var(--button-txt-color);
-	box-shadow: 0px -5px 10px 2px rgba(255, 255, 255, 0.1) inset;
+	box-shadow: var(--buttonlist-shadow);
+	text-shadow: var(--buttonlist-txt-shadow);
 	padding: 1px 12px;
 	display: inline-flex;
 	min-height: 30px;
 	margin: 0;
-	border-radius: 5px;
+	border-radius: 4px;
 	border-width: 1px;
 	border-color: var(--button-border-color);
 	align-items: center;
@@ -70,9 +71,9 @@ input[type="submit"]:hover, input[type="submit"]:focus,
 .pagesection .button:hover, .pagesection .button:focus {
 	background: var(--button-bg-hover);
 	color: var(--button-txt-color-hover);
-	box-shadow: 0px -5px 10px 2px rgba(255, 255, 255, 0.1) inset;
-	border-radius: 5px;
-	border-color: var(--header-bg);
+	box-shadow: var(--buttonlist-shadow);
+	border-radius: 4px;
+	border-color: var(--button-border-color-hover);
 }
 
 /* Popup Window and Container */
@@ -1166,32 +1167,32 @@ footer .footer-other span.help-links a i.fa {
 	display: flex;
 	padding: 0;
 }
-#info_center_blocks ul {
+#info_center_blocks > ul {
 	padding: 0;
 	flex-direction: column;
 	margin: 15px 0;
 	flex-basis: 60px;
 }
-#info_center_blocks div {
+#info_center_blocks  div {
 	flex-basis: 100%;
 }
-#info_center_blocks .ui-tabs-nav li {
+#info_center_blocks > .ui-tabs-nav li {
 	border-radius: 0;
 	text-align: center;
 }
-#info_center_blocks .ui-tabs-nav li.title_bar.ui-tabs-active {
+#info_center_blocks > .ui-tabs-nav li.title_bar.ui-tabs-active {
 	background: var(--titlebg-bg-right);
 }
-#info_center_blocks .ui-tabs-nav li:first-child {
+#info_center_blocks > .ui-tabs-nav li:first-child {
 	border-top-left-radius: 4px;
 }
-#info_center_blocks .ui-tabs-nav li:last-child {
+#info_center_blocks > .ui-tabs-nav li:last-child {
 	border-bottom-left-radius: 4px;
 }
-#info_center_blocks ul li.ui-tabs-active {
+#info_center_blocks > ul li.ui-tabs-active {
 	border-width: 0 0 0 3px;
 }
-#info_center_blocks ul li:not(.ui-tabs-active) a {
+#info_center_blocks > ul li:not(.ui-tabs-active) a {
 	font-weight: normal;
 	color: var(--themetab-item-txt-color);
 }
@@ -1699,7 +1700,7 @@ ul.quickbuttons li ul.dropmenu li a:focus {
 	padding: 0 5px 0 20px;
 	margin: 1px 0;
 	line-height: normal;
-	text-shadow: 0px 1px 0px rgba(255,255,255,0.3);
+	text-shadow: var(--buttonlist-txt-shadow);
 	color: var(--buttonlist-txt-color);
 	box-shadow: var(--buttonlist-shadow);
 	border-width: 1px 0;

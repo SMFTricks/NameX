@@ -9,8 +9,6 @@
 
 namespace ThemeCustoms;
 
-use ThemeCustoms\Color\Variants;
-
 if (!defined('SMF'))
 	die('No direct access...');
 

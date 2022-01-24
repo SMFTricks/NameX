@@ -3,6 +3,8 @@
 global $scripturl;
 
 // Additional Settings
+$txt['current_theme'] = 'Theme settings';
+$txt['st_main'] = $txt['current_theme'];
 $txt['st_additional_settings'] = 'Additional Settings';
 
 // Regular description
@@ -76,7 +78,6 @@ $txt['st_enable_avatars_topics'] = 'Enable avatars on topic list';
 $txt['st_enable_avatars_recent'] = 'Enable avatars on recent posts stats';
 
 // General strings
-$txt['current_theme'] = 'Theme settings';
 $txt['st_stats'] = 'Stats';
 $txt['st_golink'] = 'Go Link';
 $txt['st_menu'] = 'Menu';
@@ -274,3 +275,5 @@ $txt['st_light_mode'] = 'Light Mode';
 $txt['st_theme_mode_default'] = 'Select the default mode.';
 $txt['st_theme_mode_default_desc'] = 'If user selection is disabled, this will be the default and locked mode.';
 $txt['st_enable_dark_mode'] = 'Enable Dark Mode selection';
+
+$txt['st_nalgas'] = 'Nalgas';

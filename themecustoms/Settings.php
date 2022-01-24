@@ -24,8 +24,6 @@ class Settings
 	 * No type means the setting is either a default setting or a main setting of the theme.
 	 */
 	private $_setting_types = [
-		// 'carousel',
-		'color',
 		'social',
 	];
 
@@ -80,7 +78,7 @@ class Settings
 
 		// Add the setting types
 		if (!empty($this->_setting_types))
-			$context['st_themecustoms_setting_types'] = array_merge([''], $this->_setting_types);
+			$context['st_themecustoms_setting_types'] = array_merge(['main'], $this->_setting_types);
 
 		// Insert the new theme settings in the array
 		$context['theme_settings'] = array_merge($context['theme_settings'], $this->_settings);
@@ -141,7 +139,6 @@ class Settings
 				'description' => $txt['st_separate_sticky_locked_desc'],
 				'type' => 'checkbox'
 			],
-			'',
 			[
 				'section_title' => $txt['st_avatar_settings'],
 				'id' => 'st_enable_avatars_boards',

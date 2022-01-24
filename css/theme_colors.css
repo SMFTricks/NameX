@@ -36,13 +36,14 @@
 
 	/* Button */
 		/* Background */
-		--button-bg: var(--catbg-bg);
-		--button-bg-hover: var(--catbg-bg);
+		--button-bg: var(--buttonlist-bg-active);
+		--button-bg-hover: var(--buttonlist-bg-active);
 		/* Color */
-		--button-txt-color: hsl(0, 0%, 90%);
-		--button-txt-color-hover: hsl(0, 0%, 95%);
+		--button-txt-color: var(--buttonlist-txt-color-active);
+		--button-txt-color-hover: hsl(0, 0%, 50%);
 		/* Border */
-		--button-border-color: hsl(var(--primary-color-hue), 35%, 65%);
+		--button-border-color: var(--buttonlist-border-color-active);
+		--button-border-color-hover: var(--buttonlist-border-color-hover);
 
 	/* New Button */
 		/* Background */
@@ -133,7 +134,7 @@
 		--buttonlist-txt-color-hover: hsl(0, 0%, 15%);
 		--buttonlist-txt-color-active: hsl(0, 0%, 25%);
 		/* Text Shadow */
-		--buttonlist-txt-shadow: 0px 1px 0px rgba(255,255,255,0.4);
+		--buttonlist-txt-shadow: 0px 1px 0px rgba(255, 255, 255, 0.4);
 
 	/* Profile Cover */
 		/* Top Height */

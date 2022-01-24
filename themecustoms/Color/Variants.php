@@ -100,6 +100,9 @@ class Variants
 	{
 		global $settings;
 
+		// Add the setting type
+		$context['st_themecustoms_setting_types'][] = 'color';
+
 		// Add the color variants to the settings
 		$settings['theme_variants'] = $this->_variants;
 	}

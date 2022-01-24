@@ -64,6 +64,9 @@ class DarkMode
 	{
 		global $context, $txt;
 
+		// Add the setting type
+		$context['st_themecustoms_setting_types'][] = 'color';
+
 		// Inset the dark mode setting
 		$context['theme_settings'][] = [
 			'section_title' => $txt['st_dark_mode'],

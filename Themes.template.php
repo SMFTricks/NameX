@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines https://www.simplemachines.org
- * @copyright 2021 Simple Machines and individual contributors
+ * @copyright 2022 Simple Machines and individual contributors
  * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 RC4
@@ -463,8 +463,7 @@ function template_set_settings()
 				</h3>
 			</div>
 			<div id="st_settings_tabs">
-  				<ul>
-    				<li class="title_bar"><a href="#settingtype-main">', $txt['theme_settings'], '</a></li>';
+  				<ul>';
 
 			// Get the rest of the setting types
 			foreach ($context['st_themecustoms_setting_types'] as $setting_type)
@@ -547,7 +546,7 @@ function template_set_settings()
 	foreach ($context['st_themecustoms_setting_types'] as $setting_type)
 	{
 		echo '
-					<div id="settingtype-', (!empty($setting_type) ? $setting_type : 'main'), '">';
+					<div id="settingtype-', $setting_type, '">';
 
 			// Do we allow theme variants?
 			if (!empty($context['theme_variants']) && $setting_type === 'color')
@@ -589,9 +588,9 @@ function template_set_settings()
 		foreach ($context['settings'] as $i => $setting)
 		{
 			// Check if the setting type is the same
-			if (empty($setting_type) && isset($setting['theme_type']))
+			if ($setting_type === 'main' && isset($setting['theme_type']))
 				continue;
-			elseif (!empty($setting_type) && (!isset($setting['theme_type']) || $setting['theme_type'] != $setting_type))
+			elseif ($setting_type !== 'main' && (!isset($setting['theme_type']) || $setting['theme_type'] != $setting_type))
 				continue;
 
 			// Is this a separator?

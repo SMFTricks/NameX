@@ -3,7 +3,7 @@
 /**
  * @package Theme Customs
  * @author Diego Andrés <diegoandres_cortes@outlook.com>
- * @copyright Copyright (c) 2021, SMF Tricks
+ * @copyright Copyright (c) 2022, SMF Tricks
  * @license MIT
  */
 
@@ -130,11 +130,11 @@ function themecustoms_userarea()
 				</li>';
 
 
-		// Add the mode selector
-		themecustoms_darkmode();
+				// Add the mode selector
+				themecustoms_darkmode();
 
-		// Add the color selection
-		themecustoms_colorpicker();
+				// Add the color selection
+				themecustoms_colorpicker();
 
 		// And now we're done.
 		echo '

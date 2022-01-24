@@ -4,7 +4,7 @@
  *
  * @package SMF
  * @author Simple Machines https://www.simplemachines.org
- * @copyright 2021 Simple Machines and individual contributors
+ * @copyright 2022 Simple Machines and individual contributors
  * @license https://www.simplemachines.org/about/smf/license.php BSD
  *
  * @version 2.1 RC4
@@ -184,7 +184,7 @@ function template_summary()
 
 	// Display the basic information about the user
 	echo '
-	<div id="profileview" class="roundframe flow_auto">
+	<div id="profileview" class="roundframe flow_auto noup">
 		<div id="basicinfo">';
 
 	// Are there any custom profile fields for above the name?
@@ -515,7 +515,7 @@ function template_showPosts()
 	global $context, $scripturl, $txt;
 
 	echo '
-		<div class="cat_bar">
+		<div class="cat_bar', !isset($context['attachments']) ? ' cat_bar_round' : '', '">
 			<h3 class="catbg">
 				', (!isset($context['attachments']) && empty($context['is_topics']) ? $txt['showMessages'] : (!empty($context['is_topics']) ? $txt['showTopics'] : $txt['showAttachments'])), ' - ', $context['member']['name'], '
 			</h3>
@@ -532,7 +532,7 @@ function template_showPosts()
 		{
 			echo '
 		<div class="', $post['css_class'], '">
-			<div class="counter">', $post['counter'], '</div>
+			<div class="page_number floatright"> #', $post['counter'], '</div>
 			<div class="topic_details">
 				<h5>
 					<strong><a href="', $scripturl, '?board=', $post['board']['id'], '.0">', $post['board']['name'], '</a> / <a href="', $scripturl, '?topic=', $post['topic'], '.', $post['start'], '#msg', $post['id'], '">', $post['subject'], '</a></strong>
@@ -645,9 +645,7 @@ function template_showAlerts()
 		echo '
 			</table>
 			<div class="pagesection">
-				<div class="floatleft">
-					', $context['pagination'], '
-				</div>
+				<div class="pagelinks">', $context['pagination'], '</div>
 				<div class="floatright">';
 
 		if ($context['showCheckboxes'])
@@ -681,7 +679,7 @@ function template_showDrafts()
 	global $context, $scripturl, $txt;
 
 	echo '
-		<div class="cat_bar">
+		<div class="cat_bar cat_bar_round">
 			<h3 class="catbg">
 				', $txt['drafts'], ' - ', $context['member']['name'], '
 			</h3>
@@ -703,7 +701,7 @@ function template_showDrafts()
 		{
 			echo '
 		<div class="windowbg">
-			<div class="counter">', $draft['counter'], '</div>
+			<div class="page_number floatright"> #', $draft['counter'], '</div>
 			<div class="topic_details">
 				<h5>
 					<strong><a href="', $scripturl, '?board=', $draft['board']['id'], '.0">', $draft['board']['name'], '</a> / ', $draft['topic']['link'], '</strong> &nbsp; &nbsp;';
@@ -718,7 +716,7 @@ function template_showDrafts()
 
 			echo '
 				</h5>
-				<span class="smalltext">&#171;&nbsp;<strong>', $txt['on'], ':</strong> ', $draft['time'], '&nbsp;&#187;</span>
+				<span class="smalltext"><strong>', $txt['draft_saved_on'], ':</strong> ', $draft['time'], '</span>
 			</div><!-- .topic_details -->
 			<div class="list_posts">
 				', $draft['body'], '

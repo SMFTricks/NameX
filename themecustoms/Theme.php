@@ -61,22 +61,9 @@ class Theme
 	/**
 	 * @var array The theme custom js files
 	 */
-	private $_js_files = [];
-
-	/**
-	 * @var bool Use font awesome icons
-	 */
-	private $_use_fontawesome = true;
-
-	/**
-	 * @var bool Use bootstrap
-	 */
-	private $_use_bootstrap = false;
-
-	/**
-	 * @var bool Use google font/s
-	 */
-	private $_use_googlefonts = true;
+	private $_js_files = [
+		'customs'
+	];
 
 	/**
 	 * @var object The theme color variants
@@ -178,7 +165,6 @@ class Theme
 		$this->_lib_options = [
 			// FontAwesome
 			'fontawesome' => [
-				'include' => $this->_use_fontawesome,
 				'css' => [
 					'file' => 'https://use.fontawesome.com/releases/v5.15.4/css/all.css',
 					'external' => true,
@@ -190,7 +176,7 @@ class Theme
 			],
 			// Bootstrap
 			'bootstrap' => [
-				'include' => $this->_use_bootstrap,
+				'include' => false,
 				'css' => [
 					'minified' => true,
 				],
@@ -208,15 +194,15 @@ class Theme
 			],
 			// jQuery UI
 			'jqueryui' => [
-				'include' => true,
 				'js' => [
 					'file' => 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js',
 					'external' => true,
+					'defer' => true,
 				]
 			],
 			// Passion One Font
 			'notosansfont' => [
-				'include' => empty($context['header_logo_url_html_safe']) && $this->_use_googlefonts,
+				'include' => empty($context['header_logo_url_html_safe']),
 				'css' => [
 					'file' => 'https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap',
 					'external' => true,
@@ -224,7 +210,6 @@ class Theme
 			],
 			// Lato Font
 			'latofont' => [
-				'include' => $this->_use_googlefonts,
 				'css' => [
 					'file' => 'https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap',
 					'external' => true,
@@ -299,7 +284,7 @@ class Theme
 		// Add the css libraries first
 		if (!empty($this->_lib_options))
 			foreach ($this->_lib_options as $file => $options)
-				if (!empty($options['include']) && !empty($options['css']))
+				if ((!empty($options['include']) || !isset($options['include'])) && !empty($options['css']))
 					loadCSSFile(
 						(!empty($options['css']['file']) ? (!empty($options['css']['external']) ? $options['css']['file'] : ($options['css']['file'] . (!empty($options['css']['minified']) ? '.min' : '') . '.css')) : ($file . (!empty($options['css']['minified']) ? '.min' : '') . '.css')),
 						[
@@ -338,7 +323,7 @@ class Theme
 		if (!empty($this->_lib_options))
 			foreach ($this->_lib_options as $file => $options)
 			{
-				if (!empty($options['include']) && !empty($options['js']))
+				if ((!empty($options['include']) || !isset($options['include'])) && !empty($options['js']))
 					loadJavaScriptFile(
 						(!empty($options['js']['file']) ? (!empty($options['js']['external']) ? $options['js']['file'] : ($options['js']['file'] . (!empty($options['js']['minified']) ? '.min' : '') . '.js')) : ($file . (!empty($options['js']['minified']) ? '.min' : '') . '.js')),
 						[
