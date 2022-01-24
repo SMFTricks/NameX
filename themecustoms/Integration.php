@@ -161,7 +161,7 @@ class Integration
 		$current_menu = $context['menu_buttons'];
 		foreach ($context['menu_buttons'] as $key => $button)
 		{
-			$current_menu[$key]['icon'] = (isset($settings['st_disable_menu_icons']) && !empty($settings['st_disable_menu_icons']) ? '' : '<i class="fa fa-' . (isset($txt['lp_forum']) && $key == 'home' ? 'forum' : $key) . '"></i>');
+			$current_menu[$key]['icon'] = (isset($settings['st_disable_menu_icons']) && !empty($settings['st_disable_menu_icons']) ? '' : themecustoms_icon('fa fa-' . (isset($txt['lp_forum']) && $key == 'home' ? 'forum' : $key)));
 		}
 		$context['menu_buttons'] = $current_menu;
 	}

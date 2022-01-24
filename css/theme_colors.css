@@ -231,4 +231,12 @@
 		--infobox-border-color: hsl(120, 95%, 50%);
 		/* Color */
 		--infobox-txt-color: var(--noticebox-txt-color);
+
+	/* Amt */
+		/* Background */
+		--amt-bg: hsl(var(--primary-color-hue), 50%, 25%);
+
+	/* Board Icons */
+		/* Color */
+		--boardicons-txt-color: hsl(var(--primary-color-hue), 15%, 35%);
 }

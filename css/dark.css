@@ -54,7 +54,7 @@
 	--buttonlist-txt-color-hover: hsl(0, 0%, 75%);
 	--buttonlist-txt-color-active: hsl(0, 0%, 90%);
 	--buttonlist-txt-shadow: 0px 1px 0px rgba(255, 255, 255, 0.1);
-	--linktree-li-before-border-color: rgba(122, 122, 122, 0.1);
+	--linktree-li-before-border-color: rgba(255, 255, 255, 0.1);
 	--sceditor-group-bg: linear-gradient(to bottom, hsl(var(--primary-color-hue), 100%, 7%) 0%, hsl(var(--primary-color-hue), 90%, 15%) 100%);
 	--sceditor-group-bg-active: hsl(var(--primary-color-hue), 25%, 20%);
 	--sceditor-group-border-color: hsl(var(--primary-color-hue), 50%, 35%);

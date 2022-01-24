@@ -16,7 +16,7 @@
 function template_init()
 {
 	// Initialize theme customs
-	// Could also use loadSubTemplate('customs_init')
+	// Could also use loadSubTemplate('customs_init') but... the template is already loaded so...
 	template_customs_init();
 }
 
@@ -101,7 +101,7 @@ function template_html_above()
 </head>
 <body id="', $context['browser_body_id'], '" class="action_', !empty($context['current_action']) ? $context['current_action'] : (!empty($context['current_board']) ?
 		'messageindex' : (!empty($context['current_topic']) ? 'display' : 'home')), !empty($context['current_board']) ? ' board_' . $context['current_board'] : '', '">
-<div id="footerfix">';
+	<div id="footerfix">';
 }
 
 /**
@@ -112,35 +112,35 @@ function template_body_above()
 	global $settings, $settings;
 
 	echo '
-	<div id="top_section">
-		<div class="inner_wrap">';
+		<div id="top_section">
+			<div class="inner_wrap">';
 
-			// User Area and Login button
-			themecustoms_userarea();
-
-	echo '
-		</div><!-- .inner_wrap -->
-	</div><!-- #top_section -->';
-
-	// Header
-	themecustoms_header();
-
-	// Show the menu here
-	template_menu();
+				// User Area and Login button
+				themecustoms_userarea();
 
 	echo '
-	<div id="wrapper">
-		<div id="upper_section">
-			<div id="inner_section">';
+			</div><!-- .inner_wrap -->
+		</div><!-- #top_section -->';
 
-				// Theme LInktree
-				theme_linktree();
+		// Header
+		themecustoms_header();
+
+		// Show the menu here
+		template_menu();
 
 	echo '
-			</div><!-- #inner_section -->
-		</div><!-- #upper_section -->
-		<div id="content_section">
-			<div id="main_content_section">';
+		<div id="wrapper">
+			<div id="upper_section">
+				<div id="inner_section">';
+
+					// Theme LInktree
+					theme_linktree();
+
+	echo '
+				</div><!-- #inner_section -->
+			</div><!-- #upper_section -->
+			<div id="content_section">
+				<div id="main_content_section">';
 }
 
 /**
@@ -149,10 +149,10 @@ function template_body_above()
 function template_body_below()
 {
 	echo '
-			</div><!-- #main_content_section -->
-		</div><!-- #content_section -->
-	</div><!-- #wrapper -->
-</div><!-- #footerfix -->';
+				</div><!-- #main_content_section -->
+			</div><!-- #content_section -->
+		</div><!-- #wrapper -->
+	</div><!-- #footerfix -->';
 
 	// Show the footer with copyright, terms and help links.
 	themecustoms_footer();
@@ -180,13 +180,11 @@ function theme_linktree($force_show = false)
 {
 	global $context, $shown_linktree;
 
-	// Don't show the linktree if we are at home
-	if (empty($context['current_action']) && empty($context['current_board']) && empty($context['current_topic']))
+	// If linktree is empty, just return - also allow an override.
+	// Additionally, don't show the linktree if we are at home.
+	if (empty($context['linktree']) || (!empty($context['dont_default_linktree']) && !$force_show) || (empty($context['current_action']) && empty($context['current_board']) && empty($context['current_topic'])))
 		return;
 
-	// If linktree is empty, just return - also allow an override.
-	if (empty($context['linktree']) || (!empty($context['dont_default_linktree']) && !$force_show))
-		return;
 	echo '
 				<div class="navigate_section">
 					<ul>
@@ -341,7 +339,7 @@ function template_button_strip($button_strip, $direction = '', $strip_options = 
 
 			$button = '
 				<a class="button normal_button_strip_' . $key . (!empty($value['active']) ? ' active' : '') . (isset($value['class']) ? ' ' . $value['class'] : '') . (!empty($value['sub_buttons']) ? ' buttonlist_sub' : '') . '" ' . (!empty($value['url']) ? 'href="' . $value['url'] . '"' : '') . ' ' . (isset($value['custom']) ? ' ' . $value['custom'] : '') . '>
-					<i class="fa fa-'.(!empty($value['icon']) ? $value['icon'] : $value['text']) .'"></i>
+					' . themecustoms_icon('fa fa-' . (!empty($value['icon']) ? $value['icon'] : $value['text'])) . '
 					<span>' . $txt[$value['text']] . '</span>
 				</a>';
 

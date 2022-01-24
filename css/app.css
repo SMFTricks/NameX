@@ -291,14 +291,14 @@ nav#main_nav ul.menu_nav li a.active {
 	background: var(--nav-item-bg-active);
 }
 nav#main_nav ul.menu_nav li a span.amt {
-	background-color: var(--nav-item-bg-active);
+	background: var(--nav-item-bg-active);
 	font-size: 0.75em;
 	display: inline-block;
 	border-radius: 4px;
 	padding: 0 8px;
 }
 nav#main_nav ul.menu_nav li a.active span.amt {
-	background-color: hsl(var(--primary-color-hue), 50%, 25%);
+	background: var(--amt-bg);
 	font-size: 0.8em;
 	display: inline-block;
 	border-radius: 5px;
@@ -339,13 +339,14 @@ nav#main_nav ul.menu_nav ul li a span.amt {
 	font-weight: bold;
 }
 nav#main_nav ul.menu_nav ul li a:hover span.amt {
-	background-color: hsl(var(--primary-color-hue), 50%, 25%);
+	background: var(--amt-bg);
 }
 
 /* Dropmenu */
 .dropmenu {
 	display: flex;
 	gap: 3px;
+	flex-wrap: wrap;
 }
 .dropmenu li {
 	margin: 0;
@@ -664,6 +665,7 @@ p.moderators {
 	align-items: center;
 	gap: 10px;
 	padding: 5px 10px;
+	border-color: var(--boarddescription-bg);
 }
 .boardindex_table .lastpost p {
 	width: calc(100% - 48px);
@@ -684,7 +686,7 @@ p.moderators {
 .board_icon a {
 	background-image: none;
 	display: inline;
-	color: hsl(var(--primary-color-hue), 15%, 35%);
+	color: var(--boardicons-txt-color);
 }
 .board_icon a::before {
 	display: inline-block;
@@ -1488,6 +1490,7 @@ li#user_thememode a span::before {
 	border-radius: 0;
 	border-color: var(--catbg-bg);
 	border-width: 0 0 1px;
+	background: var(--content-section-bg);
 }
 .generic_bar .bar, .progress_bar .bar {
 	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.1) inset, 0px -1px 1px 0px rgba(0, 0, 0, 0.1) inset;;
@@ -1495,7 +1498,7 @@ li#user_thememode a span::before {
 	border-radius: 0;
 }
 .generic_bar span, .progress_bar span {
-	color: hsl(var(--primary-color-hue), 25%, 35%);
+	color: var(--titlebg-txt-color);
 	text-shadow: none;
 	font-size: 0.75em;
 }
