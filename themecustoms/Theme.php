@@ -147,7 +147,11 @@ class Theme
 		// Allow css/js files to be disabled for this specific theme.
 		// Add the identifier as an array key. IE array('smf_script'); Some external files might not add identifiers, on those cases SMF uses its filename as reference.
 		if (!isset($settings['disable_files']))
-			$settings['disable_files'] = array();
+			$settings['disable_files'] = [];
+
+		// Add any custom attribute to the html tag
+		// This is useful for using along the variants, dark mode, etc.
+		$settings['themecustoms_html_attributes'] = [];
 	}
 
 	/**
@@ -299,15 +303,17 @@ class Theme
 		// Now add the theme css files
 		if (!empty($this->_css_files))
 			foreach ($this->_css_files as $file => $options)
+			{
 				loadCSSFile(
 					(!is_array($options) ? $options : $file) . '.css',
 					[
 						'minimize' => !empty($options['minimize']),
 						'attributes' => !empty($options['attributes']) ? $options['attributes'] : [],
-						'order_pos' => !empty($options['order_pos']) ? $options['order_pos'] : abs($this->_css_order++),
+						'order_pos' => !empty($options['order_pos']) ? $options['order_pos'] : abs($this->_css_order--),
 					],
 					'smftheme_css_' . (!is_array($options) ? $options : $file)
 				);
+			}
 	}
 
 	/**

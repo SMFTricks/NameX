@@ -1,40 +1,26 @@
 // Get the current theme variant
 let themeVariant = smf_theme_variant;
 
-// Perhaps the user loaded a variant using the URL, this one has a higher priority
-let requestVariant = smf_request_variant;
-
-// Local Variant
-let localVariant = localStorage.getItem('themeVariant');
-
-// When reloading the page we don't have an actual color... yet
+// Theme Color on reload
 let themeColor = null;
 
 // Easy color switching
 let switchVariant = (setColor) => 
 {
-	// Replace the theme variant currently in use
-	document.documentElement.classList.remove('theme-' + themeVariant, 'theme-' + localVariant);
-	// Update the local Variant
-	localStorage.setItem('themeVariant', setColor);
-	// Define the var again cuz... idk actually
-	localVariant = localStorage.getItem('themeVariant');
-	// Add the selected theme variant
-	document.documentElement.classList.toggle('theme-' + localVariant);
+	// Replace the theme variant
+	document.documentElement.dataset.themecolor = setColor;
 
-	// Update the variant in the user settings/options
-	if (themeColor !== null || (themeColor === null && localVariant !== themeVariant))
-	{
-		// Update user option
-		smf_setThemeOption('theme_variant', setColor, smf_theme_id, smf_session_id, smf_session_var, null);
-		// Update the theme Variant with the new color
-		themeVariant = setColor;
-	}
+	// Update user option
+	smf_setThemeOption('theme_variant', setColor, smf_theme_id, smf_session_id, smf_session_var, null);
+
+	// Update the theme Variant with the new color
+	themeVariant = setColor;
+	themeColor = true;
 }
 
-// Since we are loading all variants at once for the styleswitcher, we need to initialize the current variant
+// Update the theme variant using the request variant
 if (themeColor === null)
-	switchVariant((localVariant === 'null' || localVariant === null || requestVariant) ? themeVariant  : localVariant);
+	switchVariant(themeVariant);
 
 // When someone clicks the button
 $(".theme-variant-toggle").click(function() {

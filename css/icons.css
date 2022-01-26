@@ -94,7 +94,8 @@
 	content: "\f271";
 }
 /* Register */
-.fa-register::before {
+.fa-register::before,
+.fa-signup::before {
 	content: "\f234";
 }
 /* Login */

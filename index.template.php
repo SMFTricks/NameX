@@ -25,11 +25,11 @@ function template_init()
  */
 function template_html_above()
 {
-	global $context, $scripturl, $txt, $modSettings;
+	global $context, $scripturl, $txt, $modSettings, $settings;
 
 	// Show right to left, the language code, and the character set for ease of translating.
 	echo '<!DOCTYPE html>
-<html', $context['right_to_left'] ? ' dir="rtl"' : '', !empty($txt['lang_locale']) ? ' lang="' . str_replace("_", "-", substr($txt['lang_locale'], 0, strcspn($txt['lang_locale'], "."))) . '"' : '', '>
+<html', $context['right_to_left'] ? ' dir="rtl"' : '', !empty($txt['lang_locale']) ? ' lang="' . str_replace("_", "-", substr($txt['lang_locale'], 0, strcspn($txt['lang_locale'], "."))) . '"' : '', $settings['themecustoms_html_attributes_data'], '>
 <head>
 	<meta charset="', $context['character_set'], '">';
 
@@ -245,7 +245,7 @@ function template_menu()
 	echo '
 	<nav id="main_nav">
 		<div id="nav_wrapper">
-			<a class="menu_icon mobile_user_menu"></a>
+			<a class="menu_icon mobile_user_menu">', $txt['st_menu'], '</a>
 			<div id="main_menu">
 				<div id="mobile_user_menu" class="popup_container">
 					<div class="popup_window description">

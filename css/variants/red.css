@@ -1,5 +1,4 @@
-:root,
-:root.theme-red {
+:root[data-themecolor="red"] {
 	--primary-color-hue: 360;
 	--body-bg: hsl(var(--primary-color-hue), 40%, 85%); 
 	--catbg-bg: hsl(var(--primary-color-hue), 40%, 45%);

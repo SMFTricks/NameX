@@ -45,6 +45,9 @@ class Integration
 
 		// Main hooks
 		$this->loadHooks();
+
+		// Add any global data attributes
+		$this->htmlAttributes();
 	}
 
 	/**
@@ -180,5 +183,20 @@ class Integration
 
 		// Return the buffer
 		return $buffer;
+	}
+
+	/**
+	 * Integration::htmlAttributes()
+	 *
+	 * Add the global data attributes
+	 * 
+	 * @return void
+	 */
+	public function htmlAttributes()
+	{
+		global $settings;
+
+		// Data attributes
+		$settings['themecustoms_html_attributes_data'] = (!empty($settings['themecustoms_html_attributes']['data']) && is_array($settings['themecustoms_html_attributes']['data']) ? implode(' ', $settings['themecustoms_html_attributes']['data']) : '');
 	}
 }

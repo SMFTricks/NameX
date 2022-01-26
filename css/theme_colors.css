@@ -1,5 +1,4 @@
-:root,
-:root.theme-default {
+:root {
 	/* Primary color */
 		/* Hue */
 		--primary-color-hue: 200;
@@ -95,6 +94,8 @@
 	/* Nav */
 		/* Background */
 		--nav-bg: hsl(0, 0%, 95%);
+		/* Shadow */
+		--nav-shadow-color: rgba(0, 0, 0, 0.1);
 
 	/* Main Nav Items */
 		/* Background */

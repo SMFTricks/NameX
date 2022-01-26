@@ -63,7 +63,6 @@ $txt['st_enable_community_desc'] = 'This will add a community button, which will
 $txt['st_not_community'] = 'Exclude action from community';
 $txt['st_menu_icons'] = 'Enable the menu icons';
 $txt['st_menu_icons_desc'] = 'With this you\'ll enable the menu icons in the main menu';
-$txt['st_menu_toggle'] = 'Menu';
 $txt['st_collapse_menu'] = 'Always show side menu in desktop view';
 $txt['st_footer_actions'] = 'Menu footer actions';
 $txt['st_footer_actions_desc'] = 'Here you can put any action you want to displayin the footer/bottom menu. Each action has to be separated with a comma. e.g. <i>admin,profile,mlist</i>';
@@ -270,10 +269,8 @@ $txt['variant_white'] = 'White';
 // Dark Mode
 $txt['st_theme_mode'] = 'Theme Mode';
 $txt['st_theme_mode_select'] = 'Select Theme Mode';
+$txt['st_theme_mode_default'] = 'Default Theme Mode';
+$txt['st_theme_mode_default_desc'] = 'If user selection is disabled, this will be the default and locked mode.';
+$txt['st_enable_dark_mode'] = 'Enable user mode selection';
 $txt['st_dark_mode'] = 'Dark Mode';
 $txt['st_light_mode'] = 'Light Mode';
-$txt['st_theme_mode_default'] = 'Select the default mode.';
-$txt['st_theme_mode_default_desc'] = 'If user selection is disabled, this will be the default and locked mode.';
-$txt['st_enable_dark_mode'] = 'Enable Dark Mode selection';
-
-$txt['st_nalgas'] = 'Nalgas';

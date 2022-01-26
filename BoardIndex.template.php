@@ -154,7 +154,7 @@ function template_info_center()
 
 	// Here's where the "Info Center" starts...
 	echo '
-	<div id="upshrink_stats"', empty($options['collapse_header_ic']) ? '' : ' style="display: none;"', '>
+	<div id="upshrink_stats">
 		<div id="info_center_blocks">
 			<ul>';
 

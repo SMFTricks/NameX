@@ -1,7 +1,6 @@
 /* Main Stuff */
 html {
-	background-image: none;
-	background-color: transparent;
+	background: none;
 }
 body {
 	background: var(--body-bg);
@@ -29,6 +28,14 @@ hr {
 	box-shadow: 0 1px 0 var(--header-border-color) inset;
 	background: var(--titlebg-bg);
 }
+
+/* Wrappers */
+#top_section .inner_wrap, #wrapper,
+#header, footer .inner_wrap {
+	max-width: 1200px;
+	margin: 0 auto;
+	width: 90%;
+  }
 
 /* Inputs */
 input {
@@ -77,7 +84,7 @@ input[type="submit"]:hover, input[type="submit"]:focus,
 }
 
 /* Popup Window and Container */
-.popup_container {
+.popup_container{
 	background: var(--popup-container-bg);
 }
 .popup_window, .list_posts, .boardslist a,
@@ -236,18 +243,22 @@ header h1.forumtitle a:hover span.theme-logo span:last-child {
 	margin: 0;
 	width: 100%;
 }
+.menu_icon {
+	display: none;
+}
 #nav_wrapper {
 	max-width: 1200px;
 	margin: 0 auto;
 	width: 90%;
 	min-height: 45px;
 	display: flex;
-	align-items: center;
+	align-content: center;
+	flex-wrap: wrap;
 }
 nav#main_nav {
 	background: var(--nav-bg);
 	margin: 0 0 25px;
-	box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.1);
+	box-shadow: 0px 2px 1px 0px var(--nav-shadow-color);
 }
 nav#main_nav ul.menu_nav {
 	display: flex;
@@ -430,7 +441,9 @@ nav#main_nav ul.menu_nav ul li a:hover span.amt {
 	padding: 10px 25px 3px;
 }
 #inner_section, #top_section, .inline_mod_check, .popup_window,
-.post_options ul, .post_options ul a:focus, .post_options ul a:hover {
+.post_options ul, .post_options ul a:focus, .post_options ul a:hover,
+#main_menu .popup_window,
+#genericmenu .popup_window {
 	background: var(--forumsections-bg);
 }
 #content_section {
@@ -576,10 +589,10 @@ tr.title_bar {
 	background-image: none;
 	background-color: transparent;
 	display: inline-block;
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
 	font-family: "Font Awesome 5 Free";
 	box-shadow: none;
 	margin: 0;
@@ -690,10 +703,10 @@ p.moderators {
 }
 .board_icon a::before {
 	display: inline-block;
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
 	font-family: "Font Awesome 5 Free";
 	font-weight: 400;
 	font-size: 1.8em;
@@ -712,7 +725,7 @@ p.moderators {
 	color: var(--body-link-color);
 }
 p.moderators > :is(a, a:visited, a:hover) {
-    font-weight: normal;
+	font-weight: normal;
 }
 .mark_read {
 	float: none !important;
@@ -1368,6 +1381,9 @@ ul.quickbuttons li span.amt a {
 	align-items: center;
 	background-color: var(--nav-item-bg-active);
 }
+.pm_unread, .alerts_unread {
+	border-color: var(--uppersection-bg);
+}
 
 /* Theme Mode */
 li#user_thememode a,
@@ -1378,10 +1394,10 @@ li#user_thememode a:focus {
 li#user_thememode a span::before {
 	font-family: "Font Awesome 5 Free";
 	display: inline-block;
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
+	font-style: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
 	font-weight: 900;
 	content: var(--mode-icon-content);
 }
@@ -1807,7 +1823,7 @@ fieldset.admin_group legend {
 	text-align: right;
 }
 #admin_content .cat_bar > form {
-    flex-grow: 1;
+	flex-grow: 1;
 }
 #admin_content .cat_bar > form .catbg {
 	line-height: 1.7em;
@@ -1872,4 +1888,9 @@ fieldset.admin_group a {
 	display: block;
 	border-width: 0;
 	padding: 0;
+}
+
+#footerfix {
+	background-image: none;
+	background-color: transparent;
 }

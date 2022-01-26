@@ -559,7 +559,9 @@ function template_set_settings()
 						</div>
 						<dl class="settings">
 							<dt>
-								<label for="variant">', $txt['theme_variants_default'], '</label>:
+								<label for="variant">
+									<strong>', $txt['theme_variants_default'], '</strong>
+									</label>:
 							</dt>
 							<dd>
 								<select id="variant" name="options[default_variant]" onchange="changeVariant(this.value)">';
@@ -572,7 +574,9 @@ function template_set_settings()
 								</select>
 							</dd>
 							<dt>
-								<label for="disable_user_variant">', $txt['theme_variants_user_disable'], '</label>:
+								<label for="disable_user_variant">
+									<strong>', $txt['theme_variants_user_disable'], '</strong>
+								</label>:
 							</dt>
 							<dd>
 								<input type="hidden" name="options[disable_user_variant]" value="0">

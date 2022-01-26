@@ -1,4 +1,4 @@
-:root.dark-mode {
+:root[data-colormode="dark"] {
 	--body-bg: hsl(var(--primary-color-hue), 80%, 2%);
 	--body-txt-color: hsl(0, 0%, 70%);
 	--body-txt-color-strong: hsl(0, 0%, 90%);
@@ -17,6 +17,7 @@
 	--footer-bg: hsl(var(--primary-color-hue), 60%, 12%);
 	--newbutton-bg: linear-gradient(var(--catbg-bg), hsl(var(--primary-color-hue), 35%, 20%));
 	--nav-bg: hsl(var(--primary-color-hue), 90%, 4%);
+	--nav-shadow-color: rgba(170, 170, 170, 0.1);
 	--nav-item-txt-color: hsl(0, 0%, 55%);
 	--nav-item-txt-color-hover: hsl(var(--primary-color-hue), 25%, 75%);
 	--nav-dropdown-bg: hsl(var(--primary-color-hue), 35%, 6%);

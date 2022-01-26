@@ -67,9 +67,22 @@ class DarkMode
 		// Add the setting type
 		$context['st_themecustoms_setting_types'][] = 'color';
 
-		// Inset the dark mode setting
+		// Master setting
 		$context['theme_settings'][] = [
 			'section_title' => $txt['st_dark_mode'],
+			'id' => 'st_theme_mode_default',
+			'label' => $txt['st_theme_mode_default'],
+			'options' => [
+				'light' => $txt['st_light_mode'],
+				'dark' => $txt['st_dark_mode'],
+			],
+			'type' => 'list',
+			'default' => 'light',
+			'theme_type' => 'color',
+		];
+
+		// Allow users to select mode?
+		$context['theme_settings'][] = [
 			'id' => 'st_enable_dark_mode',
 			'label' => $txt['st_enable_dark_mode'],
 			'type' => 'checkbox',
@@ -99,7 +112,7 @@ class DarkMode
 						'light' => $txt['st_light_mode'],
 						'dark' => $txt['st_dark_mode'],
 					],
-					'default' =>  'light',
+					'default' => isset($settings['st_theme_mode_default']) && !empty($settings['st_theme_mode_default']) ? $settings['st_theme_mode_default'] : 'light',
 					'enabled' => !empty($settings['st_enable_dark_mode']),
 				],
 			],
@@ -116,11 +129,17 @@ class DarkMode
 	 */
 	protected function darkCSS()
 	{
-		global $settings;
+		global $settings, $options;
+
+		// Do we need dark mode?
+		if (empty($settings['st_enable_dark_mode']) && (!isset($settings['st_theme_mode_default']) ||$settings['st_theme_mode_default'] !== 'dark'))
+			return;
+
+		// Add the HTML data attribute for color mode
+		$settings['themecustoms_html_attributes']['data'][] = (!empty($settings['st_enable_dark_mode']) ? ('data-colormode="' . (isset($options['st_theme_mode']) && $options['st_theme_mode'] === 'dark' ? 'dark' : 'light') . '"') : 'data-colormode="dark"');
 
 		// Load the dark CSS
-		if (!empty($settings['st_enable_dark_mode']))
-			loadCSSFile('dark.css', ['order_pos' => $this->_order_position], 'smf_darkmode');
+		loadCSSFile('dark.css', ['order_pos' => $this->_order_position], 'smf_darkmode');
 	}
 
 	/**
@@ -148,7 +167,7 @@ class DarkMode
 	 */
 	protected function darkJS()
 	{
-		global $settings, $options;
+		global $settings;
 
 		// Load the file only if the swtylswitch is enabled and the user can change variants
 		if (!empty($settings['st_enable_dark_mode']))
@@ -157,7 +176,6 @@ class DarkMode
 				[
 					'minimize' => false,
 					'defer' => true,
-					'aysnc' => true,
 				],
 				'smftheme_js_darkmode'
 			);
