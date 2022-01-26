@@ -287,8 +287,11 @@ class Theme
 	{
 		// Add the css libraries first
 		if (!empty($this->_lib_options))
+		{
 			foreach ($this->_lib_options as $file => $options)
+			{
 				if ((!empty($options['include']) || !isset($options['include'])) && !empty($options['css']))
+				{
 					loadCSSFile(
 						(!empty($options['css']['file']) ? (!empty($options['css']['external']) ? $options['css']['file'] : ($options['css']['file'] . (!empty($options['css']['minified']) ? '.min' : '') . '.css')) : ($file . (!empty($options['css']['minified']) ? '.min' : '') . '.css')),
 						[
@@ -299,9 +302,13 @@ class Theme
 						],
 						'smftheme_css_' . $file
 					);
+				}
+			}
+		}
 
 		// Now add the theme css files
 		if (!empty($this->_css_files))
+		{
 			foreach ($this->_css_files as $file => $options)
 			{
 				loadCSSFile(
@@ -314,6 +321,7 @@ class Theme
 					'smftheme_css_' . (!is_array($options) ? $options : $file)
 				);
 			}
+		}
 	}
 
 	/**
@@ -327,6 +335,7 @@ class Theme
 	{
 		// Add the js libraries first
 		if (!empty($this->_lib_options))
+		{
 			foreach ($this->_lib_options as $file => $options)
 			{
 				if ((!empty($options['include']) || !isset($options['include'])) && !empty($options['js']))
@@ -342,10 +351,13 @@ class Theme
 						'smftheme_js_' . $file
 					);
 			}
+		}
 
 		// Now add the theme js files
 		if (!empty($this->_js_files))
+		{
 			foreach ($this->_js_files as $file => $options)
+			{
 				loadJavaScriptFile(
 					(!is_array($options) ? $options : $file) . '.js',
 					[
@@ -355,6 +367,8 @@ class Theme
 					],
 					'smftheme_js_' . (!is_array($options) ? $options : $file)
 				);
+			}
+		}
 	}
 
 	/**
@@ -370,6 +384,9 @@ class Theme
 
 		// Theme ID
 		addJavaScriptVar('smf_theme_id', $settings['theme_id']);
+
+		// News Fader
+		addJavaScriptVar('smf_newsfader_time', !empty($settings['newsfader_time']) ? $settings['newsfader_time'] : 5000);
 	}
 
 	/**

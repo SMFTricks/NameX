@@ -84,7 +84,7 @@ input[type="submit"]:hover, input[type="submit"]:focus,
 }
 
 /* Popup Window and Container */
-.popup_container{
+.popup_container {
 	background: var(--popup-container-bg);
 }
 .popup_window, .list_posts, .boardslist a,
@@ -445,6 +445,7 @@ nav#main_nav ul.menu_nav ul li a:hover span.amt {
 #main_menu .popup_window,
 #genericmenu .popup_window {
 	background: var(--forumsections-bg);
+	box-shadow: none;
 }
 #content_section {
 	background-color: var(--content-section-bg);
@@ -1143,6 +1144,7 @@ footer .footer-other span.help-links a i.fa {
 .forum_news #smf_slider li {
 	margin: 0;
 	padding: 0;
+	flex-basis: 100%;
 }
 .forum_news .sy-box .sy-slides-wrap {
 	flex-grow: 1;

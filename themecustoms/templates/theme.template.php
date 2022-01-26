@@ -94,12 +94,14 @@ function themecustoms_userarea()
 {
 	global $context, $scripturl, $maintenance, $txt;
 
+	// Firstly, the user's menu
+	echo '
+	<ul id="top_info">';
+
 	// If the user is logged in, display some things that might be useful.
 	if ($context['user']['is_logged'])
 	{
-		// Firstly, the user's menu
 		echo '
-			<ul id="top_info">
 				<li>
 					<a href="', $scripturl, '?action=profile"', !empty($context['self_profile']) || $context['current_action'] == 'unread'  || $context['current_action'] == 'unreadreplies' ? ' class="active"' : '', ' id="profile_menu_top" onclick="return false;">
 						', $context['user']['avatar']['image'], '
@@ -135,27 +137,18 @@ function themecustoms_userarea()
 
 				// Add the color selection
 				themecustoms_colorpicker();
-
-		// And now we're done.
-		echo '
-			</ul>';
 	}
 	// Otherwise they're a guest. Ask them to either register or login.
-	/**
-	 * @todo use our own login overlay (if needed) because the ajax one breaks the variants
-	 */
 	elseif (empty($maintenance))
 		echo '
-			<ul class="floatleft welcome">
-				<li>', sprintf($txt[$context['can_register'] ? 'welcome_guest_register' : 'welcome_guest'], $context['forum_name_html_safe'], $scripturl . '?action=login', 'return reqOverlayDiv(this.href, ' . JavaScriptEscape($txt['login']) . ');', $scripturl . '?action=signup'), '</li>	', // Add the mode selector
-				themecustoms_darkmode(), '
-			</ul>';
+				<li>', sprintf($txt[$context['can_register'] ? 'welcome_guest_register' : 'welcome_guest'], $context['forum_name_html_safe'], $scripturl . '?action=login', 'return reqOverlayDiv(this.href, ' . JavaScriptEscape($txt['login']) . ');', $scripturl . '?action=signup'), '</li>';
 	else
 		// In maintenance mode, only login is allowed and don't show OverlayDiv
 		echo '
-			<ul class="floatleft welcome">
-				<li>', sprintf($txt['welcome_guest'], $context['forum_name_html_safe'], $scripturl . '?action=login', 'return true;'), '</li>
-			
+				<li>', sprintf($txt['welcome_guest'], $context['forum_name_html_safe'], $scripturl . '?action=login', 'return true;'), '</li>';
+
+		// And now we're done.
+		echo '
 			</ul>';
 }
 

@@ -40,15 +40,7 @@ function template_newsfader()
 
 		echo '
 			</ul>
-		</div>
-		<script>
-			jQuery("#smf_slider").slippry({
-				pause: ', $settings['newsfader_time'], ',
-				adaptiveHeight: 0,
-				captions: 0,
-				controls: 0,
-			});
-		</script>';
+		</div>';
 	}
 }
 
@@ -57,7 +49,7 @@ function template_newsfader()
  */
 function template_main()
 {
-	global $context, $txt, $scripturl;
+	global $context, $txt;
 
 	echo '
 	<div id="boardindex_table" class="boardindex_table">';

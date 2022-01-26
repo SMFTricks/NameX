@@ -72,6 +72,7 @@ class DarkMode
 			'section_title' => $txt['st_dark_mode'],
 			'id' => 'st_theme_mode_default',
 			'label' => $txt['st_theme_mode_default'],
+			'description' => $txt['st_theme_mode_default_desc'],
 			'options' => [
 				'light' => $txt['st_light_mode'],
 				'dark' => $txt['st_dark_mode'],

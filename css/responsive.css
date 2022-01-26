@@ -73,12 +73,6 @@
 		flex-wrap: wrap;
 		gap: 5px;
 	}
-	.pagesection > div {
-		flex-basis: 100%;
-	}
-	.pagesection .pagelinks {
-		order: 2;
-	}
 	/* New Mobile Action/Mod Pop (Test) */
 	.moderationbuttons_check {
 		display: none;
@@ -476,6 +470,13 @@
 	div[id^="mobile_generic_menu_"].popup_container {
 		display: block !important;
 	}
+
+	#main_menu .popup_window,
+	#genericmenu .popup_window {
+		box-shadow: none;
+		border-width: 0;
+		background: none;
+	}
 }
 
 @media (max-width: 767px)
@@ -504,13 +505,15 @@
 		align-items: center;
 	}
 	/* This is general */
-	#main_menu .popup_container, #genericmenu .popup_container {
+	#main_menu .popup_container,
+	#genericmenu .popup_container {
 		display: none;
 		position: fixed;
 		top: 0;
 		left: 0;
 		width: 100%;
 		height: 100%;
+		background: rgba(40, 64, 80, 0.5);
 		z-index: 5;
 	}
 	#main_menu .popup_heading, #genericmenu .popup_heading {
@@ -525,6 +528,7 @@
 		max-height: 90vh;
 		overflow-x: hidden;
 		overflow-y: scroll;
+		/* background: var(--popup-container-bg);; */
 	}
 	.generic_menu {
 		display: none;
@@ -633,13 +637,6 @@
 	.boardslist ul {
 		page-break-inside: avoid;
 	}
-
-	#main_menu .popup_window,
-	#genericmenu .popup_window {
-		box-shadow: none;
-		border-width: 0;
-		background: none;
-	}
 }
 
 @media (min-width: 480px) and (max-width: 560px) {
@@ -657,6 +654,9 @@
 
 /* Entry level phones */
 @media (max-width: 576px) {
+	.pagesection > div {
+		flex-basis: 100%;
+	}
 	#info_center_blocks {
 		flex-direction: column;
 	}
