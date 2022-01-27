@@ -20,8 +20,8 @@ class Settings
 	private $_settings;
 
 	/**
-	 * @var array Setting types. Will allow to separate the settings if needed
-	 * No type means the setting is either a default setting or a main setting of the theme.
+	 * @var array Setting types. Will allow to separate the settings if needed.
+	 * No type means the setting is either a default setting or a main setting.
 	 */
 	private $_setting_types = [
 		'social',
@@ -218,31 +218,5 @@ class Settings
 		if (!empty($this->_remove_settings))
 			foreach ($this->_remove_settings as $remove_setting)
 				unset($settings[$remove_setting]);
-	}
-
-	/**
-	 * Settings::admin_areas()
-	 *
-	 * Mainly I'll just use this one to hook back the news files,
-	 * because for some odd reason they cause issues in the template.
-	 * 
-	 * @param array $areas. The admin areas
-	 * 
-	 * @return void
-	 */
-	public function admin_areas(&$areas)
-	{
-		global $modSettings, $scripturl;
-
-		// Disable the smf_js so it doesn't do silly things when loading the admin page
-		$modSettings['disable_smf_js'] = true;
-
-		// The below code include all the scripts needed for the simplemachines.org site news and version.
-		// The language and format are passed for internationalization.
-		if (!empty($modSettings['disable_smf_js']))
-		{
-			loadJavaScriptFile($scripturl . '?action=viewsmfile;filename=current-version.js', ['external' => true, 'defer' => true]);
-			loadJavaScriptFile($scripturl . '?action=viewsmfile;filename=latest-news.js', ['external' => true, 'defer' => true]);
-		}
 	}
 }

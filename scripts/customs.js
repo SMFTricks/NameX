@@ -23,14 +23,6 @@ $(function() {
 		return false;
 	});
 
-	// The forum news fader
-	jQuery("#smf_slider").slippry({
-		pause: smf_newsfader_time,
-		adaptiveHeight: 0,
-		captions: 0,
-		controls: 0,
-	});
-
 	// Likes on quickbuttons
 	$(document).on('click', 'ul.quickbuttons li.smflikebutton > a', function(event){
 		var obj = $(this);

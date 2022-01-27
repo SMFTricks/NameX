@@ -41,6 +41,15 @@ function template_newsfader()
 		echo '
 			</ul>
 		</div>';
+
+		addInlineJavaScript('
+			jQuery("#smf_slider").slippry({
+				pause: smf_newsfader_time,
+				adaptiveHeight: 0,
+				captions: 0,
+				controls: 0,
+			});
+		', true);
 	}
 }
 

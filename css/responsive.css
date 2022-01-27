@@ -585,14 +585,6 @@
 		border-radius: 0;
 		left: 0;
 	}
-	#pm_menu, #alerts_menu, #profile_menu {
-		min-width: initial;
-		width: 25em;
-		max-width: calc(100vw - 17px);
-		left: 0;
-		right: 0;
-		border-radius: 0;
-	}
 	footer .footer_links {
 		flex-direction: column-reverse;
 	}
@@ -654,6 +646,14 @@
 
 /* Entry level phones */
 @media (max-width: 576px) {
+	#pm_menu, #alerts_menu, #profile_menu {
+		min-width: initial;
+		/* width: 25em; */
+		max-width: calc(100vw - 17px);
+		left: 0;
+		right: 0;
+		border-radius: 0;
+	}
 	.pagesection > div {
 		flex-basis: 100%;
 	}

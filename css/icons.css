@@ -1,18 +1,129 @@
-/* Mark Read */
-.fa-markread::before,
-.fa-mark_read_short::before,
-.fa-markselectread::before,
-.fa-mark_as_read::before {
+/* Replace SMF Icons */
+.main_icons::before {
+	font-family: "Font Awesome 5 Free";
+	display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+	font-weight: 900;
+	background: none;
+	width: auto;
+	height: auto;
+	font-size: 0.8em;
+	margin: 0;
+	vertical-align: top;
+}
+
+/* Search */
+.main_icons.search::before {
+	content: "\f002";
+}
+/* Seach Engines */
+.main_icons.engines::before {
+	content: "\f00e";
+}
+/* Check */
+.main_icons.check::before {
 	content: "\f00c";
+}
+/* Invalid */
+.main_icons.invalid::before,
+.fa-warn_button::before {
+	content: "\f071";
+}
+/* Gender 1 */
+.main_icons.gender_1::before {
+	content: "\f221";
+}
+/* Gender 2 */
+.main_icons.gender_2::before {
+	content: "\f222";
+}
+/* Watch */
+.main_icons.watch::before,
+.main_icons.topics_views::before,
+.main_icons.views::before {
+	content: "\f06e";
+}
+/* Next Page */
+.main_icons.next_page::before {
+	content: "\f061";
+}
+/* Previous Page */
+.main_icons.previous_page::before {
+	content: "\f060";
+}
+/* Boards */
+.main_icons.boards::before,
+.menu_icon.fa-forum::before,
+.fa-forum::before {
+	content: "\f07c";
+}
+/* General */
+.main_icons.general::before,
+.fa-forum_stats::before  {
+	content: "\f200";
+}
+/* Features */
+.main_icons.features::before {
+	content: "\f03a";
+}
+/* Spam */
+.main_icons.security::before {
+	content: "\f544";
+}
+/* Posters */
+.main_icons.posters::before {
+	content: "\f091";
+}
+/* Replies */
+.main_icons.replies::before,
+.main_icons.topics_replies::before {
+	content: "\f4ad";
+}
+/* History */
+.main_icons.history::before {
+	content: "\f1da";
+}
+/* Time Online */
+.main_icons.time_online::before {
+	content: "\f253";
+}
+/* Scheduled */
+.main_icons.scheduled::before {
+	content: "\f017";
+}
+/* Last Post */
+.main_icons.last_post::before {
+	content: "\f051";
+}
+/* Starters */
+.main_icons.starters::before {
+	content: "\f507";
+}
+/* Membergroups */
+.main_icons.membergroups::before {
+	content: "\f509";
+}
+
+/* Mark All Read */
+.fa-markread::before,
+.fa-readall::before,
+.fa-mark_read_short::before,
+.fa-mark_as_read::before
+{
+	content: "\f560";
+}
+/* Mark Selected */
+.fa-markselectread::before,
+.fa-quick_mod_markread::before {
+	content: "\f058";
 }
 /* Not Read */
 .fa-mark_unread::before,
 .fa-unread_button::before {
 	content: "\f00d";
-}
-/* Read all */
-.fa-readall::before {
-	content: "\f06e";
 }
 /* Send Topic */
 .fa-send::before {
@@ -55,7 +166,8 @@
 }
 /* Move Topic */
 .fa-move::before,
-.fa-move_topic::before {
+.fa-move_topic::before,
+.main_icons.move::before {
 	content: "\f0b2";
 }
 /* Sticky Topic */
@@ -77,7 +189,9 @@
 }
 /* Members */
 .fa-view_all_members::before,
-.fa-mlist::before {
+.fa-mlist::before,
+.main_icons.mlist::before,
+.main_icons.people::before {
 	content: "\f0c0";
 }
 /* Find Member */
@@ -104,6 +218,7 @@
 }
 /* Notifications */
 .fa-notifications::before,
+.fa-alerts::before,
 .fa-mail::before {
 	content: "\f0f3";
 }
@@ -150,17 +265,15 @@
 }
 /* Edit */
 .fa-quick_edit_button::before,
-.fa-modify_button::before {
+.fa-modify_button::before,
+.main_icons.quick_edit_button::before,
+.main_icons.modify_button::before {
 	content: "\f044";
 }
 /* Report */
 .fa-error::before,
 .fa-report::before {
 	content: "\f024";
-}
-/* Warning */
-.fa-warn_button::before {
-	content: "\f071";
 }
 /* Approve */
 .fa-approve_button::before,
@@ -181,16 +294,13 @@
 .menu_icon.fa-community::before {
 	content: "\f022";
 }
-.menu_icon.fa-forum::before,
-.fa-forum::before {
-	content: "\f07c";
-}
 /* FA Nav */
 nav#main_nav ul.menu_nav li a i.fa-portal::before {
 	content: "\f015";
 }
 /* Help */
-.fa-help::before {
+.fa-help::before,
+.main_icons.help::before {
 	content: "\f128";
 }
 /* Admin */
@@ -224,9 +334,6 @@ nav#main_nav ul.menu_nav li a i.fa-portal::before {
 /* Stats icons */
 .fa-recent_posts::before {
 	content: "\f550";
-}
-.fa-forum_stats::before {
-	content: "\f200";
 }
 .fa-online_users::before {
 	content: "\f4fd";

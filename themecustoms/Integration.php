@@ -115,13 +115,13 @@ class Integration
 	{
 		// Let the action do some work
 		if (isset($_REQUEST['action']))
+		{
 			switch ($_REQUEST['action'])
 			{
-				// Admin News Tweak/Fix
-				case 'admin':
-					add_integration_function('integrate_admin_areas', __NAMESPACE__ . '\Settings::admin_areas', false);
+				default:
 					break;
 			}
+		}
 	}
 
 	/**
