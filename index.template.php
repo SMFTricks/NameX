@@ -245,7 +245,10 @@ function template_menu()
 	echo '
 	<nav id="main_nav">
 		<div id="nav_wrapper">
-			<a class="menu_icon mobile_user_menu">', $txt['st_menu'], '</a>
+			<a class="mobile_user_menu">
+				<span class="menu_icon"></span>
+				<span class="text_menu">', $txt['mobile_user_menu'], '</span>
+			</a>
 			<div id="main_menu">
 				<div id="mobile_user_menu" class="popup_container">
 					<div class="popup_window description">

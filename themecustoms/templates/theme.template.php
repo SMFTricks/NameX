@@ -113,7 +113,7 @@ function themecustoms_userarea()
 		if ($context['allow_pm'])
 			echo '
 				<li>
-					<a href="', $scripturl, '?action=pm"', !empty($context['self_pm']) ? ' class="active"' : '', ' id="pm_menu_top">', themecustoms_icon('fa fa-envelope'), !empty($context['user']['unread_messages']) ? ' <span class="amt">' . $context['user']['unread_messages'] . '</span>' : '', '</a>
+					<a href="', $scripturl, '?action=pm"', !empty($context['self_pm']) ? ' class="active"' : '', ' id="pm_menu_top">', themecustoms_icon('fa fa-inbox'), !empty($context['user']['unread_messages']) ? ' <span class="amt">' . $context['user']['unread_messages'] . '</span>' : '', '</a>
 					<div id="pm_menu" class="top_menu scrollable"></div>
 				</li>';
 

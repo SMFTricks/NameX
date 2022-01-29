@@ -387,6 +387,12 @@ nav#main_nav ul.menu_nav ul li a:hover span.amt {
 .dropmenu ul {
 	display: block;
 }
+.dropmenu li li {
+	border-width: 0;
+}
+.dropmenu li li.subsections > a::after {
+	margin-top: 3px;
+}
 .dropmenu li li:hover {
 	background: transparent;
 }
@@ -1288,14 +1294,44 @@ footer .footer-other span.help-links a i.fa {
 }
 
 /* Profile */
-#basicinfo > * {
-	margin: 0;
-}
 #detailedinfo dl, #tracking dl {
 	border-width: 0;
 }
 .clear_right {
 	display: none;
+}
+.icon_fields span.main_icons {
+	font-size: 1.5em;
+}
+#profileview {
+	display: grid;
+	grid-template-columns: 200px 1fr;
+	padding: 0;
+}
+#basicinfo {
+	width: 200px;
+	background: var(--poster-bg);
+}
+#basicinfo img.avatar {
+	margin: 0 auto;
+}
+#basicinfo .icon_fields {
+	display: flex;
+	gap: 4px;
+	margin: 3px 0 2px;
+	justify-content: center;
+}
+#basicinfo .icon_fields li {
+	float: none;
+	padding: 0;
+	margin: 0;
+}
+#profileview #basicinfo {
+	text-align: center;
+	margin: 0 auto;
+}
+#basicinfo, #detailedinfo {
+	padding: 10px 8px;
 }
 
 /* Top Bar */
@@ -1539,7 +1575,7 @@ li#user_thememode a span::before {
 
 /* Display */
 #forumposts .windowbg, #forumposts .approvebg,
-#forumposts .approvebg2, #pmFolder .windowbg {
+#forumposts .approvebg2, #personal_messages .windowbg {
 	padding: 0;
 }
 .post_wrapper {
@@ -1591,8 +1627,7 @@ li#user_thememode a span::before {
 .keyinfo .postinfo a strong {
 	color: var(--body-txt-color-strong);
 }
-.post_wrapper .postarea .keyinfo,
-#pmFolder .postarea .flow_hidden {
+.post_wrapper .postarea .keyinfo {
 	--keyinfo--height: 60px;
 	display: flex;
 	align-items: center;
@@ -1873,8 +1908,26 @@ ul.quickbuttons li ul.dropmenu li a:focus {
 }
 
 /* Styles for Errors and messages */
+.errorbox::before,
+.noticebox::before,
+.infobox::before {
+	content: "\f071";
+	font-family: "Font Awesome 5 Free";
+	display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+	font-weight: 900;
+	background: none;
+	width: auto;
+	height: auto;
+	font-size: 0.95em;
+	vertical-align: top;
+}
 .errorbox, .noticebox, .infobox {
 	border-width: 1px 2px;
+	padding: 15px 15px 15px 40px;
 }
 .noticebox {
 	background: var(--noticebox-bg);

@@ -59,12 +59,12 @@
 	--sceditor-group-bg: linear-gradient(to bottom, hsl(var(--primary-color-hue), 100%, 7%) 0%, hsl(var(--primary-color-hue), 90%, 15%) 100%);
 	--sceditor-group-bg-active: hsl(var(--primary-color-hue), 25%, 20%);
 	--sceditor-group-border-color: hsl(var(--primary-color-hue), 50%, 35%);
-	--noticebox-bg: hsl(50, 30%, 15%);
+	--noticebox-bg: hsl(50, 25%, 25%);
 	--noticebox-border-color: hsl(48, 100%, 40%);
-	--errorbox-bg: hsl(0, 30%, 15%);
+	--errorbox-bg: hsl(0, 25%, 25%);
 	--noticebox-txt-color: hsl(0, 0%, 75%);
 	--errorbox-border-color: hsl(0, 100%, 40%);
-	--infobox-bg: hsl(120, 30%, 15%);
+	--infobox-bg: hsl(120, 25%, 25%);
 	--infobox-border-color: hsl(120, 100%, 40%);
 	--table-border-color: hsl(var(--primary-color-hue), 25%, 12%);
 }

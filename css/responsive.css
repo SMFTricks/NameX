@@ -35,9 +35,15 @@
 	#alerts_menu_top .main_icons {
 		display: inline-block;
 	}
+	#member_list .ip, #member_list .last_active, #member_list .user_name {
+		display: none !important;
+	}
 }
 
 @media (min-width: 720px) and (max-width: 799px) {
+	#top_info .welcome {
+		display: none;
+	}
 	/* Calendar */
 	#event_time_options {
 		width: 44%;
@@ -429,6 +435,11 @@
 	}
 
 	/* Admin */
+	.admin_search {
+		float: none;
+		width: 100%;
+		margin-bottom: 10px;
+	}
 	.table_grid.half_content {
 		width: 100%;
 		margin: 0;
@@ -472,7 +483,8 @@
 	}
 
 	#main_menu .popup_window,
-	#genericmenu .popup_window {
+	#genericmenu .popup_window,
+	#adm_submenus .popup_window {
 		box-shadow: none;
 		border-width: 0;
 		background: none;
@@ -506,7 +518,8 @@
 	}
 	/* This is general */
 	#main_menu .popup_container,
-	#genericmenu .popup_container {
+	#genericmenu .popup_container,
+	#adm_submenus .popup_container {
 		display: none;
 		position: fixed;
 		top: 0;
@@ -516,19 +529,28 @@
 		background: rgba(40, 64, 80, 0.5);
 		z-index: 5;
 	}
-	#main_menu .popup_heading, #genericmenu .popup_heading {
+	#main_menu .popup_heading,
+	#genericmenu .popup_heading,
+	#adm_submenus .popup_heading {
 		display: block;
 	}
 	.popup_window,
 	#main_menu .popup_window,
-	#genericmenu .popup_window {
+	#genericmenu .popup_window,
+	#adm_submenus .popup_window {
 		top: 15%;
-		width: 90vw;
+		width: 95vw;
 		min-height: auto;
 		max-height: 90vh;
 		overflow-x: hidden;
 		overflow-y: scroll;
-		/* background: var(--popup-container-bg);; */
+	}
+	#adm_submenus {
+		padding: 0;
+	}
+	#adm_submenus .dropmenu li {
+		float: left;
+		margin: 0;
 	}
 	.generic_menu {
 		display: none;
@@ -536,6 +558,16 @@
 	#mobile_user_menu .dropmenu,
 	div[id^="mobile_generic_menu_"] .generic_menu {
 		display: block;
+	}
+	a.mobile_user_menu,
+	a[class^="mobile_generic_menu_"] {
+		display: flex;
+		align-items: center;
+		margin: 0 0 4px 0;
+		text-decoration: none;
+	}
+	a[class^="mobile_generic_menu_"] {
+		margin: 8px 0;
 	}
 	.menu_icon {
 		display: inline-block;
@@ -579,11 +611,22 @@
 	.dropmenu ul li a {
 		width: auto !important;
 	}
+	.dropmenu li.subsections > a::after {
+		position: absolute;
+		padding: 5px 0;
+		right: 10px;
+		font: 83.33%/150% Arial, sans-serif;
+		content: "\25bc" !important;
+	}
 	.dropmenu li ul,
 	.dropmenu li li:hover ul, .dropmenu li li ul {
 		position: relative;
 		border-radius: 0;
 		left: 0;
+	}
+	/* 3rd level menu tests */
+	.dropmenu li ul ul {
+		margin: 0 !important;
 	}
 	footer .footer_links {
 		flex-direction: column-reverse;
@@ -631,7 +674,7 @@
 	}
 }
 
-@media (min-width: 480px) and (max-width: 560px) {
+@media (min-width: 481px) and (max-width: 560px) {
 	/* Calendar */
 	#event_time_options {
 		width: 40%;
@@ -645,10 +688,9 @@
 }
 
 /* Entry level phones */
-@media (max-width: 576px) {
+@media (max-width: 480px) {
 	#pm_menu, #alerts_menu, #profile_menu {
 		min-width: initial;
-		/* width: 25em; */
 		max-width: calc(100vw - 17px);
 		left: 0;
 		right: 0;
@@ -684,6 +726,9 @@
 		max-width: 300px;
 	}
 	.board_moderators {
+		display: none;
+	}
+	#top_info .welcome {
 		display: none;
 	}
 	#footer {
@@ -869,23 +914,10 @@
 		padding: 0;
 		margin: 0 0 5px 0;
 	}
-	.admin_search {
-		float: none;
-		display: block;
-		width: 100%;
-		margin-bottom: 10px;
-	}
 	fieldset.admin_group a {
 		width: 50%;
 		float: left;
 		margin: 0 0 5px 0;
-	}
-	.action_admin .navigate_section {
-		display: none;
-	}
-	#quick_search input[type="search"],
-	#quick_search select {
-		width: 90%;
 	}
 
 	.error_info, #fatal_error {
@@ -903,15 +935,6 @@
 	}
 	#evtitle {
 		width: 98%;
-	}
-
-	/* Menu tests */
-	#adm_submenus {
-		padding: 0;
-	}
-	#adm_submenus .dropmenu li {
-		float: left;
-		margin: 0;
 	}
 	#header_news_lists_preview, tr[id^="list_news_lists_"] td:nth-child(even),
 	#header_smiley_set_list_default, #header_smiley_set_list_url, #header_smiley_set_list_check,
@@ -948,10 +971,6 @@
 	/* Likes */
 	#likes li .like_time {
 		display: none;
-	}
-	/* 3rd level menu tests */
-	.dropmenu li ul ul {
-		margin: 0 !important;
 	}
 	/* Generic Classes for Customizations */
 	.hide_480 {

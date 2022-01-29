@@ -10,8 +10,12 @@
 	background: none;
 	width: auto;
 	height: auto;
-	font-size: 0.8em;
+	font-size: 0.95em;
 	margin: 0;
+	vertical-align: top;
+}
+/* don't center these icons.... */
+.main_icons.centericon {
 	vertical-align: top;
 }
 
@@ -78,6 +82,7 @@
 	content: "\f091";
 }
 /* Replies */
+/* Im On */
 .main_icons.replies::before,
 .main_icons.topics_replies::before {
 	content: "\f4ad";
@@ -105,6 +110,129 @@
 /* Membergroups */
 .main_icons.membergroups::before {
 	content: "\f509";
+}
+/* Www */
+.main_icons.www::before {
+	content: "\f57d";
+}
+/* Switch */
+.main_icons.switch::before {
+	content: "\f074";
+}
+/* Replied */
+.main_icons.replied::before {
+	content: "\f4fd";
+}
+/* Send */
+.main_icons.send::before {
+	content: "\f14d";
+}
+/*  Im On */
+.main_icons.im_on::before {
+	content: "\f4ff";
+}
+/* Im Off */
+.main_icons.im_off::before {
+	content: "\f27a";
+}
+/* Split DeSelect */
+.main_icons.split_desel::before {
+	content: "\f359";
+}
+/* Split Select */
+.main_icons.split_sel::before {
+	content: "\f35a";
+}
+/* Mail */
+.main_icons.mail::before {
+	content: "\f0e0";
+}
+/* Mail New */
+.main_icons.mail_new::before {
+	content: "\f658";
+}
+/* Warning Statuses */
+.main_icons.warning_mute::before,
+.main_icons.warning_moderate::before,
+.main_icons.warning_watch::before {
+	content: "\f06a";
+}
+/* Warning Mute */
+.main_icons.warning_mute::before,
+.errorbox::before {
+	color: red;
+}
+/* Warning Moderate */
+.main_icons.warning_moderate::before,
+.noticebox::before {
+	color: orange;
+}
+/* Warning Watch */
+.main_icons.warning_watch::before,
+.infobox::before {
+	color: green;
+}
+/* Drafts */
+.main_icons.drafts::before {
+	content: "\f3a1";
+}
+/* Calendar Export */
+.main_icons.calendar_export::before {
+	content: "\f271";
+}
+/* Calendar Modify */
+.main_icons.calendar_modify::before {
+	content: "\f784";
+}
+/* Plus */
+.main_icons.plus::before {
+	content: "\f067";
+}
+/* Themes */
+.main_icons.themes::before {
+	content: "\f5fd";
+}
+/* Support */
+.main_icons.support::before {
+	content: "\f1cd";
+}
+/* Likes */
+.main_icons.liked::before,
+.main_icons.liked_users::before,
+.main_icons.liked_messages::before,
+.main_icons.like::before,
+.fa-like::before {
+	content: "\f164";
+}
+/* Unlike */
+.main_icons.unliked::before,
+.main_icons.unlike::before,
+.fa-unlike::before {
+	content: "\f165";
+}
+/* Current Theme */
+.main_icons.current_theme::before {
+	content: "\f53f";
+}
+/* Stats */
+.main_icons.stats::before {
+	content: "\f080";
+}
+/* Right Arrow */
+.main_icons.right_arrow::before {
+	content: "\f152";
+}
+/* Left Arrow */
+.main_icons.left_arrow::before {
+	content: "\f153";
+}
+/* Smiley */
+.main_icons.smiley::before {
+	content: "\f118";
+}
+/* Server */
+.main_icons.server::before {
+	content: "\f233";
 }
 
 /* Mark All Read */
@@ -137,7 +265,8 @@
 /* New Poll */
 .fa-post_poll::before,
 .fa-new_poll::before,
-.fa-add_poll::before {
+.fa-add_poll::before,
+.main_icons.poll::before {
 	content: "\f681";
 }
 /* Delete */
@@ -205,7 +334,7 @@
 }
 /* Post Event */
 .fa-calendar_post_event::before {
-	content: "\f271";
+	content: "\f783";
 }
 /* Register */
 .fa-register::before,
@@ -255,14 +384,6 @@
 .fa-quote_selected::before {
 	content: "\f10d";
 }
-/* Likes */
-.fa-like::before {
-	content: "\f164";
-}
-/* Unlike */
-.fa-unlike::before {
-	content: "\f165";
-}
 /* Edit */
 .fa-quick_edit_button::before,
 .fa-modify_button::before,
@@ -308,7 +429,8 @@ nav#main_nav ul.menu_nav li a i.fa-portal::before {
 	content: "\f085";
 }
 /* Mod */
-.fa-moderate::before {
+.fa-moderate::before,
+.main_icons.moderate::before {
 	content: "\f7d9";
 }
 /* Profile */
@@ -316,11 +438,13 @@ nav#main_nav ul.menu_nav li a i.fa-portal::before {
 	content: "\f007";
 }
 /* PM */
-.fa-pm::before {
-	content: "\f0e0";
+.fa-pm::before,
+.main_icons.inbox::before {
+	content: "\f01c";
 }
 /* Logout */
-.fa-logout::before {
+.fa-logout::before,
+.main_icons.exit::before {
 	content: "\f2f5";
 }
 /* Team */
@@ -331,12 +455,12 @@ nav#main_nav ul.menu_nav li a i.fa-portal::before {
 .fa-shop::before {
 	content: "\f07a";
 }
-/* Stats icons */
+/* Info Center icons */
 .fa-recent_posts::before {
 	content: "\f550";
 }
 .fa-online_users::before {
-	content: "\f4fd";
+	content: "\f500";
 }
 /* Profile Account */
 .fa-maintain::before {
