@@ -1,5 +1,6 @@
 /* Replace SMF Icons */
-.main_icons::before {
+.main_icons::before,
+h3.profile_hd::before {
 	font-family: "Font Awesome 5 Free";
 	display: inline-block;
     font-style: normal;
@@ -7,15 +8,22 @@
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
 	font-weight: 900;
-	background: none;
+	background: none !important;
 	width: auto;
 	height: auto;
 	font-size: 0.95em;
 	margin: 0;
 	vertical-align: top;
 }
+/* Remove height and width? */
+h3.profile_hd::before,
+.main_icons.profile_hd::before {
+	width: auto;
+	height: auto;
+}
 /* don't center these icons.... */
-.main_icons.centericon {
+.main_icons.centericon,
+h3.catbg .icon {
 	vertical-align: top;
 }
 
@@ -28,7 +36,9 @@
 	content: "\f00e";
 }
 /* Check */
-.main_icons.check::before {
+.main_icons.check::before,
+.main_icons.valid::before,
+.fa-solve_topic::before {
 	content: "\f00c";
 }
 /* Invalid */
@@ -73,7 +83,7 @@
 .main_icons.features::before {
 	content: "\f03a";
 }
-/* Spam */
+/* Security */
 .main_icons.security::before {
 	content: "\f544";
 }
@@ -128,6 +138,7 @@
 	content: "\f14d";
 }
 /*  Im On */
+.main_icons.profile_sm::before,
 .main_icons.im_on::before {
 	content: "\f4ff";
 }
@@ -234,13 +245,174 @@
 .main_icons.server::before {
 	content: "\f233";
 }
+/* Ban */
+.main_icons.ban::before {
+	content: "\f05e";
+}
+/* Ignore */
+.fa-frenemy::before,
+.fa-ignore::before,
+.main_icons.ignore::before,
+.main_icons.frenemy::before,
+.main_icons.disable::before {
+	content: "\f506";
+}
+/* Posts */
+.main_icons.posts::before {
+	content: "\f0c5";
+}
+/* Sort */
+.main_icons.sort_down::before,
+.main_icons.sort_up::before {
+	margin: 0 8px;
+}
+/* Sort Down */
+.main_icons.sort_down::before {
+	content: "\f160";
+}
+/* Sort Up */
+.main_icons.sort_up::before {
+	content: "\f161";
+}
+/* Sent */
+.main_icons.sent::before {
+	content: "\f064";
+}
+/* Post Moderation Moderate */
+.main_icons.post_moderation_moderate::before {
+	content: "\f6e3";
+}
+/* Post Moderation Deny */
+.main_icons.post_moderation_deny::before {
+	content: "\f502";
+}
+/* Post Moderation Attach */
+.main_icons.post_moderation_attach::before {
+	content: "\f127";
+}
+/* Post Moderation Allow */
+.main_icons.post_moderation_allow::before {
+	content: "\f3c1";
+}
+/* Permissions */
+.main_icons.permissions::before {
+	content: "\f084";
+}
+/* Profile SM */
+.main_icons.profile_sm::before {
+	font-size: 0.55em;
+}
+/* Paid */
+.main_icons.paid::before {
+	content: "\f155";
+}
+/* Packages */
+.main_icons.packages::before {
+	content: "\f466";
+}
+/* Filter */
+.main_icons.filter::before {
+	content: "\f0b0";
+}
+/* Package_ops */
+.main_icons.package_ops::before {
+	content: "\f362";
+}
+/* Reports */
+.main_icons.reports::before {
+	content: "\f573";
+}
+/* News */
+.main_icons.news::before {
+	content: "\f1ea";
+}
+/* Hide Popup */
+.main_icons.hide_popup::before {
+	content: "\f056";
+}
+/* Prune */
+.main_icons.prune::before {
+	content: "\f55a";
+}
+/* Modifications */
+.main_icons.modifications::before {
+	content: "\f12e";
+}
+/* Maintain */
+.main_icons.maintain::before {
+	content: "\f0ad";
+}
+/* Administration */
+.main_icons.administration::before {
+	content: "\f552";
+}
+/* Attachment */
+.main_icons.attachment::before {
+	content: "\f0c6";
+}
+/* Error */
+.main_icons.error::before {
+	content: "\f12a";
+}
+/* Languages */
+.main_icons.languages::before {
+	content: "\f1ab";
+}
+/* Members Request */
+.main_icons.members_request::before {
+	content: "\f508";
+}
+/* Members Delete */
+.main_icons.members_delete::before {
+	content: "\f503";
+}
+/* Members Watched */
+.main_icons.members_watched::before {
+	content: "\f21b";
+}
+/* Logs */
+.main_icons.logs::before {
+	content: "\f46d";
+}
+/* Features */
+.main_icons.features::before {
+	content: "\f0ae";
+}
+/* Settings */
+.main_icons.settings::before {
+	content: "\f1de";
+}
+/* Enable */
+.main_icons.enable::before {
+	content: "\f205";
+}
+/* Close */
+.main_icons.close::before {
+	content: "\f410";
+}
+/* Folder */
+.main_icons.folder::before {
+	content: "\f07b";
+}
+/* Select Here */
+.main_icons.select_here::before {
+	content: "\f101";
+}
+/* Select Above */
+.main_icons.select_above::before {
+	content: "\f102";
+}
+/* Select Below */
+.main_icons.select_below::before {
+	content: "\f103";
+}
 
 /* Mark All Read */
 .fa-markread::before,
 .fa-readall::before,
 .fa-mark_read_short::before,
-.fa-mark_as_read::before
-{
+.fa-mark_as_read::before,
+.main_icons.read_button::before {
 	content: "\f560";
 }
 /* Mark Selected */
@@ -250,43 +422,39 @@
 }
 /* Not Read */
 .fa-mark_unread::before,
-.fa-unread_button::before {
+.fa-unread_button::before,
+.fa-unsolve_topic::before,
+.main_icons.unread_button::before {
 	content: "\f00d";
 }
 /* Send Topic */
 .fa-send::before {
 	content: "\f1d8";
 }
-/* Notify */
-.fa-notify::before,
+/* Unnotify */
 .fa-unnotify::before {
-	content: "\f0f3";
+	content: "\f1f6";
 }
 /* New Poll */
 .fa-post_poll::before,
 .fa-new_poll::before,
 .fa-add_poll::before,
 .main_icons.poll::before {
-	content: "\f681";
+	content: "\f682";
 }
 /* Delete */
 .fa-remove_poll::before,
 .fa-delete::before,
 .fa-remove_topic::before,
-.fa-remove_button::before {
+.fa-remove_button::before,
+.main_icons.remove_button::before,
+.main_icons.delete::before {
 	content: "\f2ed";
-}
-/* Solved */
-.fa-solve_topic::before {
-	content: "\f00c";
-}
-/* Unsolved */
-.fa-unsolve_topic::before {
-	content: "\f00d";
 }
 /* Restore */
 .fa-restore_topic::before,
-.fa-restore_button::before {
+.fa-restore_button::before,
+.main_icons.restore_button::before {
 	content: "\f829";
 }
 /* New Topic */
@@ -301,15 +469,18 @@
 }
 /* Sticky Topic */
 .fa-set_sticky::before,
-.fa-set_nonsticky::before {
+.fa-set_nonsticky::before,
+.main_icons.sticky::before {
 	content: "\f08d";
 }
 /* Lock Topic */
-.fa-set_lock::before {
+.fa-set_lock::before,
+.main_icons.lock::before {
 	content: "\f023";
 }
 /* Merge Topic */
-.fa-merge::before {
+.fa-merge::before,
+.main_icons.merge::before {
 	content: "\f248";
 }
 /* LInk Calendar */
@@ -329,7 +500,8 @@
 }
 /* Calendar */
 .fa-calendar::before,
-.fa-calendar_upcoming::before {
+.fa-calendar_upcoming::before,
+.main_icons.calendar::before {
 	content: "\f073";
 }
 /* Post Event */
@@ -337,18 +509,25 @@
 	content: "\f783";
 }
 /* Register */
+.main_icons.main_icons.regcenter::before,
 .fa-register::before,
 .fa-signup::before {
 	content: "\f234";
 }
 /* Login */
-.fa-login::before {
+.main_icons.login {
+	width: auto;
+}
+.fa-login::before,
+.main_icons.login::before {
 	content: "\f2f6";
 }
 /* Notifications */
 .fa-notifications::before,
 .fa-alerts::before,
-.fa-mail::before {
+.fa-mail::before,
+.fa-notify::before,
+.main_icons.notify::before {
 	content: "\f0f3";
 }
 /* Pokes */
@@ -365,7 +544,8 @@
 	content: "\f0ea";
 }
 /* Details */
-.fa-details::before {
+.fa-details::before,
+.main_icons.details::before {
 	content: "\f05a";
 }
 /* Reply */
@@ -377,11 +557,13 @@
 	content: "\f122";
 }
 /* Quote */
-.fa-quote::before {
+.fa-quote::before,
+.main_icons.quote::before {
 	content: "\f10e";
 }
 /* Quote Selected */
-.fa-quote_selected::before {
+.fa-quote_selected::before,
+.main_icons.quote_selected::before {
 	content: "\f10d";
 }
 /* Edit */
@@ -398,16 +580,19 @@
 }
 /* Approve */
 .fa-approve_button::before,
-.fa-approve::before {
+.fa-approve::before,
+.main_icons.approve::before,
+.main_icons.approve_button::before {
 	content: "\f14a";
 }
-/* Ignore */
-.fa-ignore::before,
-.fa-unapprove_button::before {
+/* Disapprove */
+.fa-unapprove_button::before,
+.main_icons.unapprove_button::before {
 	content: "\f057";
 }
 /* Split */
-.fa-split_button::before {
+.fa-split_button::before,
+.main_icons.split_button::before {
 	content: "\f0db";
 }
 
@@ -416,7 +601,8 @@
 	content: "\f022";
 }
 /* FA Nav */
-nav#main_nav ul.menu_nav li a i.fa-portal::before {
+.fa-portal::before,
+.main_icons.home::before {
 	content: "\f015";
 }
 /* Help */
@@ -425,7 +611,8 @@ nav#main_nav ul.menu_nav li a i.fa-portal::before {
 	content: "\f128";
 }
 /* Admin */
-.fa-admin::before {
+.fa-admin::before,
+.main_icons.admin::before {
 	content: "\f085";
 }
 /* Mod */
@@ -434,11 +621,15 @@ nav#main_nav ul.menu_nav li a i.fa-portal::before {
 	content: "\f7d9";
 }
 /* Profile */
-.fa-profile::before {
+h3.profile_hd::before,
+.main_icons.profile_hd::before,
+.fa-profile::before,
+.main_icons.members::before {
 	content: "\f007";
 }
 /* PM */
 .fa-pm::before,
+.main_icons.personal_message::before,
 .main_icons.inbox::before {
 	content: "\f01c";
 }
@@ -456,7 +647,8 @@ nav#main_nav ul.menu_nav li a i.fa-portal::before {
 	content: "\f07a";
 }
 /* Info Center icons */
-.fa-recent_posts::before {
+.fa-recent_posts::before,
+.main_icons.recent_posts::before {
 	content: "\f550";
 }
 .fa-online_users::before {
@@ -468,13 +660,9 @@ nav#main_nav ul.menu_nav li a i.fa-portal::before {
 }
 /* Profile Details */
 .fa-members::before {
-	content: "\f7d9";
+	content: "\f2c2";
 }
 /* Look and Layout */
 .fa-features::before {
 	content: "\f5fd";
-}
-/* Ignore List */
-.fa-frenemy::before {
-	content: "\f502";
 }

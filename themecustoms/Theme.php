@@ -269,7 +269,7 @@ class Theme
 			add_integration_function('integrate_display_buttons', __NAMESPACE__ . '\Buttons::normalButtons', false);
 			add_integration_function('integrate_prepare_display_context', __NAMESPACE__ . '\Buttons::quickButtons', false);
 		}
-		// Board View
+		// Topic List View
 		elseif (!empty($board) && empty($topic))
 		{
 			add_integration_function('integrate_messageindex_buttons', __NAMESPACE__ . '\Buttons::normalButtons', false);

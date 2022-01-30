@@ -4,7 +4,7 @@
 	--body-txt-color-strong: hsl(0, 0%, 90%);
 	--body-link-color: hsl(var(--primary-color-hue), 35%, 65%);
 	--mode-icon-content: "\f186";
-	--mode-icon-color: hsl(41, 50%, 70%);
+	--mode-icon-color: hsl(40, 45%, 65%);
 	--input-bg: hsl(var(--primary-color-hue), 50%, 8%);
 	--input-bg-disabled: hsl(0, 0%, 85%);
 	--input-border-color: hsl(var(--primary-color-hue), 55%, 15%);
@@ -67,4 +67,6 @@
 	--infobox-bg: hsl(120, 25%, 25%);
 	--infobox-border-color: hsl(120, 100%, 40%);
 	--table-border-color: hsl(var(--primary-color-hue), 25%, 12%);
+	--amt-bg: hsl(var(--primary-color-hue), 65%, 10%);
+	--poster-bg: hsl(var(--primary-color-hue), 12%, 7%);
 }

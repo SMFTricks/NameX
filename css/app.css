@@ -1318,7 +1318,7 @@ footer .footer-other span.help-links a i.fa {
 #basicinfo .icon_fields {
 	display: flex;
 	gap: 4px;
-	margin: 3px 0 2px;
+	margin: 7px 0;
 	justify-content: center;
 }
 #basicinfo .icon_fields li {
@@ -1344,7 +1344,7 @@ footer .footer-other span.help-links a i.fa {
 	padding: 0;
 	min-height: 44px;
 	align-items: center;
-	gap:  2px;
+	gap: 0;
 }
 #top_info > li {
 	display: flex;
@@ -1359,11 +1359,11 @@ footer .footer-other span.help-links a i.fa {
 #top_info > li:hover > a {
 	border: none;
 	color: var(--nav-item-txt-color);
-	width: 45px;
+	min-width: 45px;
 	height: 45px;
 	text-align: center;
 	background: var(--nav-item-bg);
-	padding: 0 5px;
+	padding: 0 12px;
 	box-shadow: none;
 	text-shadow: none !important;
 	display: flex;
@@ -1372,6 +1372,18 @@ footer .footer-other span.help-links a i.fa {
 	border-radius: 0;
 	position: relative;
 }
+#top_info > li > a span:not(.fa) {
+	margin-left: 8px;
+	font-size: 0.85em;
+}
+#top_info > li.button_login {
+	background: var(--header-bg);
+	font-weight: bold;
+}
+#top_info > li.button_signup {
+	background: var(--titlebg-bg);
+}
+
 #top_info > li > a:hover {
 	box-shadow: none;
 	border: none;
@@ -1573,6 +1585,12 @@ li#user_thememode a span::before {
 	margin: 0;
 }
 
+/* On Off */
+.on, .off {
+	height: 10px;
+	width: 10px;
+}
+
 /* Display */
 #forumposts .windowbg, #forumposts .approvebg,
 #forumposts .approvebg2, #personal_messages .windowbg {
@@ -1599,6 +1617,7 @@ li#user_thememode a span::before {
 	grid-row-end: 5;
 	padding: 5px 3px;
 	text-align: center;
+	border-radius: 4px;
 }
 .poster img.avatar {
 	max-height: 175px;
@@ -1632,6 +1651,8 @@ li#user_thememode a span::before {
 	display: flex;
 	align-items: center;
 	min-height: var(--keyinfo--height);
+	flex-grow: 0;
+	flex-basis: 40%;
 }
 .keyinfo .page_number.floatright,
 .keyinfo .page_number {
@@ -1659,7 +1680,7 @@ li#user_thememode a span::before {
 	flex-grow: 1;
 	flex-basis: 100%;
 	font-size: 115%;
-	margin: 2px 10px;
+	margin: 2px 5px 2px 10px;
 }
 .inner {
 	box-shadow: none;
@@ -1756,6 +1777,19 @@ ul.quickbuttons li ul.dropmenu li a:focus {
 }
 .keyinfo h5 .modified {
 	float: none;
+}
+
+/* PMs */
+.table_icon.pm_icon {
+	text-align: center;
+}
+#personal_messages .post_wrapper .postarea .keyinfo {
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+}
+#personal_messages .keyinfo h5 {
+	margin-left: 8px;
 }
 
 /* Pagination */

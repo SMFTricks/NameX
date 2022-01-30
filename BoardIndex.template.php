@@ -148,7 +148,7 @@ function template_boardindex_outer_below()
  */
 function template_info_center()
 {
-	global $context, $options, $txt;
+	global $context, $txt;
 
 	if (empty($context['info_center']))
 		return;
@@ -194,7 +194,7 @@ function template_info_center()
  */
 function template_ic_block_recent()
 {
-	global $context, $txt, $scripturl;
+	global $context, $txt, $scripturl, $settings;
 
 	// This is the "Recent Posts" bar.
 	echo '
@@ -204,6 +204,16 @@ function template_ic_block_recent()
 			</h4>
 		</div>
 		<div id="recent_posts_content">';
+
+	// Only one sad little post
+	if ($settings['number_recent_posts'] == 1)
+	{
+		echo '
+			<div class="windowbg">
+				<h6>', $context['latest_post']['link'], '</h6>
+				<span class="smalltext">', themecustoms_icon('fa fa-clock'), ' ', $context['latest_post']['time'], '</span><br>
+			</div>';
+	}
 
 	// Show lots of posts.
 	if (!empty($context['latest_posts']))

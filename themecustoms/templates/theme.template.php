@@ -102,54 +102,83 @@ function themecustoms_userarea()
 	if ($context['user']['is_logged'])
 	{
 		echo '
-				<li>
-					<a href="', $scripturl, '?action=profile"', !empty($context['self_profile']) || $context['current_action'] == 'unread'  || $context['current_action'] == 'unreadreplies' ? ' class="active"' : '', ' id="profile_menu_top" onclick="return false;">
-						', $context['user']['avatar']['image'], '
-					</a>
-					<div id="profile_menu" class="top_menu"></div>
-				</li>';
+			<li>
+				<a href="', $scripturl, '?action=profile"', !empty($context['self_profile']) || $context['current_action'] == 'unread'  || $context['current_action'] == 'unreadreplies' ? ' class="active"' : '', ' id="profile_menu_top" onclick="return false;">
+					', $context['user']['avatar']['image'], '
+				</a>
+				<div id="profile_menu" class="top_menu"></div>
+			</li>';
 
 		// Secondly, PMs if we're doing them
 		if ($context['allow_pm'])
 			echo '
-				<li>
-					<a href="', $scripturl, '?action=pm"', !empty($context['self_pm']) ? ' class="active"' : '', ' id="pm_menu_top">', themecustoms_icon('fa fa-inbox'), !empty($context['user']['unread_messages']) ? ' <span class="amt">' . $context['user']['unread_messages'] . '</span>' : '', '</a>
-					<div id="pm_menu" class="top_menu scrollable"></div>
-				</li>';
+			<li>
+				<a href="', $scripturl, '?action=pm"', !empty($context['self_pm']) ? ' class="active"' : '', ' id="pm_menu_top">
+					', themecustoms_icon('fa fa-inbox'), !empty($context['user']['unread_messages']) ? ' <span class="amt">' . $context['user']['unread_messages'] . '</span>' : '', '
+				</a>
+				<div id="pm_menu" class="top_menu scrollable"></div>
+			</li>';
 
 		// Thirdly, alerts
 		echo '
-				<li>
-					<a href="', $scripturl, '?action=profile;area=showalerts;u=', $context['user']['id'], '"', !empty($context['self_alerts']) ? ' class="active"' : '', ' id="alerts_menu_top">', themecustoms_icon('fa fa-bell'), !empty($context['user']['alerts']) ? ' <span class="amt">' . $context['user']['alerts'] . '</span>' : '', '</a>
-					<div id="alerts_menu" class="top_menu scrollable"></div>
-				</li>';
+			<li>
+				<a href="', $scripturl, '?action=profile;area=showalerts;u=', $context['user']['id'], '"', !empty($context['self_alerts']) ? ' class="active"' : '', ' id="alerts_menu_top">
+					', themecustoms_icon('fa fa-bell'), !empty($context['user']['alerts']) ? ' <span class="amt">' . $context['user']['alerts'] . '</span>' : '', '
+				</a>
+				<div id="alerts_menu" class="top_menu scrollable"></div>
+			</li>';
 
 		// A logout button for people without JavaScript.
 		echo '
-				<li id="nojs_logout">
-					<a href="', $scripturl, '?action=logout;', $context['session_var'], '=', $context['session_id'], '">', themecustoms_icon('fa fa-sign-out-alt'), '</a>
-					<script>document.getElementById("nojs_logout").style.display = "none";</script>
-				</li>';
-
-
-				// Add the mode selector
-				themecustoms_darkmode();
-
-				// Add the color selection
-				themecustoms_colorpicker();
+			<li id="nojs_logout">
+				<a href="', $scripturl, '?action=logout;', $context['session_var'], '=', $context['session_id'], '">
+					', themecustoms_icon('fa fa-sign-out-alt'), '
+				</a>
+				<script>document.getElementById("nojs_logout").style.display = "none";</script>
+			</li>';
 	}
 	// Otherwise they're a guest. Ask them to either register or login.
 	elseif (empty($maintenance))
-		echo '
-				<li>', sprintf($txt[$context['can_register'] ? 'welcome_guest_register' : 'welcome_guest'], $context['forum_name_html_safe'], $scripturl . '?action=login', 'return reqOverlayDiv(this.href, ' . JavaScriptEscape($txt['login']) . ');', $scripturl . '?action=signup'), '</li>';
+	{
+		// Some people like to do things the old-fashioned way.
+		if (!empty($settings['login_main_menu']))
+		{
+			echo '
+			<li class="welcome">
+				', sprintf($txt[$context['can_register'] ? 'welcome_guest_register' : 'welcome_guest'], $context['forum_name_html_safe'], $scripturl . '?action=login', 'return reqOverlayDiv(this.href, ' . JavaScriptEscape($txt['login']) . ', \'login\');', $scripturl . '?action=signup'), '
+			</li>';
+		}
+		else
+		{
+			echo '
+			<li class="button_login">
+				<a href="', $scripturl, '?action=login" class="', $context['current_action'] == 'login' ? 'active' : 'open','" onclick="return reqOverlayDiv(this.href, ' . JavaScriptEscape($txt['login']) . ', \'login\');">
+					<span class="main_icons login"></span>
+					<span class="textmenu">', $txt['login'], '</span>
+				</a>
+			</li>
+			<li class="button_signup">
+				<a href="', $scripturl, '?action=signup" class="', $context['current_action'] == 'signup' ? 'active' : 'open','">
+					<span class="main_icons regcenter"></span>
+					<span class="textmenu">', $txt['register'], '</span>
+				</a>
+			</li>';
+		}
+	}
 	else
 		// In maintenance mode, only login is allowed and don't show OverlayDiv
 		echo '
-				<li>', sprintf($txt['welcome_guest'], $context['forum_name_html_safe'], $scripturl . '?action=login', 'return true;'), '</li>';
+			<li>', sprintf($txt['welcome_guest'], $context['forum_name_html_safe'], $scripturl . '?action=login', 'return true;'), '</li>';
+
+			// Add the mode selector
+			themecustoms_darkmode();
+
+			// Add the color selection
+			themecustoms_colorpicker();
 
 		// And now we're done.
 		echo '
-			</ul>';
+		</ul>';
 }
 
 function themecustoms_socials()
@@ -202,7 +231,7 @@ function themecustoms_colorpicker()
 {
 	global $settings, $txt, $scripturl, $context;
 
-	if (!empty($settings['theme_variants']) && count($settings['theme_variants']) > 1 && empty($settings['disable_user_variant']))
+	if (!empty($settings['theme_variants']) && count($settings['theme_variants']) > 1 && empty($settings['disable_user_variant']) && $context['user']['is_logged'])
 	{
 		echo '
 		<li id="user_colorpicker">

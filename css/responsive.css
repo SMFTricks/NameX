@@ -131,12 +131,6 @@
 		display: none;
 	}
 
-	.post_wrapper .postarea .keyinfo,
-	.post_wrapper .postarea .under_message {
-		flex-basis: 100%;
-		flex-grow: 1;
-	}
-
 	/* Stuff */
 	.infolinks {
 		display: inline-block;
@@ -273,21 +267,34 @@
 	}
 
 	/* Display (Topics) */
+	.custom_fields_above_member,
 	.poster .user_info li.custom,
 	.poster .user_info li.postcount,
-	.poster .user_info li.profile {
+	.poster .user_info li.profile,
+	.poster .user_info li.bottom_poster,
+	.poster .user_info li.blurb,
+	.poster .user_info li.poster_ip,
+	.poster .user_info li.icons,
+	.poster .user_info li.postgroup {
 		display: none;
 	}
+	.post_wrapper {
+		grid-template-columns: 1fr;
+	}
+	.post_wrapper .poster,
 	.poster {
 		float: none;
 		width: auto;
-		margin-left: 69px;
+		min-height: 75px;
 		position: relative;
+		grid-row-end: 1;
+		text-align: left;
+		padding: 5px 5px 5px 89px;
 	}
 	.poster ul.user_info li.avatar {
 		position: absolute;
-		right: 100%;
-		top: 0;
+		left: 10px;
+		top: 3px;
 	}
 	.poster ul.user_info li.avatar img.avatar {
 		width: 64px;
@@ -298,16 +305,8 @@
 	.postarea {
 		margin: 0;
 	}
-	.inner {
-		padding: 1em 2px;
-	}
 	.moderatorbar {
 		margin: 0;
-	}
-	.keyinfo  {
-		padding-top: 5px;
-		margin-top: 5px;
-		clear: both;
 	}
 	.keyinfo .postinfo {
 		font-weight: normal;
@@ -344,6 +343,9 @@
 	}
 	#creator dd {
 		width: 65%;
+	}
+	#profileview {
+		grid-template-columns: 1fr;
 	}
 	#basicinfo, #detailedinfo {
 		width: 100%;
@@ -660,6 +662,15 @@
 	}
 	nav#main_nav ul.menu_nav ul li {
 		width: 100%;
+	}
+	.post_wrapper .postarea .keyinfo,
+	.post_wrapper .postarea .under_message {
+		flex-basis: 100%;
+		flex-grow: 1;
+	}
+	.post_wrapper .postarea .under_message {
+		margin: 5px 0 2px;
+		padding: 7px 2px 2px;
 	}
 }
 
