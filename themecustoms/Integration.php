@@ -197,6 +197,6 @@ class Integration
 		global $settings;
 
 		// Data attributes
-		$settings['themecustoms_html_attributes_data'] = (!empty($settings['themecustoms_html_attributes']['data']) && is_array($settings['themecustoms_html_attributes']['data']) ? implode(' ', $settings['themecustoms_html_attributes']['data']) : '');
+		$settings['themecustoms_html_attributes_data'] = (!empty($settings['themecustoms_html_attributes']['data']) && is_array($settings['themecustoms_html_attributes']['data']) ? ' ' . implode(' ', $settings['themecustoms_html_attributes']['data']) : '');
 	}
 }

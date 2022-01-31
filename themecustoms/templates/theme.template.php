@@ -27,13 +27,13 @@ function themecustoms_page_index()
 	global $txt;
 
 	return array(
-		'extra_before' => '<div class="pagination_container"><span class="pages">' . $txt['pages'] . '</span>',
+		'extra_before' => '<span class="pagination_container"><span class="pages">' . $txt['pages'] . '</span>',
 		'previous_page' => themecustoms_icon('fa fa-angle-left'),
 		'current_page' => '<span class="current_page">%1$d</span> ',
 		'page' => '<a class="nav_page" href="{URL}">%2$s</a> ',
 		'expand_pages' => '<span class="expand_pages" onclick="expandPages(this, {LINK}, {FIRST_PAGE}, {LAST_PAGE}, {PER_PAGE});"> ... </span>',
 		'next_page' => themecustoms_icon('fa fa-angle-right'),
-		'extra_after' => '</div>',
+		'extra_after' => '</span>',
 	);
 }
 
@@ -68,13 +68,13 @@ function themecustoms_footer()
 					<li class="smf_copyright">', theme_copyright(), '</li>
 				</ul>
 				<div class="footer-other">
+					', themecustoms_socials(), '
 					<a href="', $scripturl, '">', $context['forum_name'], ' &copy; ', date('Y'), '</a>
 					<span class="help-links">
 						<a href="', $scripturl, '?action=help">', $txt['help'], '</a>', (!empty($modSettings['requireAgreement'])) ? '
 						<a href="' . $scripturl . '?action=agreement">' . $txt['terms_and_rules'] . '</a>' : '', '
 						<a href="#top_section">', $txt['go_up'], ' ', themecustoms_icon('fa fa-arrow-up'), '</a>
 					</span>
-					', themecustoms_socials(), '
 				</div>
 			</div>';
 
@@ -257,7 +257,7 @@ function themecustoms_colorpicker()
 
 function themecustoms_darkmode()
 {
-	global $options, $settings;
+	global $settings;
 	
 	if (!empty($settings['st_enable_dark_mode']))
 	{
