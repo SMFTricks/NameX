@@ -73,6 +73,7 @@ input[type="submit"],
 }
 button.button:hover, button.button:focus,
 a.button:hover, a.button:focus,
+a.button.active:hover, a.button.active:focus,
 input[type="submit"]:hover, input[type="submit"]:focus,
 .button:hover, .button:focus,
 .pagesection .button:hover, .pagesection .button:focus {
@@ -443,6 +444,7 @@ nav#main_nav ul.menu_nav ul li a:hover span.amt {
 	padding: 0;
 }
 #inner_section {
+	background: transparent;
 	border-radius: 10px 10px 0 0;
 	padding: 10px 25px 3px;
 }
@@ -519,7 +521,11 @@ tr:last-child {
 	border-radius: 4px;
 	border-width: 0 1px;
 	border-color: var(--catbg-bg);
-	margin: 7px 0 0;
+	margin: 5px 0 !important;
+}
+#admin_content #st_settings_tabs div.windowbg {
+	margin: 0 !important;
+	box-shadow: none;
 }
 #admin_content .admin_group {
 	margin-top: 10px !important;
@@ -1962,6 +1968,7 @@ ul.quickbuttons li ul.dropmenu li a:focus {
 .errorbox, .noticebox, .infobox {
 	border-width: 1px 2px;
 	padding: 15px 15px 15px 40px;
+	margin: 3px 2px;
 }
 .noticebox {
 	background: var(--noticebox-bg);

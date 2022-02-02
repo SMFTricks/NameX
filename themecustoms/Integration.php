@@ -97,7 +97,7 @@ class Integration
 		$hooks = [
 			'menu_buttons' => 'main_menu',
 			'current_action' => 'disable_icons',
-			'actions' => 'hookActions',
+			// 'actions' => 'hookActions',
 			'buffer' => 'hookBuffer#',
 		];
 		foreach ($hooks as $point => $callable)
@@ -111,7 +111,7 @@ class Integration
 	 * @param array $actions An array containing all possible SMF actions. This includes loading different hooks for certain areas.
 	 * @return void
 	 */
-	public function hookActions()
+	public static function hookActions()
 	{
 		// Let the action do some work
 		if (isset($_REQUEST['action']))
@@ -131,7 +131,7 @@ class Integration
 	 * @param array $buttons
 	 * @return void
 	 */
-	public function main_menu(&$buttons)
+	public static function main_menu(&$buttons)
 	{
 		global $txt, $scripturl, $settings, $context;
 
@@ -156,7 +156,7 @@ class Integration
 	 * 
 	 * @return void
 	 */
-	public function disable_icons()
+	public static function disable_icons()
 	{
 		global $context, $settings, $txt;
 

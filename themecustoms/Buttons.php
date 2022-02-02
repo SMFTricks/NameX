@@ -21,7 +21,7 @@ class Buttons
 	 * 
 	 * @return void
 	 */
-	public function normalButtons(&$buttons)
+	public static function normalButtons(&$buttons)
 	{
 		global $context, $txt;
 
@@ -51,7 +51,7 @@ class Buttons
 	 * 
 	 * @return void
 	 */
-	public function quickButtons(&$output)
+	public static function quickButtons(&$output)
 	{
 		global $context, $scripturl, $txt, $modSettings;
 
