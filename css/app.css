@@ -368,6 +368,7 @@ nav#main_nav ul.menu_nav ul li a:hover span.amt {
 	color: var(--titlebg-txt-color);
 	border-radius: 3px;
 	border-width: 0;
+	min-height: 30px;
 }
 .dropmenu li a.active,
 .dropmenu li a.active:hover,
