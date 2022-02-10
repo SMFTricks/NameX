@@ -199,6 +199,10 @@ h3.catbg .icon {
 .main_icons.plus::before {
 	content: "\f067";
 }
+/* Warning */
+.main_icons.warning::before {
+	content: "\f639";
+}
 /* Themes */
 .main_icons.themes::before {
 	content: "\f5fd";
