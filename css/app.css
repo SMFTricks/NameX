@@ -417,6 +417,8 @@ nav#main_nav ul.menu_nav ul li a:hover span.amt {
 	filter: grayscale(100%);
 	opacity: 0.85;
 	transition:  filter 0.3s ease-in-out, opacity 0.3s ease-in-out;
+	display: inline-block;
+	min-width: 26px;
 }
 .dropmenu ul li a:hover img,
 .dropmenu ul li a:hover span.main_icons {
