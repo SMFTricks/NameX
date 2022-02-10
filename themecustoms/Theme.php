@@ -170,10 +170,10 @@ class Theme
 			// FontAwesome
 			'fontawesome' => [
 				'css' => [
-					'file' => 'https://use.fontawesome.com/releases/v5.15.4/css/all.css',
+					'file' => 'https://use.fontawesome.com/releases/v6.0.0/css/all.css',
 					'external' => true,
 					'attributes' => [
-						'integrity' => 'sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm',
+						'integrity' => 'sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS',
 						'crossorigin' => 'anonymous',
 					],
 				],

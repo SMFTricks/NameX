@@ -1,7 +1,7 @@
 /* Replace SMF Icons */
 .main_icons::before,
 h3.profile_hd::before {
-	font-family: "Font Awesome 5 Free";
+	font-family: "Font Awesome 6 Free";
 	display: inline-block;
     font-style: normal;
     font-variant: normal;
@@ -201,7 +201,7 @@ h3.catbg .icon {
 }
 /* Warning */
 .main_icons.warning::before {
-	content: "\f639";
+	content: "\f637";
 }
 /* Themes */
 .main_icons.themes::before {

@@ -404,6 +404,7 @@ nav#main_nav ul.menu_nav ul li a:hover span.amt {
 }
 .dropmenu li ul li a,
 .dropmenu li li a, .dropmenu li:hover li a,
+.dropmenu li li a:focus,
 .dropmenu > li:hover > a,
 .dropmenu > li > a:focus {
 	background: var(--nav-dropdown-item-bg);
@@ -605,7 +606,7 @@ tr.title_bar {
 	font-variant: normal;
 	text-rendering: auto;
 	-webkit-font-smoothing: antialiased;
-	font-family: "Font Awesome 5 Free";
+	font-family: "Font Awesome 6 Free";
 	box-shadow: none;
 	margin: 0;
 	border: none;
@@ -722,7 +723,7 @@ img.avatar {
 	font-variant: normal;
 	text-rendering: auto;
 	-webkit-font-smoothing: antialiased;
-	font-family: "Font Awesome 5 Free";
+	font-family: "Font Awesome 6 Free";
 	font-weight: 400;
 	font-size: 1.8em;
 	content: "\f086";
@@ -917,7 +918,7 @@ p.moderators > :is(a, a:visited, a:hover) {
 	font-variant: normal;
 	text-rendering: auto;
 	-webkit-font-smoothing: antialiased;
-	font-family: "Font Awesome 5 Free";
+	font-family: "Font Awesome 6 Free";
 	box-shadow: none;
 	margin: 0;
 	border: none;
@@ -1453,7 +1454,7 @@ li#user_thememode a:focus {
 	color: var(--mode-icon-color);
 }
 li#user_thememode a span::before {
-	font-family: "Font Awesome 5 Free";
+	font-family: "Font Awesome 6 Free";
 	display: inline-block;
 	font-style: normal;
 	font-variant: normal;
@@ -1953,7 +1954,7 @@ ul.quickbuttons li ul.dropmenu li a:focus {
 .noticebox::before,
 .infobox::before {
 	content: "\f071";
-	font-family: "Font Awesome 5 Free";
+	font-family: "Font Awesome 6 Free";
 	display: inline-block;
     font-style: normal;
     font-variant: normal;
