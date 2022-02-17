@@ -41,6 +41,9 @@ hr {
 input {
 	accent-color: var(--input-accent-color);
 }
+select, input, textarea {
+	font-size: 0.9em;
+}
 select, input, textarea,
 select:hover, input:hover, textarea:hover,
 select:focus, input:focus, textarea:focus {
@@ -1383,7 +1386,6 @@ footer .footer-other span.help-links a i.fa {
 	position: relative;
 }
 #top_info > li > a span:not(.fa) {
-	margin-left: 8px;
 	font-size: 0.85em;
 }
 #top_info > li.button_login {

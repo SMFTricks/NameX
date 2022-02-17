@@ -670,3 +670,7 @@ h3.profile_hd::before,
 .fa-features::before {
 	content: "\f5fd";
 }
+/* Tasks Manager */
+.fa-tasksmanager::before {
+	content: "\f0ae";
+}
