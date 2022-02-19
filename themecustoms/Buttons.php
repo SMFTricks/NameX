@@ -45,6 +45,19 @@ class Buttons
 	}
 
 	/**
+	 * Buttons::modButtons()
+	 *
+	 * @param array $modbuttons It receives the mod buttons for the respetive action.
+	 * 
+	 * @return void
+	 */
+	public static function modButtons(&$modbuttons)
+	{
+		// Change the icon for the tasks manager
+		$modbuttons['tasksmanager_add_task']['icon'] = 'tasksmanager';
+	}
+
+	/**
 	 * Buttons::quickButtons()
 	 * 
 	 * @param array $output It receives the message information

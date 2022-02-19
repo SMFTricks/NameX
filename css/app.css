@@ -12,11 +12,11 @@ body {
 	flex-direction: column;
 	min-height: 100vh;
 }
-h1, h2, h3, h4, h5, h6,
 dl, dt, dd,
 #detailedinfo dt, #tracking dt {
 	color: var(--body-txt-color);
 }
+h1, h2, h3, h4, h5, h6,
 .strong, strong,
 fieldset legend {
 	color: var(--body-txt-color-strong);
@@ -375,7 +375,8 @@ nav#main_nav ul.menu_nav ul li a:hover span.amt {
 }
 .dropmenu li a.active,
 .dropmenu li a.active:hover,
-.dropmenu li:hover a.active {
+.dropmenu li:hover a.active,
+.dropmenu li a.active:focus {
 	color: var(--buttonlist-txt-color-active);
 	background: var(--buttonlist-bg);
 	border: 1px solid var(--buttonlist-border-color);
@@ -414,6 +415,7 @@ nav#main_nav ul.menu_nav ul li a:hover span.amt {
 	color: var(--nav-dropdown-item-txt-color);
 	border-width: 0;
 	box-shadow: none;
+	text-shadow: none;
 }
 .dropmenu ul li a img,
 .dropmenu ul li a span.main_icons {
@@ -1130,13 +1132,14 @@ footer .footer-other span.help-links a i.fa {
 	background-color: var(--forumnews-bg);
 	display: flex;
 	flex-wrap: wrap;
-	align-items: center;
+	align-items: flex-start;
 	border-radius: 5px;
 	margin: 0 0 1em;
 	border-style: solid;
 	border-width: 0 0 0 3px;
 	border-color: var(--catbg-bg);
 	box-shadow: 2px 2px 1px 0px rgba(0, 0, 0, 0.1);
+	min-height: 90px;
 }
 .forum_news span.news_icon {
 	background-color: var(--forumnews-bg-inactive);
