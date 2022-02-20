@@ -210,7 +210,6 @@ img#smflogo {
 }
 .postarea, .moderatorbar {
 	margin: 0;
-	margin-right: 175px;
 }
 .keyinfo h5::after {
 	clear: left;
@@ -719,4 +718,8 @@ code.bbc_code, pre.file_content {
 }
 #info_center_blocks ul li.ui-tabs-active {
 	border-width: 0 3px 0 0;
+}
+.pm_bar .pm_mailbox,
+.pagesection > div.mobile_buttons {
+	text-align: left !important;
 }

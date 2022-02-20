@@ -414,6 +414,7 @@ h3.catbg .icon {
 /* Mark All Read */
 .fa-markread::before,
 .fa-readall::before,
+.fa-read_button::before,
 .fa-mark_read_short::before,
 .fa-mark_as_read::before,
 .main_icons.read_button::before {
@@ -531,7 +532,8 @@ h3.catbg .icon {
 .fa-alerts::before,
 .fa-mail::before,
 .fa-notify::before,
-.main_icons.notify::before {
+.main_icons.notify::before,
+.main_icons.alerts::before {
 	content: "\f0f3";
 }
 /* Pokes */
@@ -544,6 +546,7 @@ h3.catbg .icon {
 	content: "\f086";
 }
 /* Drafts */
+.main_icons.drafts::before,
 .fa-drafts::before {
 	content: "\f0ea";
 }

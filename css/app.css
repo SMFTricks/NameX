@@ -715,7 +715,8 @@ p.moderators {
 img.avatar {
 	border-radius: var(--avatar-border-radius);
 }
-.avatar_dot {
+.avatar_dot,
+#alerts .alert_image .avatar {
 	width: 48px;
 	height: 48px;
 }
@@ -1390,6 +1391,7 @@ footer .footer-other span.help-links a i.fa {
 }
 #top_info > li > a span:not(.fa) {
 	font-size: 0.85em;
+	margin-inline: 3px;
 }
 #top_info > li.button_login {
 	background: var(--header-bg);
@@ -1452,6 +1454,24 @@ ul.quickbuttons li span.amt a {
 }
 .pm_unread, .alerts_unread {
 	border-color: var(--uppersection-bg);
+}
+.pm_bar {
+	display: flex;
+	flex-direction: row;
+}
+.pm_bar > div {
+	flex-basis: 0;
+	flex-grow: 1;
+}
+.pm_bar .pm_sending a.floatright {
+	float: none;
+}
+.pm_bar .pm_sending a:last-child:before {
+	content: "| ";
+}
+.pm_bar .pm_mailbox {
+	margin: 0;
+	text-align: right;
 }
 
 /* Theme Mode */
@@ -1668,6 +1688,13 @@ li#user_thememode a span::before {
 	min-height: var(--keyinfo--height);
 	flex-grow: 0;
 	flex-basis: 40%;
+	flex-wrap: wrap;
+}
+.postarea .keyinfo .subject_title.subject_hidden {
+	padding: 5px 10px;
+}
+.postarea .keyinfo .subject_title.subject_hidden input {
+	width: 100%;
 }
 .keyinfo .page_number.floatright,
 .keyinfo .page_number {
@@ -1700,6 +1727,9 @@ li#user_thememode a span::before {
 .inner {
 	box-shadow: none;
 	border-width: 0;
+}
+.quickModifyMargin {
+	width: 100%;
 }
 .post_wrapper .moderatorbar,
 .post_wrapper .signature,
@@ -2015,10 +2045,33 @@ fieldset.admin_group a {
 	font-size: 0.75em !important;
 }
 
-/* Settings Tabs */
-/* #st_settings_tabs {
+/* Calendar */
+#month_grid td.calendar_today {
+	background: var(--buttonlist-bg-active);
+}
 
-} */
+/* Styles used by the auto suggest control.
+------------------------------------------------------- */
+.auto_suggest_div {
+	position: absolute;
+	visibility: hidden;
+	border-radius: 3px;
+	outline: none !important;
+	border: 1px solid var(--uppersection-bg);
+	z-index: 100;
+}
+.auto_suggest_item {
+	background: var(--content-section-bg);
+	padding: 1px 4px;
+}
+.auto_suggest_item_hover {
+	background: var(--roundframe-bg);
+	cursor: pointer;
+	color: var(--body-txt-color);
+	padding: 1px 4px;
+}
+
+/* Settings Tabs */
 .ui-tabs {
 	position: relative;/* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
 	padding: .2em;
