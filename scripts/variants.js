@@ -1,12 +1,18 @@
 // Get the current theme variant
 let themeVariant = smf_theme_variant;
 
+// Local Variant
+let localVariant = localStorage.getItem('themeVariant');
+
 // Theme Color on reload
 let themeColor = null;
 
 // Easy color switching
 let switchVariant = (setColor) => 
 {
+	// Update the theme variant
+	localStorage.setItem('themeVariant', setColor);
+
 	// Replace the theme variant
 	document.documentElement.dataset.themecolor = setColor;
 
@@ -19,8 +25,8 @@ let switchVariant = (setColor) =>
 }
 
 // Update the theme variant using the request variant
-if (themeColor === null)
-	switchVariant(themeVariant);
+if (themeColor === null && localVariant !== 'null' && localVariant !== null)
+	switchVariant(smf_member_id ? themeVariant : localVariant);
 
 // When someone clicks the button
 $(".theme-variant-toggle").click(function() {

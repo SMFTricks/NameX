@@ -98,7 +98,7 @@ class DarkMode
 	 *
 	 * @return void
 	 */
-	public function userOptions()
+	public static function userOptions()
 	{
 		global $context, $txt, $settings;
 
@@ -137,7 +137,7 @@ class DarkMode
 			return;
 
 		// Add the HTML data attribute for color mode
-		$settings['themecustoms_html_attributes']['data'][] = (!empty($settings['st_enable_dark_mode']) ? ('data-colormode="' . (isset($options['st_theme_mode']) && $options['st_theme_mode'] === 'dark' ? 'dark' : 'light') . '"') : 'data-colormode="dark"');
+		$settings['themecustoms_html_attributes']['data']['darkmode'] = (!empty($settings['st_enable_dark_mode']) ? ('data-colormode="' . (isset($options['st_theme_mode']) && $options['st_theme_mode'] === 'dark' ? 'dark' : 'light') . '"') : 'data-colormode="dark"');
 
 		// Load the dark CSS
 		loadCSSFile('dark.css', ['order_pos' => $this->_order_position], 'smf_darkmode');

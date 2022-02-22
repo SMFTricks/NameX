@@ -3,6 +3,8 @@ let darkMode = smf_darkmode;
 
 // Local Mode
 let localMode = localStorage.getItem('darkMode');
+
+// Set mode
 let themeMode = null;
 
 let switchThemeMode = (setMode) =>
@@ -22,10 +24,12 @@ let switchThemeMode = (setMode) =>
 }
 
 if (themeMode === null && localMode !== 'null' && localMode !== null)
-	switchThemeMode(localMode);
+	switchThemeMode(smf_member_id ? darkMode : localMode);
 
 // Toggle theme mode
 $('.theme-mode-toggle').click(function() {
 	// Switch the theme mode
 	switchThemeMode(darkMode === 'dark' ? 'light' : 'dark');
+
+	return false;
 });

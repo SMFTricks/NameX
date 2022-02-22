@@ -87,7 +87,7 @@ function themecustoms_colorpicker()
 {
 	global $settings, $txt, $scripturl, $context;
 
-	if (!empty($settings['theme_variants']) && count($settings['theme_variants']) > 1 && empty($settings['disable_user_variant']) && $context['user']['is_logged'])
+	if (!empty($settings['theme_variants']) && count($settings['theme_variants']) > 1 && empty($settings['disable_user_variant']))
 	{
 		echo '
 		<li id="user_colorpicker">

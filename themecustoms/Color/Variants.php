@@ -211,7 +211,7 @@ class Variants
 			$context['theme_variant'] = !empty($settings['default_variant']) && in_array($settings['default_variant'], $this->_variants) ? $settings['default_variant'] : $this->_variants[0];
 
 		// Add the HTML data attribute for color variant
-		$settings['themecustoms_html_attributes']['data'][] = 'data-themecolor="' . $context['theme_variant'] . '"';
+		$settings['themecustoms_html_attributes']['data']['variant'] = 'data-themecolor="' . $context['theme_variant'] . '"';
 
 		// Add the CSS file for the variant only if it's not the default.
 		if (!empty($context['theme_variant']) && $context['theme_variant'] != 'default' && (!empty($settings['disable_user_variant']) || empty($load_all)))
