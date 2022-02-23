@@ -538,7 +538,8 @@ h3.catbg .icon {
 }
 /* Pokes */
 .fa-pokes::before,
-.fa-poke::before {
+.fa-poke::before,
+.main_icons.poke::before {
 	content: "\f0a4";
 }
 /* Posts */
@@ -646,7 +647,8 @@ h3.profile_hd::before,
 	content: "\f2f5";
 }
 /* Team */
-.fa-team::before {
+.fa-team::before,
+.main_icons.team::before {
 	content: "\f509";
 }
 /* Shop */
