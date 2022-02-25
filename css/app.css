@@ -532,7 +532,7 @@ tr:last-child {
 	border-radius: 4px;
 	border-width: 0 1px;
 	border-color: var(--catbg-bg);
-	margin: 5px 0 !important;
+	margin: 5px 0;
 }
 #admin_content #st_settings_tabs div.windowbg {
 	margin: 0 !important;
@@ -716,9 +716,20 @@ p.moderators {
 .avatar_dot,
 img.avatar {
 	border-radius: var(--avatar-border-radius);
+	object-fit: cover;
+}
+img.avatar {
+	width: 192px;
+	height: 192px;
+}
+img#attached_image_new.avatar {
+	width: 192px;
+	height: 192px;
+	border-radius: 0;
 }
 .avatar_dot,
-#alerts .alert_image .avatar {
+#alerts .alert_image .avatar,
+.popup_content img.avatar {
 	width: 48px;
 	height: 48px;
 }
@@ -1533,7 +1544,7 @@ li#user_thememode a span::before {
 }
 #profile_menu div.unread_buttons ol li,
 #profile_menu div.unread_buttons ol li a{
-	font-size: 0.95em;
+	font-size: 1.02em;
 }
 #languages_form {
 	flex-basis: 100%;
@@ -1572,7 +1583,6 @@ li#user_thememode a span::before {
 	align-items: center;
 	text-indent: initial;
 	padding: 0 10px;
-	font-size: 0.85em;
 	gap: 5px;
 }
 .profile_user_links ol li a i {
@@ -1654,7 +1664,7 @@ li#user_thememode a span::before {
 	grid-row-end: 5;
 	padding: 5px 3px;
 	text-align: center;
-	border-radius: 4px;
+	border-radius: 4px 0 0 4px;
 }
 .poster img.avatar {
 	max-height: 175px;
@@ -1693,10 +1703,11 @@ li#user_thememode a span::before {
 	flex-wrap: wrap;
 }
 .postarea .keyinfo .subject_title.subject_hidden {
-	padding: 5px 10px;
+	order: 5;
 }
 .postarea .keyinfo .subject_title.subject_hidden input {
 	width: 100%;
+	margin: 5px 10px;
 }
 .keyinfo .page_number.floatright,
 .keyinfo .page_number {
