@@ -2037,10 +2037,11 @@ fieldset.admin_group legend {
 .admin_search {
 	text-align: right;
 }
-#admin_content .cat_bar > form {
+#admin_content .cat_bar > form.admin_search {
 	flex-grow: 1;
+	order: 1;
 }
-#admin_content .cat_bar > form .catbg {
+#admin_content .cat_bar > form.admin_search .catbg {
 	line-height: 1.7em;
 }
 fieldset.admin_group a {

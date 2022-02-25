@@ -999,4 +999,7 @@
 	.custom_search input[name="search"]:focus {
 		width: 9em;
 	}
+	#info_center_blocks #block-forum_stats div span.title > span.block-title {
+		display: none;
+	}
 }
