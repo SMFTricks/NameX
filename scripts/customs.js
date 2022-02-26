@@ -1,3 +1,5 @@
+console.log(msgid);
+
 // Some theme bits
 $(function() {
 
@@ -29,7 +31,7 @@ $(function() {
 	});
 
 	// Likes on quickbuttons
-	$(document).on('click', 'ul.quickbuttons li.smflikebutton > a', function(event){
+	$(document).on('click', 'ul.quickbuttons li.post_like_button > a', function(event){
 		var obj = $(this);
 		event.preventDefault();
 		ajax_indicator(true);

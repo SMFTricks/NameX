@@ -44,8 +44,10 @@ class Styles
 
 		// Fire up the function if the setting is set or enabled
 		foreach ($this->_style_settings as $style_setting)
+		{
 			if (!empty($settings[$style_setting]))
 				$this->_css .= $this->$style_setting();
+		}
 
 		// Add the css to the theme
 		addInlineCss($this->_css);

@@ -28,6 +28,16 @@ class Theme
 	public $_theme_name = 'NameX';
 
 	/**
+	 * @var array The theme author and the SMF id's
+	 */
+	public $_theme_author = ['Diego Andrés', 254071];
+
+	/**
+	 * @var int The theme's site id
+	 */
+	public $_smf_site_id = 0;
+
+	/**
 	 * @var bool Enable avatars on topic list
 	 */
 	private $_avatars_on_indexes = true;

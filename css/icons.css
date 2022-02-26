@@ -1,6 +1,7 @@
 /* Replace SMF Icons */
 .main_icons::before,
-h3.profile_hd::before {
+h3.profile_hd::before,
+.large_admin_menu_icon::before {
 	font-family: "Font Awesome 6 Free";
 	display: inline-block;
     font-style: normal;
@@ -15,6 +16,12 @@ h3.profile_hd::before {
 	margin: 0;
 	vertical-align: top;
 }
+/* Bigger Icons */
+.large_admin_menu_icon::before {
+	font-size: 2.5em;
+	width: auto !important;
+	height: auto !important;
+}
 /* Remove height and width? */
 h3.profile_hd::before,
 .main_icons.profile_hd::before {
@@ -28,11 +35,13 @@ h3.catbg .icon {
 }
 
 /* Search */
-.main_icons.search::before {
+.main_icons.search::before,
+.large_admin_menu_icon.search::before {
 	content: "\f002";
 }
 /* Seach Engines */
-.main_icons.engines::before {
+.main_icons.engines::before,
+.large_admin_menu_icon.engines::before {
 	content: "\f00e";
 }
 /* Check */
@@ -70,6 +79,7 @@ h3.catbg .icon {
 }
 /* Boards */
 .main_icons.boards::before,
+.large_admin_menu_icon.boards::before,
 .menu_icon.fa-forum::before,
 .fa-forum::before {
 	content: "\f07c";
@@ -84,7 +94,8 @@ h3.catbg .icon {
 	content: "\f03a";
 }
 /* Security */
-.main_icons.security::before {
+.main_icons.security::before,
+.large_admin_menu_icon.security::before {
 	content: "\f544";
 }
 /* Posters */
@@ -106,7 +117,8 @@ h3.catbg .icon {
 	content: "\f253";
 }
 /* Scheduled */
-.main_icons.scheduled::before {
+.main_icons.scheduled::before,
+.large_admin_menu_icon.scheduled::before {
 	content: "\f017";
 }
 /* Last Post */
@@ -118,7 +130,8 @@ h3.catbg .icon {
 	content: "\f507";
 }
 /* Membergroups */
-.main_icons.membergroups::before {
+.main_icons.membergroups::before,
+.large_admin_menu_icon.membergroups::before {
 	content: "\f509";
 }
 /* Www */
@@ -155,7 +168,8 @@ h3.catbg .icon {
 	content: "\f35a";
 }
 /* Mail */
-.main_icons.mail::before {
+.main_icons.mail::before,
+.large_admin_menu_icon.mail::before {
 	content: "\f0e0";
 }
 /* Mail New */
@@ -200,15 +214,18 @@ h3.catbg .icon {
 	content: "\f067";
 }
 /* Warning */
-.main_icons.warning::before {
+.main_icons.warning::before,
+.large_admin_menu_icon.warning::before {
 	content: "\f637";
 }
 /* Themes */
-.main_icons.themes::before {
+.main_icons.themes::before,
+.large_admin_menu_icon.themes::before {
 	content: "\f5fd";
 }
 /* Support */
-.main_icons.support::before {
+.main_icons.support::before,
+.large_admin_menu_icon.support::before {
 	content: "\f1cd";
 }
 /* Likes */
@@ -226,7 +243,8 @@ h3.catbg .icon {
 	content: "\f165";
 }
 /* Current Theme */
-.main_icons.current_theme::before {
+.main_icons.current_theme::before,
+.large_admin_menu_icon.current_theme::before {
 	content: "\f53f";
 }
 /* Stats */
@@ -242,15 +260,18 @@ h3.catbg .icon {
 	content: "\f153";
 }
 /* Smiley */
-.main_icons.smiley::before {
+.main_icons.smiley::before,
+.large_admin_menu_icon.smiley::before {
 	content: "\f118";
 }
 /* Server */
-.main_icons.server::before {
+.main_icons.server::before,
+.large_admin_menu_icon.server::before {
 	content: "\f233";
 }
 /* Ban */
-.main_icons.ban::before {
+.main_icons.ban::before,
+.large_admin_menu_icon.ban::before {
 	content: "\f05e";
 }
 /* Ignore */
@@ -262,7 +283,8 @@ h3.catbg .icon {
 	content: "\f506";
 }
 /* Posts */
-.main_icons.posts::before {
+.main_icons.posts::before,
+.large_admin_menu_icon.posts::before {
 	content: "\f0c5";
 }
 /* Sort */
@@ -299,7 +321,8 @@ h3.catbg .icon {
 	content: "\f3c1";
 }
 /* Permissions */
-.main_icons.permissions::before {
+.main_icons.permissions::before,
+.large_admin_menu_icon.permissions::before {
 	content: "\f084";
 }
 /* Profile SM */
@@ -307,11 +330,13 @@ h3.catbg .icon {
 	font-size: 0.55em;
 }
 /* Paid */
-.main_icons.paid::before {
+.main_icons.paid::before,
+.large_admin_menu_icon.paid::before {
 	content: "\f155";
 }
 /* Packages */
-.main_icons.packages::before {
+.main_icons.packages::before,
+.large_admin_menu_icon.packages::before {
 	content: "\f466";
 }
 /* Filter */
@@ -323,11 +348,13 @@ h3.catbg .icon {
 	content: "\f362";
 }
 /* Reports */
-.main_icons.reports::before {
+.main_icons.reports::before,
+.large_admin_menu_icon.reports::before {
 	content: "\f573";
 }
 /* News */
-.main_icons.news::before {
+.main_icons.news::before,
+.large_admin_menu_icon.news::before  {
 	content: "\f1ea";
 }
 /* Hide Popup */
@@ -339,11 +366,13 @@ h3.catbg .icon {
 	content: "\f55a";
 }
 /* Modifications */
-.main_icons.modifications::before {
+.main_icons.modifications::before,
+.large_admin_menu_icon.modifications::before {
 	content: "\f12e";
 }
 /* Maintain */
-.main_icons.maintain::before {
+.main_icons.maintain::before,
+.large_admin_menu_icon.maintain::before {
 	content: "\f0ad";
 }
 /* Administration */
@@ -351,7 +380,8 @@ h3.catbg .icon {
 	content: "\f552";
 }
 /* Attachment */
-.main_icons.attachment::before {
+.main_icons.attachment::before,
+.large_admin_menu_icon.attachment::before {
 	content: "\f0c6";
 }
 /* Error */
@@ -359,7 +389,8 @@ h3.catbg .icon {
 	content: "\f12a";
 }
 /* Languages */
-.main_icons.languages::before {
+.main_icons.languages::before,
+.large_admin_menu_icon.languages::before {
 	content: "\f1ab";
 }
 /* Members Request */
@@ -375,11 +406,13 @@ h3.catbg .icon {
 	content: "\f21b";
 }
 /* Logs */
-.main_icons.logs::before {
+.main_icons.logs::before,
+.large_admin_menu_icon.logs::before {
 	content: "\f46d";
 }
 /* Features */
-.main_icons.features::before {
+.main_icons.features::before,
+.large_admin_menu_icon.features::before {
 	content: "\f0ae";
 }
 /* Settings */
@@ -506,7 +539,8 @@ h3.catbg .icon {
 /* Calendar */
 .fa-calendar::before,
 .fa-calendar_upcoming::before,
-.main_icons.calendar::before {
+.main_icons.calendar::before,
+.large_admin_menu_icon.calendar::before {
 	content: "\f073";
 }
 /* Post Event */
@@ -515,6 +549,7 @@ h3.catbg .icon {
 }
 /* Register */
 .main_icons.main_icons.regcenter::before,
+.large_admin_menu_icon.regcenter::before,
 .fa-register::before,
 .fa-signup::before {
 	content: "\f234";
@@ -632,7 +667,8 @@ h3.catbg .icon {
 h3.profile_hd::before,
 .main_icons.profile_hd::before,
 .fa-profile::before,
-.main_icons.members::before {
+.main_icons.members::before,
+.large_admin_menu_icon.members::before {
 	content: "\f007";
 }
 /* PM */

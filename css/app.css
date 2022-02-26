@@ -623,6 +623,7 @@ tr.title_bar {
 	height: auto;
 	font-weight: 900;
 	font-size: 0.8em;
+	min-width: 15px;
 }
 .toggle_down:hover::before, .toggle_up:hover::before {
 	background: none;
@@ -1322,13 +1323,13 @@ footer .footer-other span.help-links a i.fa {
 	grid-template-columns: 1fr 1fr;
 	gap: 0.5em;
 }
+#recent_posts_content span.poster_link {
+	margin-right: 5px;
+}
 
 /* Profile */
 #detailedinfo dl, #tracking dl {
 	border-width: 0;
-}
-.clear_right {
-	display: none;
 }
 .icon_fields span.main_icons {
 	font-size: 1.5em;
@@ -1626,9 +1627,10 @@ li#user_thememode a span::before {
 /* Like me */
 .under_message ul:not(.quickbuttons) li.smflikebutton,
 .under_message ul:not(.quickbuttons) li.like_count {
-	display: none;
+	display: none !important;
 }
-.smflikebutton {
+li.smflikebutton,
+li.post_like_button {
 	margin: 0;
 }
 
@@ -1656,6 +1658,10 @@ li#user_thememode a span::before {
 }
 .postarea, .moderatorbar {
 	margin: 0;
+}
+.postarea div[id^='msg_'][id$='_ignored_prompt'] {
+	order: 2;
+	width: 100%;
 }
 .post_wrapper .poster {
 	width: var(--poster-width);
@@ -2042,7 +2048,7 @@ ul.quickbuttons li ul.dropmenu li a:focus {
 fieldset.admin_group legend {
 	background: var(--header-bg) !important;
 	color: var(--titlebg-txt-color);
-	border-color: var(--catbg) !important;
+	border-color: var(--alert-border-color) !important;
 	font-weight: normal;
 }
 .admin_search {
@@ -2055,8 +2061,33 @@ fieldset.admin_group legend {
 #admin_content .cat_bar > form.admin_search .catbg {
 	line-height: 1.7em;
 }
+fieldset.admin_group {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	padding: 15px 10px 10px;
+}
 fieldset.admin_group a {
+	border-radius: 6px;
 	font-size: 0.75em !important;
+	width: auto !important;
+	flex-basis: 150px;
+	background: var(--boarddescription-bg);
+	min-height: 90px;
+	display: flex !important;
+	flex-direction: column;
+	justify-content: center;
+	gap: 1.2em;
+	text-decoration: none;
+	padding: 8px 0 0;
+}
+fieldset.admin_group a:hover {
+	background: var(--buttonlist-bg-active);
+	color: var(--buttonlist-txt-color-active);
+}
+fieldset.admin_group a span.large_admin_menu_icon {
+	display: flex;
+	align-items: center;
 }
 
 /* Calendar */
@@ -2083,6 +2114,45 @@ fieldset.admin_group a {
 	cursor: pointer;
 	color: var(--body-txt-color);
 	padding: 1px 4px;
+}
+
+/* Quote */
+.quoteheader {
+	color: var(--body-txt-color-strong);
+}
+.bbc_standard_quote {
+	background: var(--quote-bg);
+}
+.bbc_alternate_quote {
+	background: var(--qutoe-alternate-bg);
+}
+.bbc_standard_quote,
+.bbc_alternate_quote {
+	border-width: 0 0 0 3px;
+	border-style: solid;
+	border-color: var(--quote-border-color);
+}
+/* Code */
+.codeheader {
+	color: var(--body-txt-color-strong);
+}
+.bbc_code {
+	background: var(--code-bg);
+	border-width: 2px 0 4px;
+	border-style: solid;
+	border-color: var(--code-border-color);
+}
+
+/* Alerts */
+.unread_notify {
+	background: var(--alert-bg);
+	border-color: var(--alert-border-color);
+}
+.unread_notify:hover {
+	background: var(--alert-bg-hover);
+}
+.alert_icon {
+	color: var(--body-txt-color-strong);
 }
 
 /* Settings Tabs */

@@ -67,7 +67,7 @@
 	/* Windowbg */
 		/* Background */
 		--windowbg-bg: hsl(var(--primary-color-hue), 15%, 95%);
-		--windowbg2-bg: hsl(var(--windowbg2-hue), var(--windowbg2-sat), var(--windowbg2-lum));
+		--windowbg2-bg: hsl(var(--primary-color-hue), 20%, 92%);
 		/* Shadow */
 		--windowbg-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.1) inset, 0px -1px 1px 0px rgba(0, 0, 0, 0.1) inset;
 
@@ -246,4 +246,24 @@
 	/* Avatar */
 		/* Border */
 		--avatar-border-radius: 50%;
+
+	/* Quote */
+		/* Border */
+		--quote-border-color: hsl(var(--primary-color-hue), 35%, 65%);
+		/* Background */
+		--quote-bg: hsl(var(--primary-color-hue), 5%, 90%);
+		--qutoe-alternate-bg: hsl(var(--primary-color-hue), 10%, 85%);
+
+	/* Code */
+		/* Border */
+		--code-border-color: hsl(var(--primary-color-hue), 40%, 50%);
+		/* Background */
+		--code-bg: hsl(var(--primary-color-hue), 25%, 95%);
+
+	/* Alerts */
+		/* Background */
+		--alert-bg: hsl(var(--primary-color-hue), 12%, 98%);
+		--alert-bg-hover: hsl(var(--primary-color-hue), 15%, 95%);
+		/* Border */
+		--alert-border-color: hsl(var(--primary-color-hue), 50%, 85%);
 }

@@ -63,8 +63,6 @@ class Integration
 		$classMap = array(
 			'ThemeCustoms\\' => 'themecustoms/',
 		);
-
-		// Do any third-party scripts want in on the fun?
 		call_integration_hook('integrate_customtheme_autoload', array(&$classMap));
 	
 		foreach ($classMap as $prefix => $dirName)
@@ -133,9 +131,7 @@ class Integration
 	 */
 	public static function main_menu(&$buttons)
 	{
-		global $txt, $scripturl, $settings, $context;
-
-		$context['profile_items'] = array();
+		global $txt, $scripturl, $settings;
 
 		// Add the theme settings to the admin button
 		$current_theme = [

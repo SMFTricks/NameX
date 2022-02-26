@@ -2,7 +2,7 @@
 	--body-bg: hsl(var(--primary-color-hue), 80%, 2%);
 	--body-txt-color: hsl(0, 0%, 70%);
 	--body-txt-color-strong: hsl(0, 0%, 90%);
-	--body-link-color: hsl(var(--primary-color-hue), 35%, 65%);
+	--body-link-color: hsl(var(--primary-color-hue), 35%, 55%);
 	--mode-icon-content: "\f186";
 	--mode-icon-color: hsl(40, 45%, 65%);
 	--input-bg: hsl(var(--primary-color-hue), 50%, 8%);
@@ -14,7 +14,7 @@
 	--header-bg: hsl(var(--primary-color-hue), 70%, 10%);
 	--header-border-color: hsl(var(--primary-color-hue), 45%, 15%);
 	--logo-bg-hover: hsl(0, 0%, 5%);
-	--footer-bg: hsl(var(--primary-color-hue), 60%, 12%);
+	--footer-bg: hsl(var(--primary-color-hue), 60%, 10%);
 	--newbutton-bg: linear-gradient(var(--catbg-bg), hsl(var(--primary-color-hue), 35%, 20%));
 	--nav-bg: hsl(var(--primary-color-hue), 90%, 4%);
 	--nav-shadow-color: rgba(170, 170, 170, 0.1);
@@ -69,4 +69,10 @@
 	--table-border-color: hsl(var(--primary-color-hue), 25%, 12%);
 	--amt-bg: hsl(var(--primary-color-hue), 65%, 10%);
 	--poster-bg: hsl(var(--primary-color-hue), 12%, 7%);
+	--quote-bg: hsl(var(--primary-color-hue), 10%, 15%);
+	--qutoe-alternate-bg: hsl(var(--primary-color-hue), 10%, 25%);
+	--code-bg: hsl(var(--primary-color-hue), 15%, 12%);
+	--alert-bg: hsl(var(--primary-color-hue), 25%, 10%);
+	--alert-bg-hover: hsl(var(--primary-color-hue), 15%, 13%);
+	--alert-border-color: hsl(var(--primary-color-hue), 25%, 15%);
 }
