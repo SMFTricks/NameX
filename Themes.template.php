@@ -469,8 +469,10 @@ function template_set_settings()
 			foreach ($context['st_themecustoms_setting_types'] as $setting_type)
 			{
 				if (!empty($setting_type))
+				{
 					echo '
 					<li class="title_bar"><a href="#settingtype-', $setting_type, '">', $txt['st_' . $setting_type], '</a></li>';
+				}
 			}
 
 			echo '

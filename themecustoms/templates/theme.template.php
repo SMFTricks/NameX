@@ -115,7 +115,7 @@ function themecustoms_darkmode()
 {
 	global $settings;
 	
-	if (!empty($settings['st_enable_dark_mode']))
+	if (!empty($settings['st_enable_dark_mode']) && !empty($settings['customtheme_darkmode']))
 	{
 		echo '
 		<li id="user_thememode">

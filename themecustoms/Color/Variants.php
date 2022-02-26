@@ -3,7 +3,7 @@
 /**
  * @package Theme Customs
  * @author Diego Andrés <diegoandres_cortes@outlook.com>
- * @copyright Copyright (c) 2021, SMF Tricks
+ * @copyright Copyright (c) 2022, SMF Tricks
  * @license MIT
  */
 
@@ -18,9 +18,7 @@ class Variants
 	 * @var array The theme color variants (red, green, blue, etc). It adds the "default" variant automatically.
 	 */
 	public $_variants = [
-		'red',
-		'green',
-		'blue',
+	
 	];
 
 	/**
@@ -54,7 +52,7 @@ class Variants
 			return;
 
 		// Theme variants... Add the default style to it just for presentation.
-		$this->_variants = array_merge(['default'], $this->_variants);
+		$this->_variants = array_unique(array_merge(['default'], $this->_variants));
 
 		// Insert the variants using the theme settings.
 		add_integration_function('integrate_theme_settings', __CLASS__ . '::setVariants#', false);
@@ -88,10 +86,16 @@ class Variants
 	 */
 	public function setVariants()
 	{
-		global $settings;
+		global $settings, $context;
 
-		// Add the setting type
-		$context['st_themecustoms_setting_types'][] = 'color';
+		// Setting type
+		if (!empty($context['st_themecustoms_setting_types']))
+		{
+			// Add the color setting type
+			array_push($context['st_themecustoms_setting_types'], 'color');
+			// Don't duplicate it if it's already there
+			$context['st_themecustoms_setting_types'] = array_unique($context['st_themecustoms_setting_types']);
+		}
 
 		// Add the color variants to the settings
 		$settings['theme_variants'] = $this->_variants;

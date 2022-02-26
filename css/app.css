@@ -1727,6 +1727,7 @@ li.post_like_button {
 }
 .keyinfo .postinfo .modified,
 .postarea .keyinfo span.smalltext {
+	color: var(--body-txt-color);
 	display: block;
 	float: none !important;
 	padding: 0;

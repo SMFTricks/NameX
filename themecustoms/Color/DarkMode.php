@@ -3,7 +3,7 @@
 /**
  * @package Theme Customs
  * @author Diego Andrés <diegoandres_cortes@outlook.com>
- * @copyright Copyright (c) 2021, SMF Tricks
+ * @copyright Copyright (c) 2022, SMF Tricks
  * @license MIT
  */
 
@@ -17,7 +17,7 @@ class DarkMode
 	/**
 	 * @var array The dark mode setting
 	 */
-	private $_darkmode = true;
+	private $_darkmode = false;
 
 	/**
 	 * @var int Order position for the dark mode file
@@ -37,6 +37,9 @@ class DarkMode
 		if (empty($this->_darkmode))
 			return;
 
+		// Add the dark mode to the variables
+		add_integration_function('integrate_theme_context', __CLASS__ . '::themeSettings#', false);
+
 		// Insert the variants using the theme settings.
 		add_integration_function('integrate_theme_settings', __CLASS__ . '::setting', false);
 
@@ -54,6 +57,21 @@ class DarkMode
 	}
 
 	/**
+	 * DarkMode::themeSettings()
+	 * 
+	 * Add a variable for theme settings to have more control over the dark mode
+	 * 
+	 * @return void
+	 */
+	public function themeSettings()
+	{
+		global $settings;
+
+		// Add the dark mode to the variables
+		$settings['customtheme_darkmode'] = $this->_darkmode;
+	}
+
+	/**
 	 * DarkMode::setting()
 	 *
 	 * Inserts the theme settings for the dark mode
@@ -64,8 +82,14 @@ class DarkMode
 	{
 		global $context, $txt;
 
-		// Add the setting type
-		$context['st_themecustoms_setting_types'][] = 'color';
+		// Setting type
+		if (!empty($context['st_themecustoms_setting_types']))
+		{
+			// Add the color setting type
+			array_push($context['st_themecustoms_setting_types'], 'color');
+			// Don't duplicate it if it's already there
+			$context['st_themecustoms_setting_types'] = array_unique($context['st_themecustoms_setting_types']);
+		}
 
 		// Master setting
 		$context['theme_settings'][] = [
