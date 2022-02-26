@@ -1,5 +1,3 @@
-console.log(msgid);
-
 // Some theme bits
 $(function() {
 
