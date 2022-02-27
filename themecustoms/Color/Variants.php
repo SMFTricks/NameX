@@ -19,9 +19,12 @@ class Variants
 	 * It adds the "default" variant automatically.
 	 */
 	public $_variants = [
-		// 'red',
-		// 'green',
-		// 'blue',
+		'red',
+		'green',
+		'blue',
+		'yellow',
+		'pink',
+		'purple',
 	];
 
 	/**

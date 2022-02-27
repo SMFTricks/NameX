@@ -30,6 +30,13 @@ class Changer
 	private $_color_palettes = [];
 
 	/**
+	 * @var array Root selectors
+	 */
+	private $_root_selectors = [
+		'[data-colormode="dark"]',
+	];
+
+	/**
 	 * Changer::__construct()
 	 * 
 	 * Initializes the theme color changer related features
@@ -108,7 +115,8 @@ class Changer
 
 		// Add additional root selectors for higher specificity
 		// Usually this is how the dark mode works so this won't change here, probably.
-		$settings['color_changes_root'] = ':root[data-colormode="dark"]';
+		if (!empty($this->_root_selectors))
+			$settings['color_changes_root'] = $this->_root_selectors;
 	}
 
 	/**
@@ -140,6 +148,13 @@ class Changer
 				'id' => 'cc_admin_only',
 				'label' => $txt['cc_admin_only'],
 				'description' => $txt['cc_admin_only_help'],
+				'theme_type' => 'color',
+			];
+
+			// Remove Shadows
+			$context['theme_settings'][] = [
+				'id' => 'cc_remove_shadows',
+				'label' => $txt['cc_remove_shadows'],
 				'theme_type' => 'color',
 			];
 
@@ -204,7 +219,7 @@ class Changer
 	private function changerJS()
 	{
 		// Load the color changer js
-		loadJavaScriptFile('ColorChanger.js', ['minimize' => true], 'smf_color_changer');
+		loadJavaScriptFile('ColorChanger.js', ['minimize' => true, 'defer' => true], 'smf_color_changer');
 
 		// Coloris colorpicker
 		loadJavascriptFile('coloris.js', ['minimize' => true, 'defer' => true], 'smftheme_js_coloris');

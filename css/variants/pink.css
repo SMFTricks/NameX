@@ -1,0 +1,5 @@
+:root[data-themecolor="pink"] {
+	--primary-color-hue: 345;
+	--body-bg: hsl(var(--primary-color-hue), 40%, 85%); 
+	--catbg-bg: hsl(var(--primary-color-hue), 40%, 45%);
+}
