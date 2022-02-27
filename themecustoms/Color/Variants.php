@@ -15,10 +15,13 @@ if (!defined('SMF'))
 class Variants
 {
 	/**
-	 * @var array The theme color variants (red, green, blue, etc). It adds the "default" variant automatically.
+	 * @var array The theme color variants (red, green, blue, etc).
+	 * It adds the "default" variant automatically.
 	 */
 	public $_variants = [
-	
+		// 'red',
+		// 'green',
+		// 'blue',
 	];
 
 	/**
@@ -55,13 +58,14 @@ class Variants
 		$this->_variants = array_unique(array_merge(['default'], $this->_variants));
 
 		// Insert the variants using the theme settings.
-		add_integration_function('integrate_theme_settings', __CLASS__ . '::setVariants#', false);
+		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] == $GLOBALS['settings']['theme_id'])
+			add_integration_function('integrate_theme_settings', __CLASS__ . '::setVariants#', false, '$themedir/themecustoms/Color/Variants.php');
 
 		// Add the variants to the list of available themes
-		add_integration_function('integrate_theme_context', __CLASS__ . '::userSelection#', false);
+		add_integration_function('integrate_theme_context', __CLASS__ . '::userSelection#', false, '$themedir/themecustoms/Color/Variants.php');
 
 		// Add the theme variants as a theme option too
-		add_integration_function('integrate_theme_options', __CLASS__ . '::userOptions#', false);
+		add_integration_function('integrate_theme_options', __CLASS__ . '::userOptions#', false, '$themedir/themecustoms/Color/Variants.php');
 
 		// Load the variants CSS
 		// Set to true when loading all of the variants at once (for styleswitching)
@@ -195,7 +199,7 @@ class Variants
 	 *
 	 * @return void
 	 */
-	protected function variantCSS($load_all = false)
+	private function variantCSS($load_all = false)
 	{
 		global $context, $settings, $options, $user_info;
 
@@ -242,7 +246,7 @@ class Variants
 	 *
 	 * @return void
 	 */
-	protected function addJavaScriptVars()
+	private function addJavaScriptVars()
 	{
 		global $context;
 
@@ -257,7 +261,7 @@ class Variants
 	 *
 	 * @return void
 	 */
-	protected function variantJS()
+	private function variantJS()
 	{
 		global $settings;
 

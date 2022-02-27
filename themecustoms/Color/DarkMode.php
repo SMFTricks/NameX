@@ -15,9 +15,9 @@ if (!defined('SMF'))
 class DarkMode
 {
 	/**
-	 * @var array The dark mode setting
+	 * @var array The dark mode master setting
 	 */
-	private $_darkmode = false;
+	private $_darkmode = true;
 
 	/**
 	 * @var int Order position for the dark mode file
@@ -29,22 +29,23 @@ class DarkMode
 	 *
 	 * Initializes the theme dark mode related features
 	 * 
-	 * @return void
+	 * @return void|bool Returns false if dark mode is not enabled
 	 */
 	public function __construct()
 	{
 		// Check if darkmode is enabled
 		if (empty($this->_darkmode))
-			return;
+			return false;
 
-		// Add the dark mode to the variables
-		add_integration_function('integrate_theme_context', __CLASS__ . '::themeSettings#', false);
+		// Add the dark mode to the theme variables
+		add_integration_function('integrate_theme_context', __CLASS__ . '::themeVar#', false, '$themedir/themecustoms/Color/DarkMode.php');
 
 		// Insert the variants using the theme settings.
-		add_integration_function('integrate_theme_settings', __CLASS__ . '::setting', false);
+		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] == $GLOBALS['settings']['theme_id'])
+			add_integration_function('integrate_theme_settings', __CLASS__ . '::settings', false, '$themedir/themecustoms/Color/DarkMode.php');
 
 		// Add the theme variants as a theme option too
-		add_integration_function('integrate_theme_options', __CLASS__ . '::userOptions', false);
+		add_integration_function('integrate_theme_options', __CLASS__ . '::userOptions', false, '$themedir/themecustoms/Color/DarkMode.php');
 
 		// Load dark mode CSSS
 		$this->darkCSS();
@@ -57,13 +58,13 @@ class DarkMode
 	}
 
 	/**
-	 * DarkMode::themeSettings()
+	 * DarkMode::themeVar()
 	 * 
 	 * Add a variable for theme settings to have more control over the dark mode
 	 * 
 	 * @return void
 	 */
-	public function themeSettings()
+	public function themeVar()
 	{
 		global $settings;
 
@@ -78,7 +79,7 @@ class DarkMode
 	 * 
 	 * @return void
 	 */
-	public static function setting()
+	public static function settings()
 	{
 		global $context, $txt;
 
@@ -152,7 +153,7 @@ class DarkMode
 	 *
 	 * @return void
 	 */
-	protected function darkCSS()
+	private function darkCSS()
 	{
 		global $settings, $options;
 
@@ -174,7 +175,7 @@ class DarkMode
 	 *
 	 * @return void
 	 */
-	protected function addJavaScriptVars()
+	private function addJavaScriptVars()
 	{
 		global $options, $settings;
 
@@ -190,7 +191,7 @@ class DarkMode
 	 *
 	 * @return void
 	 */
-	protected function darkJS()
+	private function darkJS()
 	{
 		global $settings;
 

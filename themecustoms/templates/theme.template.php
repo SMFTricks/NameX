@@ -18,8 +18,8 @@ function template_customs_init()
 	// SMF cries if it's not defined around here.
 	$settings['theme_version'] = '2.1';
 
-	// Integration hooks, and other fun stuff
-	add_integration_function('integrate_load_theme', 'ThemeCustoms\Integration::initialize#', false, $settings['theme_dir'] . '/themecustoms/Integration.php');
+	// Integration hooks are always fun.
+	add_integration_function('integrate_load_theme', 'ThemeCustoms\Integration::initialize#', false, '$themedir/themecustoms/Integration.php');
 }
 
 function themecustoms_page_index()

@@ -99,7 +99,7 @@ class Integration
 			'buffer' => 'hookBuffer#',
 		];
 		foreach ($hooks as $point => $callable)
-			add_integration_function('integrate_' . $point, __CLASS__ . '::' . $callable, false);
+			add_integration_function('integrate_' . $point, __CLASS__ . '::' . $callable, false,  '$themedir/themecustoms/Integration.php');
 	}
 
 	/**

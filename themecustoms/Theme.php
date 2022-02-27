@@ -11,6 +11,7 @@ namespace ThemeCustoms;
 
 use ThemeCustoms\Color\Variants;
 use ThemeCustoms\Color\DarkMode;
+use ThemeCustoms\Color\Changer;
 
 if (!defined('SMF'))
 	die('No direct access...');
@@ -86,6 +87,11 @@ class Theme
 	public $_theme_darkmode;
 
 	/**
+	 * @var object The color changer
+	 */
+	public $_color_changer;
+
+	/**
 	 * @var object Inline CSS styles
 	 */
 	public $_css_inline;
@@ -126,6 +132,9 @@ class Theme
 
 		// Theme Modes
 		$this->_theme_darkmode = new DarkMode;
+
+		// Color Changer
+		$this->_color_changer = new Changer;
 	}
 
 	/**

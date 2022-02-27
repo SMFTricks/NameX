@@ -3,7 +3,7 @@
 /**
  * @package Theme Customs
  * @author Diego Andrés <diegoandres_cortes@outlook.com>
- * @copyright Copyright (c) 2022, SMF Tricks
+ * @copyright Copyright (c) 2021, SMF Tricks
  * @license MIT
  */
 
@@ -43,8 +43,12 @@ class Settings
 	 */
 	public function __construct()
 	{
+		// Viewing other theme's settings?
+		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] != $GLOBALS['settings']['theme_id'])
+			return;
+
 		// Hook the theme settings
-		add_integration_function('integrate_theme_settings', __CLASS__ . '::themeSettings#', false);
+		add_integration_function('integrate_theme_settings', __CLASS__ . '::themeSettings#', false, '$themedir/themecustoms/Settings.php');
 
 		// Remove the values from those undesired settings
 		$this->undoSettings();
@@ -53,7 +57,8 @@ class Settings
 	/**
 	 * Settings::themeSettings()
 	 *
-	 * The monstrous theme settings array. New settings are added in here.
+	 * The monstrous theme settings array.
+	 * New settings are added in here.
 	 */
 	public function themeSettings()
 	{

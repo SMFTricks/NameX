@@ -2215,3 +2215,24 @@ fieldset.admin_group a span.large_admin_menu_icon {
 	background-image: none;
 	background-color: transparent;
 }
+
+/* Color Changer */
+#color_palettes {
+	display: flex;
+	flex-wrap: wrap;
+	clear: both;
+}
+.cc_p_color {
+	width: 10px;
+	height: 36px;
+	display: inline-block;
+}
+#color_palettes .cc_palette {
+	cursor: pointer;
+	display: flex;
+	flex-wrap: wrap;
+	padding: 4px;
+	border-radius: 0;
+	margin: 0 3px;
+	background: transparent;
+}

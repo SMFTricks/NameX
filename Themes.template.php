@@ -465,7 +465,9 @@ function template_set_settings()
 			<div id="st_settings_tabs">
   				<ul>';
 
-			// Get the rest of the setting types
+		// Get the rest of the setting types
+		if (!empty($context['st_themecustoms_setting_types']))
+		{
 			foreach ($context['st_themecustoms_setting_types'] as $setting_type)
 			{
 				if (!empty($setting_type))
@@ -474,6 +476,7 @@ function template_set_settings()
 					<li class="title_bar"><a href="#settingtype-', $setting_type, '">', $txt['st_' . $setting_type], '</a></li>';
 				}
 			}
+		}
 
 			echo '
 					<li class="title_bar"><a href="#settingtype-configuration">', $txt['st_config'], '</a></li>
@@ -534,20 +537,15 @@ function template_set_settings()
 						</dl>
 					</div>';
 
-	// echo '
-	// 				<div class="title_bar">
-	// 					<h3 class="titlebg config_hd">
-	// 						', $txt['theme_options'], '
-	// 					</h3>
-	// 				</div>';
-
 	$skeys = array_keys($context['settings']);
 	$first_setting_key = array_shift($skeys);
 	$titled_section = false;
 
-	foreach ($context['st_themecustoms_setting_types'] as $setting_type)
+	if (!empty($context['st_themecustoms_setting_types']))
 	{
-		echo '
+		foreach ($context['st_themecustoms_setting_types'] as $setting_type)
+		{
+			echo '
 					<div id="settingtype-', $setting_type, '">';
 
 			// Do we allow theme variants?
@@ -588,7 +586,56 @@ function template_set_settings()
 						<img src="', $context['theme_variants'][$context['default_variant']]['thumbnail'], '" id="variant_preview" alt="">';
 			}
 
+					// The theme settings
+					template_custom_list_settings($first_setting_key, $titled_section, $setting_type);
+
 				echo '
+					</div>';
+		}
+	}
+	else
+	{
+		echo '
+		<div id="settingtype-main">
+			', template_custom_list_settings($first_setting_key, $titled_section), '
+		</div>';
+	}
+	
+		echo '
+					<input type="submit" name="save" value="', $txt['save'], '" class="button">
+					<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
+					<input type="hidden" name="', $context['admin-sts_token_var'], '" value="', $context['admin-sts_token'], '">
+				</div><!-- .windowbg -->
+			</div>
+		</form>
+	</div><!-- #admin_form_wrapper -->';
+
+	if (!empty($context['theme_variants']))
+	{
+		echo '
+		<script>
+		var oThumbnails = {';
+
+		// All the variant thumbnails.
+		$count = 1;
+		foreach ($context['theme_variants'] as $key => $variant)
+		{
+			echo '
+			\'', $key, '\': \'', $variant['thumbnail'], '\'', (count($context['theme_variants']) == $count ? '' : ',');
+			$count++;
+		}
+
+		echo '
+		}
+		</script>';
+	}
+}
+
+function template_custom_list_settings($first_setting_key, &$titled_section, $setting_type = 'main')
+{
+	global $context;
+
+	echo '
 						<dl class="settings">';
 
 		foreach ($context['settings'] as $i => $setting)
@@ -700,44 +747,13 @@ function template_set_settings()
 								<input type="text"';
 
 				echo '
-								name="', !empty($setting['default']) ? 'default_' : '', 'options[', $setting['id'], ']" id="', $setting['id'], '" value="', $setting['value'], '"', $setting['type'] == 'number' ? ' size="5"' : (empty($setting['size']) ? ' size="40"' : ' size="' . $setting['size'] . '"'), '>
+								name="', !empty($setting['default']) ? 'default_' : '', 'options[', $setting['id'], ']" id="', $setting['id'], '" value="', $setting['value'], '"', $setting['type'] == 'number' ? ' size="5"' : (empty($setting['size']) ? ' size="40"' : ' size="' . $setting['size'] . '"'), !empty($setting['data']) ? ' ' . $setting['data'] : '', '>
 							</dd>';
 			}
 		}
 
 	echo '
-						</dl>
-					</div>';
-	}
-	
-		echo '
-					<input type="submit" name="save" value="', $txt['save'], '" class="button">
-					<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
-					<input type="hidden" name="', $context['admin-sts_token_var'], '" value="', $context['admin-sts_token'], '">
-				</div><!-- .windowbg -->
-			</div>
-		</form>
-	</div><!-- #admin_form_wrapper -->';
-
-	if (!empty($context['theme_variants']))
-	{
-		echo '
-		<script>
-		var oThumbnails = {';
-
-		// All the variant thumbnails.
-		$count = 1;
-		foreach ($context['theme_variants'] as $key => $variant)
-		{
-			echo '
-			\'', $key, '\': \'', $variant['thumbnail'], '\'', (count($context['theme_variants']) == $count ? '' : ',');
-			$count++;
-		}
-
-		echo '
-		}
-		</script>';
-	}
+						</dl>';
 }
 
 /**
