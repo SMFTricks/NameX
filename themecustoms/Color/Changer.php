@@ -46,7 +46,7 @@ class Changer
 	public function __construct()
 	{
 		// Check if color changer is enabled or if theme has any variants or if dark mode is enabled
-		if (empty($this->_color_changer) || !empty($GLOBALS['settings']['theme_variants']))
+		if (empty($this->_color_changer) || !empty($GLOBALS['settings']['theme_variants']) || !empty($GLOBALS['context']['theme_variant']))
 			return;
 
 		// Load the Color Changer language file
