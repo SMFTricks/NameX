@@ -13,9 +13,6 @@
 - Social Networks
 - Separate sticky topics
 - FontAwesome
-
-### Localization
-- ![English](https://www.simplemachines.org/site_images/lang/english.gif) English
 ---
 ### [Changelog](https://github.com/SMFTricks/NameX/blob/main/CHANGELOG.md)
 ### [GitHub](https://github.com/SMFTricks/NameX)
