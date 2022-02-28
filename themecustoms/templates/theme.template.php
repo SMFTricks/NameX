@@ -15,7 +15,6 @@ function template_customs_init()
 	global $settings;
 
 	// The version this template/theme is for. This should probably be the version of SMF it was created for.
-	// SMF cries if it's not defined around here.
 	$settings['theme_version'] = '2.1';
 
 	// Integration hooks are always fun.
@@ -212,4 +211,62 @@ function themecustoms_avatar($avatar, $memID =  0, $pos = 'left')
 		(!empty($memID) ? '<a class="avatar" href="' . $scripturl . '?action=profile;u='. $memID . '"' . ($pos == 'right' ? ' style="'. ($context['right_to_left'] ? 'order: 0;' : 'order: 1;') . '"' : ($context['right_to_left'] ? 'order: 1;' : '')) . '>' : '') . 
 		'<img class="avatar_dot' . (!empty($class) ? ' '. $class : '') . '" src="' . $avatar . '" alt=""' . ($pos == 'right' ? ' style="'. ($context['right_to_left'] ? 'order: 0;' : 'order: 1;') . '"' : ($context['right_to_left'] ? 'order: 1;' : '')) . ' />' . 
 		(!empty($memID) ? '</a>' : '');
+}
+
+function themecustoms_themeinfo()
+{
+	global $settings, $txt;
+
+	echo '
+		<div class="st-theme-information">
+			<!-- Theme Details -->
+			<div class="block">
+				<h4>', $txt['st_themeinfo_details'], '</h4>
+				<div class="block-content">
+					<div class="icon">
+						', themecustoms_icon('fas fa-code-merge'), '
+					</div>
+					<div class="details">
+						<strong>', $txt['st_themeinfo_name'], ':</strong> ', (empty($settings['theme_support_information']['theme_link']) ? $settings['theme_real_name'] : $settings['theme_support_information']['theme_link']), '<br />
+						<strong>', $txt['st_themeinfo_author'], ':</strong> ', $settings['theme_support_information']['profile_link'], '<br>
+						<strong>', $txt['st_themeinfo_version'] , ':</strong> ', $settings['theme_real_version'], '<br />
+						<strong>', $txt['st_themeinfo_smfversion'], ':</strong> ', $settings['theme_version'], '
+					</div>
+				</div>
+			</div>
+			<!-- Theme Details -->
+
+			<!-- Theme Support -->
+			<div class="block">
+				<h4>', $txt['st_themeinfo_support'], '</h4>
+				<div class="block-content">
+					<div class="icon">
+						', themecustoms_icon('fas fa-question'), '
+					</div>
+					<div class="details">';
+
+					// Support topic
+					if (!empty($settings['theme_support_information']['smf']))
+					{
+						echo '
+							<strong>', $txt['st_themeinfo_support_topic'], ':</strong> <a href="', $settings['theme_support_information']['smf'], '">', $txt['st_themeinfo_support_topic_desc'], '</a><br />';
+
+						// Review Link
+						if (!empty($settings['theme_support_information']['theme_review_link']))
+							echo '
+							<strong>', $txt['st_themeinfo_review'], ':</strong> <a href="', $settings['theme_support_information']['theme_review_link'], '">', $txt['st_themeinfo_review_desc'], '</a><br />';
+					}
+
+					// External
+					if (!empty($settings['theme_support_information']['external']))
+						echo '
+							<strong>', $txt['st_themeinfo_support_board'], ':</strong> <a href="', $settings['theme_support_information']['external'], '">', $txt['st_themeinfo_support_board_desc'], '</a><br />';
+
+						echo '
+						<strong>', $txt['st_themeinfo_github'] , ':</strong> <a href="', $settings['theme_support_information']['github'], '">', $txt['st_themeinfo_github_desc'], '</a><br />
+					</div>
+				</div>
+			</div>
+			<!-- Theme Details -->
+		</div>';
 }

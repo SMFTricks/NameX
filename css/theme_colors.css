@@ -5,7 +5,7 @@
 
 	/* Body */
 		/* Background */
-		--body-bg: hsl(var(--primary-color-hue), 35%, 80%);
+		--body-bg: hsl(var(--primary-color-hue), 40%, 85%); 
 		/* Color */
 		--body-txt-color: hsl(0, 0%, 15%);
 		/* Color Strong */
@@ -68,6 +68,8 @@
 		/* Background */
 		--windowbg-bg: hsl(var(--primary-color-hue), 15%, 95%);
 		--windowbg2-bg: hsl(var(--primary-color-hue), 20%, 92%);
+		--windowbg-bg-target: hsl(var(--primary-color-hue), 25%, 85%);
+		--windowbg-bg-hover: var(--header-bg);
 		/* Shadow */
 		--windowbg-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.1) inset, 0px -1px 1px 0px rgba(0, 0, 0, 0.1) inset;
 

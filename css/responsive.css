@@ -672,6 +672,10 @@
 		margin: 5px 0 2px;
 		padding: 7px 2px 2px;
 	}
+	.st-theme-information {
+		/* display: grid; */
+		grid-template-columns: 1fr;
+	}
 }
 
 /* Tricky menu */

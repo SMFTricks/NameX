@@ -84,6 +84,7 @@ $txt['st_remember'] = 'Remember me';
 $txt['close'] = 'Close';
 $txt['st_gotop'] = 'Go to top';
 $txt['st_config'] = 'Configuration';
+$txt['st_information'] = 'Information';
 $txt['st_tasks'] = 'Tasks';
 $txt['pm'] = 'Personal Messages';
 $txt['see_all'] = 'See All';
@@ -252,6 +253,8 @@ $txt['st_custom_width_desc'] = 'Set the forum width. Examples: 950px, 80%, 1240p
 // Color Variants
 $txt['st_color'] = 'Color Settings';
 $txt['st_color_variants'] = 'Theme Color Variants';
+$txt['st_color_variants_javascript'] = 'Use JavaScript to change the color';
+$txt['st_color_variants_javascript_desc'] = 'This will change the variant of the theme using JavaScript and auto-update for the profile.';
 $txt['variant_pick'] = 'Select Color Variant';
 $txt['variant_default'] = 'Default';
 $txt['variant_red'] = 'Red';
@@ -274,3 +277,20 @@ $txt['st_theme_mode_default_desc'] = 'If user selection is disabled, this will b
 $txt['st_enable_dark_mode'] = 'Enable user mode selection';
 $txt['st_dark_mode'] = 'Dark Mode';
 $txt['st_light_mode'] = 'Light Mode';
+
+// Theme information
+$txt['st_themeinfo_details'] = 'Theme Details';
+$txt['st_themeinfo_author'] = 'Author';
+$txt['st_themeinfo_author_dashboard'] = 'Author Dashboard';
+$txt['st_themeinfo_name'] = 'Theme Name';
+$txt['st_themeinfo_version'] = 'Theme Version';
+$txt['st_themeinfo_github'] = 'GitHub';
+$txt['st_themeinfo_github_desc'] = 'Bug Tracker and more.';
+$txt['st_themeinfo_support'] = 'Support';
+$txt['st_themeinfo_support_topic'] = 'Support Topic';
+$txt['st_themeinfo_support_topic_desc'] = 'Support and discussion for this theme.';
+$txt['st_themeinfo_support_board'] = 'Support Board';
+$txt['st_themeinfo_support_board_desc'] = 'Support board and discussion for this theme.';
+$txt['st_themeinfo_review'] = 'Review';
+$txt['st_themeinfo_review_desc'] = 'Review this theme.';
+$txt['st_themeinfo_smfversion'] = 'SMF Version';

@@ -1,5 +1,0 @@
-:root[data-themecolor="purple"] {
-	--primary-color-hue: 315;
-	--body-bg: hsl(var(--primary-color-hue), 40%, 85%); 
-	--catbg-bg: hsl(var(--primary-color-hue), 40%, 45%);
-}

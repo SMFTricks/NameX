@@ -46,7 +46,7 @@ class Styles
 		foreach ($this->_style_settings as $style_setting)
 		{
 			if (!empty($settings[$style_setting]))
-				$this->_css .= $this->$style_setting();
+				$this->_css .= $this->$style_setting($settings[$style_setting]);
 		}
 
 		// Add the css to the theme
@@ -60,17 +60,16 @@ class Styles
 	 * Thanks to Sycho for the idea from his Forum Width Mod
 	 * https://custom.simplemachines.org/index.php?mod=4223
 	 * 
+	 * @param var $setting The setting to use
 	 * @return void
 	 */
-	private function st_custom_width()
+	private function st_custom_width($setting)
 	{
-		global $settings;
-
 		// Adjust the max-width accorrdinly
 		return '
 			#top_section .inner_wrap, #wrapper, #header, footer .inner_wrap, #nav_wrapper
 			{
-				max-width: ' . $settings['st_custom_width'] . ';
+				max-width: ' . $setting. ';
 				width: unset;
 			}
 			@media screen and (max-width: 991px)

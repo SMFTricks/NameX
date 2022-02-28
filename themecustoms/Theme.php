@@ -31,12 +31,30 @@ class Theme
 	/**
 	 * @var array The theme author and the SMF id's
 	 */
-	public $_theme_author = ['Diego Andrés', 254071];
+	public $_theme_author = [
+		'name' => 'Diego Andrés',
+		'id' => 254071,
+	];
+
+	/**
+	 * @var string The theme's support email
+	 */
+	public $_github_url = 'https://github.com/SMFTricks/NameX';
 
 	/**
 	 * @var int The theme's site id
 	 */
-	public $_smf_site_id = 0;
+	public $_smf_site_id = 1;
+
+	/**
+	 * @var int The support topic id
+	 */
+	public $_support_topic_id = 1;
+
+	/**
+	 * @var string The theme's support url
+	 */
+	public $_support_url = '';
 
 	/**
 	 * @var bool Enable avatars on topic list
@@ -148,11 +166,21 @@ class Theme
 	{
 		global $settings;
 
+		// The theme name
+		$settings['theme_real_name'] = $this->_theme_name;
+
 		// The actual version of the theme
 		$settings['theme_real_version'] = $this->_theme_version;
 
-		// The theme name
-		$settings['theme_real_name'] = $this->_theme_name;
+		// Support
+		$settings['theme_support_information'] = [
+			'smf' => (!empty($this->_support_topic_id) ? 'https://www.simplemachines.org/community/index.php?topic='. $this->_support_topic_id . ' .0' : ''),
+			'external' => (!empty($this->_support_url) ? $this->_support_url : ''),
+			'github' => (!empty($this->_github_url) ? $this->_github_url : 'https://github.com'),
+			'theme_link' => (!empty($this->_smf_site_id) ? '<a href="https://custom.simplemachines.org/index.php?theme=' . $this->_smf_site_id. '">' . $this->_theme_name . '</a>' : ''),
+			'theme_review_link' => (!empty($this->_smf_site_id) ? 'https://custom.simplemachines.org/index.php?theme=' . $this->_smf_site_id. '#cs_review' : ''),
+			'profile_link' => '<a href="https://custom.simplemachines.org/index.php?action=profile;u='. $this->_theme_author['id'] . '">'. $this->_theme_author['name'] .'</a>',
+		];
 
 		// Set the following variable to true if this theme wants to display the avatar of the user that posted the last and the first post on the message index and recent pages.
 		$settings['avatars_on_indexes'] = $this->_avatars_on_indexes;
@@ -415,15 +443,20 @@ class Theme
 	 * 
 	 * @return string Surprise!
 	 */
-	public function unspeakable(&$buffer)
+	public function unspeakable(&$buffer, $return = false)
 	{
 		global $settings;
 
 		// Do not remove the copyright without permission!
-		if (!isset($settings['theme_remove_copyright']) || empty($settings['theme_remove_copyright']))
+		$ST = 'Theme by <a href="https://smftricks.com">SMF Tricks</a>';
+		// Return it
+		if ($return)
+			return (!empty($settings['theme_support_information']['theme_link']) ? $settings['theme_support_information']['theme_link'] . ' | ' : '') . $ST;
+		// Stick it
+		elseif (!isset($settings['theme_remove_copyright']) || empty($settings['theme_remove_copyright']))
 			$buffer = preg_replace(
 				'~(<li class="smf_copyright">)~',
-				'<li>Theme by <a href="https://smftricks.com">SMF Tricks</a></li>' . "$1 ",
+				'<li>'. $ST . '</li>' . "$1 ",
 				$buffer
 			);
 	}

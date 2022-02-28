@@ -34,6 +34,7 @@
 	--forumnews-bg: hsl(var(--primary-color-hue), 40%, 8%);
 	--forumnews-bg-inactive: hsl(var(--primary-color-hue), 50%, 3%);
 	--windowbg-bg: hsl(var(--primary-color-hue), 18%, 8%);
+	--windowbg-bg-target: hsl(var(--primary-color-hue), 35%, 15%);
 	--windowbg-shadow: 0px 1px 1px 0px rgba(105, 105, 105, 0.1) inset, 0px -1px 1px 0px rgba(105, 105, 105, 0.1) inset;
 	--boardmoderators-bg: hsl(var(--primary-color-hue), 25%, 15%);
 	--boarddescription-bg: hsl(var(--primary-color-hue), 20%, 10%);

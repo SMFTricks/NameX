@@ -480,6 +480,7 @@ function template_set_settings()
 
 			echo '
 					<li class="title_bar"><a href="#settingtype-configuration">', $txt['st_config'], '</a></li>
+					', (!empty($context['st_themecustoms_setting_types']) ? '<li class="title_bar"><a href="#settingtype-information">' . $txt['st_information'] . '</a></li>' : ''), '
   				</ul>
 				<div class="windowbg">
 					<div id="settingtype-configuration">';
@@ -534,7 +535,11 @@ function template_set_settings()
 							<dd>
 								<input type="text" id="theme_dir" name="options[theme_dir]" value="', $context['theme_settings']['actual_theme_dir'], '" size="50">
 							</dd>
+							
 						</dl>
+						<input type="submit" name="save" value="', $txt['save'], '" class="button">
+						<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
+						<input type="hidden" name="', $context['admin-sts_token_var'], '" value="', $context['admin-sts_token'], '">
 					</div>';
 
 	$skeys = array_keys($context['settings']);
@@ -562,6 +567,10 @@ function template_set_settings()
 								<label for="variant">
 									<strong>', $txt['theme_variants_default'], '</strong>
 									</label>:
+									<br>
+									<span class="smalltext">
+										<img src="', $context['theme_variants'][$context['default_variant']]['thumbnail'], '" id="variant_preview" class="theme_thumbnail" alt="">
+									</span>
 							</dt>
 							<dd>
 								<select id="variant" name="options[default_variant]" onchange="changeVariant(this.value)">';
@@ -582,8 +591,7 @@ function template_set_settings()
 								<input type="hidden" name="options[disable_user_variant]" value="0">
 								<input type="checkbox" name="options[disable_user_variant]" id="disable_user_variant"', !empty($context['theme_settings']['disable_user_variant']) ? ' checked' : '', ' value="1">
 							</dd>
-						</dl>
-						<img src="', $context['theme_variants'][$context['default_variant']]['thumbnail'], '" id="variant_preview" alt="">';
+						</dl>';
 			}
 
 					// The theme settings
@@ -592,6 +600,12 @@ function template_set_settings()
 				echo '
 					</div>';
 		}
+
+		// Theme Information
+		echo '
+			<div id="settingtype-information">
+				', themecustoms_themeinfo(), '
+			</div>';
 	}
 	else
 	{
@@ -602,9 +616,6 @@ function template_set_settings()
 	}
 	
 		echo '
-					<input type="submit" name="save" value="', $txt['save'], '" class="button">
-					<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
-					<input type="hidden" name="', $context['admin-sts_token_var'], '" value="', $context['admin-sts_token'], '">
 				</div><!-- .windowbg -->
 			</div>
 		</form>
@@ -633,7 +644,7 @@ function template_set_settings()
 
 function template_custom_list_settings($first_setting_key, &$titled_section, $setting_type = 'main')
 {
-	global $context;
+	global $context, $txt;
 
 	echo '
 						<dl class="settings">';
@@ -753,7 +764,10 @@ function template_custom_list_settings($first_setting_key, &$titled_section, $se
 		}
 
 	echo '
-						</dl>';
+						</dl>
+						<input type="submit" name="save" value="', $txt['save'], '" class="button">
+						<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
+						<input type="hidden" name="', $context['admin-sts_token_var'], '" value="', $context['admin-sts_token'], '">';
 }
 
 /**

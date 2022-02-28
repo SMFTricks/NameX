@@ -38,11 +38,6 @@ class Variants
 	private $_order_position = 101;
 
 	/**
-	 * @var bool Enable a styleswitcher using JS
-	 */
-	private $_enable_styleswitcher = true;
-
-	/**
 	 * Variants::__construct()
 	 *
 	 * Initializes the theme color variants because
@@ -62,7 +57,7 @@ class Variants
 
 		// Insert the variants using the theme settings.
 		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] == $GLOBALS['settings']['theme_id'])
-			add_integration_function('integrate_theme_settings', __CLASS__ . '::setVariants#', false, '$themedir/themecustoms/Color/Variants.php');
+			add_integration_function('integrate_theme_settings', __CLASS__ . '::settings#', false, '$themedir/themecustoms/Color/Variants.php');
 
 		// Add the variants to the list of available themes
 		add_integration_function('integrate_theme_context', __CLASS__ . '::userSelection#', false, '$themedir/themecustoms/Color/Variants.php');
@@ -71,17 +66,13 @@ class Variants
 		add_integration_function('integrate_theme_options', __CLASS__ . '::userOptions#', false, '$themedir/themecustoms/Color/Variants.php');
 
 		// Load the variants CSS
-		// Set to true when loading all of the variants at once (for styleswitching)
-		$this->variantCSS($this->_enable_styleswitcher);
+		$this->variantCSS();
 
-		// Style Switcher
-		if (!empty($this->_enable_styleswitcher))
-		{
-			// Insert the JS vars for the variants
-			$this->addJavaScriptVars();
-			// Load the JS file for the variants
-			$this->variantJS();
-		}
+		// Insert the JS vars for the variants
+		$this->addJavaScriptVars();
+
+		// Load the JS file for the variants
+		$this->variantJS();
 	}
 
 	/**
@@ -93,7 +84,22 @@ class Variants
 	 */
 	public function setVariants()
 	{
-		global $settings, $context;
+		global $settings;
+
+		// Add the color variants to the settings
+		$settings['theme_variants'] = $this->_variants;
+	}
+
+	/**
+	 * Variants::getVariant()
+	 *
+	 * Adds the already defined theme color variants to the settings.
+	 *
+	 * @return void
+	 */
+	public function settings()
+	{
+		global $context, $txt;
 
 		// Setting type
 		if (!empty($context['st_themecustoms_setting_types']))
@@ -105,7 +111,16 @@ class Variants
 		}
 
 		// Add the color variants to the settings
-		$settings['theme_variants'] = $this->_variants;
+		$this->setVariants();
+
+		// Use Javascript?
+		$context['theme_settings'][] = [
+			'id' => 'st_color_variants_javascript',
+			'label' => $txt['st_color_variants_javascript'],
+			'description' => $txt['st_color_variants_javascript_desc'],
+			'type' => 'checkbox',
+			'theme_type' => 'color',
+		];
 	}
 
 	/**
@@ -120,7 +135,7 @@ class Variants
 	{
 		global $context, $settings, $options, $txt;
 
-		// Re-load the variants so they become available eveywhere
+		// Add the color variants to the section
 		$this->setVariants();
 
 		// Is user selection enabled?
@@ -166,7 +181,7 @@ class Variants
 	 */
 	public function userOptions()
 	{
-		global $context, $txt, $settings;
+		global $context, $txt, $settings, $options;
 
 		// Check if the user is allowed to change color variants
 		if (!empty($settings['disable_user_variant']))
@@ -190,19 +205,20 @@ class Variants
 			],
 			$context['theme_options']
 		);
+
+		// When no JS, trick the setting into thinking we are running that variant.
+		if (empty($settings['st_color_variants_javascript']))
+			$options['theme_variant'] = $context['theme_variant'];
 	}
 
 	/**
 	 * Variants::variantCSS()
 	 *
-	 * Loads the variant CSS.
-	 * 
-	 * @param bool $load_all You can enable this to load all variants at once,
-	 * useful for implementing a styleswitcher.
+	 * Loads the color variants CSS.
 	 *
 	 * @return void
 	 */
-	private function variantCSS($load_all = false)
+	private function variantCSS()
 	{
 		global $context, $settings, $options, $user_info;
 
@@ -214,7 +230,7 @@ class Variants
 				$_SESSION['id_variant'] = $_REQUEST['variant'];
 
 			// Set the current variant
-			$context['theme_variant'] = $user_info['is_guest'] && !empty($_SESSION['id_variant']) && isset($_SESSION['id_variant']) && in_array($_SESSION['id_variant'], $this->_variants) ? $_SESSION['id_variant'] : (isset($_REQUEST['variant']) && !empty($_REQUEST['variant']) && in_array($_REQUEST['variant'], $this->_variants) ? $_REQUEST['variant'] : (!empty($options['theme_variant']) && in_array($options['theme_variant'], $this->_variants) && isset($options['theme_variant']) ? $options['theme_variant'] : ''));
+			$context['theme_variant'] = ($user_info['is_guest'] || empty($settings['st_color_variants_javascript']))&& !empty($_SESSION['id_variant']) && isset($_SESSION['id_variant']) && in_array($_SESSION['id_variant'], $this->_variants) ? $_SESSION['id_variant'] : (isset($_REQUEST['variant']) && !empty($_REQUEST['variant']) && in_array($_REQUEST['variant'], $this->_variants) ? $_REQUEST['variant'] : (!empty($options['theme_variant']) && in_array($options['theme_variant'], $this->_variants) && isset($options['theme_variant']) ? $options['theme_variant'] : ''));
 		}
 
 		// Set the default variant if there's no variant or variants are disabled
@@ -225,21 +241,7 @@ class Variants
 		$settings['themecustoms_html_attributes']['data']['variant'] = 'data-themecolor="' . $context['theme_variant'] . '"';
 
 		// Add the CSS file for the variant only if it's not the default.
-		if (!empty($context['theme_variant']) && $context['theme_variant'] != 'default' && (!empty($settings['disable_user_variant']) || empty($load_all)))
-		{
-			loadCSSFile('variants/' . $context['theme_variant'] . '.css', ['order_pos' => $this->_order_position], 'smf_index_' . $context['theme_variant']);
-		}
-		// Load all of the styles
-		elseif (!empty($load_all) && empty($settings['disable_user_variant']))
-		{
-			// For styleswitch we load all of the variants at once.
-			foreach ($this->_variants as $variant)
-			{
-				// Only if it's not the default
-				if ($variant !== 'default')
-					loadCSSFile('variants/' . $variant . '.css', ['order_pos' => $this->_order_position++], 'smf_index_' . $variant);
-			}
-		}
+		loadCSSFile('variants.css', ['order_pos' => $this->_order_position], 'smf_index_variants');
 	}
 
 	/**
@@ -251,7 +253,11 @@ class Variants
 	 */
 	private function addJavaScriptVars()
 	{
-		global $context;
+		global $context, $settings;
+
+		// Check for JS
+		if (empty($settings['st_color_variants_javascript']))
+			return;
 
 		// Theme Variant
 		addJavaScriptVar('smf_theme_variant', '\'' . $context['theme_variant'] . '\'');
@@ -267,6 +273,10 @@ class Variants
 	private function variantJS()
 	{
 		global $settings;
+
+		// Check for JS
+		if (empty($settings['st_color_variants_javascript']))
+			return;
 
 		// Load the file only if the user can change variants
 		if (empty($settings['disable_user_variant']))

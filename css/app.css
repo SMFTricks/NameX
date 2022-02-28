@@ -487,12 +487,19 @@ table.table_grid {
 .bg.even, .bg.odd, tr {
 	background: var(--windowbg-bg);
 }
+.windowbg:target,
+.windowbg:nth-of-type(2n+1):target,
+.windowbg:nth-of-type(2n):target,
+.windowbg.selected,
+#pick_theme .selected {
+	background: var(--windowbg-bg-target);
+}
 .generic_list_wrapper {
 	background: var(--header-bg);
 }
 tr.windowbg:hover, tr.bg:hover,
 tr:hover {
-	background: var(--header-bg);
+	background: var(--windowbg-bg-hover);
 }
 .information, tr.windowbg, tr.bg, tr,
 #messageindex .information, #topic_icons .information {
@@ -2166,6 +2173,7 @@ fieldset.admin_group a span.large_admin_menu_icon {
 	padding: .2em .2em 0;
 	display: flex;
 	gap: 0;
+	flex-wrap: wrap;
 }
 .ui-tabs .ui-tabs-nav li {
 	list-style: none;
@@ -2235,4 +2243,58 @@ fieldset.admin_group a span.large_admin_menu_icon {
 	border-radius: 0;
 	margin: 0 3px;
 	background: transparent;
+}
+
+/* Theme Information */
+.st-theme-information {
+	display: grid;
+	grid-template-columns: 1fr 1.5fr;
+}
+.st-theme-information .block {
+	margin: 5px 5px 10px;
+}
+.st-theme-information .block h4 {
+	font-size: 1.3em;
+	margin-bottom: 0.8em;
+	padding-inline-start: 30px;
+}
+.st-theme-information .block .block-content {
+	display: flex;
+	align-items: center;
+}
+.st-theme-information .block .icon {
+	color: var(--body-txt-color-strong);
+	text-align: center;
+	flex-basis: 64px;
+	height: 64px;
+	border-radius: 50%;
+	font-size: 1.3em;
+	align-self: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-style: solid;
+	border-width: 3px;
+	border-color: var(--catbg-bg);
+	z-index: 1;
+	transition: all 0.2s ease-in-out;
+}
+.st-theme-information .block .details {
+	padding-block: 15px;
+	padding-inline-start: 47px;
+	padding-inline-end: 15px;
+	margin-inline-start: -32px;
+	flex-basis: 100%;
+	border-style: solid;
+	border-width: 2px 4px 2px 0;
+	border-color: var(--catbg-bg);
+	border-radius: 10px;
+	transition: all 0.5s ease-in-out;
+}
+.st-theme-information .block:hover .icon {
+	font-size: 2em;
+	background-color: var(--windowbg-bg-target);
+}
+.st-theme-information .block:hover .details {
+	background: var(--windowbg-bg-hover);
 }

@@ -1,5 +1,0 @@
-:root[data-themecolor="blue"] {
-	--primary-color-hue: 205;
-	--body-bg: hsl(var(--primary-color-hue), 40%, 85%); 
-	--catbg-bg: hsl(var(--primary-color-hue), 40%, 45%);
-}

@@ -95,7 +95,7 @@ class Integration
 		$hooks = [
 			'menu_buttons' => 'main_menu',
 			'current_action' => 'disable_icons',
-			// 'actions' => 'hookActions',
+			'actions' => 'hookActions',
 			'buffer' => 'hookBuffer#',
 		];
 		foreach ($hooks as $point => $callable)
@@ -116,7 +116,9 @@ class Integration
 		{
 			switch ($_REQUEST['action'])
 			{
-				default:
+				// Credits page
+				case 'credits': 
+					add_integration_function('integrate_credits', __CLASS__ . '::credits#', false,  '$themedir/themecustoms/Integration.php');
 					break;
 			}
 		}
@@ -163,6 +165,23 @@ class Integration
 			$current_menu[$key]['icon'] = (isset($settings['st_disable_menu_icons']) && !empty($settings['st_disable_menu_icons']) ? '' : themecustoms_icon('fa fa-' . (isset($txt['lp_forum']) && $key == 'home' ? 'forum' : $key)));
 		}
 		$context['menu_buttons'] = $current_menu;
+	}
+
+	/**
+	 * Integration::credits()
+	 *
+	 * Add a little surprise to the credits page
+	 * @return void
+	 */
+	public function credits()
+	{
+		global $context;
+
+		// Theme copyright
+		$copyright = true;
+
+		// Lelelelele?
+		$context['copyrights']['mods'][] = $this->_load_theme->unspeakable($copyright, true);
 	}
 
 	/**
