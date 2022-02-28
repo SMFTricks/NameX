@@ -10,6 +10,8 @@
 		--body-txt-color: hsl(0, 0%, 15%);
 		/* Color Strong */
 		--body-txt-color-strong: hsl(0, 0%, 35%);
+		/* Font Family */
+		--body-font-family: 'Lato', 'Segoe UI', 'Helvetica', 'Arial';
 
 	/* Links */
 		/* Color */

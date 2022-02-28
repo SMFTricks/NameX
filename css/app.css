@@ -4,7 +4,7 @@ html {
 }
 body {
 	background: var(--body-bg);
-	font-family: 'Lato', 'Segoe UI', 'Helvetica', 'Arial';
+	font-family: var(--body-font-family);
 	color: var(--body-txt-color);
 	font-size: 1rem;
 	line-height: 1.2rem;
