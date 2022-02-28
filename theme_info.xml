@@ -3,7 +3,7 @@
 	<id>smftricks:NameX</id>
 	<!-- The theme's version -->
 	<version>1.0</version>
-	<install for="2.1 - 2.1.99, 2.1 RC4" />
+	<install for="2.1 - 2.1.99" />
 	<name>NameX</name>
 	<author name="SMF Tricks">admin@smftricks.com</author>
 	<website>https://www.smftricks.com/</website>

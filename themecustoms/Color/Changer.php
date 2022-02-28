@@ -45,7 +45,6 @@ class Changer
 	 */
 	public function __construct()
 	{
-		// print_r($GLOBALS['settings']['customtheme_darkmode']);
 		// Check if color changer is enabled or if theme has any variants or if dark mode is enabled
 		if (empty($this->_color_changer) || !empty($GLOBALS['settings']['theme_variants']))
 			return;
