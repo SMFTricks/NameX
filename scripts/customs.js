@@ -6,6 +6,9 @@ $(function() {
 	// Info center tabs
 	$( '#info_center_blocks').tabs();
 
+	// Replace stats icon
+	$("img[src=\'"+smf_images_url+"/icons/stats_info.png\']").replaceWith("<i class=\'main_icons stats\'></i>");
+
 	// Change the behaviour of the notify button
 	$('.normal_button_strip_notify').next().find('a').click(function (e) {
 		var $obj = $(this);

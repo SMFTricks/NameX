@@ -554,6 +554,7 @@ div.cat_bar,
 	background: var(--catbg-bg);
 	display: flex;
 	min-height: 40px;
+	line-height: normal;
 	align-items: center;
 	border-radius: 4px;
 	box-shadow: 0px -2px 0px 0px rgba(0, 0, 0, 0.1) inset;
@@ -573,9 +574,6 @@ h3.catbg a:hover, .cat_bar a {
 }
 .cat_bar h3 {
 	padding: 0 12px;
-}
-h3.profile_hd, h3.profile_hd.catbg {
-	padding: 0 0 0 50px;
 }
 /* Title Bar */
 div.title_bar,
@@ -1370,6 +1368,13 @@ footer .footer-other span.help-links a i.fa {
 }
 #basicinfo, #detailedinfo {
 	padding: 10px 8px;
+}
+/* Stats */
+#profileview #generalstats,
+#profileview #activitytime,
+#profileview .flow_hidden {
+	grid-column-start: 1;
+	grid-column-end: 3;
 }
 
 /* Top Bar */
