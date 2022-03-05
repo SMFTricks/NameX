@@ -379,6 +379,10 @@ class Theme
 	{
 		global $settings;
 
+		// Theme Variants enabled?
+		if (!isset(Init::$_color_options['variants']) || empty(Init::$_color_options['variants']))
+			return;
+
 		// Variants settings
 		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] == $settings['theme_id'])
 			add_integration_function('integrate_theme_settings', __NAMESPACE__ . '\\Color\Variants::settings#', false, '$themedir/themecustoms/Color/Variants.php');
@@ -401,6 +405,10 @@ class Theme
 	{
 		global $settings;
 
+		// Theme Dark Mode enabled?
+		if (!isset(Init::$_color_options['darkmode']) || empty(Init::$_color_options['darkmode']))
+			return;
+
 		// Insert the variants using the theme settings.
 		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] == $settings['theme_id'])
 			add_integration_function('integrate_theme_settings', __NAMESPACE__ . '\\Color\DarkMode::settings#', false, '$themedir/themecustoms/Color/DarkMode.php');
@@ -422,6 +430,10 @@ class Theme
 	private function color_changer()
 	{
 		global $settings;
+
+		// Theme Color Changer enabled?
+		if (!isset(Init::$_color_options['colorchanger']) || empty(Init::$_color_options['colorchanger']))
+			return;
 
 		// Add the settings for the color changer
 		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] == $settings['theme_id'])

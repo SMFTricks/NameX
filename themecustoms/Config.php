@@ -52,6 +52,15 @@ abstract class Config
 	];
 
 	/**
+	 * @var array Color Options
+	 */
+	public static $_color_options = [
+		'variants' => false,
+		'darkmode' => false,
+		'colorchanger' => false,
+	];
+
+	/**
 	 * Load the custom hooks for the theme
 	 */
 	abstract protected function loadHooks(); 

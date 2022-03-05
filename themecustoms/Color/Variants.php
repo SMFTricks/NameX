@@ -44,21 +44,11 @@ class Variants
 		// Init the theme color variants
 		$this->initVariants();
 
-		// Check if we actually have any variants
-		if (empty($this->_variants))
-			return;
-
 		// Theme variants... Add the default style to it just for presentation.
 		$this->_variants = array_unique(array_merge(['default'], $this->_variants));
 
-		// Load the variants CSS
-		$this->variantCSS();
-
-		// Insert the JS vars for the variants
-		$this->addJavaScriptVars();
-
-		// Load the JS file for the variants
-		$this->variantJS();
+		// Load the current variant
+		$this->currentVariant();
 	}
 
 	/**
@@ -70,61 +60,13 @@ class Variants
 	 */
 	public function initVariants()
 	{
-		// Set the variants?
-		$this->_variants = [];
-		call_integration_hook('integrate_customtheme_color_variants', [&$this->_variants]);
-	}
-
-	/**
-	 * Variants::getVariant()
-	 *
-	 * Adds the already defined theme color variants to the settings.
-	 *
-	 * @return void
-	 */
-	public function setVariants()
-	{
 		global $settings;
+
+		// Set the variants?
+		call_integration_hook('integrate_customtheme_color_variants', [&$this->_variants]);
 
 		// Add the color variants to the settings
 		$settings['theme_variants'] = $this->_variants;
-	}
-
-	/**
-	 * Variants::getVariant()
-	 *
-	 * Adds the already defined theme color variants to the settings.
-	 *
-	 * @return void
-	 */
-	public function settings()
-	{
-		global $context, $txt;
-
-		// Check if we actually have any variants
-		if (empty($this->_variants))
-			return;
-
-		// Setting type
-		if (!empty($context['st_themecustoms_setting_types']))
-		{
-			// Add the color setting type
-			array_push($context['st_themecustoms_setting_types'], 'color');
-			// Don't duplicate it if it's already there
-			$context['st_themecustoms_setting_types'] = array_unique($context['st_themecustoms_setting_types']);
-		}
-
-		// Use Javascript?
-		$context['theme_settings'][] = [
-			'id' => 'st_color_variants_javascript',
-			'label' => $txt['st_color_variants_javascript'],
-			'description' => $txt['st_color_variants_javascript_desc'],
-			'type' => 'checkbox',
-			'theme_type' => 'color',
-		];
-
-		// Add the color variants to the settings
-		$this->setVariants();
 	}
 
 	/**
@@ -137,18 +79,24 @@ class Variants
 	 */
 	public function userSelection()
 	{
-		global $context, $settings, $options, $txt;
+		global $context, $settings, $options, $txt, $options;
 
-		// Check if we actually have any variants
-		if (empty($this->_variants))
+		// Add the color variants to the settings... Again?
+		$settings['theme_variants'] = $this->_variants;
+
+		// No variants no fun
+		if (empty($settings['theme_variants']))
 			return;
 
-		// Add the color variants to the section
-		$this->setVariants();
+		// Load the variants CSS
+		$this->variantCSS();
 
 		// Is user selection enabled?
 		if (!empty($settings['disable_user_variant']))
 			return;
+
+		// Load the variants JS
+		$this->variantJS();
 
 		// Check only for the themes page
 		if (isset($_REQUEST['action']) && $_REQUEST['action'] == 'theme')
@@ -180,6 +128,40 @@ class Variants
 	}
 
 	/**
+	 * Variants::getVariant()
+	 *
+	 * Adds the already defined theme color variants to the settings.
+	 *
+	 * @return void
+	 */
+	public function settings()
+	{
+		global $context, $txt, $settings;
+
+		// No variants no fun
+		if (empty($settings['theme_variants']))
+			return;
+
+		// Setting type
+		if (!empty($context['st_themecustoms_setting_types']))
+		{
+			// Add the color setting type
+			array_push($context['st_themecustoms_setting_types'], 'color');
+			// Don't duplicate it if it's already there
+			$context['st_themecustoms_setting_types'] = array_unique($context['st_themecustoms_setting_types']);
+		}
+
+		// Use Javascript?
+		$context['theme_settings'][] = [
+			'id' => 'st_color_variants_javascript',
+			'label' => $txt['st_color_variants_javascript'],
+			'description' => $txt['st_color_variants_javascript_desc'],
+			'type' => 'checkbox',
+			'theme_type' => 'color',
+		];
+	}
+
+	/**
 	 * Variants::userOptions()
 	 *
 	 * Adds the color variants to the theme options.
@@ -192,11 +174,11 @@ class Variants
 		global $context, $txt, $settings, $options;
 
 		// Check if the user is allowed to change color variants and if we have any variants
-		if (!empty($settings['disable_user_variant']) || empty($this->_variants))
+		if (!empty($settings['disable_user_variant']) || empty($settings['theme_variants']))
 			return;
 
 		// Create the variant options, using text strings
-		foreach($this->_variants as $variant)
+		foreach($settings['theme_variants'] as $variant)
 			$this->_variant_options[$variant] = $txt['variant_' . $variant];
 
 		// Insert the theme options
@@ -228,7 +210,25 @@ class Variants
 	 */
 	private function variantCSS()
 	{
-		global $context, $settings, $options, $user_info;
+		global $context, $settings;
+
+		// Add the HTML data attribute for color variant
+		$settings['themecustoms_html_attributes']['data']['variant'] = 'data-themecolor="' . $context['theme_variant'] . '"';
+
+		// Add the CSS file for the variant only if it's not the default.
+		loadCSSFile('custom/variants.css', ['order_pos' => $this->_order_position], 'smf_index_variants');
+	}
+
+	/**
+	 * Variants::currentVariant()
+	 *
+	 * Sets up the current variant
+	 *
+	 * @return void
+	 */
+	private function currentVariant()
+	{
+		global $options, $user_info, $context, $settings;
 
 		// User selection?
 		if (empty($settings['disable_user_variant']))
@@ -239,52 +239,38 @@ class Variants
 
 			// Set the current variant
 			$context['theme_variant'] = ($user_info['is_guest'] || empty($settings['st_color_variants_javascript']))&& !empty($_SESSION['id_variant']) && isset($_SESSION['id_variant']) && in_array($_SESSION['id_variant'], $this->_variants) ? $_SESSION['id_variant'] : (isset($_REQUEST['variant']) && !empty($_REQUEST['variant']) && in_array($_REQUEST['variant'], $this->_variants) ? $_REQUEST['variant'] : (!empty($options['theme_variant']) && in_array($options['theme_variant'], $this->_variants) && isset($options['theme_variant']) ? $options['theme_variant'] : ''));
+
+			// Use the real value when saving
+			if (empty($settings['st_color_variants_javascript']) && $context['current_action'] == 'profile' && isset($_REQUEST['area']) && $_REQUEST['area'] == 'theme' && isset($_REQUEST['updated']))
+			{
+				unset($_SESSION['id_variant']);
+				unset($_SESSION['variant']);
+				$context['theme_variant'] = $options['theme_variant'];
+			}
 		}
 
 		// Set the default variant if there's no variant or variants are disabled
 		if ($context['theme_variant'] == '' || !in_array($context['theme_variant'], $this->_variants) || !isset($context['theme_variant']))
 			$context['theme_variant'] = !empty($settings['default_variant']) && in_array($settings['default_variant'], $this->_variants) ? $settings['default_variant'] : $this->_variants[0];
-
-		// Add the HTML data attribute for color variant
-		$settings['themecustoms_html_attributes']['data']['variant'] = 'data-themecolor="' . $context['theme_variant'] . '"';
-
-		// Add the CSS file for the variant only if it's not the default.
-		loadCSSFile('custom/variants.css', ['order_pos' => $this->_order_position], 'smf_index_variants');
-	}
-
-	/**
-	 * Variants::addJavaScriptVars()
-	 *
-	 * Loads the variant JS vars.
-	 *
-	 * @return void
-	 */
-	private function addJavaScriptVars()
-	{
-		global $context, $settings;
-
-		// Check for JS
-		if (empty($settings['st_color_variants_javascript']))
-			return;
-
-		// Theme Variant
-		addJavaScriptVar('smf_theme_variant', '\'' . $context['theme_variant'] . '\'');
 	}
 
 	/**
 	 * Variants::variantJS()
 	 *
-	 * Loads the variant JS.
+	 * Loads the variants javasctipt.
 	 *
 	 * @return void
 	 */
 	private function variantJS()
 	{
-		global $settings;
+		global $settings, $context;
 
 		// Check for JS
-		if (empty($settings['st_color_variants_javascript']))
+		if (empty($settings['st_color_variants_javascript']) || empty($settings['theme_variants']))
 			return;
+
+		// Theme Variant
+		addJavaScriptVar('smf_theme_variant', '\'' . $context['theme_variant'] . '\'');
 
 		// Load the file only if the user can change variants
 		if (empty($settings['disable_user_variant']))

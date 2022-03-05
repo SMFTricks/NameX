@@ -45,6 +45,14 @@ class Init extends Config
 	];
 
 	/**
+	 * Color Variants
+	 */
+	public static $_color_options = [
+			'variants'=> true,
+			'darkmode' => true,
+	];
+
+	/**
 	 * Init::loadHooks()
 	 */
 	protected function loadHooks()
