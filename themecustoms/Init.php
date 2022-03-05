@@ -76,6 +76,7 @@ class Init extends Config
 
 		// Lato Font
 		loadCSSFile('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap', ['external' => true, 'order_pos' => -800]);
+
 	}
 
 	/**

@@ -2,9 +2,9 @@
   "name": "namex",
   "version": "1.0.0",
   "scripts": {
-    "bootstrap-css": "copy-and-watch  node_modules/bootstrap/dist/css/bootstrap.min.css css/",
-    "bootstrap-js": "copy-and-watch  node_modules/bootstrap/dist/js/bootstrap.bundle.min.js scripts/",
-    "animate": "copy-and-watch  node_modules/animate.css/animate.min.css css/",
+    "bootstrap-css": "copy-and-watch  node_modules/bootstrap/dist/css/bootstrap.min.css css/custom/",
+    "bootstrap-js": "copy-and-watch  node_modules/bootstrap/dist/js/bootstrap.bundle.min.js scripts/custom/",
+    "animate": "copy-and-watch  node_modules/animate.css/animate.min.css css/custom",
     "build": "npm run bootstrap-css && npm run bootstrap-js && npm run animate"
   },
   "repository": {

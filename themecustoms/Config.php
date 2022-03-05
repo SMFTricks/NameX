@@ -45,6 +45,13 @@ abstract class Config
 	];
 
 	/**
+	 * @var array Any additional settings to set
+	 */
+	public static $_settings = [
+		'include_bootstrap' => false,
+	];
+
+	/**
 	 * Load the custom hooks for the theme
 	 */
 	abstract protected function loadHooks(); 

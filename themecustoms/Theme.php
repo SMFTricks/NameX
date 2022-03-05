@@ -149,7 +149,7 @@ class Theme
 			],
 			// Bootstrap
 			'bootstrap' => [
-				'include' => !isset($settings['st_theme_include_bootstrap']) && empty($settings['st_theme_include_bootstrap']),
+				'include' => isset(Init::$_settings['include_bootstrap']) && !empty(Init::$_settings['include_bootstrap']),
 				'css' => [
 					'minified' => true,
 				],
