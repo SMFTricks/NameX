@@ -18,14 +18,7 @@ class Variants
 	 * @var array The theme color variants (red, green, blue, etc).
 	 * It adds the "default" variant automatically.
 	 */
-	public $_variants = [
-		'red',
-		'green',
-		'blue',
-		'yellow',
-		'pink',
-		'purple',
-	];
+	private $_variants = [];
 
 	/**
 	 * @var array The variant options for user selection
@@ -48,22 +41,15 @@ class Variants
 	 */
 	public function __construct()
 	{
+		// Init the theme color variants
+		$this->initVariants();
+
 		// Check if we actually have any variants
 		if (empty($this->_variants))
 			return;
 
 		// Theme variants... Add the default style to it just for presentation.
 		$this->_variants = array_unique(array_merge(['default'], $this->_variants));
-
-		// Insert the variants using the theme settings.
-		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] == $GLOBALS['settings']['theme_id'])
-			add_integration_function('integrate_theme_settings', __CLASS__ . '::settings#', false, '$themedir/themecustoms/Color/Variants.php');
-
-		// Add the variants to the list of available themes
-		add_integration_function('integrate_theme_context', __CLASS__ . '::userSelection#', false, '$themedir/themecustoms/Color/Variants.php');
-
-		// Add the theme variants as a theme option too
-		add_integration_function('integrate_theme_options', __CLASS__ . '::userOptions#', false, '$themedir/themecustoms/Color/Variants.php');
 
 		// Load the variants CSS
 		$this->variantCSS();
@@ -73,6 +59,20 @@ class Variants
 
 		// Load the JS file for the variants
 		$this->variantJS();
+	}
+
+	/**
+	 * Variants::initVariants()
+	 * 
+	 * Initializes the theme color variants
+	 * 
+	 * @return void
+	 */
+	public function initVariants()
+	{
+		// Set the variants?
+		$this->_variants = [];
+		call_integration_hook('integrate_customtheme_color_variants', [&$this->_variants]);
 	}
 
 	/**
@@ -101,6 +101,10 @@ class Variants
 	{
 		global $context, $txt;
 
+		// Check if we actually have any variants
+		if (empty($this->_variants))
+			return;
+
 		// Setting type
 		if (!empty($context['st_themecustoms_setting_types']))
 		{
@@ -110,9 +114,6 @@ class Variants
 			$context['st_themecustoms_setting_types'] = array_unique($context['st_themecustoms_setting_types']);
 		}
 
-		// Add the color variants to the settings
-		$this->setVariants();
-
 		// Use Javascript?
 		$context['theme_settings'][] = [
 			'id' => 'st_color_variants_javascript',
@@ -121,6 +122,9 @@ class Variants
 			'type' => 'checkbox',
 			'theme_type' => 'color',
 		];
+
+		// Add the color variants to the settings
+		$this->setVariants();
 	}
 
 	/**
@@ -134,6 +138,10 @@ class Variants
 	public function userSelection()
 	{
 		global $context, $settings, $options, $txt;
+
+		// Check if we actually have any variants
+		if (empty($this->_variants))
+			return;
 
 		// Add the color variants to the section
 		$this->setVariants();
@@ -183,8 +191,8 @@ class Variants
 	{
 		global $context, $txt, $settings, $options;
 
-		// Check if the user is allowed to change color variants
-		if (!empty($settings['disable_user_variant']))
+		// Check if the user is allowed to change color variants and if we have any variants
+		if (!empty($settings['disable_user_variant']) || empty($this->_variants))
 			return;
 
 		// Create the variant options, using text strings
@@ -241,7 +249,7 @@ class Variants
 		$settings['themecustoms_html_attributes']['data']['variant'] = 'data-themecolor="' . $context['theme_variant'] . '"';
 
 		// Add the CSS file for the variant only if it's not the default.
-		loadCSSFile('variants.css', ['order_pos' => $this->_order_position], 'smf_index_variants');
+		loadCSSFile('custom/variants.css', ['order_pos' => $this->_order_position], 'smf_index_variants');
 	}
 
 	/**
@@ -281,7 +289,7 @@ class Variants
 		// Load the file only if the user can change variants
 		if (empty($settings['disable_user_variant']))
 			loadJavascriptFile(
-				'variants.js',
+				'custom/variants.js',
 				[
 					'minimize' => false,
 					'defer' => true,

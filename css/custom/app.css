@@ -1720,8 +1720,9 @@ li.post_like_button {
 	flex-basis: 40%;
 	flex-wrap: wrap;
 }
-.postarea .keyinfo .subject_title.subject_hidden {
-	order: 5;
+.postarea .keyinfo .subject_title {
+	flex-basis: 100%;
+	padding: 5px 15px;
 }
 .postarea .keyinfo .subject_title.subject_hidden input {
 	width: 100%;
@@ -2236,7 +2237,7 @@ fieldset.admin_group a span.large_admin_menu_icon {
 	clear: both;
 }
 .cc_p_color {
-	width: 10px;
+	width: 6px;
 	height: 36px;
 	display: inline-block;
 }
@@ -2251,6 +2252,9 @@ fieldset.admin_group a span.large_admin_menu_icon {
 }
 
 /* Theme Information */
+div#settingtype-information[aria-hidden="false"]~input[type="submit"] {
+	display: none;
+}
 .st-theme-information {
 	display: grid;
 	grid-template-columns: 1fr 1.5fr;
@@ -2285,6 +2289,7 @@ fieldset.admin_group a span.large_admin_menu_icon {
 	transition: all 0.2s ease-in-out;
 }
 .st-theme-information .block .details {
+	min-height: 90px;
 	padding-block: 15px;
 	padding-inline-start: 47px;
 	padding-inline-end: 15px;

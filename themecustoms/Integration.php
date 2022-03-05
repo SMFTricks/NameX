@@ -15,14 +15,14 @@ if (!defined('SMF'))
 class Integration
 {
 	/**
-	 * @var array The theme custom settings
+	 * @var object The theme main file
 	 */
-	protected $_theme_settings;
+	protected $_theme;
 
 	/**
-	 * @var object The theme configuration
+	 * @var object The theme config file
 	 */
-	protected $_load_theme;
+	protected $_config;
 
 	/**
 	 * Integration::initialize()
@@ -38,16 +38,38 @@ class Integration
 		loadLanguage('ThemeStrings/');
 
 		// Theme Settings
-		$this->_theme_settings = new Settings;
+		$this->loadSettings();
 
-		// Theme Config
-		$this->_load_theme = new Theme;
+		// Theme Init
+		$this->_theme = new Theme;
+
+		// Custom Theme Config
+		$this->_config = new Init;
 
 		// Main hooks
 		$this->loadHooks();
 
 		// Add any global data attributes
 		$this->htmlAttributes();
+	}
+
+	/**
+	 * Integration::loadSettings()
+	 * 
+	 * Load the main theme settings using hooks
+	 * 
+	 * @return void
+	 */
+	private function loadSettings()
+	{
+		global $settings;
+
+		// Are we viewing this theme?
+		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] != $settings['theme_id'])
+			return;
+
+		// Load the theme settings
+		add_integration_function('integrate_theme_settings', __NAMESPACE__ . '\Settings::themeSettings#', false, '$themedir/themecustoms/Settings.php');
 	}
 
 	/**
@@ -181,7 +203,7 @@ class Integration
 		$copyright = true;
 
 		// Lelelelele?
-		$context['copyrights']['mods'][] = $this->_load_theme->unspeakable($copyright, true);
+		$context['copyrights']['mods'][] = $this->_theme->unspeakable($copyright, true);
 	}
 
 	/**
@@ -194,7 +216,7 @@ class Integration
 	public function hookBuffer($buffer)
 	{
 		// Do unspeakable things to the footer
-		$this->_load_theme->unspeakable($buffer);
+		$this->_theme->unspeakable($buffer);
 
 		// Return the buffer
 		return $buffer;

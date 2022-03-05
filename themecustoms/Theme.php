@@ -9,53 +9,11 @@
 
 namespace ThemeCustoms;
 
-use ThemeCustoms\Color\Variants;
-use ThemeCustoms\Color\DarkMode;
-use ThemeCustoms\Color\Changer;
-
 if (!defined('SMF'))
 	die('No direct access...');
 
 class Theme
 {
-	/**
-	 * @var string The theme version
-	 */
-	public $_theme_version = '1.0';
-
-	/**
-	 * @var string The theme name
-	 */
-	public $_theme_name = 'NameX';
-
-	/**
-	 * @var array The theme author and the SMF id's
-	 */
-	public $_theme_author = [
-		'name' => 'Diego Andrés',
-		'id' => 254071,
-	];
-
-	/**
-	 * @var string The theme's support email
-	 */
-	public $_github_url = 'https://github.com/SMFTricks/NameX';
-
-	/**
-	 * @var int The theme's site id
-	 */
-	public $_smf_site_id = 1;
-
-	/**
-	 * @var int The support topic id
-	 */
-	public $_support_topic_id = 1;
-
-	/**
-	 * @var string The theme's support url
-	 */
-	public $_support_url = '';
-
 	/**
 	 * @var bool Enable avatars on topic list
 	 */
@@ -91,28 +49,8 @@ class Theme
 	 * @var array The theme custom js files
 	 */
 	private $_js_files = [
-		'customs'
+		'main'
 	];
-
-	/**
-	 * @var object The theme color variants
-	 */
-	public $_theme_variants;
-
-	/**
-	 * @var object Enable dark/light mode
-	 */
-	public $_theme_darkmode;
-
-	/**
-	 * @var object The color changer
-	 */
-	public $_color_changer;
-
-	/**
-	 * @var object Inline CSS styles
-	 */
-	public $_css_inline;
 
 	/**
 	 * Theme::__construct()
@@ -139,20 +77,17 @@ class Theme
 		// Theme JS Vars
 		$this->addJavaScriptVars();
 
-		// Add inline styles for any setting that requires it
-		$this->_css_inline = new Styles;
-
 		// Add any additional hooks for the boards or topics
 		$this->hookBoard();
 
 		// Theme Variants
-		$this->_theme_variants = new Variants;
+		$this->theme_variants();
 
 		// Theme Modes
-		$this->_theme_darkmode = new DarkMode;
+		$this->theme_darkmode();
 
 		// Color Changer
-		$this->_color_changer = new Changer;
+		$this->color_changer();
 	}
 
 	/**
@@ -165,22 +100,6 @@ class Theme
 	private function startSettings()
 	{
 		global $settings;
-
-		// The theme name
-		$settings['theme_real_name'] = $this->_theme_name;
-
-		// The actual version of the theme
-		$settings['theme_real_version'] = $this->_theme_version;
-
-		// Support
-		$settings['theme_support_information'] = [
-			'smf' => (!empty($this->_support_topic_id) ? 'https://www.simplemachines.org/community/index.php?topic='. $this->_support_topic_id . ' .0' : ''),
-			'external' => (!empty($this->_support_url) ? $this->_support_url : ''),
-			'github' => (!empty($this->_github_url) ? $this->_github_url : 'https://github.com'),
-			'theme_link' => (!empty($this->_smf_site_id) ? '<a href="https://custom.simplemachines.org/index.php?theme=' . $this->_smf_site_id. '">' . $this->_theme_name . '</a>' : ''),
-			'theme_review_link' => (!empty($this->_smf_site_id) ? 'https://custom.simplemachines.org/index.php?theme=' . $this->_smf_site_id. '#cs_review' : ''),
-			'profile_link' => '<a href="https://custom.simplemachines.org/index.php?action=profile;u='. $this->_theme_author['id'] . '">'. $this->_theme_author['name'] .'</a>',
-		];
 
 		// Set the following variable to true if this theme wants to display the avatar of the user that posted the last and the first post on the message index and recent pages.
 		$settings['avatars_on_indexes'] = $this->_avatars_on_indexes;
@@ -199,6 +118,9 @@ class Theme
 		// Add any custom attribute to the html tag
 		// This is useful for using along the variants, dark mode, etc.
 		$settings['themecustoms_html_attributes'] = [];
+
+		// Add inline styles for any setting that requires it
+		add_integration_function('integrate_pre_css_output', __NAMESPACE__ . '\Styles::addCss#', false, '$themedir/themecustoms/Styles.php');
 	}
 
 	/**
@@ -227,7 +149,7 @@ class Theme
 			],
 			// Bootstrap
 			'bootstrap' => [
-				'include' => false,
+				'include' => !isset($settings['st_theme_include_bootstrap']) && empty($settings['st_theme_include_bootstrap']),
 				'css' => [
 					'minified' => true,
 				],
@@ -249,21 +171,6 @@ class Theme
 					'file' => 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js',
 					'external' => true,
 					'defer' => true,
-				]
-			],
-			// Passion One Font
-			'notosansfont' => [
-				'include' => empty($context['header_logo_url_html_safe']),
-				'css' => [
-					'file' => 'https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap',
-					'external' => true,
-				]
-			],
-			// Lato Font
-			'latofont' => [
-				'css' => [
-					'file' => 'https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap',
-					'external' => true,
 				]
 			],
 		];
@@ -340,7 +247,7 @@ class Theme
 				if ((!empty($options['include']) || !isset($options['include'])) && !empty($options['css']))
 				{
 					loadCSSFile(
-						(!empty($options['css']['file']) ? (!empty($options['css']['external']) ? $options['css']['file'] : ($options['css']['file'] . (!empty($options['css']['minified']) ? '.min' : '') . '.css')) : ($file . (!empty($options['css']['minified']) ? '.min' : '') . '.css')),
+						(!empty($options['css']['file']) ? (!empty($options['css']['external']) ? $options['css']['file'] : ('custom/' . $options['css']['file'] . (!empty($options['css']['minified']) ? '.min' : '') . '.css')) : ('custom/' . $file . (!empty($options['css']['minified']) ? '.min' : '') . '.css')),
 						[
 							'minimize'  => !empty($options['css']['minimize']),
 							'external' => !empty($options['css']['external']),
@@ -359,7 +266,7 @@ class Theme
 			foreach ($this->_css_files as $file => $options)
 			{
 				loadCSSFile(
-					(!is_array($options) ? $options : $file) . '.css',
+					'custom/' . (!is_array($options) ? $options : $file) . '.css',
 					[
 						'minimize' => !empty($options['minimize']),
 						'attributes' => !empty($options['attributes']) ? $options['attributes'] : [],
@@ -387,7 +294,7 @@ class Theme
 			{
 				if ((!empty($options['include']) || !isset($options['include'])) && !empty($options['js']))
 					loadJavaScriptFile(
-						(!empty($options['js']['file']) ? (!empty($options['js']['external']) ? $options['js']['file'] : ($options['js']['file'] . (!empty($options['js']['minified']) ? '.min' : '') . '.js')) : ($file . (!empty($options['js']['minified']) ? '.min' : '') . '.js')),
+						(!empty($options['js']['file']) ? (!empty($options['js']['external']) ? $options['js']['file'] : ('custom/' . $options['js']['file'] . (!empty($options['js']['minified']) ? '.min' : '') . '.js')) : ('custom/' . $file . (!empty($options['js']['minified']) ? '.min' : '') . '.js')),
 						[
 							'defer'  =>  !empty($options['js']['defer']),
 							'async'  =>  !empty($options['js']['async']),
@@ -406,7 +313,7 @@ class Theme
 			foreach ($this->_js_files as $file => $options)
 			{
 				loadJavaScriptFile(
-					(!is_array($options) ? $options : $file) . '.js',
+					'custom/' . (!is_array($options) ? $options : $file) . '.js',
 					[
 						'defer'  =>  !empty($options['defer']),
 						'async'  =>  !empty($options['async']),
@@ -459,5 +366,68 @@ class Theme
 				'<li>'. $ST . '</li>' . "$1 ",
 				$buffer
 			);
+	}
+
+	/**
+	 * Theme::variants()
+	 * 
+	 * Load the theme variants
+	 * 
+	 * @return void
+	 */
+	private function theme_variants()
+	{
+		global $settings;
+
+		// Variants settings
+		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] == $settings['theme_id'])
+			add_integration_function('integrate_theme_settings', __NAMESPACE__ . '\\Color\Variants::settings#', false, '$themedir/themecustoms/Color/Variants.php');
+
+		// Add the variants to the list of available themes
+		add_integration_function('integrate_theme_context', __NAMESPACE__ . '\\Color\Variants::userSelection#', false, '$themedir/themecustoms/Color/Variants.php');
+
+		// Add the theme variants as a theme option too
+		add_integration_function('integrate_theme_options', __NAMESPACE__ . '\\Color\Variants::userOptions#', false, '$themedir/themecustoms/Color/Variants.php');
+	}
+
+	/**
+	 * Theme::theme_darkmode()
+	 *
+	 * Add the dark mode to the theme
+	 * 
+	 * @return void
+	 */
+	private function theme_darkmode()
+	{
+		global $settings;
+
+		// Insert the variants using the theme settings.
+		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] == $settings['theme_id'])
+			add_integration_function('integrate_theme_settings', __NAMESPACE__ . '\\Color\DarkMode::settings#', false, '$themedir/themecustoms/Color/DarkMode.php');
+
+		// Add the dark mode to the theme variables
+		add_integration_function('integrate_theme_context', __NAMESPACE__ . '\\Color\DarkMode::themeVar#', false, '$themedir/themecustoms/Color/DarkMode.php');
+
+		// Add the dark mode as a theme option too
+		add_integration_function('integrate_theme_options', __NAMESPACE__ . '\\Color\DarkMode::userOptions#', false, '$themedir/themecustoms/Color/DarkMode.php');
+	}
+
+	/**
+	 * Theme::color_changer()
+	 * 
+	 * Add the color changer to the theme
+	 * 
+	 * @return void
+	 */
+	private function color_changer()
+	{
+		global $settings;
+
+		// Add the settings for the color changer
+		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] == $settings['theme_id'])
+			add_integration_function('integrate_theme_settings', __NAMESPACE__ . '\\Color\Changer::settings#', false, '$themedir/themecustoms/Color/Changer.php');
+
+		// Add the color changes
+		add_integration_function('integrate_theme_context', __NAMESPACE__ . '\\Color\Changer::colorChanges#', false, '$themedir/themecustoms/Color/Changer.php');
 	}
 }

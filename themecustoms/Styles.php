@@ -16,12 +16,9 @@ class Styles
 {
 	/**
 	 * @var array The settings that affect or add styles to the theme.
-	 * Add or remove the name of the function to add or remove the style.
 	 * Use the name of the setting for each element
 	 */
-	private $_style_settings = [
-		'st_custom_width',
-	];
+	private $_style_settings;
 
 	/**
 	 * @var string The inline CSS output
@@ -42,14 +39,40 @@ class Styles
 		// Set the css to empty
 		$this->_css = '';
 
-		// Fire up the function if the setting is set or enabled
-		foreach ($this->_style_settings as $style_setting)
-		{
-			if (!empty($settings[$style_setting]))
-				$this->_css .= $this->$style_setting($settings[$style_setting]);
-		}
+		// Load the settings
+		$this->style_settings();
 
-		// Add the css to the theme
+		// Fire up the function if the setting is set or enabled
+		foreach ($this->_style_settings as $style_setting => $style_function)
+			if (!empty($settings[$style_setting]))
+				$this->_css .= (empty($style_function) ? $this->$style_setting($settings[$style_setting]) : call_user_func($style_function));
+	}
+
+	/**
+	 * Style::style_settings()
+	 * 
+	 * Build the style settings array
+	 * 
+	 * @return void
+	 */
+	public function style_settings()
+	{
+		// Settings
+		$this->_style_settings = [
+			'st_custom_width' => false,
+		];
+		call_integration_hook('integrate_customtheme_style_settings', array(&$this->_style_settings));
+	}
+
+	/**
+	 * Style::addCss()
+	 * 
+	 * Output the inline CSS to the theme
+	 * 
+	 * @return void
+	 */
+	public function addCss()
+	{
 		addInlineCss($this->_css);
 	}
 
@@ -60,10 +83,10 @@ class Styles
 	 * Thanks to Sycho for the idea from his Forum Width Mod
 	 * https://custom.simplemachines.org/index.php?mod=4223
 	 * 
-	 * @param var $setting The setting to use
+	 * @param string $setting The setting to use
 	 * @return void
 	 */
-	private function st_custom_width($setting)
+	public function st_custom_width($setting)
 	{
 		// Adjust the max-width accorrdinly
 		return '

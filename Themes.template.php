@@ -452,7 +452,7 @@ function template_set_options()
  */
 function template_set_settings()
 {
-	global $context, $settings, $scripturl, $txt;
+	global $context, $scripturl, $txt;
 
 	echo '
 	<div id="admin_form_wrapper">
@@ -537,9 +537,6 @@ function template_set_settings()
 							</dd>
 							
 						</dl>
-						<input type="submit" name="save" value="', $txt['save'], '" class="button">
-						<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
-						<input type="hidden" name="', $context['admin-sts_token_var'], '" value="', $context['admin-sts_token'], '">
 					</div>';
 
 	$skeys = array_keys($context['settings']);
@@ -616,6 +613,9 @@ function template_set_settings()
 	}
 	
 		echo '
+					<input type="submit" name="save" value="', $txt['save'], '" class="button">
+					<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
+					<input type="hidden" name="', $context['admin-sts_token_var'], '" value="', $context['admin-sts_token'], '">
 				</div><!-- .windowbg -->
 			</div>
 		</form>
@@ -764,10 +764,7 @@ function template_custom_list_settings($first_setting_key, &$titled_section, $se
 		}
 
 	echo '
-						</dl>
-						<input type="submit" name="save" value="', $txt['save'], '" class="button">
-						<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
-						<input type="hidden" name="', $context['admin-sts_token_var'], '" value="', $context['admin-sts_token'], '">';
+						</dl>';
 }
 
 /**

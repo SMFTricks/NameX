@@ -15,7 +15,7 @@ if (!defined('SMF'))
 class Settings
 {
 	/**
-	 * @var array The theme settings
+	 * @var array The common theme settings
 	 */
 	private $_settings;
 
@@ -37,22 +37,9 @@ class Settings
 	];
 
 	/**
-	 * Settings::__construct()
-	 *
-	 * It handles the settings side of the theme
+	 * @var array The custom settings that are not listed here
 	 */
-	public function __construct()
-	{
-		// Viewing other theme's settings?
-		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] != $GLOBALS['settings']['theme_id'])
-			return;
-
-		// Hook the theme settings
-		add_integration_function('integrate_theme_settings', __CLASS__ . '::themeSettings#', false, '$themedir/themecustoms/Settings.php');
-
-		// Remove the values from those undesired settings
-		$this->undoSettings();
-	}
+	private $_custom_settings;
 
 	/**
 	 * Settings::themeSettings()
@@ -70,39 +57,9 @@ class Settings
 
 		// Add theme settings
 		$this->addSettings();
-	}
 
-	/**
-	 * Settings::addSettings()
-	 *
-	 * Inserts the theme settings in the array
-	 */
-	private function addSettings()
-	{
-		global $context;
-
-		// Add the setting types
-		if (!empty($this->_setting_types))
-			$context['st_themecustoms_setting_types'] = array_merge(['main'], $this->_setting_types);
-
-		// Insert the new theme settings in the array
-		$context['theme_settings'] = array_merge($context['theme_settings'], $this->_settings);
-	}
-
-	/**
-	 * Settings::removeSettings()
-	 *
-	 * Remove any unwanted settingss
-	 */
-	private function removeSettings()
-	{
-		global $context;
-
-		// Remove Settings
-		if (!empty($this->_remove_settings))
-			foreach ($context['theme_settings'] as $key => $theme_setting)
-				if (isset($theme_setting['id']) && in_array($theme_setting['id'], $this->_remove_settings))
-					unset($context['theme_settings'][$key]);
+		// Remove the values from undesired settings
+		$this->undoSettings();
 	}
 
 	/**
@@ -205,6 +162,46 @@ class Settings
 				'theme_type' => 'social',
 			],
 		];
+
+		// Any custom changes?
+		call_integration_hook('integrate_customtheme_settings', [&$this->_custom_settings, &$this->_setting_types, &$this->_remove_settings]);
+
+		// Add any custom settings
+		if (!empty($this->_custom_settings) && is_array($this->_custom_settings))
+			$this->_settings = array_merge($this->_settings, $this->_custom_settings);
+	}
+
+	/**
+	 * Settings::removeSettings()
+	 *
+	 * Remove any unwanted settingss
+	 */
+	private function removeSettings()
+	{
+		global $context;
+
+		// Remove Settings
+		if (!empty($this->_remove_settings))
+			foreach ($context['theme_settings'] as $key => $theme_setting)
+				if (isset($theme_setting['id']) && in_array($theme_setting['id'], $this->_remove_settings))
+					unset($context['theme_settings'][$key]);
+	}
+
+	/**
+	 * Settings::addSettings()
+	 *
+	 * Inserts the theme settings in the array
+	 */
+	private function addSettings()
+	{
+		global $context;
+
+		// Add the setting types
+		if (!empty($this->_setting_types))
+			$context['st_themecustoms_setting_types'] = array_merge(['main'], $this->_setting_types);
+
+		// Insert the new theme settings in the array
+		$context['theme_settings'] = array_merge($context['theme_settings'], $this->_settings);
 	}
 
 	/**

@@ -15,14 +15,9 @@ if (!defined('SMF'))
 class Changer
 {
 	/**
-	 * @var array The color changer master setting
-	 */
-	private $_color_changer = true;
-
-	/**
 	 * @var array The color changer options
 	 */
-	private $_color_changes = [];
+	private $_color_changes;
 
 	/**
 	 * @var array The color palettes
@@ -31,6 +26,7 @@ class Changer
 
 	/**
 	 * @var array Root selectors
+	 * The exptected dark mode is added by default
 	 */
 	private $_root_selectors = [
 		'[data-colormode="dark"]',
@@ -45,22 +41,15 @@ class Changer
 	 */
 	public function __construct()
 	{
-		// Check if color changer is enabled or if theme has any variants or if dark mode is enabled
-		if (empty($this->_color_changer) || !empty($GLOBALS['settings']['theme_variants']) || !empty($GLOBALS['context']['theme_variant']))
+		// Set the color changes
+		$this->setChanges();
+
+		// Check if color changer is enabled
+		if (empty($this->_color_changes))
 			return;
 
 		// Load the Color Changer language file
 		loadLanguage('ColorChanger');
-
-		// Add the color changes. I was able to insert the color_changes using current_action hook.
-		add_integration_function('integrate_current_action', __CLASS__ . '::colorChanges#', false, '$themedir/themecustoms/Color/Changer.php');
-
-		// Add the settings for the color changer
-		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] == $GLOBALS['settings']['theme_id'])
-			add_integration_function('integrate_theme_settings', __CLASS__ . '::settings#', false, '$themedir/themecustoms/Color/Changer.php');
-
-		// Set the color changes
-		$this->setChanges();
 
 		// Add the palettes
 		$this->palettes();
@@ -82,16 +71,10 @@ class Changer
 	 * 
 	 * @return void
 	 */
-	private function setChanges()
+	public function setChanges()
 	{
-		$this->_color_changes = [
-			'background' => [
-				['variable' => 'body-bg']
-			],
-			'primary_color' => [
-				['variable' => 'catbg-bg']
-			],
-		];
+		$this->_color_changes = [];
+		call_integration_hook('integrate_customtheme_color_changes', [&$this->_color_changes, &$this->_root_selectors]);
 	}
 
 	/**
@@ -104,7 +87,11 @@ class Changer
 
 	public function colorChanges()
 	{
-		global $settings;
+		global $context, $settings;
+
+		// Check if there are any variants on this theme
+		if (!empty($settings['theme_variants']) || !empty($context['theme_variant']))
+			return;
 
 		// Add the color changes
 		$settings['color_changes'] = $this->_color_changes;
@@ -127,7 +114,15 @@ class Changer
 	 */
 	public function settings()
 	{
-		global $context, $txt;
+		global $context, $txt, $settings;
+
+		// Check if there are any variants on this theme
+		if (!empty($settings['theme_variants']) || !empty($context['theme_variant']))
+			return;
+
+		// Don't do anything when viewing other themes
+		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] != $settings['theme_id'])
+			return;
 
 		// Setting type
 		if (!empty($context['st_themecustoms_setting_types']))
@@ -205,7 +200,7 @@ class Changer
 	 */
 	private function changerCSS()
 	{
-		loadCSSFile('coloris.css', ['minimize' => true], 'smf_coloris');
+		loadCSSFile('custom/coloris.css', ['minimize' => true], 'smf_coloris');
 	}
 
 	/**
@@ -221,7 +216,7 @@ class Changer
 		loadJavaScriptFile('ColorChanger.js', ['minimize' => true, 'defer' => true], 'smf_color_changer');
 
 		// Coloris colorpicker
-		loadJavascriptFile('coloris.js', ['minimize' => true, 'defer' => true], 'smftheme_js_coloris');
+		loadJavascriptFile('custom/coloris.js', ['minimize' => true, 'defer' => true], 'smftheme_js_coloris');
 	}
 
 	/**
@@ -253,10 +248,17 @@ class Changer
 	 */
 	private function palettes()
 	{
+		global $settings;
+		
+		// Don't do anything when viewing other themes
+		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] != $settings['theme_id'])
+			return;
+
 		// The default palette
 		$this->_color_palettes['default'] = [
 			'background' => 'hsl(var(--primary-color-hue), 35%, 80%)',
 			'primary_color' => 'hsl(var(--primary-color-hue), 25%, 45%)',
 		];
+		call_integration_hook('integrate_customtheme_color_changes', [&$this->_color_palettes]);
 	}
 }

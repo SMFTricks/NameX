@@ -82,49 +82,6 @@ function themecustoms_icon($icon)
 	return '<i class="' . $icon . '"></i>';
 }
 
-function themecustoms_colorpicker()
-{
-	global $settings, $txt, $scripturl, $context;
-
-	if (!empty($settings['theme_variants']) && count($settings['theme_variants']) > 1 && empty($settings['disable_user_variant']))
-	{
-		echo '
-		<li id="user_colorpicker">
-			<a href="javascript:void(0);">', themecustoms_icon('fa fa-palette'), '</a>
-			<ul id="colorpicker_menu" class="top_menu dropmenu">';
-		
-		// Theme variants
-		foreach ($settings['theme_variants'] as $variant)
-		{
-			echo '
-				<li>
-					<a href="', $scripturl, '?variant=' . $variant . '" class="theme-variant-toggle', ($context['theme_variant'] == $variant ? ' active' : '') , '" data-color="', $variant, '">
-						', $txt['variant_'. $variant], '
-					</a>
-				</li>';
-		}
-
-		echo '
-			</ul>
-		</li>';
-	}
-}
-
-function themecustoms_darkmode()
-{
-	global $settings;
-	
-	if (!empty($settings['st_enable_dark_mode']) && !empty($settings['customtheme_darkmode']))
-	{
-		echo '
-		<li id="user_thememode">
-			<a href="javascript:void(0);" class="theme-mode-toggle">
-				<span></span>
-			</a>
-		</li>';
-	}
-}
-
 function themecustoms_search()
 {
 	global $txt, $context, $scripturl;
@@ -227,15 +184,32 @@ function themecustoms_themeinfo()
 						', themecustoms_icon('fas fa-code-merge'), '
 					</div>
 					<div class="details">
-						<strong>', $txt['st_themeinfo_name'], ':</strong> ', (empty($settings['theme_support_information']['theme_link']) ? $settings['theme_real_name'] : $settings['theme_support_information']['theme_link']), '<br />
-						<strong>', $txt['st_themeinfo_author'], ':</strong> ', $settings['theme_support_information']['profile_link'], '<br>
-						<strong>', $txt['st_themeinfo_version'] , ':</strong> ', $settings['theme_real_version'], '<br />
-						<strong>', $txt['st_themeinfo_smfversion'], ':</strong> ', $settings['theme_version'], '
+						<strong>', $txt['st_themeinfo_name'], ':</strong>
+						<span>', (empty($settings['theme_support']['smf_site_id']) ? 
+							$settings['theme_name'] : 
+							'<a href="https://custom.simplemachines.org/index.php?theme=' . $settings['theme_support']['smf_site_id'] . '">' . $settings['theme_name'] . '</a>'), '
+						</span><br />
+
+						<strong>', $txt['st_themeinfo_author'], ':</strong>
+						<span>', (empty($settings['theme_author']['smf_id']) ? 
+							$settings['theme_author']['name'] : 
+							'<a href="https://simplemachines.org/community/index.php?action=profile;u=' . $settings['theme_author']['smf_id'] . '">' . $settings['theme_author']['name'] . '</a>'), '
+						</span><br />
+
+						<strong>', $txt['st_themeinfo_version'] , ':</strong>
+						<span>', $settings['theme_real_version'], '</span><br />
+
+						<strong>', $txt['st_themeinfo_smfversion'], ':</strong>
+						<span>', $settings['theme_version'], '</span>
 					</div>
 				</div>
 			</div>
-			<!-- Theme Details -->
+			<!-- Theme Details -->';
 
+		// Check for SMF link or External link
+		if (!empty($settings['theme_support']['smf_support_topic']) || !empty($settings['theme_support']['custom_support_url']))
+		{
+				echo '
 			<!-- Theme Support -->
 			<div class="block">
 				<h4>', $txt['st_themeinfo_support'], '</h4>
@@ -246,27 +220,31 @@ function themecustoms_themeinfo()
 					<div class="details">';
 
 					// Support topic
-					if (!empty($settings['theme_support_information']['smf']))
-					{
+					if (!empty($settings['theme_support']['smf_support_topic']))
 						echo '
-							<strong>', $txt['st_themeinfo_support_topic'], ':</strong> <a href="', $settings['theme_support_information']['smf'], '">', $txt['st_themeinfo_support_topic_desc'], '</a><br />';
+							<strong>', $txt['st_themeinfo_support_topic'], ':</strong> <a href="https://simplemachines.org/community/index.php?topic='. $settings['theme_support']['smf_support_topic']. '.0">', $txt['st_themeinfo_support_topic_desc'], '</a><br />';
 
-						// Review Link
-						if (!empty($settings['theme_support_information']['theme_review_link']))
-							echo '
-							<strong>', $txt['st_themeinfo_review'], ':</strong> <a href="', $settings['theme_support_information']['theme_review_link'], '">', $txt['st_themeinfo_review_desc'], '</a><br />';
-					}
+					// Review Link
+					if (!empty($settings['theme_support']['smf_site_id']))
+						echo '
+							<strong>', $txt['st_themeinfo_review'], ':</strong>
+							<a href="https://custom.simplemachines.org/index.php?theme=' . $settings['theme_support']['smf_site_id'] . '">', $txt['st_themeinfo_review_desc'], '</a><br />';
 
 					// External
-					if (!empty($settings['theme_support_information']['external']))
+					if (!empty($settings['theme_support']['custom_support_url']))
 						echo '
-							<strong>', $txt['st_themeinfo_support_board'], ':</strong> <a href="', $settings['theme_support_information']['external'], '">', $txt['st_themeinfo_support_board_desc'], '</a><br />';
+							<strong>', $txt['st_themeinfo_support_board'], ':</strong> <a href="', $settings['theme_support']['custom_support_url'], '">', $txt['st_themeinfo_support_board_desc'], '</a><br />';
 
+					// GitHub
+					if (!empty($settings['theme_support']['github_url']))
 						echo '
-						<strong>', $txt['st_themeinfo_github'] , ':</strong> <a href="', $settings['theme_support_information']['github'], '">', $txt['st_themeinfo_github_desc'], '</a><br />
+						<strong>', $txt['st_themeinfo_github'] , ':</strong> <a href="', $settings['theme_support']['github_url'], '">', $txt['st_themeinfo_github_desc'], '</a><br />
 					</div>
 				</div>
 			</div>
-			<!-- Theme Details -->
+			<!-- Theme Details -->';
+		}
+
+	echo '
 		</div>';
 }

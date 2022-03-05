@@ -15,9 +15,9 @@ if (!defined('SMF'))
 class DarkMode
 {
 	/**
-	 * @var array The dark mode master setting
+	 * @var bool The dark mode master setting
 	 */
-	private $_darkmode = true;
+	private $_darkmode;
 
 	/**
 	 * @var int Order position for the dark mode file
@@ -29,23 +29,16 @@ class DarkMode
 	 *
 	 * Initializes the theme dark mode related features
 	 * 
-	 * @return void|bool Returns false if dark mode is not enabled
+	 * @return void
 	 */
 	public function __construct()
 	{
+		// Init the dark mode
+		$this->initDarkMode();
+
 		// Check if darkmode is enabled
 		if (empty($this->_darkmode))
-			return false;
-
-		// Add the dark mode to the theme variables
-		add_integration_function('integrate_theme_context', __CLASS__ . '::themeVar#', false, '$themedir/themecustoms/Color/DarkMode.php');
-
-		// Insert the variants using the theme settings.
-		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] == $GLOBALS['settings']['theme_id'])
-			add_integration_function('integrate_theme_settings', __CLASS__ . '::settings', false, '$themedir/themecustoms/Color/DarkMode.php');
-
-		// Add the theme variants as a theme option too
-		add_integration_function('integrate_theme_options', __CLASS__ . '::userOptions', false, '$themedir/themecustoms/Color/DarkMode.php');
+			return;
 
 		// Load dark mode CSSS
 		$this->darkCSS();
@@ -55,6 +48,20 @@ class DarkMode
 
 		// Load the JS file for the variants
 		$this->darkJS();
+	}
+
+	/**
+	 * DarkMode::initDarkMode()
+	 * 
+	 * Initializes the theme dark mode
+	 * 
+	 * @return void
+	 */
+	public function initDarkMode()
+	{
+		// Set the variants?
+		$this->_darkmode = false;
+		call_integration_hook('integrate_customtheme_color_darkmode', [&$this->_darkmode]);
 	}
 
 	/**
@@ -79,9 +86,13 @@ class DarkMode
 	 * 
 	 * @return void
 	 */
-	public static function settings()
+	public function settings()
 	{
 		global $context, $txt;
+
+		// Check if darkmode is enabled
+		if (empty($this->_darkmode))
+			return;
 
 		// Setting type
 		if (!empty($context['st_themecustoms_setting_types']))
@@ -123,9 +134,13 @@ class DarkMode
 	 *
 	 * @return void
 	 */
-	public static function userOptions()
+	public function userOptions()
 	{
 		global $context, $txt, $settings;
+
+		// Check if darkmode is enabled
+		if (empty($this->_darkmode))
+			return;
 
 		// Insert the theme options
 		$context['theme_options'] = array_merge(
@@ -165,7 +180,7 @@ class DarkMode
 		$settings['themecustoms_html_attributes']['data']['darkmode'] = (!empty($settings['st_enable_dark_mode']) ? ('data-colormode="' . (isset($options['st_theme_mode']) && $options['st_theme_mode'] === 'dark' ? 'dark' : 'light') . '"') : 'data-colormode="dark"');
 
 		// Load the dark CSS
-		loadCSSFile('dark.css', ['order_pos' => $this->_order_position], 'smf_darkmode');
+		loadCSSFile('custom/dark.css', ['order_pos' => $this->_order_position], 'smf_darkmode');
 	}
 
 	/**
@@ -198,10 +213,11 @@ class DarkMode
 		// Load the file only if the swtylswitch is enabled and the user can change variants
 		if (!empty($settings['st_enable_dark_mode']))
 			loadJavascriptFile(
-				'dark.js',
+				'custom/dark.js',
 				[
 					'minimize' => false,
 					'defer' => true,
+					'async' => true,
 				],
 				'smftheme_js_darkmode'
 			);

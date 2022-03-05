@@ -182,7 +182,17 @@ function template_theme_header()
 	<header>
 		<div id="header">
 			<h1 class="forumtitle">
-				<a id="top" href="', $scripturl, '">', empty($context['header_logo_url_html_safe']) ? '<span class="theme-logo"><span>' . substr_replace($settings['theme_real_name'], '', -1) . '</span><span>' . substr_replace($settings['theme_real_name'], '', 0, 4). '</span></span>' : '<img src="' . $context['header_logo_url_html_safe'] . '" alt="' . $context['forum_name_html_safe'] . '">', '</a>
+				<a id="top" href="', $scripturl, '">', empty($context['header_logo_url_html_safe']) ? '
+					<span class="theme-logo">
+						<span>
+							' . substr_replace($settings['theme_name'], '', -1) . '
+						</span>
+						<span>
+							' . substr_replace($settings['theme_name'], '', 0, 4). '
+						</span>
+					</span>' : '
+					<img src="' . $context['header_logo_url_html_safe'] . '" alt="' . $context['forum_name_html_safe'] . '">', '
+				</a>
 			</h1>';
 
 			// Theme Variants
@@ -280,10 +290,10 @@ function template_theme_userarea()
 			<li>', sprintf($txt['welcome_guest'], $context['forum_name_html_safe'], $scripturl . '?action=login', 'return true;'), '</li>';
 
 			// Add the mode selector
-			themecustoms_darkmode();
+			template_theme_darkmode();
 
 			// Add the color selection
-			themecustoms_colorpicker();
+			template_theme_colorpicker();
 
 		// And now we're done.
 		echo '
@@ -325,6 +335,55 @@ function template_theme_footer()
 	echo '
 		</div>
 	</footer>';
+}
+
+/**
+ * Show a colorpicker
+ */
+function template_theme_colorpicker()
+{
+	global $settings, $txt, $scripturl, $context;
+
+	if (!empty($settings['theme_variants']) && count($settings['theme_variants']) > 1 && empty($settings['disable_user_variant']))
+	{
+		echo '
+		<li id="user_colorpicker">
+			<a href="javascript:void(0);">', themecustoms_icon('fa fa-palette'), '</a>
+			<ul id="colorpicker_menu" class="top_menu dropmenu">';
+		
+		// Theme variants
+		foreach ($settings['theme_variants'] as $variant)
+		{
+			echo '
+				<li>
+					<a href="', $scripturl, '?variant=' . $variant . '" class="theme-variant-toggle', ($context['theme_variant'] == $variant ? ' active' : '') , '" data-color="', $variant, '">
+						', $txt['variant_'. $variant], '
+					</a>
+				</li>';
+		}
+
+		echo '
+			</ul>
+		</li>';
+	}
+}
+
+/**
+ * Show the dark mode button
+ */
+function template_theme_darkmode()
+{
+	global $settings;
+	
+	if (!empty($settings['st_enable_dark_mode']) && !empty($settings['customtheme_darkmode']))
+	{
+		echo '
+		<li id="user_thememode">
+			<a href="javascript:void(0);" class="theme-mode-toggle">
+				<span></span>
+			</a>
+		</li>';
+	}
 }
 
 /**
@@ -520,9 +579,9 @@ function template_button_strip($button_strip, $direction = '', $strip_options = 
 						$button .= '
 									<span>' . $txt[$element['text'] . '_desc'] . '</span>';
 					// Surprise mechanic
-					if (isset($element['notify_status']))
+					if (isset($element['button_status']))
 						$button .= '
-									<em style="display:none;">' . $element['notify_status'] . '</em>';
+									<em style="display:none;">' . $element['button_status'] . '</em>';
 					$button .= '
 								</a>';
 				}
