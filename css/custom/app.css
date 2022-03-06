@@ -242,6 +242,18 @@ header h1.forumtitle a:hover span.theme-logo span:last-child {
 	color: hsl(0, 0%, 100%)
 }
 
+/* AMT */
+.amt {
+	display: inline-block;
+	background: var(--catbg-bg);
+	font-size: 0.75em;
+	margin: 0 0 0 4px;
+	border-radius: 4px;
+	padding: 0 8px;
+	min-width: 20px;
+	text-align: center;
+}
+
 /* Menu Nav */
 #main_menu {
 	margin: 0;
@@ -305,18 +317,8 @@ nav#main_nav ul.menu_nav li a.active {
 	color: var(--nav-item-txt-color-active);
 	background: var(--nav-item-bg-active);
 }
-nav#main_nav ul.menu_nav li a span.amt {
-	background: var(--nav-item-bg-active);
-	font-size: 0.75em;
-	display: inline-block;
-	border-radius: 4px;
-	padding: 0 8px;
-}
 nav#main_nav ul.menu_nav li a.active span.amt {
 	background: var(--amt-bg);
-	font-size: 0.8em;
-	display: inline-block;
-	border-radius: 5px;
 }
 nav#main_nav ul.menu_nav ul {
 	top: 60px;
@@ -325,6 +327,10 @@ nav#main_nav ul.menu_nav ul {
 	border-radius: 5px;
 	box-shadow: none;
 	min-width: 15em;
+}
+nav#main_nav ul.menu_nav ul ul {
+	top: 25px;
+	left: 0;
 }
 nav#main_nav ul.menu_nav ul li {
 	display: block;
@@ -345,13 +351,7 @@ nav#main_nav ul.menu_nav ul li a:hover {
 	color: var(--nav-dropdown-item-txt-color-hover);
 }
 nav#main_nav ul.menu_nav ul li a span.amt {
-	background-color: var(--nav-dropdown-item-bg-hover);
-	color: var(--nav-dropdown-item-txt-color-hover);
-	font-size: 0.9em;
-	display: inline-block;
-	border-radius: 5px;
-	padding: 0 8px;
-	font-weight: bold;
+	background: var(--nav-dropdown-item-bg-hover);
 }
 nav#main_nav ul.menu_nav ul li a:hover span.amt {
 	background: var(--amt-bg);
@@ -398,8 +398,12 @@ nav#main_nav ul.menu_nav ul li a:hover span.amt {
 .dropmenu li li {
 	border-width: 0;
 }
+.dropmenu li li.subsections > a {
+	padding: 3px 10px;
+}
 .dropmenu li li.subsections > a::after {
 	margin-top: 3px;
+	right: 15px;
 }
 .dropmenu li li:hover {
 	background: transparent;
@@ -420,7 +424,8 @@ nav#main_nav ul.menu_nav ul li a:hover span.amt {
 	text-shadow: none;
 }
 .dropmenu ul li a img,
-.dropmenu ul li a span.main_icons {
+.dropmenu ul li a span.main_icons,
+.dropmenu ul li a i {
 	filter: grayscale(100%);
 	opacity: 0.85;
 	transition:  filter 0.3s ease-in-out, opacity 0.3s ease-in-out;
@@ -428,7 +433,8 @@ nav#main_nav ul.menu_nav ul li a:hover span.amt {
 	min-width: 26px;
 }
 .dropmenu ul li a:hover img,
-.dropmenu ul li a:hover span.main_icons {
+.dropmenu ul li a:hover span.main_icons,
+.dropmenu ul li a:hover i  {
 	filter: grayscale(10%);
 	opacity: 0.95;
 }
@@ -441,6 +447,9 @@ nav#main_nav ul.menu_nav ul li a:hover span.amt {
 	color: var(--nav-dropdown-item-txt-color-hover);
 	border-width: 0;
 	box-shadow: none;
+}
+.dropmenu li li:hover .amt {
+	background: var(--amt-bg);
 }
 
 /* Content Section */
@@ -724,10 +733,6 @@ img.avatar {
 	border-radius: var(--avatar-border-radius);
 	object-fit: cover;
 }
-img.avatar {
-	width: 192px;
-	height: 192px;
-}
 img#attached_image_new.avatar {
 	width: 192px;
 	height: 192px;
@@ -926,15 +931,16 @@ p.moderators > :is(a, a:visited, a:hover) {
 }
 .buttonlist a > span.amt {
 	position: absolute;
-	right: -5px;
-	top: -5px;
-	font-size: 0.7em;
-	width: 15px;
+	right: -8px;
+	top: -12px;
+	min-width: 15px;
+	height: 20px;
 	display: flex;
 	flex: 1;
-	height: 15px;
 	justify-content: center;
 	align-items: center;
+	border-radius: 50%;
+	z-index: 1;
 }
 .buttonlist_sub::after {
 	content: "\f0dd";
@@ -1469,10 +1475,11 @@ ul.quickbuttons li span.amt a {
 	padding: 0;
 	top: 2px;
 	right: 0;
-	height: 18px;
-	width: 18px;
-	border-radius: 13px;
-	font-size: 0.6em;
+	margin-left: -5px;
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	font-size: 0.7em;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -1814,6 +1821,7 @@ li.post_like_button {
 	font-size: 2em;
 }
 ul.quickbuttons li span.amt {
+	display: inline;
 	margin: 0;
 	background: none;
 	padding: 0;

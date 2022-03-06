@@ -65,7 +65,7 @@ $(function() {
 		e.preventDefault();
 		var title = $(this).find('em').text();
 			url = $(this).attr('href') + ';js=1';
-		return reqOverlayDiv(url, title, 'post/thumbup.png');
+		return reqOverlayDiv(url, title, 'like');
 	});
 
 	// Color Picker Menu and Theme Mode
