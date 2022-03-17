@@ -720,7 +720,7 @@ p.moderators {
 .boardindex_table .lastpost p {
 	width: calc(100% - 48px);
 }
-.boardindex_table .lastpost p span {
+.boardindex_table .lastpost p span.time {
 	display: block;
 }
 .boardindex_table .lastpost a.avatar,

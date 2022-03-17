@@ -250,6 +250,10 @@ $txt['st_profile_cover'] = 'Profile cover';
 $txt['st_custom_width'] = 'Forum width';
 $txt['st_custom_width_desc'] = 'Set the forum width. Examples: 950px, 80%, 1240px.';
 
+// Site Color
+$txt['st_site_color'] = 'Site color';
+$txt['st_site_color_desc'] = 'Indicates a suggested color that user agents (browser) should use to customize the display of the page or of the surrounding user interface. <em>Default is #567c8f</em>';
+
 // Color Variants
 $txt['st_color'] = 'Color Settings';
 $txt['st_color_variants'] = 'Theme Color Variants';

@@ -78,6 +78,12 @@ class Settings
 				'label' => $txt['st_custom_width'],
 				'description' => $txt['st_custom_width_desc'],
 				'type' => 'text',
+			],
+			[
+				'id' => 'st_site_color',
+				'label' => $txt['st_site_color'],
+				'description' => $txt['st_site_color_desc'],
+				'type' => 'color',
 			]
 		], $context['theme_settings']);
 
