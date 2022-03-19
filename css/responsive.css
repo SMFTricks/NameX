@@ -28,7 +28,9 @@
 @media (max-width: 855px) {
 	#profile_menu_top .textmenu,
 	#pm_menu_top .textmenu,
-	#alerts_menu_top .textmenu {
+	#alerts_menu_top .textmenu,
+	.button_login .textmenu,
+	.button_signup .textmenu {
 		display: none;
 	}
 	#pm_menu_top .main_icons,
@@ -513,7 +515,7 @@
 		padding: 0;
 	}
 	#header h1.forumtitle {
-		bottom: -15px;
+		bottom: -10px;
 		padding: 0;
 		display: flex;
 		align-items: center;
