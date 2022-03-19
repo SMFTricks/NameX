@@ -159,7 +159,7 @@ $txt['st_twitch_username'] = 'Twitch username';
 $txt['st_rss_url'] = 'RSS URL';
 $txt['st_rss'] = 'RSS Feed';
 $txt['st_social_desc'] = 'Leave blank to disable.';
-$txt['st_rss_url_desc'] = 'The default forum URL is: <i>'.$scripturl. '?action=.xml;type=rss</i>';
+$txt['st_rss_url_desc'] = 'The default forum URL is: <em>'.$scripturl. '?action=.xml;type=rss</em>';
 
 // Carousel
 $txt['st_carousel'] = 'Carousel settings';
