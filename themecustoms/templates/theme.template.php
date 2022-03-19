@@ -73,6 +73,11 @@ function themecustoms_socials()
 		echo '
 		<a href="' . $settings['st_discord'] . '" target="_blank" rel="noopener" class="discord">', themecustoms_icon('fab fa-discord'), '</a>';
 
+	// RSS
+	if (!empty($settings['st_rss_url']))
+		echo '
+		<a href="' . $settings['st_rss_url'] . '" target="_blank" rel="noopener" class="rss">', themecustoms_icon('fas fa-rss'), '</a>';
+
 	echo '
 	</div>';
 }

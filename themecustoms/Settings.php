@@ -163,7 +163,7 @@ class Settings
 			[
 				'id' => 'st_rss_url',
 				'label' => $txt['st_rss_url'],
-				'description' => $txt['st_rss_url_desc'],
+				'description' => $txt['st_rss_url_desc'] . '<br>' . $txt['st_social_desc'],
 				'type' => 'text',
 				'theme_type' => 'social',
 			],
