@@ -1819,7 +1819,8 @@ li.post_like_button {
 	color: var(--body-link-color);
 	font-size: 0.6em;
 }
-.quickbuttons li a i {
+.quickbuttons li a i,
+.quickbuttons li a span.main_icons {
 	color: var(--titlebg-txt-color);
 	font-size: 2em;
 }
