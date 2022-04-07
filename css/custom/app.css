@@ -73,6 +73,7 @@ input[type="submit"],
 	border-width: 1px;
 	border-color: var(--button-border-color);
 	align-items: center;
+	gap: 5px;
 }
 button.button:hover, button.button:focus,
 a.button:hover, a.button:focus,
@@ -85,6 +86,9 @@ input[type="submit"]:hover, input[type="submit"]:focus,
 	box-shadow: var(--buttonlist-shadow);
 	border-radius: 4px;
 	border-color: var(--button-border-color-hover);
+}
+.button .main_icons::before {
+	margin: 0;
 }
 
 /* Popup Window and Container */
@@ -1840,6 +1844,10 @@ ul.quickbuttons li span.amt a {
 	z-index: 1;
 	margin-top: 2px;
 }
+ul.quickbuttons li ul.dropmenu li,
+ul.quickbuttons li ul.dropmenu li a {
+	width: 100%;
+}
 ul.quickbuttons li ul.dropmenu,
 ul.quickbuttons li ul.dropmenu li a {
 	min-width: 12em;
@@ -1849,11 +1857,13 @@ ul.quickbuttons li ul.dropmenu li a {
 	background: var(--nav-dropdown-item-bg);
 	color: var(--nav-dropdown-item-txt-color);
 }
-ul.quickbuttons li ul.dropmenu li a:hover i {
+ul.quickbuttons li ul.dropmenu li a:hover i,
+ul.quickbuttons li ul.dropmenu li a:hover span.main_icons {
 	color: var(--nav-dropdown-item-txt-color-hover);
 }
 ul.quickbuttons li ul.dropmenu li a,
-ul.quickbuttons li ul.dropmenu li a i {
+ul.quickbuttons li ul.dropmenu li a i,
+ul.quickbuttons li ul.dropmenu li a span.main_icons {
 	font-size: 1em;
 }
 ul.quickbuttons li ul.dropmenu li a:hover,
