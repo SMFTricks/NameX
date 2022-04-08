@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * @package Theme Customs
+ * @author Diego Andrés <diegoandres_cortes@outlook.com>
+ * @copyright Copyright (c) 2022, SMF Tricks
+ * @license MIT
+ */
+
 global $scripturl;
 
 // Additional Settings

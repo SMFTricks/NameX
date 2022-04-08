@@ -4,7 +4,7 @@
  * @package Theme Customs
  * @author Diego Andrés <diegoandres_cortes@outlook.com>
  * @copyright Copyright (c) 2022, SMF Tricks
- * @license GNU GPLv3
+ * @license MIT
  */
 
 namespace ThemeCustoms\Config;
@@ -34,7 +34,7 @@ class Integration
 		spl_autoload_register(__CLASS__ . '::autoload');
 
 		// Load Theme Strings
-		loadLanguage('ThemeStrings/');
+		loadLanguage('ThemeCustoms/main');
 
 		// Theme Settings
 		$this->loadSettings();

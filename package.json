@@ -6,7 +6,6 @@
     "build": "npm run bootstrap-css && npm run bootstrap-js && npm run animate"
   },
   "author": "SMF Tricks",
-  "license": "MIT",
   "dependencies": {
     "animate.css": "^4.1.1",
     "bootstrap": "^5.1.3",

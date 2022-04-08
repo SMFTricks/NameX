@@ -1,3 +1,10 @@
+/**
+ * @package Theme Customs
+ * @author Diego Andrés <diegoandres_cortes@outlook.com>
+ * @copyright Copyright (c) 2022, SMF Tricks
+ * @license MIT
+ */
+
 // Check for dark mode enabled
 let darkMode = smf_darkmode;
 

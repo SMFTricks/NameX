@@ -1,3 +1,10 @@
+/**
+ * @package Theme Customs
+ * @author Diego Andrés <diegoandres_cortes@outlook.com>
+ * @copyright Copyright (c) 2022, SMF Tricks
+ * @license MIT
+ */
+
 /* Replace SMF Icons */
 .main_icons::before,
 h3.profile_hd::before,
