@@ -28,7 +28,7 @@ class Integration
 	 *
 	 * initiallize the custom theme configuration
 	 */
-	public function initialize()
+	public function initialize() : void
 	{
 		// Autoload
 		spl_autoload_register(__CLASS__ . '::autoload');
@@ -56,7 +56,7 @@ class Integration
 	 * 
 	 * @return void
 	 */
-	private function loadSettings()
+	private function loadSettings() : void
 	{
 		global $settings;
 
@@ -74,7 +74,7 @@ class Integration
 	 * Autoloader using SMF function, with theme_dir
 	 * @param string $class The fully-qualified class name.
 	 */
-	protected function autoload($class)
+	protected function autoload($class) : void
 	{
 		global $settings;
 
@@ -108,7 +108,7 @@ class Integration
 	 * Load hooks quietly
 	 * @return void
 	 */
-	private function loadHooks()
+	private function loadHooks() : void
 	{
 		$hooks = [
 			'menu_buttons' => 'main_menu',
@@ -128,7 +128,7 @@ class Integration
 	 * @param array $actions An array containing all possible SMF actions. This includes loading different hooks for certain areas.
 	 * @return void
 	 */
-	public static function hookActions()
+	public static function hookActions() : void
 	{
 		// Let the action do some work
 		if (isset($_REQUEST['action']))
@@ -150,7 +150,7 @@ class Integration
 	 * @param array $buttons
 	 * @return void
 	 */
-	public static function main_menu(&$buttons)
+	public static function main_menu(&$buttons) : void
 	{
 		global $txt, $scripturl, $settings;
 
@@ -173,7 +173,7 @@ class Integration
 	 * 
 	 * @return void
 	 */
-	public static function disable_icons()
+	public static function disable_icons() : void
 	{
 		global $context, $settings, $txt;
 
@@ -192,7 +192,7 @@ class Integration
 	 * Add a little surprise to the credits page
 	 * @return void
 	 */
-	public function credits()
+	public function credits() : void
 	{
 		global $context;
 
@@ -210,7 +210,7 @@ class Integration
 	 * @param string $buffer The current content
 	 * @return string $buffer The changed content
 	 */
-	public function hookBuffer($buffer)
+	public function hookBuffer($buffer) : string
 	{
 		// Do unspeakable things to the footer
 		$this->_theme->unspeakable($buffer);
@@ -226,7 +226,7 @@ class Integration
 	 * 
 	 * @return void
 	 */
-	public function htmlAttributes()
+	public function htmlAttributes() : void
 	{
 		global $settings;
 

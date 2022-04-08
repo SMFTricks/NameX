@@ -44,7 +44,7 @@ class Main
 	 * The monstrous theme settings array.
 	 * New settings are added in here.
 	 */
-	public function settings()
+	public function settings() : void
 	{
 		// Create the theme settings
 		$this->create();
@@ -64,7 +64,7 @@ class Main
 	 *
 	 * Adds settings to the theme
 	 */
-	private function create()
+	private function create() : void
 	{
 		global $txt, $settings, $context;
 
@@ -179,7 +179,7 @@ class Main
 	 *
 	 * Remove any unwanted settingss
 	 */
-	private function remove()
+	private function remove() : void
 	{
 		global $context;
 
@@ -195,7 +195,7 @@ class Main
 	 *
 	 * Inserts the theme settings in the array
 	 */
-	private function add()
+	private function add() : void
 	{
 		global $context;
 
@@ -215,7 +215,7 @@ class Main
 	 * 
 	 * @return void
 	 */
-	private function undo()
+	private function undo() : void
 	{
 		global $settings;
 

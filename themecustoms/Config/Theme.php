@@ -79,6 +79,9 @@ class Theme
 		// Add any additional hooks for the boards or topics
 		$this->hookBoard();
 
+		// Addons?
+		$this->addons();
+
 		// Theme Variants
 		$this->theme_variants();
 
@@ -96,7 +99,7 @@ class Theme
 	 * 
 	 * @return void
 	 */
-	private function startSettings()
+	private function startSettings() : void
 	{
 		global $settings;
 
@@ -130,7 +133,7 @@ class Theme
 	 * 
 	 * @return void
 	 */
-	private function libOptions()
+	private function libOptions() : void
 	{
 		global $settings;
 
@@ -182,7 +185,7 @@ class Theme
 	 * 
 	 * @return void
 	 */
-	private function loadTemplates()
+	private function loadTemplates() : void
 	{
 		global $context, $board, $topic;
 
@@ -212,21 +215,35 @@ class Theme
 	 * 
 	 * @return void
 	 */
-	public function hookBoard()
+	public function hookBoard() : void
 	{
 		global $board, $topic;
 
 		// Topic View
 		if (!empty($topic))
 		{
-			add_integration_function('integrate_display_buttons', 'ThemeCustoms\Integration\Buttons::normalButtons', false);
-			add_integration_function('integrate_prepare_display_context', 'ThemeCustoms\Integration\Buttons::quickButtons', false);
+			add_integration_function('integrate_display_buttons', 'ThemeCustoms\Integration\Buttons::normalButtons', false, '$themedir/themecustoms/Integration/Buttons.php');
+			add_integration_function('integrate_prepare_display_context', 'ThemeCustoms\Integration\Buttons::quickButtons', false, '$themedir/themecustoms/Integration/Buttons.php');
 		}
 		// Topic List View
 		elseif (!empty($board) && empty($topic))
 		{
-			add_integration_function('integrate_messageindex_buttons', 'ThemeCustoms\Integration\Buttons::normalButtons', false);
+			add_integration_function('integrate_messageindex_buttons', 'ThemeCustoms\Integration\Buttons::normalButtons', false, '$themedir/themecustoms/Integration/Buttons.php');
 		}
+	}
+
+	/**
+	 * Theme::addons()
+	 *
+	 * Load the types of addons that are available
+	 * Normally, just theme addons, but who knows in the future.
+	 * 
+	 * @return void
+	 */
+	private function addons() : void
+	{
+		add_integration_function('integrate_modification_types', 'ThemeCustoms\Integration\Packages::types', false, '$themedir/themecustoms/Integration/Packages.php');
+		add_integration_function('integrate_packages_sort_id', 'ThemeCustoms\Integration\Packages::sort', false, '$themedir/themecustoms/Integration/Packages.php');
 	}
 
 	/**
@@ -236,7 +253,7 @@ class Theme
 	 * 
 	 * @return void
 	 */
-	private function addCSS()
+	private function addCSS() : void
 	{
 		// Add the css libraries first
 		if (!empty($this->_lib_options))
@@ -284,7 +301,7 @@ class Theme
 	 * 
 	 * @return void
 	 */
-	private function addJS()
+	private function addJS() : void
 	{
 		// Add the js libraries first
 		if (!empty($this->_lib_options))
@@ -331,7 +348,7 @@ class Theme
 	 * 
 	 * @return void
 	 */
-	private function addJavaScriptVars()
+	private function addJavaScriptVars() : void
 	{
 		global $settings;
 
@@ -347,7 +364,7 @@ class Theme
 	 *
 	 * It does nasty things to the theme footer
 	 * 
-	 * @return string Surprise!
+	 * @return void|string Surprise!
 	 */
 	public function unspeakable(&$buffer, $return = false)
 	{
@@ -374,7 +391,7 @@ class Theme
 	 * 
 	 * @return void
 	 */
-	private function theme_variants()
+	private function theme_variants() : void
 	{
 		global $settings;
 
@@ -400,7 +417,7 @@ class Theme
 	 * 
 	 * @return void
 	 */
-	private function theme_darkmode()
+	private function theme_darkmode() : void
 	{
 		global $settings;
 
@@ -426,7 +443,7 @@ class Theme
 	 * 
 	 * @return void
 	 */
-	private function color_changer()
+	private function color_changer() : void
 	{
 		global $settings;
 

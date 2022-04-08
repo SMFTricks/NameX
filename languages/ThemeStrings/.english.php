@@ -298,3 +298,8 @@ $txt['st_themeinfo_support_board_desc'] = 'Support board and discussion for this
 $txt['st_themeinfo_review'] = 'Review';
 $txt['st_themeinfo_review_desc'] = 'Review this theme.';
 $txt['st_themeinfo_smfversion'] = 'SMF Version';
+
+// Addons
+$txt['themecustoms_addon_package'] = 'Custom Theme Addons';
+$txt['install_themecustoms_addon'] = 'Install Addon';
+$txt['uninstall_themecustoms_addon'] = 'Uninstall Addon';

@@ -7,7 +7,9 @@
  * @license GNU GPLv3
  */
 
-namespace ThemeCustoms;
+namespace ThemeCustoms\Integration;
+
+use ThemeCustoms\Init;
 
 class Buttons
 {
@@ -18,7 +20,7 @@ class Buttons
 	 * 
 	 * @return void
 	 */
-	public static function normalButtons(&$buttons)
+	public static function normalButtons(&$buttons) : void
 	{
 		global $context, $txt;
 
@@ -48,13 +50,13 @@ class Buttons
 	 * 
 	 * @return void
 	 */
-	public static function quickButtons(&$output)
+	public static function quickButtons(&$output) : void
 	{
 		global $context, $scripturl, $txt, $modSettings;
 
 		// Like/Unlike button
 		// It doesn't make sense to me that you'd like their post if it's ignored, even if you decide to see it.
-		if (!$output['is_ignored'] && !empty($modSettings['enable_likes']))
+		if (!$output['is_ignored'] && !empty($modSettings['enable_likes']) && !empty(Init::$_likes_quickbutton))
 		{
 			$output['quickbuttons'] = array_merge([
 				'likes' => [

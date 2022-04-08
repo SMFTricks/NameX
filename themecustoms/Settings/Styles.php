@@ -52,7 +52,7 @@ class Styles
 	 * 
 	 * @return void
 	 */
-	public function style_settings()
+	public function style_settings() : void
 	{
 		// Settings
 		$this->_style_settings = [
@@ -68,7 +68,7 @@ class Styles
 	 * 
 	 * @return void
 	 */
-	public function addCss()
+	public function addCss() : void
 	{
 		addInlineCss($this->_css);
 	}
@@ -81,9 +81,9 @@ class Styles
 	 * https://custom.simplemachines.org/index.php?mod=4223
 	 * 
 	 * @param string $setting The setting to use
-	 * @return void
+	 * @return string The CSS output
 	 */
-	public function st_custom_width($setting)
+	public function st_custom_width($setting) : string
 	{
 		// Adjust the max-width accorrdinly
 		return '

@@ -57,6 +57,8 @@ abstract class Config
 		'colorchanger' => false,
 	];
 
+	public static $_likes_quickbutton = true;
+
 	/**
 	 * Load the custom hooks for the theme
 	 */
@@ -81,7 +83,7 @@ abstract class Config
 	 * 
 	 * @return void
 	 */
-	protected function loadThemeDetails()
+	protected function loadThemeDetails() : void
 	{
 		global $settings;
 
