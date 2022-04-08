@@ -18,7 +18,7 @@ function template_customs_init()
 	$settings['theme_version'] = '2.1';
 
 	// Integration hooks are always fun.
-	add_integration_function('integrate_load_theme', 'ThemeCustoms\Integration::initialize#', false, '$themedir/themecustoms/Integration.php');
+	add_integration_function('integrate_load_theme', 'ThemeCustoms\Config\Integration::initialize#', false, '$themedir/themecustoms/Config/Integration.php');
 }
 
 function themecustoms_page_index()

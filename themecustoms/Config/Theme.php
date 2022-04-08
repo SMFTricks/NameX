@@ -7,7 +7,9 @@
  * @license GNU GPLv3
  */
 
-namespace ThemeCustoms;
+namespace ThemeCustoms\Config;
+
+use ThemeCustoms\Init;
 
 if (!defined('SMF'))
 	die('No direct access...');
@@ -120,7 +122,7 @@ class Theme
 		$settings['themecustoms_html_attributes'] = [];
 
 		// Add inline styles for any setting that requires it
-		add_integration_function('integrate_pre_css_output', __NAMESPACE__ . '\Styles::addCss#', false, '$themedir/themecustoms/Styles.php');
+		add_integration_function('integrate_pre_css_output', 'ThemeCustoms\Settings\Styles::addCss#', false, '$themedir/themecustoms/Settings/Styles.php');
 	}
 
 	/**
@@ -220,13 +222,13 @@ class Theme
 		// Topic View
 		if (!empty($topic))
 		{
-			add_integration_function('integrate_display_buttons', __NAMESPACE__ . '\Buttons::normalButtons', false);
-			add_integration_function('integrate_prepare_display_context', __NAMESPACE__ . '\Buttons::quickButtons', false);
+			add_integration_function('integrate_display_buttons', 'ThemeCustoms\Integration\Buttons::normalButtons', false);
+			add_integration_function('integrate_prepare_display_context', 'ThemeCustoms\Integration\Buttons::quickButtons', false);
 		}
 		// Topic List View
 		elseif (!empty($board) && empty($topic))
 		{
-			add_integration_function('integrate_messageindex_buttons', __NAMESPACE__ . '\Buttons::normalButtons', false);
+			add_integration_function('integrate_messageindex_buttons', 'ThemeCustoms\Integration\Buttons::normalButtons', false);
 		}
 	}
 
@@ -385,13 +387,13 @@ class Theme
 
 		// Variants settings
 		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] == $settings['theme_id'])
-			add_integration_function('integrate_theme_settings', __NAMESPACE__ . '\\Color\Variants::settings#', false, '$themedir/themecustoms/Color/Variants.php');
+			add_integration_function('integrate_theme_settings', 'ThemeCustoms\Color\Variants::settings#', false, '$themedir/themecustoms/Color/Variants.php');
 
 		// Add the variants to the list of available themes
-		add_integration_function('integrate_theme_context', __NAMESPACE__ . '\\Color\Variants::userSelection#', false, '$themedir/themecustoms/Color/Variants.php');
+		add_integration_function('integrate_theme_context', 'ThemeCustoms\Color\Variants::userSelection#', false, '$themedir/themecustoms/Color/Variants.php');
 
 		// Add the theme variants as a theme option too
-		add_integration_function('integrate_theme_options', __NAMESPACE__ . '\\Color\Variants::userOptions#', false, '$themedir/themecustoms/Color/Variants.php');
+		add_integration_function('integrate_theme_options', __NAMESPACE__ . 'ThemeCustoms\Color\Variants::userOptions#', false, '$themedir/themecustoms/Color/Variants.php');
 	}
 
 	/**
@@ -411,13 +413,13 @@ class Theme
 
 		// Insert the variants using the theme settings.
 		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] == $settings['theme_id'])
-			add_integration_function('integrate_theme_settings', __NAMESPACE__ . '\\Color\DarkMode::settings#', false, '$themedir/themecustoms/Color/DarkMode.php');
+			add_integration_function('integrate_theme_settings', 'ThemeCustoms\Color\DarkMode::settings#', false, '$themedir/themecustoms/Color/DarkMode.php');
 
 		// Add the dark mode to the theme variables
-		add_integration_function('integrate_theme_context', __NAMESPACE__ . '\\Color\DarkMode::themeVar#', false, '$themedir/themecustoms/Color/DarkMode.php');
+		add_integration_function('integrate_theme_context', 'ThemeCustoms\Color\DarkMode::themeVar#', false, '$themedir/themecustoms/Color/DarkMode.php');
 
 		// Add the dark mode as a theme option too
-		add_integration_function('integrate_theme_options', __NAMESPACE__ . '\\Color\DarkMode::userOptions#', false, '$themedir/themecustoms/Color/DarkMode.php');
+		add_integration_function('integrate_theme_options', 'ThemeCustoms\Color\DarkMode::userOptions#', false, '$themedir/themecustoms/Color/DarkMode.php');
 	}
 
 	/**
@@ -437,9 +439,9 @@ class Theme
 
 		// Add the settings for the color changer
 		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] == $settings['theme_id'])
-			add_integration_function('integrate_theme_settings', __NAMESPACE__ . '\\Color\Changer::settings#', false, '$themedir/themecustoms/Color/Changer.php');
+			add_integration_function('integrate_theme_settings', 'ThemeCustoms\Color\Changer::settings#', false, '$themedir/themecustoms/Color/Changer.php');
 
 		// Add the color changes
-		add_integration_function('integrate_theme_context', __NAMESPACE__ . '\\Color\Changer::colorChanges#', false, '$themedir/themecustoms/Color/Changer.php');
+		add_integration_function('integrate_theme_context', 'ThemeCustoms\Color\Changer::colorChanges#', false, '$themedir/themecustoms/Color/Changer.php');
 	}
 }

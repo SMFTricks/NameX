@@ -9,6 +9,8 @@
 
 namespace ThemeCustoms;
 
+use ThemeCustoms\Config\Config;
+
 if (!defined('SMF'))
 	die('No direct access...');
 

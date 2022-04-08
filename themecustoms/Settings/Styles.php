@@ -7,7 +7,7 @@
  * @license GNU GPLv3
  */
 
-namespace ThemeCustoms;
+namespace ThemeCustoms\Settings;
 
 if (!defined('SMF'))
 	die('No direct access...');

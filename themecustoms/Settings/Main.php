@@ -7,12 +7,12 @@
  * @license MIT
  */
 
-namespace ThemeCustoms;
+namespace ThemeCustoms\Settings;
 
 if (!defined('SMF'))
 	die('No direct access...');
 
-class Settings
+class Main
 {
 	/**
 	 * @var array The common theme settings
@@ -42,32 +42,32 @@ class Settings
 	private $_custom_settings;
 
 	/**
-	 * Settings::themeSettings()
+	 * Main::settings()
 	 *
 	 * The monstrous theme settings array.
 	 * New settings are added in here.
 	 */
-	public function themeSettings()
+	public function settings()
 	{
 		// Create the theme settings
-		$this->createSettings();
+		$this->create();
 
 		// Remove unwanted settings
-		$this->removeSettings();
+		$this->remove();
 
 		// Add theme settings
-		$this->addSettings();
+		$this->add();
 
 		// Remove the values from undesired settings
-		$this->undoSettings();
+		$this->undo();
 	}
 
 	/**
-	 * Settings::createSettings()
+	 * Main::create()
 	 *
 	 * Adds settings to the theme
 	 */
-	private function createSettings()
+	private function create()
 	{
 		global $txt, $settings, $context;
 
@@ -178,11 +178,11 @@ class Settings
 	}
 
 	/**
-	 * Settings::removeSettings()
+	 * Main::remove()
 	 *
 	 * Remove any unwanted settingss
 	 */
-	private function removeSettings()
+	private function remove()
 	{
 		global $context;
 
@@ -194,11 +194,11 @@ class Settings
 	}
 
 	/**
-	 * Settings::addSettings()
+	 * Main::add()
 	 *
 	 * Inserts the theme settings in the array
 	 */
-	private function addSettings()
+	private function add()
 	{
 		global $context;
 
@@ -211,14 +211,14 @@ class Settings
 	}
 
 	/**
-	 * Settings::undoSettings()
+	 * Main::undo()
 	 *
 	 * Prevents undesired settings from affecting the forum.
 	 * It obviously doesn't remove any setting from the database, just "disables" them.
 	 * 
 	 * @return void
 	 */
-	private function undoSettings()
+	private function undo()
 	{
 		global $settings;
 
