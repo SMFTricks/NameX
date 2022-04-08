@@ -615,7 +615,7 @@ div.title_bar,
 	color: var(--titlebg-txt-color);
 }
 .title_bar h3 {
-	padding: 0 12px;
+	padding-inline: 12px;
 }
 /* Heading */
 .popup_heading {

@@ -562,8 +562,8 @@ function template_set_settings()
 						<dl class="settings">
 							<dt>
 								<label for="variant">
-									<strong>', $txt['theme_variants_default'], '</strong>
-									</label>:
+									<strong>', $txt['theme_variants_default'], ':</strong>
+									</label>
 									<br>
 									<span class="smalltext">
 										<img src="', $context['theme_variants'][$context['default_variant']]['thumbnail'], '" id="variant_preview" class="theme_thumbnail" alt="">
@@ -581,8 +581,8 @@ function template_set_settings()
 							</dd>
 							<dt>
 								<label for="disable_user_variant">
-									<strong>', $txt['theme_variants_user_disable'], '</strong>
-								</label>:
+									<strong>', $txt['theme_variants_user_disable'], ':</strong>
+								</label>
 							</dt>
 							<dd>
 								<input type="hidden" name="options[disable_user_variant]" value="0">
