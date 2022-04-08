@@ -9,9 +9,6 @@
 
 namespace ThemeCustoms;
 
-if (!defined('SMF'))
-	die('No direct access...');
-
 class Buttons
 {
 	/**

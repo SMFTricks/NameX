@@ -9,9 +9,6 @@
 
 namespace ThemeCustoms\Settings;
 
-if (!defined('SMF'))
-	die('No direct access...');
-
 class Styles
 {
 	/**

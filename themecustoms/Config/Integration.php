@@ -11,9 +11,6 @@ namespace ThemeCustoms\Config;
 
 use ThemeCustoms\Init;
 
-if (!defined('SMF'))
-	die('No direct access...');
-
 class Integration
 {
 	/**

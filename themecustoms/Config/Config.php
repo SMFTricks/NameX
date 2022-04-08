@@ -9,9 +9,6 @@
 
 namespace ThemeCustoms\Config;
 
-if (!defined('SMF'))
-	die('No direct access...');
-
 abstract class Config
 {
 	/**

@@ -9,9 +9,6 @@
 
 namespace ThemeCustoms\Color;
 
-if (!defined('SMF'))
-	die('No direct access...');
-
 class Changer
 {
 	/**
