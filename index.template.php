@@ -254,19 +254,9 @@ function template_theme_userarea()
 			</li>';
 	}
 	// Otherwise they're a guest. Ask them to either register or login.
-	elseif (empty($maintenance))
+	elseif (empty($maintenance) && empty($settings['login_main_menu']))
 	{
-		// Some people like to do things the old-fashioned way.
-		if (!empty($settings['login_main_menu']))
-		{
-			echo '
-			<li class="welcome">
-				', sprintf($txt[$context['can_register'] ? 'welcome_guest_register' : 'welcome_guest'], $context['forum_name_html_safe'], $scripturl . '?action=login', 'return reqOverlayDiv(this.href, ' . JavaScriptEscape($txt['login']) . ', \'login\');', $scripturl . '?action=signup'), '
-			</li>';
-		}
-		else
-		{
-			echo '
+		echo '
 			<li class="button_login">
 				<a href="', $scripturl, '?action=login" class="', $context['current_action'] == 'login' ? 'active' : 'open','" onclick="return reqOverlayDiv(this.href, ' . JavaScriptEscape($txt['login']) . ', \'login\');">
 					<span class="main_icons login"></span>
@@ -277,17 +267,12 @@ function template_theme_userarea()
 			if ($context['can_register'])
 				echo '
 			<li class="button_signup">
-				<a href="', $scripturl, '?action=signup" class="', $context['current_action'] == 'signup' ? 'active' : 'open','">
+				<a href="', $scripturl, '?action=signup" class="', $context['current_action'] == 'signup' ? 'active' : '','">
 					<span class="main_icons regcenter"></span>
 					<span class="textmenu">', $txt['register'], '</span>
 				</a>
 			</li>';
-		}
 	}
-	else
-		// In maintenance mode, only login is allowed and don't show OverlayDiv
-		echo '
-			<li>', sprintf($txt['welcome_guest'], $context['forum_name_html_safe'], $scripturl . '?action=login', 'return true;'), '</li>';
 
 			// Add the mode selector
 			template_theme_darkmode();

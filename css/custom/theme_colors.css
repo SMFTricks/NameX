@@ -241,7 +241,7 @@
 
 	/* Amt */
 		/* Background */
-		--amt-bg: hsl(var(--primary-color-hue), 50%, 25%);
+		--amt-bg: var(--catbg-bg);
 
 	/* Board Icons */
 		/* Color */

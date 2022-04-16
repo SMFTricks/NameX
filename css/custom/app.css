@@ -252,7 +252,7 @@ header h1.forumtitle a:hover span.theme-logo span:last-child {
 /* AMT */
 .amt {
 	display: inline-block;
-	background: var(--catbg-bg);
+	background: var(--amt-bg);
 	font-size: 0.75em;
 	margin: 0 0 0 4px;
 	border-radius: 4px;
@@ -583,13 +583,15 @@ div.cat_bar,
 }
 h3.catbg, h3.catbg a,
 h3.catbg a:hover, .cat_bar a {
+	font-family: var(--body-font-family);
 	font-size: 1em;
 	text-shadow: 0px -1px 1px rgba(0,0,0,0.3);
 	font-weight: normal;
 	color: var(--catbg-txt-color);
 }
 .cat_bar h3 {
-	padding: 0 12px;
+	padding-inline: 12px;
+	padding-block: 0;
 }
 /* Title Bar */
 div.title_bar,
@@ -609,6 +611,7 @@ div.title_bar,
 }
 .subbg, .titlebg, h3.subbg, h3.titlebg, h4.subbg, h4.titlebg,
 .titlebg a, .subbg a, .title_bar a {
+	font-family: var(--body-font-family);
 	font-size: 0.9em;
 	text-shadow: 0px -1px 1px rgba(255,255,255,0.3);
 	font-weight: bold;
@@ -616,6 +619,7 @@ div.title_bar,
 }
 .title_bar h3 {
 	padding-inline: 12px;
+	padding-block: 0;
 }
 /* Heading */
 .popup_heading {
@@ -1490,7 +1494,7 @@ ul.quickbuttons li span.amt a {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: var(--nav-item-bg-active);
+	background-color: var(--amt-bg);
 }
 .pm_unread, .alerts_unread {
 	border-color: var(--uppersection-bg);
@@ -1630,6 +1634,7 @@ li#user_thememode a span::before {
 #pm_menu, #alerts_menu, #profile_menu {
 	left: auto;
 	right: auto;
+	padding-inline: 1px;
 }
 
 /* Stats */
