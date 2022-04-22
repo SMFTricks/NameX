@@ -12,7 +12,7 @@
  *
  * @param array $board Current board information.
  */
-function template_bi_board_icon($board)
+function themecustoms_board_icon($board)
 {
 	global $context, $scripturl;
 
@@ -27,7 +27,7 @@ function template_bi_board_icon($board)
  *
  * @param array $board Current board information.
  */
-function template_bi_board_info($board)
+function themecustoms_board_info($board)
 {
 	global $context, $scripturl, $txt;
 
@@ -59,7 +59,7 @@ function template_bi_board_info($board)
  *
  * @param array $board Current board information.
  */
-function template_bi_board_stats($board)
+function themecustoms_board_stats($board)
 {
 	global $txt;
 
@@ -80,7 +80,7 @@ function template_bi_board_stats($board)
  *
  * @param array $board Current board information.
  */
-function template_bi_board_lastpost($board)
+function themecustoms_board_lastpost($board)
 {
 	global $settings, $txt;
 
@@ -97,7 +97,7 @@ function template_bi_board_lastpost($board)
  *
  * @param array $board Current board information.
  */
-function template_bi_board_children($board)
+function themecustoms_board_children($board)
 {
 	global $txt, $scripturl, $context;
 

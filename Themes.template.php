@@ -489,7 +489,8 @@ function template_set_settings()
 	if ($context['theme_settings']['theme_id'] != 1)
 		echo '
 						<div class="title_bar">
-							<h3 class="titlebg config_hd">
+							<h3 class="titlebg">
+								<span class="main_icons settings"></span>
 								', $txt['theme_edit'], '
 							</h3>
 						</div>
@@ -506,19 +507,24 @@ function template_set_settings()
 
 	echo '
 						<div class="title_bar">
-							<h3 class="titlebg config_hd">
+							<h3 class="titlebg">
+								<span class="main_icons settings"></span>
 								', $txt['theme_url_config'], '
 							</h3>
 						</div>
 						<dl class="settings">
 							<dt>
-								<label for="theme_name">', $txt['actual_theme_name'], '</label>
+								<label for="theme_name">
+									<strong>', $txt['actual_theme_name'], '</strong>
+								</label>
 							</dt>
 							<dd>
 								<input type="text" id="theme_name" name="options[name]" value="', $context['theme_settings']['name'], '" size="32">
 							</dd>
 							<dt>
-								<label for="theme_url">', $txt['actual_theme_url'], '</label>
+								<label for="theme_url">
+									<strong>', $txt['actual_theme_url'], '</strong>
+								</label>
 							</dt>
 							<dd>
 								<input type="text" id="theme_url" name="options[theme_url]" value="', $context['theme_settings']['actual_theme_url'], '" size="50">
@@ -530,7 +536,9 @@ function template_set_settings()
 								<input type="text" id="images_url" name="options[images_url]" value="', $context['theme_settings']['actual_images_url'], '" size="50">
 							</dd>
 							<dt>
-								<label for="theme_dir">', $txt['actual_theme_dir'], '</label>
+								<label for="theme_dir">
+									<strong>', $txt['actual_theme_dir'], '</strong>
+								</label>
 							</dt>
 							<dd>
 								<input type="text" id="theme_dir" name="options[theme_dir]" value="', $context['theme_settings']['actual_theme_dir'], '" size="50">

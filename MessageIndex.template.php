@@ -63,19 +63,19 @@ function template_main()
 		<div id="board_', $board['id'], '" class="up_contain ', (!empty($board['css_class']) ? $board['css_class'] : ''), '">';
 
 			// Show the board icon
-			function_exists('template_bi_' . $board['type'] . '_icon') ? call_user_func('template_bi_' . $board['type'] . '_icon', $board) : template_bi_board_icon($board);
+			function_exists('themecustoms_' . $board['type'] . '_icon') ? call_user_func('themecustoms_' . $board['type'] . '_icon', $board) : themecustoms_board_icon($board);
 
 			// Show the board name, description, and moderators.
-			function_exists('template_bi_' . $board['type'] . '_info') ? call_user_func('template_bi_' . $board['type'] . '_info', $board) : template_bi_board_info($board);
+			function_exists('themecustoms_' . $board['type'] . '_info') ? call_user_func('themecustoms_' . $board['type'] . '_info', $board) : themecustoms_board_info($board);
 
 			// Show some basic information about the number of posts, etc.
-			function_exists('template_bi_' . $board['type'] . '_stats') ? call_user_func('template_bi_' . $board['type'] . '_stats', $board) : template_bi_board_stats($board);
+			function_exists('themecustoms_' . $board['type'] . '_stats') ? call_user_func('themecustoms_' . $board['type'] . '_stats', $board) : themecustoms_board_stats($board);
 
 			// Show the last post if there is one.
-			function_exists('template_bi_' . $board['type'] . '_lastpost') ? call_user_func('template_bi_' . $board['type'] . '_lastpost', $board) : template_bi_board_lastpost($board);
+			function_exists('themecustoms_' . $board['type'] . '_lastpost') ? call_user_func('themecustoms_' . $board['type'] . '_lastpost', $board) : themecustoms_board_lastpost($board);
 
 			// Won't somebody think of the children!
-			function_exists('template_bi_' . $board['type'] . '_children') ? call_user_func('template_bi_' . $board['type'] . '_children', $board) : template_bi_board_children($board);
+			function_exists('themecustoms_' . $board['type'] . '_children') ? call_user_func('themecustoms_' . $board['type'] . '_children', $board) : themecustoms_board_children($board);
 
 				echo '
 		</div><!-- #board_[id] -->';
@@ -154,7 +154,7 @@ function template_main()
 		// No topics... just say, "sorry bub".
 		else
 			echo '
-				<h3 class="titlebg">', $txt['topic_alert_none'], '</h3>';
+				<h3 class="catbg">', $txt['topic_alert_none'], '</h3>';
 
 		echo '
 			</div><!-- #topic_header -->';
@@ -249,7 +249,7 @@ function template_main()
 						</p>
 					</div>
 					<div class="lastpost">
-						', !empty($settings['st_enable_avatars_topics']) ? themecustoms_avatar($topic['last_post']['member']['avatar']['href'], $topic['last_post']['member']['id']) : '', '
+						', !empty($settings['st_enable_avatars_topics']) && !empty($topic['last_post']['member']['avatar']) ? themecustoms_avatar($topic['last_post']['member']['avatar']['href'], $topic['last_post']['member']['id']) : '', '
 						<p>', sprintf($txt['last_post_topic'], '<a href="' . $topic['last_post']['href'] . '">' . $topic['last_post']['time'] . '</a>', $topic['last_post']['member']['link']), '</p>
 					</div>';
 

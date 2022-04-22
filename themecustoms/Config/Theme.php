@@ -376,7 +376,7 @@ class Theme
 		if ($return)
 			return (!empty($settings['theme_support_information']['theme_link']) ? $settings['theme_support_information']['theme_link'] . ' | ' : '') . $ST;
 		// Stick it
-		elseif (!isset($settings['theme_remove_copyright']) || empty($settings['theme_remove_copyright']))
+		elseif (!isset(Init::$_settings['theme_rc']) || empty(Init::$_settings['theme_rc']))
 			$buffer = preg_replace(
 				'~(<li class="smf_copyright">)~',
 				'<li>'. $ST . '</li>' . "$1 ",

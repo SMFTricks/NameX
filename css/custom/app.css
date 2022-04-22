@@ -2197,6 +2197,12 @@ fieldset.admin_group a span.large_admin_menu_icon {
 }
 
 /* Settings Tabs */
+dl.settings {
+	margin-block: 1px;
+	margin-inline: 0;
+	padding-inline: 6px;
+	padding-block: 0;
+}
 .ui-tabs {
 	position: relative;/* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
 	padding: .2em;
