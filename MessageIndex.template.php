@@ -52,36 +52,40 @@ function template_main()
 	if (!empty($context['boards']) && (!empty($options['show_children']) || $context['start'] == 0))
 	{
 		echo '
-	<div id="board_', $context['current_board'], '_childboards" class="boardindex_table main_container">
-		<div class="cat_bar">
-			<h3 class="catbg">', $txt['sub_boards'], '</h3>
-		</div>';
+	<div id="board_', $context['current_board'], '_childboards" class="boardindex_table">
+		<div class="main_container">
+			<div class="cat_bar">
+				<h3 class="catbg">', $txt['sub_boards'], '</h3>
+			</div>
+			<div id="board_sb_', $context['current_board'], '">';
 
 		foreach ($context['boards'] as $board)
 		{
 			echo '
-		<div id="board_', $board['id'], '" class="up_contain ', (!empty($board['css_class']) ? $board['css_class'] : ''), '">';
+				<div id="board_', $board['id'], '" class="up_contain b_', $board['type'], (!empty($board['css_class']) ? ' ' . $board['css_class'] : ''), '">';
 
-			// Show the board icon
-			function_exists('themecustoms_' . $board['type'] . '_icon') ? call_user_func('themecustoms_' . $board['type'] . '_icon', $board) : themecustoms_board_icon($board);
+					// Show the board icon
+					function_exists('themecustoms_' . $board['type'] . '_icon') ? call_user_func('themecustoms_' . $board['type'] . '_icon', $board) : themecustoms_board_icon($board);
 
-			// Show the board name, description, and moderators.
-			function_exists('themecustoms_' . $board['type'] . '_info') ? call_user_func('themecustoms_' . $board['type'] . '_info', $board) : themecustoms_board_info($board);
+					// Show the board name, description, and moderators.
+					function_exists('themecustoms_' . $board['type'] . '_info') ? call_user_func('themecustoms_' . $board['type'] . '_info', $board) : themecustoms_board_info($board);
 
-			// Show some basic information about the number of posts, etc.
-			function_exists('themecustoms_' . $board['type'] . '_stats') ? call_user_func('themecustoms_' . $board['type'] . '_stats', $board) : themecustoms_board_stats($board);
+					// Show some basic information about the number of posts, etc.
+					function_exists('themecustoms_' . $board['type'] . '_stats') ? call_user_func('themecustoms_' . $board['type'] . '_stats', $board) : themecustoms_board_stats($board);
 
-			// Show the last post if there is one.
-			function_exists('themecustoms_' . $board['type'] . '_lastpost') ? call_user_func('themecustoms_' . $board['type'] . '_lastpost', $board) : themecustoms_board_lastpost($board);
+					// Show the last post if there is one.
+					function_exists('themecustoms_' . $board['type'] . '_lastpost') ? call_user_func('themecustoms_' . $board['type'] . '_lastpost', $board) : themecustoms_board_lastpost($board);
 
-			// Won't somebody think of the children!
-			function_exists('themecustoms_' . $board['type'] . '_children') ? call_user_func('themecustoms_' . $board['type'] . '_children', $board) : themecustoms_board_children($board);
+					// Won't somebody think of the children!
+					function_exists('themecustoms_' . $board['type'] . '_children') ? call_user_func('themecustoms_' . $board['type'] . '_children', $board, 'dropdown') : themecustoms_board_children($board, 'dropdown');
 
-				echo '
-		</div><!-- #board_[id] -->';
+					echo '
+				</div><!-- #board_[id] -->';
 		}
 
 		echo '
+			</div><!-- #category_[id]_boards -->
+		</div><!-- .main_container -->
 	</div><!-- #board_[current_board]_childboards -->';
 	}
 

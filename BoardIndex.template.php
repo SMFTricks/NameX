@@ -98,7 +98,7 @@ function template_main()
 		foreach ($category['boards'] as $board)
 		{
 			echo '
-				<div id="board_', $board['id'], '" class="up_contain ', (!empty($board['css_class']) ? $board['css_class'] : ''), '">';
+				<div id="board_', $board['id'], '" class="up_contain b_', $board['type'], (!empty($board['css_class']) ? ' ' . $board['css_class'] : ''), '">';
 
 					// Show the board icon
 					function_exists('themecustoms_' . $board['type'] . '_icon') ? call_user_func('themecustoms_' . $board['type'] . '_icon', $board) : themecustoms_board_icon($board);
