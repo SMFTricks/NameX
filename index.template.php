@@ -558,12 +558,24 @@ function template_button_strip($button_strip, $direction = '', $strip_options = 
 						continue;
 
 					$button .= '
-								<a href="' . $element['url'] . '"' . (!empty($element['active']) ? ' class="active"' : '') . '>
-									<strong>' . $txt[$element['text']] . '</strong>';
+								<a href="' . $element['url'] . '"' . (!empty($element['active']) ? ' class="active"' : '') . '>';
+
+						// Text
+						$button .= '
+									<span '. (empty($element['not_strong']) ? 'class="strong"' : '') . '>'
+										 . $txt[$element['text']] . '
+									</span>';
+
+					// Icon
+					if (!empty($element['icon']))
+						$button .= $element['icon'];
+
+					// Description
 					if (isset($txt[$element['text'] . '_desc']))
 						$button .= '
-									<span>' . $txt[$element['text'] . '_desc'] . '</span>';
-					// Surprise mechanic
+									<span class="button-description">' . $txt[$element['text'] . '_desc'] . '</span>';
+
+					// Button Status
 					if (isset($element['button_status']))
 						$button .= '
 									<em style="display:none;">' . $element['button_status'] . '</em>';
