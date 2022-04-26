@@ -990,6 +990,10 @@ p.moderators > :is(a, a:visited, a:hover) {
 .buttonlist > .top_menu.dropmenu.notify_dropdown a {
 	min-height: 60px;
 }
+.buttonlist > .top_menu.dropmenu a span.strong {
+	font-size: 1.1em;
+	color: inherit;
+}
 .buttonlist > .top_menu.dropmenu a {
 	/* background: none; */
 	box-shadow: none;
