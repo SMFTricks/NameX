@@ -1883,6 +1883,13 @@ ul.quickbuttons li ul.dropmenu li a i,
 ul.quickbuttons li ul.dropmenu li a span.main_icons {
 	text-align: center;
 	flex-basis: 15%;
+	margin: 0;
+}
+ul.quickbuttons li ul.dropmenu li a i::before,
+ul.quickbuttons li ul.dropmenu li a span.main_icons::before,
+.dropmenu .main_icons::before {
+	margin: 0;
+	vertical-align: top;
 }
 ul.quickbuttons li ul.dropmenu li a:hover,
 ul.quickbuttons li ul.dropmenu li a:focus {

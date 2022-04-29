@@ -94,7 +94,6 @@
 	#mobile_action .button, #mobile_moderation .button, #mobile_action .top_menu {
 		width: 100%;
 		margin: 0;
-		text-indent: 5px;
 	}
 	#mobile_action .button, #mobile_moderation .button {
 		line-height: 2.8em;
@@ -597,12 +596,6 @@
 		width: 100%;
 		padding: 0;
 		margin: 0;
-	}
-	.dropmenu li a, .dropmenu li a:hover {
-		text-indent: 10px;
-	}
-	.dropmenu li .amt {
-		text-indent: 0;
 	}
 	.dropmenu li a, .dropmenu li:hover a,
 	.dropmenu li a.active, .dropmenu li a.active:hover,
