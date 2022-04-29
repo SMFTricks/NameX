@@ -53,6 +53,10 @@ class Buttons
 	public static function quickButtons(&$output) : void
 	{
 		global $context, $scripturl, $txt, $modSettings;
+		
+		// Modify button
+		if (isset($output['quickbuttons']['more']['modify']) && !empty($output['quickbuttons']['more']['modify']))
+			$output['quickbuttons']['more']['modify']['icon'] = 'modify_button';
 
 		// Like/Unlike button
 		// It doesn't make sense to me that you'd like their post if it's ignored, even if you decide to see it.

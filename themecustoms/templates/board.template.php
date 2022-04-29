@@ -48,7 +48,9 @@ function themecustoms_board_info($board)
 	// Show the "Moderators: ". Each has name, href, link, and id. (but we're gonna use link_moderators.)
 	if (!empty($board['moderators']) || !empty($board['moderator_groups']))
 		echo '
-		<p class="moderators">', count($board['link_moderators']) === 1 ? $txt['moderator'] : $txt['moderators'], ': ', implode(', ', $board['link_moderators']), '</p>';
+		<p class="moderators">
+			', count($board['link_moderators']) === 1 ? $txt['moderator'] : $txt['moderators'], ': ', implode(', ', $board['link_moderators']), '
+		</p>';
 
 	echo '
 	</div>';
@@ -67,9 +69,9 @@ function themecustoms_board_stats($board)
 	<div class="board_stats">
 		<p>
 			', ($board['type'] != 'redirect' ? '
-				<strong>' . comma_format($board['posts']) . '</strong> ' . $txt['posts'] . '<br>
-				<strong>' . comma_format($board['topics']) . '</strong> ' . $txt['board_topics'] : '
-				<strong>' . comma_format($board['posts']) . '</strong> ' . $txt['redirects']), '
+				<strong class="posts">' . comma_format($board['posts']) . '</strong> ' . $txt['posts'] . '<br>
+				<strong class="topics">' . comma_format($board['topics']) . '</strong> ' . $txt['board_topics'] : '
+				<strong class="redirects">' . comma_format($board['posts']) . '</strong> ' . $txt['redirects']), '
 		</p>
 	</div>';
 }
@@ -84,11 +86,22 @@ function themecustoms_board_lastpost($board)
 {
 	global $settings, $txt;
 
-	if (!empty($board['last_post']['id']))
-		echo '
-		<div class="lastpost">
-			', !empty($settings['st_enable_avatars_boards']) ? themecustoms_avatar($board['last_post']['member']['avatar']['href'], $board['last_post']['member']['id']) : '', '
-			<p>	', $board['last_post']['link'], ' ', $txt['by'], ' ', $board['last_post']['member']['link'], ' <span class="time">', themecustoms_icon('far fa-clock'), ' ', timeformat($board['last_post']['timestamp']), '</span></p>
+	echo '
+		<div class="lastpost">';
+
+		// Will still add the class, in case the design depends on it.
+		if (!empty($board['last_post']['id']))
+			echo '
+			', !empty($settings['st_enable_avatars_boards']) && !empty($board['last_post']['member']['avatar']) ? themecustoms_avatar($board['last_post']['member']['avatar']['href'], $board['last_post']['member']['id']) : '', '
+			<p>
+				<span class="last_post">
+					', $board['last_post']['link'], ' 
+					<span class="post_by">', $txt['by'], ' ', $board['last_post']['member']['link'], '</span>
+				</span>
+				<span class="time">', themecustoms_icon('far fa-clock'), ' ', timeformat($board['last_post']['timestamp']), '</span>
+			</p>';
+
+	echo '
 		</div>';
 }
 
@@ -97,34 +110,120 @@ function themecustoms_board_lastpost($board)
  *
  * @param array $board Current board information.
  */
-function themecustoms_board_children($board)
+function themecustoms_board_children($board, $style = false)
 {
 	global $txt, $scripturl, $context;
 
-	// Show the "Child Boards: ". (there's a link_children but we're going to bold the new ones...)
-	if (!empty($board['children']))
+	if (empty($board['children']))
+		return;
+
+	// Sort the links into an array with new boards bold so it can be imploded.
+	$children = array();
+
+	/* 
+		Each child in each board's children has:
+		id, name, description, new (is it new?), topics (#), posts (#), href, link, and last_post.
+	*/
+	foreach ($board['children'] as $child)
 	{
-		// Sort the links into an array with new boards bold so it can be imploded.
-		$children = array();
-		/* Each child in each board's children has:
-			id, name, description, new (is it new?), topics (#), posts (#), href, link, and last_post. */
-		foreach ($board['children'] as $child)
-		{
-			if (!$child['is_redirect'])
-				$child['link'] = '' . ($child['new'] ? '<a href="' . $scripturl . '?action=unread;board=' . $child['id'] . '" title="' . $txt['new_posts'] . ' (' . $txt['board_topics'] . ': ' . comma_format($child['topics']) . ', ' . $txt['posts'] . ': ' . comma_format($child['posts']) . ')" class="new_posts">' . $txt['new'] . '</a> ' : '') . '<a href="' . $child['href'] . '" ' . ($child['new'] ? 'class="board_new_posts" ' : '') . 'title="' . ($child['new'] ? $txt['new_posts'] : $txt['old_posts']) . ' (' . $txt['board_topics'] . ': ' . comma_format($child['topics']) . ', ' . $txt['posts'] . ': ' . comma_format($child['posts']) . ')">' . $child['name'] . '</a>';
-			else
-				$child['link'] = '<a href="' . $child['href'] . '" title="' . comma_format($child['posts']) . ' ' . $txt['redirects'] . ' - ' . $child['short_description'] . '">' . $child['name'] . '</a>';
+		if (!$child['is_redirect'])
+			$child['link'] = '' . ($child['new'] ? '<a href="' . $scripturl . '?action=unread;board=' . $child['id'] . '" title="' . $txt['new_posts'] . ' (' . $txt['board_topics'] . ': ' . comma_format($child['topics']) . ', ' . $txt['posts'] . ': ' . comma_format($child['posts']) . ')" class="new_posts">' . $txt['new'] . '</a> ' : '') . '<a href="' . $child['href'] . '" ' . ($child['new'] ? 'class="board_new_posts" ' : '') . 'title="' . ($child['new'] ? $txt['new_posts'] : $txt['old_posts']) . ' (' . $txt['board_topics'] . ': ' . comma_format($child['topics']) . ', ' . $txt['posts'] . ': ' . comma_format($child['posts']) . ')">' . $child['name'] . '</a>';
+		else
+			$child['link'] = '<a href="' . $child['href'] . '" title="' . comma_format($child['posts']) . ' ' . $txt['redirects'] . ' - ' . $child['short_description'] . '">' . $child['name'] . '</a>';
 
-			// Has it posts awaiting approval?
-			if ($child['can_approve_posts'] && ($child['unapproved_posts'] || $child['unapproved_topics']))
-				$child['link'] .= ' <a href="' . $scripturl . '?action=moderate;area=postmod;sa=' . ($child['unapproved_topics'] > 0 ? 'topics' : 'posts') . ';brd=' . $child['id'] . ';' . $context['session_var'] . '=' . $context['session_id'] . '" title="' . sprintf($txt['unapproved_posts'], $child['unapproved_topics'], $child['unapproved_posts']) . '" class="moderation_link amt">!</a>';
+		// Has it posts awaiting approval?
+		if ($child['can_approve_posts'] && ($child['unapproved_posts'] || $child['unapproved_topics']))
+			$child['link'] .= ' <a href="' . $scripturl . '?action=moderate;area=postmod;sa=' . ($child['unapproved_topics'] > 0 ? 'topics' : 'posts') . ';brd=' . $child['id'] . ';' . $context['session_var'] . '=' . $context['session_id'] . '" title="' . sprintf($txt['unapproved_posts'], $child['unapproved_topics'], $child['unapproved_posts']) . '" class="moderation_link amt">!</a>';
 
-			$children[] = $child['new'] ? '<span class="strong">' . $child['link'] . '</span>' : '<span>' . $child['link'] . '</span>';
-		}
-
-		echo '
-			<div id="board_', $board['id'], '_children" class="children">
-				<p><strong id="child_list_', $board['id'], '">', $txt['sub_boards'], '</strong>', implode(' ', $children), '</p>
-			</div>';
+		$children[] = $child['new'] ? '<span class="strong">' . $child['link'] . '</span>' : '<span>' . $child['link'] . '</span>';
 	}
+
+	// Template style
+	$func = 'board_children_' . (empty($style) ? 'normal' : $style);
+	echo '
+		<div id="board_', $board['id'], '_children" class="children">
+			', $func($board, $children), '
+		</div>';
+}
+
+/**
+ * Child boards, standard and default view
+ * 
+ * @param array $board Current board information.
+ */
+function board_children_normal($board, $children)
+{
+	global $txt;
+
+	echo '
+	<strong id="child_list_', $board['id'], '">', $txt['sub_boards'], '</strong>
+	<p id="child_boards_', $board['id'], '" class="sub_boards">
+		', implode($children), '
+	</p>';
+}
+
+/**
+ * 
+ * Child boards using the 'Details' tag.
+ * 
+ * @param array $board Current board information.
+ */
+function board_children_details($board, $children)
+{
+	global $txt;
+
+	echo '
+	<details class="child_container">
+		<summary>
+			<span class="title_bar">
+				<strong id="child_list_', $board['id'], '" class="titlebg">
+					', $txt['sub_boards'], themecustoms_icon('fa fa-turn-down'), '
+				</strong>
+			</span>
+		</summary>
+		<ul id="child_boards_', $board['id'], '" class="sub_boards">';
+
+	// The child boards
+	foreach ($children as $child)
+	{
+		echo '
+			<li>', $child, '</li>';
+	}
+
+	echo '
+		</ul>
+	</details>
+	<span class="divider"></span>';
+}
+
+/**
+ * 
+ * Child boards using the 'Dropdown' tag.
+ * 
+ * @param array $board Current board information.
+ */
+function board_children_dropdown($board, $children)
+{
+	global $txt;
+
+	echo '
+	<div class="child_container">
+		<div class="dropdown">
+			<button class="button dropdown-toggle" type="button" id="subboards_dropdownb_', $board['id'], '" data-bs-toggle="dropdown" aria-expanded="false">
+				', $txt['sub_boards'], '
+			</button>
+			<div class="dropdown-menu" aria-labelledby="subboards_dropdownb_', $board['id'], '">';
+
+	// The child boards
+	foreach ($children as $child)
+	{
+		echo '
+				<span class="dropdown-item">', $child, '</span>';
+	}
+
+	echo '
+			</div>
+		</div>
+	</div>
+	<span class="divider"></span>';
 }

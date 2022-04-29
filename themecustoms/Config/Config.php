@@ -42,18 +42,35 @@ abstract class Config
 	];
 
 	/**
-	 * @var array Any additional settings to set
+	 * @var array Additional settings and configuration
 	 */
 	public static $_settings = [
 		'include_bootstrap' => false,
 	];
 
 	/**
+	 * @var array Avatar options
+	 */
+	public static $_avatar_options = [
+		// Enable avatars on topic list
+		'topics_list' => true,
+		// Enable avatars on board list
+		'boards' => true,
+		// Enable avatars on recent posts (info center)
+		'recent_posts' => true,
+		// Enable avatars on users online list
+		'users_online' => true,
+	];
+
+	/**
 	 * @var array Color Options
 	 */
 	public static $_color_options = [
+		// Theme Variants
 		'variants' => false,
+		// Theme Dark Mode
 		'darkmode' => false,
+		// Theme Color Changer
 		'colorchanger' => false,
 	];
 

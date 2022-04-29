@@ -104,4 +104,43 @@ $(function() {
 	$(document).on('click', '.navigate_section ul li.trigger a', function(e){
 		$('.navigate_section ul li').toggleClass('show');
 	});
+
+	// Menu improvements
+	$( '.mobile_user_menu').click(function() {
+		if ($( '#mobile_user_menu' ).is( ':visible' )  == true) {
+			$(document).mouseup(function (e) {
+				if ($('#mobile_user_menu').has(e.target).length === 0)
+					$('#mobile_user_menu').hide();
+			}).keyup(function(e){
+				if (e.keyCode == 27)
+					$('#mobile_user_menu').hide();
+			});
+		}
+	});
+
+	// Mobile actions
+	$( '.mobile_act').click(function() {
+		if ($( '#mobile_action' ).is( ':visible' )  == true) {
+			$(document).mouseup(function (e) {
+				if ($('#mobile_action').has(e.target).length === 0)
+					$('#mobile_action').hide();
+			}).keyup(function(e){
+				if (e.keyCode == 27)
+					$('#mobile_action').hide();
+			});
+		}
+	});
+
+	// Mobile mod
+	$( '.mobile_mod').click(function() {
+		if ($( '#mobile_moderation' ).is( ':visible' )  == true) {
+			$(document).mouseup(function (e) {
+				if ($('#mobile_moderation').has(e.target).length === 0)
+					$('#mobile_moderation').hide();
+			}).keyup(function(e){
+				if (e.keyCode == 27)
+					$('#mobile_moderation').hide();
+			});
+		}
+	});
 });

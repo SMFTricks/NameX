@@ -9,6 +9,8 @@
 
 namespace ThemeCustoms\Settings;
 
+use ThemeCustoms\Init;
+
 class Main
 {
 	/**
@@ -99,22 +101,23 @@ class Main
 		$this->_settings = [
 			[
 				'section_title' => $txt['st_additional_settings'],
+				'id' => 'st_remove_items',
+				'label' => $txt['st_remove_items'],
+				'description' => $txt['st_remove_items_desc'],
+				'type' => 'text',
+			],		
+			[
 				'id' => 'st_separate_sticky_locked',
 				'label' => $txt['st_separate_sticky_locked'],
 				'description' => $txt['st_separate_sticky_locked_desc'],
 				'type' => 'checkbox'
 			],
 			[
-				'section_title' => $txt['st_avatar_settings'],
-				'id' => 'st_enable_avatars_boards',
-				'label' => $txt['st_enable_avatars_boards'],
-				'type' => 'checkbox',
-			],
-			[
-				'id' => 'st_enable_avatars_topics',
-				'label' => $txt['st_enable_avatars_topics'],
-				'type' => 'checkbox',
-			],
+				'id' => 'st_disable_info_center',
+				'label' => $txt['st_disable_info_center'],
+				'description' => $txt['st_disable_info_center_desc'],
+				'type' => 'checkbox'
+			],	
 			[
 				'id' => 'st_facebook',
 				'label' => $txt['st_facebook_username'],
@@ -165,6 +168,38 @@ class Main
 				'theme_type' => 'social',
 			],
 		];
+
+		/** Avatars */
+		// Boards
+		if (!empty(Init::$_avatar_options['boards']))
+			// Boards
+			$this->_settings[] = [
+				'section_title' => $txt['st_avatar_settings'],
+				'id' => 'st_enable_avatars_boards',
+				'label' => $txt['st_enable_avatars_boards'],
+				'type' => 'checkbox',
+			];
+		// Topics
+		if (!empty(Init::$_avatar_options['topics_list']))
+			$this->_settings[] = [
+				'id' => 'st_enable_avatars_topics',
+				'label' => $txt['st_enable_avatars_topics'],
+				'type' => 'checkbox',
+			];
+		// Recent Posts
+		if (!empty(Init::$_avatar_options['recent_posts']))
+			$this->_settings[] = [
+				'id' => 'st_enable_avatars_recent',
+				'label' => $txt['st_enable_avatars_recent'],
+				'type' => 'checkbox',
+			];
+		// Users Online
+		if (!empty(Init::$_avatar_options['users_online']))
+			$this->_settings[] = [
+				'id' => 'st_enable_avatars_online',
+				'label' => $txt['st_enable_avatars_online'],
+				'type' => 'checkbox',
+			];
 
 		// Any custom changes?
 		call_integration_hook('integrate_customtheme_settings', [&$this->_custom_settings, &$this->_setting_types, &$this->_remove_settings]);

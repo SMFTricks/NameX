@@ -90,6 +90,7 @@ class Styles
 			#top_section .inner_wrap, #wrapper, #header, footer .inner_wrap, #nav_wrapper
 			{
 				max-width: ' . $setting. ';
+				width: ' . $setting. ';
 			}
 			@media screen and (max-width: 991px)
 			{

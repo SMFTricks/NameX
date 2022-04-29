@@ -21,6 +21,9 @@ function template_customs_init()
 	add_integration_function('integrate_load_theme', 'ThemeCustoms\Config\Integration::initialize#', false, '$themedir/themecustoms/Config/Integration.php');
 }
 
+/** 
+ * The pagination style
+ */
 function themecustoms_page_index()
 {
 	global $txt;
@@ -36,6 +39,9 @@ function themecustoms_page_index()
 	);
 }
 
+/**
+ * Social icons
+ */
 function themecustoms_socials()
 {
 	global $settings;
@@ -82,11 +88,17 @@ function themecustoms_socials()
 	</div>';
 }
 
+/**
+ * Icons
+ */
 function themecustoms_icon($icon)
 {
 	return '<i class="' . $icon . '"></i>';
 }
 
+/**
+ * Search form
+*/
 function themecustoms_search()
 {
 	global $txt, $context, $scripturl;
@@ -139,6 +151,9 @@ function themecustoms_search()
 	}
 }
 
+/**
+ * Language selector form
+ */
 function themecustoms_languageselector()
 {
 	global $modSettings, $context, $txt;
@@ -146,35 +161,53 @@ function themecustoms_languageselector()
 	if (!empty($modSettings['userLanguage']) && !empty($context['languages']) && count($context['languages']) > 1)
 	{
 		echo '
-			<form id="languages_form" method="get">
-				<select id="language_select" name="language" onchange="this.form.submit()">';
+		<form id="languages_form" method="get">
+			<select id="language_select" name="language" onchange="this.form.submit()">';
 
 		foreach ($context['languages'] as $language)
 			echo '
-					<option value="', $language['filename'], '"', isset($context['user']['language']) && $context['user']['language'] == $language['filename'] ? ' selected="selected"' : '', '>', str_replace('-utf8', '', $language['name']), '</option>';
+				<option value="', $language['filename'], '"', isset($context['user']['language']) && $context['user']['language'] == $language['filename'] ? ' selected="selected"' : '', '>', str_replace('-utf8', '', $language['name']), '</option>';
 
 		echo '
-				</select>
-				<noscript>
-					<input type="submit" value="', $txt['quick_mod_go'], '">
-				</noscript>
-			</form>';
+			</select>
+			<noscript>
+				<input type="submit" value="', $txt['quick_mod_go'], '">
+			</noscript>
+		</form>';
 	}
 }
 
+/**
+ * Avatar display
+ */
 function themecustoms_avatar($avatar, $memID =  0, $pos = 'left')
 {
 	global $scripturl, $context;
 
+	// No avatar? Go away
 	if (empty($avatar))
 		return;
 
+	$user_avatar = '';
+
+	// Build a link?
+	if (!empty($memID))
+		$user_avatar .= '<a href="' . $scripturl . '?action=profile;u=' . $memID . '"' . ($pos === 'right' ? ($context['right_to_left'] ? ' style="order:0;"' : ' style="order:1;"') : ($context['right_to_left'] ? ' style="order:1;' : ' style="order:0;"')) . '>';
+
+	// Show the image
+	$user_avatar .= '<img class="avatar avatar_dot" src="' . $avatar . '" alt=""' . ($pos === 'right' ? ($context['right_to_left'] ? ' style="order:0;"' : ' style="order:1;"') : ($context['right_to_left'] ? ' style="order:1;' : ' style="order:0;"')) . '>';
+
+	// Close the link
+	if (!empty($memID))
+		$user_avatar .= '</a>';
+
 	return
-		(!empty($memID) ? '<a class="avatar" href="' . $scripturl . '?action=profile;u='. $memID . '"' . ($pos == 'right' ? ' style="'. ($context['right_to_left'] ? 'order: 0;' : 'order: 1;') . '"' : ($context['right_to_left'] ? 'order: 1;' : '')) . '>' : '') . 
-		'<img class="avatar_dot' . (!empty($class) ? ' '. $class : '') . '" src="' . $avatar . '" alt=""' . ($pos == 'right' ? ' style="'. ($context['right_to_left'] ? 'order: 0;' : 'order: 1;') . '"' : ($context['right_to_left'] ? 'order: 1;' : '')) . ' />' . 
-		(!empty($memID) ? '</a>' : '');
+		$user_avatar;
 }
 
+/**
+ * Theme info
+ */
 function themecustoms_themeinfo()
 {
 	global $settings, $txt;
@@ -252,4 +285,68 @@ function themecustoms_themeinfo()
 
 	echo '
 		</div>';
+}
+
+/**
+ * Custom LInks
+ */
+function themecustoms_customlinks()
+{
+	global $settings;
+
+	echo '
+	<div class="st_custom_links">';
+
+	// Link 1
+	if (!empty($settings['st_custom_link1']) && !empty($settings['st_custom_link1_title']))
+		echo '
+		<a href="', $settings['st_custom_link1'], '" target="_blank" rel="noopener">', $settings['st_custom_link1_title'], '</a>';
+
+	// Link 2
+	if (!empty($settings['st_custom_link2']) && !empty($settings['st_custom_link2_title']))
+		echo '
+		<a href="', $settings['st_custom_link2'], '" target="_blank" rel="noopener">', $settings['st_custom_link2_title'], '</a>';
+
+	// Link 3
+	if (!empty($settings['st_custom_link3']) && !empty($settings['st_custom_link3_title']))
+		echo '
+		<a href="', $settings['st_custom_link3'], '" target="_blank" rel="noopener">', $settings['st_custom_link3_title'], '</a>';
+
+	// Link 4
+	if (!empty($settings['st_custom_link4']) && !empty($settings['st_custom_link4_title']))
+		echo '
+		<a href="', $settings['st_custom_link4'], '" target="_blank" rel="noopener">', $settings['st_custom_link4_title'], '</a>';
+
+	// Link 5
+	if (!empty($settings['st_custom_link5']) && !empty($settings['st_custom_link5_title']))
+		echo '
+		<a href="', $settings['st_custom_link5'], '" target="_blank" rel="noopener">', $settings['st_custom_link5_title'], '</a>';
+
+	// Link 6
+	if (!empty($settings['st_custom_link6']) && !empty($settings['st_custom_link6_title']))
+		echo '
+		<a href="', $settings['st_custom_link6'], '" target="_blank" rel="noopener">', $settings['st_custom_link6_title'], '</a>';
+
+	// Link 7
+	if (!empty($settings['st_custom_link7']) && !empty($settings['st_custom_link7_title']))
+		echo '
+		<a href="', $settings['st_custom_link7'], '" target="_blank" rel="noopener">', $settings['st_custom_link7_title'], '</a>';
+
+	// Link 8
+	if (!empty($settings['st_custom_link8']) && !empty($settings['st_custom_link8_title']))
+		echo '
+		<a href="', $settings['st_custom_link8'], '" target="_blank" rel="noopener">', $settings['st_custom_link8_title'], '</a>';
+
+	// Link 9
+	if (!empty($settings['st_custom_link9']) && !empty($settings['st_custom_link9_title']))
+		echo '
+		<a href="', $settings['st_custom_link9'], '" target="_blank" rel="noopener">', $settings['st_custom_link9_title'], '</a>';
+
+	// Link 10
+	if (!empty($settings['st_custom_link10']) && !empty($settings['st_custom_link10_title']))
+		echo '
+		<a href="', $settings['st_custom_link10'], '" target="_blank" rel="noopener">', $settings['st_custom_link10_title'], '</a>';
+
+	echo '
+	</div>';
 }

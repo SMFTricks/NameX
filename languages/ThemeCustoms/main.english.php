@@ -62,7 +62,7 @@ $txt['st_game_sampver'] = 'SAMP version: ';
 $txt['st_disable_menu_icons'] = 'Disable icons in the main menu';
 $txt['st_disable_menu_icons_desc'] = 'This will disable main menu icons, either images or font awesome.';
 $txt['st_remove_items'] = 'Remove Menu items';
-$txt['st_remove_items_desc'] = 'Here you can put any action you want to remove from the menu. Each action has to be separated with a comma. e.g. <i>admin,profile,mlist</i>';
+$txt['st_remove_items_desc'] = 'Here you can put any action you want to remove from the menu.<br><span class="smalltext">Each action has to be separated with a comma. e.g. <i>admin,profile,mlist</i></span>';
 $txt['st_enable_community'] = 'Enable community button';
 $txt['st_community'] = 'Community';
 $txt['forum'] = 'Forum';
@@ -137,6 +137,8 @@ $txt['st_mainheader_custom_desc'] = 'It will replace the default image with the 
 // Info Center
 $txt['st_statistics_background'] = 'Statistics background URL';
 $txt['st_statistics_background_desc'] = 'Custom background for the statistics';
+$txt['st_disable_info_center'] = 'Disable the info center';
+$txt['st_disable_info_center_desc'] = 'This will disable the info center, regardless of any permission.';
 
 // Footer options
 $txt['st_footer_image'] = 'Footer image URL';
@@ -167,33 +169,6 @@ $txt['st_rss_url'] = 'RSS URL';
 $txt['st_rss'] = 'RSS Feed';
 $txt['st_social_desc'] = 'Leave blank to disable.';
 $txt['st_rss_url_desc'] = 'The default forum URL is: <em>'.$scripturl. '?action=.xml;type=rss</em>';
-
-// Carousel
-$txt['st_carousel'] = 'Carousel settings';
-$txt['st_enable_carousel'] = 'Enable carousel';
-$txt['st_carousel_index'] = 'Allow only on index';
-$txt['st_carousel_enable_images'] = 'Enable carousel images';
-$txt['st_carousel_speed'] = 'Carousel speed';
-$txt['st_carousel_speed_desc'] = 'Speed in miliseconds, use 1000 for 1 second.';
-$txt['st_carousel_img1'] = 'Image 1';
-$txt['st_carousel_img2'] = 'Image 2';
-$txt['st_carousel_img3'] = 'Image 3';
-$txt['st_carousel_img4'] = 'Image 4';
-$txt['st_carousel_title1'] = 'Title 1';
-$txt['st_carousel_title2'] = 'Title 2';
-$txt['st_carousel_title3'] = 'Title 3';
-$txt['st_carousel_title4'] = 'Title 4';
-$txt['st_carousel_text1'] = 'Text 1';
-$txt['st_carousel_text2'] = 'Text 2';
-$txt['st_carousel_text3'] = 'Text 3';
-$txt['st_carousel_text4'] = 'Text 4';
-$txt['st_carousel_link1'] = 'Link 1';
-$txt['st_carousel_link2'] = 'Link 2';
-$txt['st_carousel_link3'] = 'Link 3';
-$txt['st_carousel_link4'] = 'Link 4';
-$txt['st_carousel_index'] = 'Display only on index page';
-$txt['st_previous'] = 'Previous';
-$txt['st_next'] = 'Next';
 
 // Categories
 $txt['st_catcover_enable'] = 'Enable cover in categories';

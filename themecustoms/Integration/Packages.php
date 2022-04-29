@@ -12,18 +12,25 @@ namespace ThemeCustoms\Integration;
 class Packages
 {
 	/**
+	 * @var array The types of packages
+	 */
+	private $_package_types = [
+		'themecustoms_addon'
+	];
+
+	/**
 	 * Packages::types()
 	 * 
 	 * Add the addons to the list of modifications
 	 * 
 	 * @return void
 	 */
-	public static function types() : void
+	public function types() : void
 	{
 		global $context;
 
 		// Your theme comes first
-		$context['modification_types'] = array_merge(['themecustoms_addon'], $context['modification_types']);
+		$context['modification_types'] = array_merge($this->_package_types, $context['modification_types']);
 	}
 
 	/**
@@ -34,8 +41,9 @@ class Packages
 	 * @param array $sort_id The type of modification
 	 * @return void
 	 */
-	public static function sort(array &$sort_id) : void
+	public function sort(array &$sort_id) : void
 	{
-		$sort_id['themecustoms_addon'] = 1;
+		foreach ($this->_package_types as $type)
+			$sort_id[$type] = 1;
 	}
 }

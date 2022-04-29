@@ -1865,6 +1865,10 @@ ul.quickbuttons li ul.dropmenu li a {
 ul.quickbuttons li ul.dropmenu li a {
 	background: var(--nav-dropdown-item-bg);
 	color: var(--nav-dropdown-item-txt-color);
+	display: flex;
+}
+ul.quickbuttons li ul.dropmenu li a span {
+	flex-basis: auto;
 }
 ul.quickbuttons li ul.dropmenu li a:hover i,
 ul.quickbuttons li ul.dropmenu li a:hover span.main_icons {
@@ -1874,6 +1878,11 @@ ul.quickbuttons li ul.dropmenu li a,
 ul.quickbuttons li ul.dropmenu li a i,
 ul.quickbuttons li ul.dropmenu li a span.main_icons {
 	font-size: 1em;
+}
+ul.quickbuttons li ul.dropmenu li a i,
+ul.quickbuttons li ul.dropmenu li a span.main_icons {
+	text-align: center;
+	flex-basis: 15%;
 }
 ul.quickbuttons li ul.dropmenu li a:hover,
 ul.quickbuttons li ul.dropmenu li a:focus {

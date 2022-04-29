@@ -14,16 +14,6 @@ use ThemeCustoms\Init;
 class Theme
 {
 	/**
-	 * @var bool Enable avatars on topic list
-	 */
-	private $_avatars_on_indexes = true;
-
-	/**
-	 * @var bool Enable avatars on boardindex
-	 */
-	private $_avatars_on_boardIndex = true;
-
-	/**
 	 * @var array The libraries or frameworks to load, populated in libOptions()
 	 */
 	private $_lib_options = [];
@@ -104,10 +94,10 @@ class Theme
 		global $settings;
 
 		// Set the following variable to true if this theme wants to display the avatar of the user that posted the last and the first post on the message index and recent pages.
-		$settings['avatars_on_indexes'] = $this->_avatars_on_indexes;
+		$settings['avatars_on_indexes'] = Init::$_avatar_options['topics_list'];
 
 		// Set the following variable to true if this theme wants to display the avatar of the user that posted the last post on the board index.
-		$settings['avatars_on_boardIndex'] = $this->_avatars_on_boardIndex;
+		$settings['avatars_on_boardIndex'] = Init::$_avatar_options['boards'];
 
 		// This defines the formatting for the page indexes used throughout the forum.
 		$settings['page_index'] = themecustoms_page_index();
@@ -141,12 +131,8 @@ class Theme
 			// FontAwesome
 			'fontawesome' => [
 				'css' => [
-					'file' => 'https://use.fontawesome.com/releases/v6.0.0/css/all.css',
+					'file' => 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css',
 					'external' => true,
-					'attributes' => [
-						'integrity' => 'sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS',
-						'crossorigin' => 'anonymous',
-					],
 				],
 			],
 			// Bootstrap
@@ -217,7 +203,7 @@ class Theme
 	 */
 	public function hookBoard() : void
 	{
-		global $board, $topic;
+		global $board, $topic, $context;
 
 		// Topic View
 		if (!empty($topic))
@@ -229,6 +215,12 @@ class Theme
 		elseif (!empty($board) && empty($topic))
 		{
 			add_integration_function('integrate_messageindex_buttons', 'ThemeCustoms\Integration\Buttons::normalButtons', false, '$themedir/themecustoms/Integration/Buttons.php');
+		}
+		// BoardIndex
+		elseif ((empty($board) && empty($topic)) || $context['current_action'] == 'forum')
+		{
+			// Info Center shenanigans
+			add_integration_function('integrate_mark_read_button', 'ThemeCustoms\Integration\InfoCenter::avatars#', false, '$themedir/themecustoms/Integration/InfoCenter.php');
 		}
 	}
 
@@ -242,8 +234,8 @@ class Theme
 	 */
 	private function addons() : void
 	{
-		add_integration_function('integrate_modification_types', 'ThemeCustoms\Integration\Packages::types', false, '$themedir/themecustoms/Integration/Packages.php');
-		add_integration_function('integrate_packages_sort_id', 'ThemeCustoms\Integration\Packages::sort', false, '$themedir/themecustoms/Integration/Packages.php');
+		add_integration_function('integrate_modification_types', 'ThemeCustoms\Integration\Packages::types#', false, '$themedir/themecustoms/Integration/Packages.php');
+		add_integration_function('integrate_packages_sort_id', 'ThemeCustoms\Integration\Packages::sort#', false, '$themedir/themecustoms/Integration/Packages.php');
 	}
 
 	/**
@@ -376,7 +368,7 @@ class Theme
 		if ($return)
 			return (!empty($settings['theme_support_information']['theme_link']) ? $settings['theme_support_information']['theme_link'] . ' | ' : '') . $ST;
 		// Stick it
-		elseif (!isset(Init::$_settings['theme_rc']) || empty(Init::$_settings['theme_rc']))
+		elseif (!isset($settings['theme_remove_copyright']) || empty($settings['theme_remove_copyright']))
 			$buffer = preg_replace(
 				'~(<li class="smf_copyright">)~',
 				'<li>'. $ST . '</li>' . "$1 ",

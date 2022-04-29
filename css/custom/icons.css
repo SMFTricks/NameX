@@ -59,7 +59,8 @@ h3.catbg .icon {
 }
 /* Invalid */
 .main_icons.invalid::before,
-.fa-warn_button::before {
+.fa-warn_button::before,
+.main_icons.warn_button::before {
 	content: "\f071";
 }
 /* Gender 1 */

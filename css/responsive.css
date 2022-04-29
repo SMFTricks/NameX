@@ -118,9 +118,6 @@
 	#mobile_action .notify_dropdown a:last-of-type {
 		border-bottom: none;
 	}
-	#mobile_action .notify_dropdown span {
-		display: none;
-	}
 	.pagesection > div.mobile_buttons {
 		display: block;
 		text-align: right;
@@ -603,6 +600,9 @@
 	}
 	.dropmenu li a, .dropmenu li a:hover {
 		text-indent: 10px;
+	}
+	.dropmenu li .amt {
+		text-indent: 0;
 	}
 	.dropmenu li a, .dropmenu li:hover a,
 	.dropmenu li a.active, .dropmenu li a.active:hover,

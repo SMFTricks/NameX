@@ -105,14 +105,14 @@ class Integration
 	/**
 	 * Integration::loadHooks()
 	 *
-	 * Load hooks quietly
+	 * Load the main hooks
 	 * @return void
 	 */
 	private function loadHooks() : void
 	{
 		$hooks = [
 			'menu_buttons' => 'main_menu',
-			'current_action' => 'disable_icons',
+			'current_action' => 'strip_menu',
 			'actions' => 'hookActions',
 			'buffer' => 'hookBuffer#',
 			'theme_context' => 'htmlAttributes#',
@@ -164,24 +164,34 @@ class Integration
 	}
 
 	/**
-	 * Integration::disable_icons()
+	 * Integration::strip_menu()
 	 *
 	 * Hook our menu icons setting for enabling/disabling.
-	 * It's done just in case users haven't updated their forums to the final version 
-	 * Or for whatever reason they are missing the setting.
-	 * This includes a dirty fix for the home button whenever light portal is installed.
+	 * Will also remove buttons using the provided setting.
+	 * This includes some additional checks for portal mods
 	 * 
 	 * @return void
 	 */
-	public static function disable_icons() : void
+	public static function strip_menu() : void
 	{
 		global $context, $settings, $txt;
 
-		// Disable menu icons?
+		// Anything to do here?
+		if (empty($settings['st_disable_menu_icons']) && empty($settings['st_remove_items']))
+			return;
+
+		// Remove elements?
+		$remove = !empty($settings['st_remove_items']) ? explode(',', $settings['st_remove_items']) : [];
+
 		$current_menu = $context['menu_buttons'];
 		foreach ($context['menu_buttons'] as $key => $button)
 		{
+			// Disable menu icons?
 			$current_menu[$key]['icon'] = (isset($settings['st_disable_menu_icons']) && !empty($settings['st_disable_menu_icons']) ? '' : themecustoms_icon('fa fa-' . (isset($txt['lp_forum']) && $key == 'home' ? 'forum' : $key)));
+
+			// Remove the element if it's in the setting
+			if (in_array($key, $remove))
+				unset($current_menu[$key]);
 		}
 		$context['menu_buttons'] = $current_menu;
 	}
@@ -228,9 +238,13 @@ class Integration
 	 */
 	public function htmlAttributes() : void
 	{
-		global $settings;
+		global $settings, $context;
 
 		// Data attributes
 		$settings['themecustoms_html_attributes_data'] = (!empty($settings['themecustoms_html_attributes']['data']) && is_array($settings['themecustoms_html_attributes']['data']) ? ' ' . implode(' ', $settings['themecustoms_html_attributes']['data']) : '');
+
+		// Disable the info center?
+		if (isset($settings['st_disable_info_center']) && !empty($settings['st_disable_info_center']) && !empty($context['info_center']))
+			unset($context['info_center']);
 	}
 }
