@@ -11,8 +11,10 @@ global $scripturl;
 
 // Additional Settings
 $txt['current_theme'] = 'Theme settings';
-$txt['st_main'] = $txt['current_theme'];
+$txt['st_main'] = 'Main';
 $txt['st_additional_settings'] = 'Additional Settings';
+$txt['st_info_center'] = 'Info Center';
+$txt['st_sidebar'] = 'Sidebar';
 
 // Regular description
 $txt['st_description'] = 'Add your own description';
@@ -60,13 +62,13 @@ $txt['st_game_sampver'] = 'SAMP version: ';
 
 // Main Menu
 $txt['st_disable_menu_icons'] = 'Disable icons in the main menu';
-$txt['st_disable_menu_icons_desc'] = 'This will disable main menu icons, either images or font awesome.';
+$txt['st_disable_menu_icons_desc'] = 'This will disable main menu icons, either images or classes.';
 $txt['st_remove_items'] = 'Remove Menu items';
-$txt['st_remove_items_desc'] = 'Here you can put any action you want to remove from the menu.<br><span class="smalltext">Each action has to be separated with a comma. e.g. <i>admin,profile,mlist</i></span>';
+$txt['st_remove_items_desc'] = 'Here you can put any action/key you want to remove from the menu array.<br><span class="smalltext">Each value has to be separated with a comma. e.g. <i>admin,profile,mlist</i></span>';
 $txt['st_enable_community'] = 'Enable community button';
 $txt['st_community'] = 'Community';
 $txt['forum'] = 'Forum';
-$txt['st_enable_community_desc'] = 'This will add a community button, which will include inside all your forum buttons, except for those you specify below. Also will add before a "Home" button.';
+$txt['st_enable_community_desc'] = 'This will add a community button, which will include inside all your forum buttons, except for those you specify below. Also will add a "Home" button at the beginning of the menu.';
 $txt['st_not_community'] = 'Exclude action from community';
 $txt['st_menu_icons'] = 'Enable the menu icons';
 $txt['st_menu_icons_desc'] = 'With this you\'ll enable the menu icons in the main menu';
@@ -78,10 +80,11 @@ $txt['st_footer_actions_desc'] = 'Here you can put any action you want to displa
 $txt['st_special_menu'] = 'Special Menu items';
 
 // Avatar settings
-$txt['st_avatar_settings'] = 'Avatar Settings'; // Deprecated setting
+$txt['st_avatar_settings'] = 'Avatar Settings';
 $txt['st_enable_avatars_boards'] = 'Enable avatars on boards';
 $txt['st_enable_avatars_topics'] = 'Enable avatars on topic list';
-$txt['st_enable_avatars_recent'] = 'Enable avatars on recent posts stats';
+$txt['st_enable_avatars_recent'] = 'Enable avatars on recent posts (info center)';
+$txt['st_enable_avatars_online'] = 'Enable avatars on online list';
 
 // General strings
 $txt['st_stats'] = 'Stats';
@@ -95,10 +98,13 @@ $txt['st_information'] = 'Information';
 $txt['st_tasks'] = 'Tasks';
 $txt['pm'] = 'Personal Messages';
 $txt['see_all'] = 'See All';
+$txt['see_more'] = 'See More';
 $txt['st_all_rights'] = 'All rights reserved';
 $txt['st_other_settings'] = 'Other settings';
 $txt['st_join'] = 'Join';
 $txt['sort_by'] = 'Sort by';
+$txt['st_profile_cover'] = 'Profile cover';
+$txt['st_news_prom'] = 'News and promotions';
 
 // Colorpicker
 $txt['st_colorpicker1_admin'] = 'Choose primary theme color';
@@ -109,22 +115,21 @@ $txt['st_colorpicker_allowuser'] = 'Allow users to change theme color';
 $txt['st_colpick_primary'] = 'Primary color';
 $txt['st_colpick_secondary'] = 'Secondary color';
 
-// Topbar
-$txt['st_enable_topbar'] = 'Enable the topbar links';
-$txt['st_enable_topbar_desc'] = 'With this you can enable or disable the links from topbar';
-$txt['st_dark_topbar'] = 'Use the dark topbar instead';
-
 // Top links
 $txt['st_custom_links'] = 'Custom links';
-$txt['st_link_others'] = 'Other Links';
-$txt['st_link_top'] = 'The title of your link';
-$txt['st_link_top_desc'] = 'These links appears above your forum, in the top bar.';
-$txt['st_link_top_url'] = 'The url of your title';
-$txt['st_link_top1'] = 'Link 1';
-$txt['st_link_top2'] = 'Link 2';
-$txt['st_link_top3'] = 'Link 3';
-$txt['st_link_top4'] = 'Link 4';
-$txt['st_link_top5'] = 'Link 5';
+$txt['st_custom_link_other'] = 'Other Links';
+$txt['st_custom_link_title'] = 'Title for the link';
+$txt['st_custom_link_url'] = 'Set the URL for the link';
+$txt['st_custom_link1'] = 'Custom URL 1';
+$txt['st_custom_link2'] = 'Custom URL 2';
+$txt['st_custom_link3'] = 'Custom URL 3';
+$txt['st_custom_link4'] = 'Custom URL 4';
+$txt['st_custom_link5'] = 'Custom URL 5';
+$txt['st_custom_link6'] = 'Custom URL 6';
+$txt['st_custom_link7'] = 'Custom URL 7';
+$txt['st_custom_link8'] = 'Custom URL 8';
+$txt['st_custom_link9'] = 'Custom URL 9';
+$txt['st_custom_link10'] = 'Custom URL 10';
 
 // Header
 $txt['st_header_background'] = 'Header background URL';
@@ -139,17 +144,16 @@ $txt['st_statistics_background'] = 'Statistics background URL';
 $txt['st_statistics_background_desc'] = 'Custom background for the statistics';
 $txt['st_disable_info_center'] = 'Disable the info center';
 $txt['st_disable_info_center_desc'] = 'This will disable the info center, regardless of any permission.';
-
-// Footer options
-$txt['st_footer_image'] = 'Footer image URL';
-$txt['st_mini_logo'] = 'Mini Logo image URL';
-
-// SM Descriptive Bar
-$txt['st_list_of_topics'] = 'List of topics of';
-$txt['st_welcome_to'] = 'Welcome to';
-$txt['st_list_topics'] = 'Topics list for the board';
-$txt['st_disc_topic'] = 'This is a discussion for the topic';
-$txt['st_the_board'] = 'the board';
+$txt['st_info_center_position'] = 'Position';
+$txt['st_info_center_position_desc'] = 'Choose the position of the info center, you can set it up to look like a sidebar.';
+$txt['st_info_center_right'] = 'Right';
+$txt['st_info_center_left'] = 'Left';
+$txt['st_info_center_top'] = 'Top';
+$txt['st_info_center_bottom'] = 'Bottom';
+$txt['st_info_center_width'] = 'Width';
+$txt['st_info_center_width_desc'] = 'Set a custom width for the info center. Example: <i>300px, 50%</i>. <span class="smalltext">Default is 100%</span>';
+$txt['st_info_center_columns'] = 'Number of Columns';
+$txt['st_info_center_columns_desc'] = 'Set the number of columns for the info center. This will not work for left or right positions.';
 
 // Social Networks
 $txt['st_social'] = 'Social Media';
@@ -176,10 +180,6 @@ $txt['st_catcover_enable_desc'] = 'This will show a cover for each category. <sp
 $txt['st_enable_colcategories'] = 'Enable categories in columns';
 $txt['st_enable_colcategories_desc'] = 'It will display two categories per row in desktop';
 
-// Font Awesome
-$txt['st_disable_fa_icons'] = 'Disable FontAwesome icons';
-$txt['st_disable_fa_icons_desc'] = 'This option will disable all the FontAwesome icons.';
-
 // Theme Effects
 $txt['st_enable_tooltips'] = 'Enable title tooltips';
 $txt['st_enable_tooltips_desc'] = 'It will enable tooltips on mouse hover if the element has a title attribute';
@@ -189,44 +189,13 @@ $txt['st_disable_theme_effects'] = 'Disable theme effects';
 $txt['st_disable_theme_effects_desc'] = 'This option will disable animations used in the theme.';
 $txt['st_enable_tooltips'] = 'Enable title tooltips';
 $txt['st_enable_tooltips_desc'] = 'It will enable tooltips on mouse hover if the element has a title attribute';
-$txt['st_animation'] = 'Dropdown animation';
-$txt['st_animation_desc'] = 'The animation that dropdowns will have';
-$txt['bounceIn'] = 'bounceIn';
-$txt['bounceInDown'] = 'bounceInDown';
-$txt['bounceInLeft'] = 'bounceInLeft';
-$txt['bounceInRight'] = 'bounceInRight';
-$txt['bounceInUp'] = 'bounceInUp';
-$txt['fadeIn'] = 'fadeIn';
-$txt['fadeInDown'] = 'fadeInDown';
-$txt['fadeInDownBig'] = 'fadeInDownBig';
-$txt['fadeInLeft'] = 'fadeInLeft';
-$txt['fadeInLeftBig'] = 'fadeInLeftBig';
-$txt['fadeInRight'] = 'fadeInRight';
-$txt['fadeInRightBig'] = 'fadeInRightBig';
-$txt['fadeInUp'] = 'fadeInUp';
-$txt['fadeInUpBig'] = 'fadeInUpBig';
-$txt['flip'] = 'flip';
-$txt['flipInX'] = 'flipInX';
-$txt['flipInY'] = 'flipInY';
-$txt['lightSpeedIn'] = 'lightSpeedIn';
-$txt['rotateIn'] = 'rotateIn';
-$txt['rotateInDownLeft'] = 'rotateInDownLeft';
-$txt['rotateInDownRight'] = 'rotateInDownRight';
-$txt['rotateInUpLeft'] = 'rotateInUpLeft';
-$txt['rotateInUpRight'] = 'rotateInUpRight';
-$txt['slideInUp'] = 'slideInUp';
-$txt['slideInDown'] = 'slideInDown';
-$txt['slideInLeft'] = 'slideInLeft';
-$txt['slideInRight'] = 'slideInRight';
-$txt['zoomIn'] = 'zoomIn';
-$txt['zoomInDown'] = 'zoomInDown';
-$txt['zoomInLeft'] ='zoomInLeft';
-$txt['zoomInRight'] = 'zoomInRight';
-$txt['zoomInUp'] = 'zoomInUp';
-$txt['rollIn'] = 'rollIn';
 
-// Profile
-$txt['st_profile_cover'] = 'Profile cover';
+// SM Descriptive Bar
+$txt['st_list_of_topics'] = 'List of topics of';
+$txt['st_welcome_to'] = 'Welcome to';
+$txt['st_list_topics'] = 'Topics list for the board';
+$txt['st_disc_topic'] = 'This is a discussion for the topic';
+$txt['st_the_board'] = 'the board';
 
 // Width
 $txt['st_custom_width'] = 'Forum width';
@@ -234,7 +203,7 @@ $txt['st_custom_width_desc'] = 'Set the forum width. Examples: 950px, 80%, 1240p
 
 // Site Color
 $txt['st_site_color'] = 'Site color';
-$txt['st_site_color_desc'] = 'Indicates a suggested color that user agents (browser) should use to customize the display of the page or of the surrounding user interface. <em>Default is #567c8f</em>';
+$txt['st_site_color_desc'] = 'Indicates a suggested color that user agents (browser) should use to customize the display of the page or of the surrounding user interface. <em class="smalltext">Default is #567c8f</em>';
 
 // Color Variants
 $txt['st_color'] = 'Color Settings';

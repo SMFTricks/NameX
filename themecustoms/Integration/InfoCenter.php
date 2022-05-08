@@ -52,10 +52,12 @@ class InfoCenter
 		loadMemberData($this->_members_id);
 
 		// While we are here, insert avatars in the online list
-		$this->online_users();
+		if (!empty($settings['st_enable_avatars_online']))
+			$this->online_users();
 
 		// And now the recent posts
-		$this->recent_posts();
+		if (!empty($settings['st_enable_avatars_recent']))
+			$this->recent_posts();
 	}
 
 	/**

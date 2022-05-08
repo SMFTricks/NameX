@@ -325,7 +325,7 @@ nav#main_nav ul.menu_nav li a.active {
 	background: var(--nav-item-bg-active);
 }
 nav#main_nav ul.menu_nav li a.active span.amt {
-	background: var(--amt-bg);
+	background: var(--amt-bg-active);
 }
 nav#main_nav ul.menu_nav ul {
 	top: 60px;
@@ -361,7 +361,7 @@ nav#main_nav ul.menu_nav ul li a span.amt {
 	background: var(--nav-dropdown-item-bg-hover);
 }
 nav#main_nav ul.menu_nav ul li a:hover span.amt {
-	background: var(--amt-bg);
+	background: var(--amt-bg-active);
 }
 
 /* Dropmenu */
@@ -1349,8 +1349,33 @@ footer .footer-other span.help-links a i.fa {
 	grid-template-columns: 1fr 1fr;
 	gap: 0.5em;
 }
+#recent_posts_content ul li {
+	display: flex;
+	gap: 0.6em;
+}
+#recent_posts_content ul li a {
+	align-self: center;
+}
+#recent_posts_content ul li img.avatar {
+	vertical-align: middle;
+}
 #recent_posts_content span.poster_link {
 	margin-right: 5px;
+}
+#info_center_blocks span.onlinemembers_list,
+#info_center_blocks span.onlinemembers_list span.show_member  {
+	display: flex;
+	align-items: center;
+	gap: 0.4em;
+}
+#info_center_blocks span.onlinemembers_list {
+	gap: 1em;
+	flex-wrap: wrap;
+}
+#info_center_blocks span.onlinemembers_list span.show_member img.avatar {
+	height: 24px;
+	width: 24px;
+	vertical-align: middle;
 }
 
 /* Profile */

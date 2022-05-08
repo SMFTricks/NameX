@@ -227,10 +227,13 @@ function template_ic_block_recent()
 		foreach ($context['latest_posts'] as $post)
 			echo '
 					<li class="windowbg">
-						<h6>', $post['link'], '</h6>
-						<span class="smalltext poster_link">', themecustoms_icon('fa fa-user'), ' ', $post['poster']['link'], '</span>
-						<span class="smalltext">', themecustoms_icon('fa fa-clock'), ' ', $post['time'], '</span><br>
-						<span class="smalltext">', themecustoms_icon('fa fa-folder'), ' ', $post['board']['link'], '</span>
+						', (!empty($post['poster']['avatar']) && !empty($post['poster']['avatar']) ? themecustoms_avatar($post['poster']['avatar']['href'], $post['poster']['id']) : ''), '
+						<div>
+							<h6>', $post['link'], '</h6>
+							<span class="smalltext poster_link">', themecustoms_icon('fa fa-user'), ' ', $post['poster']['link'], '</span>
+							<span class="smalltext">', themecustoms_icon('fa fa-clock'), ' ', $post['time'], '</span><br>
+							<span class="smalltext">', themecustoms_icon('fa fa-folder'), ' ', $post['board']['link'], '</span>
+						</div>
 					</li>';
 		echo '
 				</ul>';
@@ -390,7 +393,22 @@ function template_ic_block_online()
 	if (!empty($context['users_online']))
 	{
 		echo '
-				', sprintf($txt['users_active'], $modSettings['lastActive']), ': ', implode(', ', $context['list_users_online']);
+				', sprintf($txt['users_active'], $modSettings['lastActive']), ': <br>
+				<span class="onlinemembers_list">';
+
+			// Show the regular list
+			if (empty($settings['st_enable_avatars_online']))
+				echo implode(', ', $context['list_users_online']);
+			// Avatars
+			else
+				foreach ($context['list_users_online'] as $user)
+				{
+					echo '
+						<span class="show_member">' . $user, '</span>';
+				}
+			
+			echo '
+				</span>';
 
 		// Showing membergroups?
 		if (!empty($settings['show_group_key']) && !empty($context['membergroups']))
