@@ -600,7 +600,8 @@ h3.catbg .icon {
 	content: "\f05a";
 }
 /* Reply */
-.fa-reply_button::before {
+.fa-reply_button::before,
+.main_icons.reply_button::before {
 	content: "\f3e5";
 }
 /* Reply to all */
