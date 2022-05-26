@@ -106,8 +106,8 @@ $(function() {
 	});
 
 	// Menu improvements
-	$( '.mobile_user_menu').click(function() {
-		if ($( '#mobile_user_menu' ).is( ':visible' )  == true) {
+	$('.mobile_user_menu').click(function() {
+		if ($('#mobile_user_menu').is(':visible')  == true) {
 			$(document).mouseup(function (e) {
 				if ($('#mobile_user_menu').has(e.target).length === 0)
 					$('#mobile_user_menu').hide();
@@ -119,8 +119,8 @@ $(function() {
 	});
 
 	// Mobile actions
-	$( '.mobile_act').click(function() {
-		if ($( '#mobile_action' ).is( ':visible' )  == true) {
+	$('.mobile_act').click(function() {
+		if ($('#mobile_action').is(':visible')  == true) {
 			$(document).mouseup(function (e) {
 				if ($('#mobile_action').has(e.target).length === 0)
 					$('#mobile_action').hide();
@@ -132,14 +132,27 @@ $(function() {
 	});
 
 	// Mobile mod
-	$( '.mobile_mod').click(function() {
-		if ($( '#mobile_moderation' ).is( ':visible' )  == true) {
+	$('.mobile_mod').click(function() {
+		if ($('#mobile_moderation').is(':visible')  == true) {
 			$(document).mouseup(function (e) {
 				if ($('#mobile_moderation').has(e.target).length === 0)
 					$('#mobile_moderation').hide();
 			}).keyup(function(e){
 				if (e.keyCode == 27)
 					$('#mobile_moderation').hide();
+			});
+		}
+	});
+
+	// Generic Menu
+	$('.mobile_generic_menu_1').click(function() {
+		if ($('#mobile_generic_menu_1').is( ':visible' )  == true) {
+			$(document).mouseup(function (e) {
+				if ($('#mobile_generic_menu_1').has(e.target).length === 0)
+					$('#mobile_generic_menu_1').hide();
+			}).keyup(function(e){
+				if (e.keyCode == 27)
+					$('#mobile_generic_menu_1').hide();
 			});
 		}
 	});
