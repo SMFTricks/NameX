@@ -156,4 +156,17 @@ $(function() {
 			});
 		}
 	});
+
+	// Generic Tabs
+	$('.mobile_generic_menu_1_tabs').click(function() {
+		if ($('#mobile_generic_menu_1_tabs').is( ':visible' )  == true) {
+			$(document).mouseup(function (e) {
+				if ($('#mobile_generic_menu_1_tabs').has(e.target).length === 0)
+					$('#mobile_generic_menu_1_tabs').hide();
+			}).keyup(function(e){
+				if (e.keyCode == 27)
+					$('#mobile_generic_menu_1_tabs').hide();
+			});
+		}
+	});
 });
