@@ -1396,6 +1396,8 @@ footer .footer-other span.help-links a i.fa {
 }
 #basicinfo img.avatar {
 	margin: 0 auto;
+	max-width: 120px !important;
+	max-height: 120px !important;
 }
 #basicinfo .icon_fields {
 	display: flex;

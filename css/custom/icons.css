@@ -339,7 +339,8 @@ h3.catbg .icon {
 }
 /* Paid */
 .main_icons.paid::before,
-.large_admin_menu_icon.paid::before {
+.large_admin_menu_icon.paid::before,
+.fa-paid::before {
 	content: "\f155";
 }
 /* Packages */
@@ -723,4 +724,10 @@ h3.profile_hd::before,
 /* Tasks Manager */
 .fa-tasksmanager::before {
 	content: "\f0ae";
+}
+/* Optimus */
+.main_icons.optimus::before,
+.large_admin_menu_icon.optimus::before
+.fa-optimus::before {
+	content: "\f0e8";
 }

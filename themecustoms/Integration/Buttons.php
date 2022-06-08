@@ -60,16 +60,16 @@ class Buttons
 
 		// Like/Unlike button
 		// It doesn't make sense to me that you'd like their post if it's ignored, even if you decide to see it.
-		if (!$output['is_ignored'] && !empty($modSettings['enable_likes']) && !empty(Init::$_likes_quickbutton))
+		if (!$output['is_ignored'] && !empty($modSettings['enable_likes']) && !empty(Init::$_likes_quickbutton) && (!empty($output['likes']['count']) || $output['likes']['can_like']))
 		{
 			$output['quickbuttons'] = array_merge([
 				'likes' => [
-					'label' => $output['likes']['you'] ? $txt['unlike'] : $txt['like'],
+					'label' => $output['likes']['can_like'] ? ($output['likes']['you'] ? $txt['unlike'] : $txt['like']) : '',
 					'icon' => $output['likes']['you'] ? 'unlike' : 'like',
 					'class' => 'post_like_button',
 					'id' => 'msg_' . $output['id'] . '_quicklikes',
-					'href' => $scripturl . '?action=likes;quickbuttonlike;ltype=msg;sa=like;like=' . $output['id'] . ';' . $context['session_var'] . '=' . $context['session_id'],
-					'show' => $output['likes']['can_like'],
+					'href' => $output['likes']['can_like'] ? ($scripturl . '?action=likes;quickbuttonlike;ltype=msg;sa=like;like=' . $output['id'] . ';' . $context['session_var'] . '=' . $context['session_id']) : '',
+					'show' => $output['likes']['can_like'] || !empty($modSettings['enable_likes']),
 					'extra_content' => (!empty($output['likes']['count']) ? '
 						<span class="amt">
 							<a class="buttonlike_count" href="' . $scripturl . '?action=likes;sa=view;ltype=msg;js=1;like=' . $output['id'] . ';' . $context['session_var'] . '=' . $context['session_id'] . '"><em style="display: none;">'. $txt['likes'] . '</em>' . $output['likes']['count'] . '</a>
