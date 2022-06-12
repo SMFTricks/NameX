@@ -525,12 +525,17 @@ h3.catbg .icon {
 .main_icons.lock::before {
 	content: "\f023";
 }
+/* Unlock Topic */
+.fa-set_unlock::before,
+.main_icons.unlock::before {
+	content: "\f3c1";
+}
 /* Merge Topic */
 .fa-merge::before,
 .main_icons.merge::before {
 	content: "\f248";
 }
-/* LInk Calendar */
+/* Link Calendar */
 .fa-calendar_link::before {
 	content: "\f274";
 }
@@ -570,6 +575,10 @@ h3.catbg .icon {
 .fa-login::before,
 .main_icons.login::before {
 	content: "\f2f6";
+}
+/* Logout */
+.main_icons.logout::before {
+	content: "\f2f5";
 }
 /* Notifications */
 .fa-notifications::before,
@@ -701,6 +710,11 @@ h3.profile_hd::before,
 .fa-shop::before {
 	content: "\f07a";
 }
+/* Store */
+.fa-store::before,
+.main_icons.store::before {
+	content: "\f54e";
+}
 /* Info Center icons */
 .fa-recent_posts::before,
 .main_icons.recent_posts::before {
@@ -727,7 +741,8 @@ h3.profile_hd::before,
 }
 /* Optimus */
 .main_icons.optimus::before,
-.large_admin_menu_icon.optimus::before
+.large_admin_menu_icon.optimus::before,
 .fa-optimus::before {
 	content: "\f0e8";
+	background: none !important;
 }

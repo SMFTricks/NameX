@@ -102,6 +102,9 @@ class Theme
 		// This defines the formatting for the page indexes used throughout the forum.
 		$settings['page_index'] = themecustoms_page_index();
 
+		// Set the following variable to true if this theme wants to display the login and register buttons in the main forum menu.
+		$settings['login_main_menu'] = isset(Init::$_settings['login_main_menu']) && !empty(Init::$_settings['login_main_menu']) ? true : false;
+
 		// Allow css/js files to be disabled for this specific theme.
 		// Add the identifier as an array key. IE array('smf_script'); Some external files might not add identifiers, on those cases SMF uses its filename as reference.
 		if (!isset($settings['disable_files']))

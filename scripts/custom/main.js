@@ -106,8 +106,8 @@ $(function() {
 	});
 
 	// Menu improvements
-	$( '.mobile_user_menu').click(function() {
-		if ($( '#mobile_user_menu' ).is( ':visible' )  == true) {
+	$('.mobile_user_menu').click(function() {
+		if ($('#mobile_user_menu').is(':visible') == true) {
 			$(document).mouseup(function (e) {
 				if ($('#mobile_user_menu').has(e.target).length === 0)
 					$('#mobile_user_menu').hide();
@@ -119,8 +119,8 @@ $(function() {
 	});
 
 	// Mobile actions
-	$( '.mobile_act').click(function() {
-		if ($( '#mobile_action' ).is( ':visible' )  == true) {
+	$('.mobile_act').click(function() {
+		if ($('#mobile_action').is(':visible') == true) {
 			$(document).mouseup(function (e) {
 				if ($('#mobile_action').has(e.target).length === 0)
 					$('#mobile_action').hide();
@@ -132,8 +132,8 @@ $(function() {
 	});
 
 	// Mobile mod
-	$( '.mobile_mod').click(function() {
-		if ($( '#mobile_moderation' ).is( ':visible' )  == true) {
+	$('.mobile_mod').click(function() {
+		if ($('#mobile_moderation').is(':visible') == true) {
 			$(document).mouseup(function (e) {
 				if ($('#mobile_moderation').has(e.target).length === 0)
 					$('#mobile_moderation').hide();

@@ -23,6 +23,7 @@ fieldset legend {
 }
 a, a:visited {
 	color: var(--body-link-color);
+	text-decoration: none;
 }
 hr {
 	box-shadow: 0 1px 0 var(--header-border-color) inset;
@@ -1949,6 +1950,7 @@ ul.quickbuttons li ul.dropmenu li a:focus {
 	display: inline-flex;
 	align-items: center;
 	margin: 1px 0 3px;
+	flex-wrap: wrap;
 }
 .topic_pages .pagination_container {
 	margin: 0;

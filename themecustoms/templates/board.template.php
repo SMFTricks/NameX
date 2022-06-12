@@ -17,9 +17,21 @@ function themecustoms_board_icon($board)
 	global $context, $scripturl;
 
 	echo '
-	<div class="board_icon">
-		<a href="', ($context['user']['is_guest'] || $board['type'] == 'redirect' ? $board['href'] : $scripturl . '?action=unread;board=' . $board['id'] . '.0;children'), '" class="board_', $board['board_class'], '"', !empty($board['board_tooltip']) ? ' title="' . $board['board_tooltip'] . '"' : '', '></a>
-	</div>';
+		<div class="board_icon">';
+
+	if (function_exists('template_bi_' . $board['type'] . '_icon'))
+	{
+			call_user_func('template_bi_' . $board['type'] . '_icon', $board);
+
+			echo '
+		</div>';
+
+		return;
+	}
+
+	echo '
+			<a href="', ($context['user']['is_guest'] || $board['type'] == 'redirect' ? $board['href'] : $scripturl . '?action=unread;board=' . $board['id'] . '.0;children'), '" class="board_', $board['board_class'], '"', !empty($board['board_tooltip']) ? ' title="' . $board['board_tooltip'] . '"' : '', '></a>
+		</div>';
 }
 
  /**
@@ -32,28 +44,40 @@ function themecustoms_board_info($board)
 	global $context, $scripturl, $txt;
 
 	echo '
-	<div class="info">
-		<a class="subject mobile_subject" href="', $board['href'], '" id="b', $board['id'], '">
-			', $board['name'], '
-		</a>';
+		<div class="info">';
+
+	if (function_exists('template_bi_' . $board['type'] . '_info'))
+	{
+			call_user_func('template_bi_' . $board['type'] . '_info', $board);
+
+			echo '
+		</div>';
+
+		return;
+	}
+
+	echo '
+			<a class="subject mobile_subject" href="', $board['href'], '" id="b', $board['id'], '">
+				', $board['name'], '
+			</a>';
 
 	// Has it outstanding posts for approval?
 	if ($board['can_approve_posts'] && ($board['unapproved_posts'] || $board['unapproved_topics']))
 		echo '
-		<a href="', $scripturl, '?action=moderate;area=postmod;sa=', ($board['unapproved_topics'] > 0 ? 'topics' : 'posts'), ';brd=', $board['id'], ';', $context['session_var'], '=', $context['session_id'], '" title="', sprintf($txt['unapproved_posts'], $board['unapproved_topics'], $board['unapproved_posts']), '" class="moderation_link amt">!</a>';
+			<a href="', $scripturl, '?action=moderate;area=postmod;sa=', ($board['unapproved_topics'] > 0 ? 'topics' : 'posts'), ';brd=', $board['id'], ';', $context['session_var'], '=', $context['session_id'], '" title="', sprintf($txt['unapproved_posts'], $board['unapproved_topics'], $board['unapproved_posts']), '" class="moderation_link amt">!</a>';
 
 	echo '
-		<div class="board_description">', $board['description'], '</div>';
+			<div class="board_description">', $board['description'], '</div>';
 
 	// Show the "Moderators: ". Each has name, href, link, and id. (but we're gonna use link_moderators.)
 	if (!empty($board['moderators']) || !empty($board['moderator_groups']))
 		echo '
-		<p class="moderators">
-			', count($board['link_moderators']) === 1 ? $txt['moderator'] : $txt['moderators'], ': ', implode(', ', $board['link_moderators']), '
-		</p>';
+			<p class="moderators">
+				', count($board['link_moderators']) === 1 ? $txt['moderator'] : $txt['moderators'], ': ', implode(', ', $board['link_moderators']), '
+			</p>';
 
 	echo '
-	</div>';
+		</div>';
 }
 
 /**
@@ -66,14 +90,26 @@ function themecustoms_board_stats($board)
 	global $txt;
 
 	echo '
-	<div class="board_stats">
-		<p>
-			', ($board['type'] != 'redirect' ? '
-				<strong class="posts">' . comma_format($board['posts']) . '</strong> ' . $txt['posts'] . '<br>
-				<strong class="topics">' . comma_format($board['topics']) . '</strong> ' . $txt['board_topics'] : '
-				<strong class="redirects">' . comma_format($board['posts']) . '</strong> ' . $txt['redirects']), '
-		</p>
-	</div>';
+		<div class="board_stats">';
+
+	if (function_exists('template_bi_' . $board['type'] . '_stats'))
+	{
+		call_user_func('template_bi_' . $board['type'] . '_stats', $board);
+
+			echo '
+		</div>';
+
+		return;
+	}
+
+	echo '
+			<p>
+				', ($board['type'] != 'redirect' ? '
+					<strong class="posts">' . comma_format($board['posts']) . '</strong> ' . $txt['posts'] . '<br>
+					<strong class="topics">' . comma_format($board['topics']) . '</strong> ' . $txt['board_topics'] : '
+					<strong class="redirects">' . comma_format($board['posts']) . '</strong> ' . $txt['redirects']), '
+			</p>
+		</div>';
 }
 
 /**
@@ -89,9 +125,19 @@ function themecustoms_board_lastpost($board)
 	echo '
 		<div class="lastpost">';
 
-		// Will still add the class, in case the design depends on it.
-		if (!empty($board['last_post']['id']))
+	if (function_exists('template_bi_' . $board['type'] . '_lastpost'))
+	{
+		call_user_func('template_bi_' . $board['type'] . '_lastpost', $board);
+
 			echo '
+		</div>';
+
+		return;
+	}
+
+	// Will still add the class, in case the design depends on it.
+	if (!empty($board['last_post']['id']))
+		echo '
 			', !empty($settings['st_enable_avatars_boards']) && !empty($board['last_post']['member']['avatar']) ? themecustoms_avatar($board['last_post']['member']['avatar']['href'], $board['last_post']['member']['id']) : '', '
 			<p>
 				<span class="last_post">
@@ -116,6 +162,13 @@ function themecustoms_board_children($board, $style = false)
 
 	if (empty($board['children']))
 		return;
+
+	if (function_exists('template_bi_' . $board['type'] . '_children'))
+	{
+		call_user_func('template_bi_' . $board['type'] . '_children', $board);
+	
+		return;
+	}
 
 	// Sort the links into an array with new boards bold so it can be imploded.
 	$children = array();
