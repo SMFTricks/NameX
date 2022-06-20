@@ -117,6 +117,7 @@ $txt['st_colpick_secondary'] = 'Secondary color';
 
 // Top links
 $txt['st_custom_links'] = 'Custom links';
+$txt['st_custom_links_enabled'] = 'Enable custom links';
 $txt['st_custom_link_other'] = 'Other Links';
 $txt['st_custom_link_title'] = 'Title for the link';
 $txt['st_custom_link_url'] = 'Set the URL for the link';
