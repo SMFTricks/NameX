@@ -9,10 +9,18 @@
 * Designed by [Harold Zapata](https://smftricks.com/index.php?action=profile;u=17)
 
 ### Features
-- Logo URL
-- Social Networks
-- Separate sticky topics
 - FontAwesome
+- Social Networks
+- Logo URL
+- Forum Width
+- Separate sticky topics
+- Avatars
+  - Boards
+  - Topics
+  - Online Users
+  - Recent Posts
+- Remove Menu Items
+- Disable Menu Icons
 ---
 ### [Changelog](https://github.com/SMFTricks/NameX/blob/main/CHANGELOG.md)
 ### [GitHub](https://github.com/SMFTricks/NameX)
