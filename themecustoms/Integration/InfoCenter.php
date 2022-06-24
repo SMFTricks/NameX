@@ -126,10 +126,13 @@ class InfoCenter
 			// Add the avatar
 			loadMemberContext($user_id);
 			$context['list_users_online'][$item] = (
-				'<a class="online-avatar" href="' . $scripturl . '?action=profile;u=' . $user_id . '">
-					<img src="' . $memberContext[$user_id]['avatar']['href'] . '" alt="' . $memberContext[$user_id]['name'] . '" title="' . $memberContext[$user_id]['name'] . '" class="avatar" />
-				</a>
-				<span class="online-name">' . $user_online . '</span>'
+				'<span class="user-online-block">
+					<a class="online-avatar" href="' . $scripturl . '?action=profile;u=' . $user_id . '">
+						<img src="' . $memberContext[$user_id]['avatar']['href'] . '" alt="' . $memberContext[$user_id]['name'] . '" title="' . $memberContext[$user_id]['name'] . '" class="avatar" />
+					</a>
+					<span class="online-name">' . $user_online . '</span>
+				</span>
+				'
 			);
 		}
 	}
