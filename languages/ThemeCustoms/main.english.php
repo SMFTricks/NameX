@@ -15,12 +15,17 @@ $txt['st_main'] = 'Main';
 $txt['st_additional_settings'] = 'Additional Settings';
 $txt['st_info_center'] = 'Info Center';
 $txt['st_sidebar'] = 'Sidebar';
+$txt['st_header'] = 'Header';
+$txt['st_footer'] = 'Footer';
+$txt['st_boards'] = 'Boards';
 
 // Regular description
-$txt['st_description'] = 'Add your own description';
 $txt['st_about'] = 'About ';
-$txt['st_description_desc'] = 'Here you can add your own description in the index of the forum';
-$txt['st_description_default'] = 'Add your own description in your admin center';
+$txt['st_description_default'] = 'Welcome to the community!';
+$txt['st_description'] = 'Forum description';
+$txt['st_description_desc'] = 'Add a description of the forum. Default is: <span class="smalltext">' . $txt['st_description_default'] . '</span>';
+$txt['st_description_title'] = 'Description Title';
+$txt['st_description_title_desc'] = 'Use a custom title for your description. Default is: <span class="smalltext">' . $txt['st_about'] . '</span>';
 
 // Separate sticky topics
 $txt['st_sticky_topic'] = 'Important Topics';
