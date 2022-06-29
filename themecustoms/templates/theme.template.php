@@ -300,52 +300,72 @@ function themecustoms_customlinks()
 	// Link 1
 	if (!empty($settings['st_custom_link1']) && !empty($settings['st_custom_link1_title']))
 		echo '
-		<a href="', $settings['st_custom_link1'], '" target="_blank" rel="noopener">', $settings['st_custom_link1_title'], '</a>';
+		<span>
+			<a href="', $settings['st_custom_link1'], '" target="_blank" rel="noopener">', $settings['st_custom_link1_title'], '</a>
+		</span>';
 
 	// Link 2
 	if (!empty($settings['st_custom_link2']) && !empty($settings['st_custom_link2_title']))
 		echo '
-		<a href="', $settings['st_custom_link2'], '" target="_blank" rel="noopener">', $settings['st_custom_link2_title'], '</a>';
+		<span>
+			<a href="', $settings['st_custom_link2'], '" target="_blank" rel="noopener">', $settings['st_custom_link2_title'], '</a>
+		</span>';
 
 	// Link 3
 	if (!empty($settings['st_custom_link3']) && !empty($settings['st_custom_link3_title']))
 		echo '
-		<a href="', $settings['st_custom_link3'], '" target="_blank" rel="noopener">', $settings['st_custom_link3_title'], '</a>';
+		<span>
+			<a href="', $settings['st_custom_link3'], '" target="_blank" rel="noopener">', $settings['st_custom_link3_title'], '</a>
+		</span>';
 
 	// Link 4
 	if (!empty($settings['st_custom_link4']) && !empty($settings['st_custom_link4_title']))
 		echo '
-		<a href="', $settings['st_custom_link4'], '" target="_blank" rel="noopener">', $settings['st_custom_link4_title'], '</a>';
+		<span>
+			<a href="', $settings['st_custom_link4'], '" target="_blank" rel="noopener">', $settings['st_custom_link4_title'], '</a>
+		</span>';
 
 	// Link 5
 	if (!empty($settings['st_custom_link5']) && !empty($settings['st_custom_link5_title']))
 		echo '
-		<a href="', $settings['st_custom_link5'], '" target="_blank" rel="noopener">', $settings['st_custom_link5_title'], '</a>';
+		<span>
+			<a href="', $settings['st_custom_link5'], '" target="_blank" rel="noopener">', $settings['st_custom_link5_title'], '</a>
+		</span>';
 
 	// Link 6
 	if (!empty($settings['st_custom_link6']) && !empty($settings['st_custom_link6_title']))
 		echo '
-		<a href="', $settings['st_custom_link6'], '" target="_blank" rel="noopener">', $settings['st_custom_link6_title'], '</a>';
+		<span>
+			<a href="', $settings['st_custom_link6'], '" target="_blank" rel="noopener">', $settings['st_custom_link6_title'], '</a>
+		</span>';
 
 	// Link 7
 	if (!empty($settings['st_custom_link7']) && !empty($settings['st_custom_link7_title']))
 		echo '
-		<a href="', $settings['st_custom_link7'], '" target="_blank" rel="noopener">', $settings['st_custom_link7_title'], '</a>';
+		<span>
+			<a href="', $settings['st_custom_link7'], '" target="_blank" rel="noopener">', $settings['st_custom_link7_title'], '</a>
+		</span>';
 
 	// Link 8
 	if (!empty($settings['st_custom_link8']) && !empty($settings['st_custom_link8_title']))
 		echo '
-		<a href="', $settings['st_custom_link8'], '" target="_blank" rel="noopener">', $settings['st_custom_link8_title'], '</a>';
+		<span>
+			<a href="', $settings['st_custom_link8'], '" target="_blank" rel="noopener">', $settings['st_custom_link8_title'], '</a>
+		</span>';
 
 	// Link 9
 	if (!empty($settings['st_custom_link9']) && !empty($settings['st_custom_link9_title']))
 		echo '
-		<a href="', $settings['st_custom_link9'], '" target="_blank" rel="noopener">', $settings['st_custom_link9_title'], '</a>';
+		<span>
+			<a href="', $settings['st_custom_link9'], '" target="_blank" rel="noopener">', $settings['st_custom_link9_title'], '</a>
+		</span>';
 
 	// Link 10
 	if (!empty($settings['st_custom_link10']) && !empty($settings['st_custom_link10_title']))
 		echo '
-		<a href="', $settings['st_custom_link10'], '" target="_blank" rel="noopener">', $settings['st_custom_link10_title'], '</a>';
+		<span>
+			<a href="', $settings['st_custom_link10'], '" target="_blank" rel="noopener">', $settings['st_custom_link10_title'], '</a>
+		</span>';
 
 	echo '
 	</div>';

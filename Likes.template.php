@@ -80,7 +80,12 @@ function template_like()
 		if (!empty($context['data']['can_like']))
 		echo '
 		<li class="post_like_button" id="', $context['data']['type'], '_', $context['data']['id_content'], '_likes"', '>
-			<a href="', $scripturl, '?action=likes;ltype=', $context['data']['type'], ';sa=like;quickbuttonlike;like=', $context['data']['id_content'], ';', $context['session_var'], '=', $context['session_id'], '" class="', $context['data']['type'], '_quicklike"><i class="fa fa-', $context['data']['already_liked'] ? 'unlike' : 'like', '"></i>', $context['data']['already_liked'] ? $txt['unlike'] : $txt['like'], '</a>';
+			<a href="', $scripturl, '?action=likes;ltype=', $context['data']['type'], ';sa=like;quickbuttonlike;like=', $context['data']['id_content'], ';', $context['session_var'], '=', $context['session_id'], '" class="', $context['data']['type'], '_quicklike">
+				<i class="fa fa-', $context['data']['already_liked'] ? 'unlike' : 'like', '"></i>
+				<span>
+					', $context['data']['already_liked'] ? $txt['unlike'] : $txt['like'], '
+				</span>
+			</a>';
 
 		if (!empty($context['some_likes']))
 			echo '

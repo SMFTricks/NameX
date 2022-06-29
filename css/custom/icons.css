@@ -615,7 +615,8 @@ h3.catbg .icon {
 	content: "\f3e5";
 }
 /* Reply to all */
-.fa-reply_all_button::before {
+.fa-reply_all_button::before,
+.main_icons.reply_all_button::before {
 	content: "\f122";
 }
 /* Quote */

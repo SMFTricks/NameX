@@ -66,7 +66,7 @@ class Buttons
 				'likes' => [
 					'label' => $output['likes']['can_like'] ? ($output['likes']['you'] ? $txt['unlike'] : $txt['like']) : '',
 					'icon' => $output['likes']['you'] ? 'unlike' : 'like',
-					'class' => 'post_like_button',
+					'class' => 'post_like_button' . (!empty($output['likes']['count']) && !$output['likes']['can_like'] ? ' disabled' : ''),
 					'id' => 'msg_' . $output['id'] . '_quicklikes',
 					'href' => $output['likes']['can_like'] ? ($scripturl . '?action=likes;quickbuttonlike;ltype=msg;sa=like;like=' . $output['id'] . ';' . $context['session_var'] . '=' . $context['session_id']) : '',
 					'show' => $output['likes']['can_like'] || !empty($modSettings['enable_likes']),
