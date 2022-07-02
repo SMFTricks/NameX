@@ -456,7 +456,7 @@ function template_set_settings()
 
 	echo '
 	<div id="admin_form_wrapper">
-		<form action="', $scripturl, '?action=admin;area=theme;sa=list;th=', $context['theme_settings']['theme_id'], '" method="post" accept-charset="', $context['character_set'], '">
+		<form action="', $scripturl, '?action=admin;area=theme;sa=list;th=', $context['theme_settings']['theme_id'], '" method="post" accept-charset="', $context['character_set'], '" enctype="multipart/form-data">
 			<div class="cat_bar">
 				<h3 class="catbg">
 					<a href="', $scripturl, '?action=helpadmin;help=theme_settings" onclick="return reqOverlayDiv(this.href);" class="help"><span class="main_icons help" title="', $txt['help'], '"></span></a> ', $txt['theme_settings'], ' - ', $context['theme_settings']['name'], '
@@ -652,7 +652,7 @@ function template_set_settings()
 
 function template_custom_list_settings($first_setting_key, &$titled_section, $setting_type = 'main')
 {
-	global $context, $txt;
+	global $context;
 
 	echo '
 						<dl class="settings">';
@@ -740,6 +740,14 @@ function template_custom_list_settings($first_setting_key, &$titled_section, $se
 								<textarea rows="4" style="width: 95%;" cols="40" name="', !empty($setting['default']) ? 'default_' : '', 'options[', $setting['id'], ']" id="options_', $setting['id'], '">', $setting['value'], '</textarea>
 							</dd>';
 			}
+			// A file?
+			elseif ($setting['type'] == 'file')
+			{
+				echo '
+							<dd>
+								<input type="file" name="', !empty($setting['default']) ? 'default_' : '', '', $setting['id'], '" id="options_', $setting['id'], '">
+							</dd>';
+			}
 			// A regular input box, then?
 			else
 			{
@@ -766,7 +774,7 @@ function template_custom_list_settings($first_setting_key, &$titled_section, $se
 								<input type="text"';
 
 				echo '
-								name="', !empty($setting['default']) ? 'default_' : '', 'options[', $setting['id'], ']" id="', $setting['id'], '" value="', $setting['value'], '"', $setting['type'] == 'number' ? ' size="5"' : (empty($setting['size']) ? ' size="40"' : ' size="' . $setting['size'] . '"'), !empty($setting['data']) ? ' ' . $setting['data'] : '', '>
+								name="', !empty($setting['default']) ? 'default_' : '', 'options[', $setting['id'], ']" id="options_', $setting['id'], '" value="', $setting['value'], '"', $setting['type'] == 'number' ? '' : (empty($setting['size']) ? ' size="40"' : ' size="' . $setting['size'] . '"'), !empty($setting['data']) ? ' ' . $setting['data'] : '', '>
 							</dd>';
 			}
 		}
