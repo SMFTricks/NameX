@@ -2184,6 +2184,19 @@ fieldset.admin_group a span.large_admin_menu_icon {
 #month_grid td.calendar_today {
 	background: var(--buttonlist-bg-active);
 }
+#month_grid table {
+	background: var(--roundframe-bg) !important;
+}
+#month_grid th.days {
+	background: var(--windowbg-bg) !important;
+}
+#main_grid td.disabled, #month_grid td.disabled {
+	background: var(--windowbg-bg-hover) !important;
+}
+#main_grid td.days, #month_grid td.days,
+#month_grid table {
+	border-color: var(--table-border-color) !important;
+}
 
 /* Styles used by the auto suggest control.
 ------------------------------------------------------- */

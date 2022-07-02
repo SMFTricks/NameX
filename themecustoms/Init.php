@@ -47,14 +47,14 @@ class Init extends Config
 	 * Color Options
 	 */
 	public static $_color_options = [
-			'variants'=> true,
-			'darkmode' => true,
+		'variants'=> true,
+		'darkmode' => true,
 	];
 
 	/**
 	 * Init::loadHooks()
 	 */
-	protected function loadHooks()
+	protected function loadHooks() : void
 	{
 		// Load fonts
 		add_integration_function('integrate_pre_css_output', __CLASS__ . '::fonts', false, '$themedir/themecustoms/Init.php');
@@ -73,7 +73,7 @@ class Init extends Config
 	 * 
 	 * @param array $assets The assets array
 	 */
-	public static function fonts()
+	public static function fonts() : void
 	{
 		global $context;
 
@@ -93,7 +93,7 @@ class Init extends Config
 	 * @param array $variants
 	 * @return void
 	 */
-	public static function variants(array &$variants)
+	public static function variants(array &$variants) : void
 	{
 		$variants = [
 			'red',
@@ -113,7 +113,7 @@ class Init extends Config
 	 * @param bool $darkmode
 	 * @return void
 	 */
-	public static function darkMode(bool &$darkmode)
+	public static function darkMode(bool &$darkmode) : void
 	{
 		$darkmode = true;
 	}
