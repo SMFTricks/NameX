@@ -35,9 +35,6 @@ function themecustoms_carousel($carousel = false)
 	// Language
 	loadLanguage('ThemeCustoms/carousel');
 
-	// test var
-	$context['st_carousel_full'] = false;
-
 	// Normal carousel
 	if (empty($context['st_carousel_full']))
 		carousel_settings();
