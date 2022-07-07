@@ -34,9 +34,9 @@ let add_new_setting = () => {
 	carousel_slides_total++;
 	$('.carousel_new').before('' +
 		'<div class="title_bar tca_carousel_title_' + carousel_slides_total + '">' + 
-		'<h3 class="titlebg">' +
+		'<h4 class="titlebg">' +
 			'<label for="tca_delete_' + carousel_slides_total + '">Slider ' + carousel_slides_total + '</label><span class="floatright"><strong><label for="tca_delete_' + carousel_slides_total + '">Delete</label></strong> <input type="checkbox" name="tc_carousel_delete" id="tca_delete_' + carousel_slides_total + '" value="' + carousel_slides_total + '"></span>' + 
-		'</h3>' + 
+		'</h4>' + 
 	'</div>' +
 	'<dl class="settings">' +
 		'<dt>' +
