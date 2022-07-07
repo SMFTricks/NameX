@@ -47,6 +47,7 @@ abstract class Config
 	public static $_settings = [
 		'include_bootstrap' => false,
 		'login_main_menu' => false,
+		'carousel' => false,
 	];
 
 	/**

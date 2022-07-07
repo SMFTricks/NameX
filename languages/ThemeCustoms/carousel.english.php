@@ -8,28 +8,34 @@
  */
 
 // Carousel
-$txt['st_carousel'] = 'Carousel settings';
+$txt['st_carousel'] = 'Carousel';
 $txt['st_enable_carousel'] = 'Enable carousel';
-$txt['st_carousel_index'] = 'Allow only on index';
+$txt['st_carousel_desc'] = 'If you have the Carousel Addon, you will have the options to upload below, once this setting is enabled.';
+$txt['st_carousel_index'] = 'Display only in home page';
 $txt['st_carousel_enable_images'] = 'Enable carousel images';
 $txt['st_carousel_speed'] = 'Carousel speed';
 $txt['st_carousel_speed_desc'] = 'Speed in miliseconds, use 1000 for 1 second.';
-$txt['st_carousel_img1'] = 'Image 1';
-$txt['st_carousel_img2'] = 'Image 2';
-$txt['st_carousel_img3'] = 'Image 3';
-$txt['st_carousel_img4'] = 'Image 4';
-$txt['st_carousel_title1'] = 'Title 1';
-$txt['st_carousel_title2'] = 'Title 2';
-$txt['st_carousel_title3'] = 'Title 3';
-$txt['st_carousel_title4'] = 'Title 4';
-$txt['st_carousel_text1'] = 'Text 1';
-$txt['st_carousel_text2'] = 'Text 2';
-$txt['st_carousel_text3'] = 'Text 3';
-$txt['st_carousel_text4'] = 'Text 4';
-$txt['st_carousel_link1'] = 'Link 1';
-$txt['st_carousel_link2'] = 'Link 2';
-$txt['st_carousel_link3'] = 'Link 3';
-$txt['st_carousel_link4'] = 'Link 4';
-$txt['st_carousel_index'] = 'Display only on index page';
-$txt['st_previous'] = 'Previous';
-$txt['st_next'] = 'Next';
+$txt['st_carousel_link_text'] = 'Carousel link text';
+$txt['st_carousel_link_text_desc'] = 'Text to display in the link. <span class="smalltext">Default is "Go to link"</span>';
+$txt['st_carousel_go_to_link'] = 'Go to link';
+$txt['st_carousel_add_new'] = 'Add new';
+
+// Sliders
+$txt['st_slider_1']	= 'Slider 1';
+$txt['st_slider_2']	= 'Slider 2';
+$txt['st_slider_3']	= 'Slider 3';
+$txt['st_slider_4']	= 'Slider 4';
+$txt['st_slider_5']	= 'Slider 5';
+$txt['st_slider'] = 'Slider';
+$txt['st_slider_x'] = 'Slider %d';
+$txt['st_slide'] = 'Slide';
+
+// Settings
+$txt['st_carousel_title'] = 'Title';
+$txt['st_carousel_title_desc'] = 'Each slide requires a title, otherwise it will not be displayed.';
+$txt['st_carousel_text'] = 'Caption';
+$txt['st_carousel_link'] = 'Link';
+$txt['st_carousel_image_url'] = 'Image URL';
+$txt['st_carousel_image_upload'] = 'Upload Image';
+$txt['st_carousel_image_current'] = '<div class="noticebox">Uploading a new image will replace the current one.<br><span class="smalltext">Current image for this slide:</span><br>%s</div>';
+$txt['st_carousel_noimage'] = '<div class="errorbox">This slide does not have an image.</div>';

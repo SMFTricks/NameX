@@ -678,7 +678,7 @@ function template_custom_list_settings($first_setting_key, &$titled_section, $se
 				{
 					$titled_section = false;
 					echo '
-						<div class="title_bar">
+						<div class="title_bar ', $setting['id'], '">
 							<h3 class="titlebg">
 								', (!empty($setting['section_title']) ? $setting['section_title'] : $setting), '
 							</h3>
@@ -704,7 +704,7 @@ function template_custom_list_settings($first_setting_key, &$titled_section, $se
 			if (isset($setting['description']))
 				echo '
 								<br>
-								<span class="smalltext">', $setting['description'], '</span>';
+								<div class="smalltext">', $setting['description'], '</div>';
 
 			echo '
 							</dt>';

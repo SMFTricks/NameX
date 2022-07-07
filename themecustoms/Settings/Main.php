@@ -16,7 +16,7 @@ class Main
 	/**
 	 * @var array The common theme settings
 	 */
-	private $_settings;
+	private $_settings = [];
 
 	/**
 	 * @var array Setting types. Will allow to separate the settings if needed.
@@ -38,7 +38,7 @@ class Main
 	/**
 	 * @var array The custom settings that are not listed here
 	 */
-	private $_custom_settings;
+	private $_custom_settings = [];
 
 	/**
 	 * Main::settings()

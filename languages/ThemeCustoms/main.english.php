@@ -7,7 +7,7 @@
  * @license MIT
  */
 
-global $scripturl;
+global $scripturl, $settings;
 
 // Additional Settings
 $txt['current_theme'] = 'Theme settings';
@@ -109,7 +109,9 @@ $txt['st_other_settings'] = 'Other settings';
 $txt['st_join'] = 'Join';
 $txt['sort_by'] = 'Sort by';
 $txt['st_profile_cover'] = 'Profile cover';
-$txt['st_news_prom'] = 'News and promotions';
+$txt['st_news_prom'] = 'News and Promotions';
+$txt['st_previous'] = 'Previous';
+$txt['st_next'] = 'Next';
 
 // Colorpicker
 $txt['st_colorpicker1_admin'] = 'Choose primary theme color';
@@ -182,7 +184,7 @@ $txt['st_rss_url_desc'] = 'The default forum URL is: <em>'.$scripturl. '?action=
 
 // Categories
 $txt['st_catcover_enable'] = 'Enable cover in categories';
-$txt['st_catcover_enable_desc'] = 'This will show a cover for each category. <span class="smalltext">You can upload images to <i>Themes/Materialistic/images/catcover/{category id}.jpg</i></span>.';
+$txt['st_catcover_enable_desc'] = 'This will show a cover for each category.<br>If you need to manually upload them, you can do so on this path:<br><em class="smalltext">'. $settings['theme_dir']. '/images/catcover/{category id}.jpg</em>.<br>If you have the Categories Cover Addon, you will have the options to upload below, once this setting is enabled.';
 $txt['st_enable_colcategories'] = 'Enable categories in columns';
 $txt['st_enable_colcategories_desc'] = 'It will display two categories per row in desktop';
 

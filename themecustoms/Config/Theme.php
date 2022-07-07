@@ -191,10 +191,12 @@ class Theme
 			}
 		}
 		// Board
-		elseif(empty($topic))
+		elseif (empty($topic))
 			loadTemplate('themecustoms/templates/board');
-		// Topic
-		// elseif(!empty($topic) && !empty($board))
+
+		// Carousel?
+		if (!empty(Init::$_settings['carousel']))
+			loadTemplate('themecustoms/templates/carousel');
 	}
 
 	/**
