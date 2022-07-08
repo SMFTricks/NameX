@@ -464,13 +464,15 @@ h3.catbg .icon {
 }
 /* Mark Selected */
 .fa-markselectread::before,
-.fa-quick_mod_markread::before {
+.fa-quick_mod_markread::before,
+.fa-TopicSolved_mark_solved::before {
 	content: "\f058";
 }
 /* Not Read */
 .fa-mark_unread::before,
 .fa-unread_button::before,
 .fa-unsolve_topic::before,
+.fa-TopicSolved_mark_unsolved::before,
 .main_icons.unread_button::before {
 	content: "\f00d";
 }
