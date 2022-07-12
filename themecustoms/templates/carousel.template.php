@@ -44,7 +44,7 @@ function themecustoms_carousel($carousel = false)
 		return;
 
 	echo '
-	<div id="themecustoms-carousel" class="carousel slide st_carousel" data-bs-ride="false">
+	<div id="themecustoms-carousel" class="carousel slide st_carousel" data-bs-ride="carousel"', (empty($settings['st_carousel_speed']) ? ' data-bs-interval="false"' : ''), '>
 		<div class="carousel-indicators">';
 
 	// Carousel indicators
@@ -72,7 +72,7 @@ function themecustoms_carousel($carousel = false)
 		echo '
 			<div class="carousel-item', (!empty($slide['active']) ? ' active' : ''), '" ', (!empty($settings['st_carousel_speed']) ? ' data-bs-interval="' . $settings['st_carousel_speed'] . '"' : ''), (!empty($slide['image']) ? ' style="background-repeat: no-repeat; background-size: cover; background-image: url(' . $slide['image'] . ');"' : ''), '>
 				<div class="carousel-block">
-					<div class="carousel-caption d-none d-md-block">
+					<div class="carousel-caption">
 						<h5>', $slide['title'], '</h5>
 						', !empty($slide['text']) ? '<p>' . $slide['text'] . '</p>' : '', '
 						', (!empty($slide['link']) ? '<a class="button" href="' . $slide['link'] . '">' . (!empty($settings['st_carousel_button_text']) ? $settings['st_carousel_button_text'] : $txt['st_carousel_go_to_link']) . '</a>' : ''), '

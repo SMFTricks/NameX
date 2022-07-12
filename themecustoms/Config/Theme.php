@@ -262,7 +262,7 @@ class Theme
 					loadCSSFile(
 						(!empty($options['css']['file']) ? (!empty($options['css']['external']) ? $options['css']['file'] : ('custom/' . $options['css']['file'] . (!empty($options['css']['minified']) ? '.min' : '') . '.css')) : ('custom/' . $file . (!empty($options['css']['minified']) ? '.min' : '') . '.css')),
 						[
-							'minimize'  => !empty($options['css']['minimize']),
+							'minimize' => !isset($options['css']['minimize']) ? true : !empty($options['css']['minimize']),
 							'external' => !empty($options['css']['external']),
 							'attributes' => !empty($options['css']['attributes']) ? $options['css']['attributes'] : [],
 							'order_pos' => !empty($options['css']['order_pos']) ? $options['css']['order_pos'] : $this->_css_order++,
@@ -281,7 +281,7 @@ class Theme
 				loadCSSFile(
 					'custom/' . (!is_array($options) ? $options : $file) . '.css',
 					[
-						'minimize' => !empty($options['minimize']),
+						'minimize' => !isset($options['minimize']) ? true : !empty($options['minimize']),
 						'attributes' => !empty($options['attributes']) ? $options['attributes'] : [],
 						'order_pos' => !empty($options['order_pos']) ? $options['order_pos'] : abs($this->_css_order--),
 					],
@@ -309,9 +309,9 @@ class Theme
 					loadJavaScriptFile(
 						(!empty($options['js']['file']) ? (!empty($options['js']['external']) ? $options['js']['file'] : ('custom/' . $options['js']['file'] . (!empty($options['js']['minified']) ? '.min' : '') . '.js')) : ('custom/' . $file . (!empty($options['js']['minified']) ? '.min' : '') . '.js')),
 						[
-							'defer'  =>  !empty($options['js']['defer']),
-							'async'  =>  !empty($options['js']['async']),
-							'minimize'  =>  !empty($options['js']['minimize']),
+							'defer'  => !empty($options['js']['defer']),
+							'async'  => !empty($options['js']['async']),
+							'minimize'  => !isset($options['js']['minimize']) ? true : !empty($options['js']['minimize']),
 							'external' => !empty($options['js']['external']),
 							'attributes' => !empty($options['js']['attributes']) ? $options['js']['attributes'] : [],
 						],
@@ -328,9 +328,9 @@ class Theme
 				loadJavaScriptFile(
 					'custom/' . (!is_array($options) ? $options : $file) . '.js',
 					[
-						'defer'  =>  !empty($options['defer']),
-						'async'  =>  !empty($options['async']),
-						'minimize'  =>  !empty($options['minimize']),
+						'defer' => !empty($options['defer']),
+						'async' => !empty($options['async']),
+						'minimize' => !isset($options['minimize']) ? true : !empty($options['minimize']),
 					],
 					'smftheme_js_' . (!is_array($options) ? $options : $file)
 				);

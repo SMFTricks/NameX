@@ -274,7 +274,6 @@ class Variants
 			loadJavascriptFile(
 				'custom/variants.js',
 				[
-					'minimize' => false,
 					'defer' => true,
 					'async' => true,
 				],
