@@ -159,7 +159,7 @@ class Theme
 			// jQuery UI
 			'jqueryui' => [
 				'js' => [
-					'file' => 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js',
+					'file' => 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js',
 					'external' => true,
 					'defer' => true,
 				]
