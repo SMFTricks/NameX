@@ -404,7 +404,7 @@ class Theme
 		add_integration_function('integrate_theme_context', 'ThemeCustoms\Color\Variants::userSelection#', false, '$themedir/themecustoms/Color/Variants.php');
 
 		// Add the theme variants as a theme option too
-		add_integration_function('integrate_theme_options', __NAMESPACE__ . 'ThemeCustoms\Color\Variants::userOptions#', false, '$themedir/themecustoms/Color/Variants.php');
+		add_integration_function('integrate_theme_options', 'ThemeCustoms\Color\Variants::userOptions#', false, '$themedir/themecustoms/Color/Variants.php');
 	}
 
 	/**

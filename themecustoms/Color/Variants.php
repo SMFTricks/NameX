@@ -41,9 +41,6 @@ class Variants
 		// Init the theme color variants
 		$this->initVariants();
 
-		// Theme variants... Add the default style to it just for presentation.
-		$this->_variants = array_unique(array_merge(['default'], $this->_variants));
-
 		// Load the current variant
 		$this->currentVariant();
 	}
@@ -61,6 +58,9 @@ class Variants
 
 		// Set the variants?
 		call_integration_hook('integrate_customtheme_color_variants', [&$this->_variants]);
+
+		// Theme variants... Add the default style to it just for presentation.
+		$this->_variants = array_unique(array_merge(['default'], $this->_variants));
 
 		// Add the color variants to the settings
 		$settings['theme_variants'] = $this->_variants;
