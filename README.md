@@ -23,4 +23,5 @@
 - Disable Menu Icons
 ---
 ### [Changelog](https://github.com/SMFTricks/NameX/blob/main/CHANGELOG.md)
+### [Demo Online](http://demo.smftricks.com/index.php?theme=4)
 ### [GitHub](https://github.com/SMFTricks/NameX)

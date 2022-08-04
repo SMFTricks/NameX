@@ -29,5 +29,6 @@ Free & Premium Themes for SMF
 [/list]
 [hr]
 
-[size=12pt][color=navy][url="http://demo.smftricks.com/index.php?theme=3"]Demo Online[/url][/color][/size]
+[size=3][url="https://github.com/SMFTricks/NameX/blob/main/CHANGELOG.md"][color=#cc5d31]Changelog[/color][/url][/size]
+[size=12pt][color=navy][url="http://demo.smftricks.com/index.php?theme=4"]Demo Online[/url][/color][/size]
 [size=12pt][color=purple][url="https://github.com/SMFTricks/NameX"]GitHub[/url][/color][/size]
