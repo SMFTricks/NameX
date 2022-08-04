@@ -203,6 +203,7 @@ class DarkMode
 		loadJavascriptFile(
 			'custom/dark.js',
 			[
+				'minimize' => true,
 				'defer' => true,
 				'async' => true,
 			],

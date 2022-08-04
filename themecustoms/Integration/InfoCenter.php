@@ -154,6 +154,10 @@ class InfoCenter
 
 		foreach ($context['latest_posts'] as $post_id => $post)
 		{
+			// Check for guests posts making their way in here
+			if (empty($post['poster']['id']))
+				continue;
+
 			loadMemberContext($post['poster']['id']);
 			$context['latest_posts'][$post_id]['poster']['avatar'] = $memberContext[$post['poster']['id']]['avatar'];
 		}
