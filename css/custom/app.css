@@ -1718,6 +1718,7 @@ li.post_like_button {
 	flex-wrap: wrap;
 	align-content: flex-start;
 	padding: 0 5px 8px 0;
+	min-width: 0;
 }
 .postarea, .moderatorbar {
 	margin: 0;

@@ -1,5 +1,8 @@
 # Changelog
 
+#### 1.0.1 - 07 August 2022
+- ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed issue with quotes and codes.
+
 #### 1.0 - 01 August 2022
 - ![New Feature](https://smftricks.com/assets/changelog/tag--plus.png) Initial Release
 ---
