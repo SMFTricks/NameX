@@ -21,7 +21,7 @@ class Init extends Config
 	/**
 	 * @var string Theme Version
 	 */
-	protected $_theme_version = '1.0.1';
+	protected $_theme_version = '1.0.2';
 
 	/**
 	 * @var array Theme Author
