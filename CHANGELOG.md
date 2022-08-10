@@ -1,5 +1,8 @@
 # Changelog
 
+#### 1.0.2 - 09 August 2022
+- ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed an oversight with the font.
+
 #### 1.0.1 - 07 August 2022
 - ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed issue with quotes and codes.
 
