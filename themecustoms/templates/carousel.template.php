@@ -19,13 +19,7 @@ function themecustoms_carousel($carousel = false)
 		return;
 
 	// Always enabled?
-	if (empty($settings['st_carousel_index']))
-		$carousel = true;
-	else
-		$carousel = false;
-
-	// Check where the carousel should be displayed
-	if (!empty($settings['st_carousel_index']) && empty($_REQUEST['action']) && empty($topic) && empty($board))
+	if (empty($settings['st_carousel_index']) || (empty($context['current_action']) && empty($board)))
 		$carousel = true;
 
 	// Check if the carousel should be displayed
