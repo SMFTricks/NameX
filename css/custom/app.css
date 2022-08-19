@@ -793,46 +793,46 @@ p.moderators > :is(a, a:visited, a:hover) {
 	margin: -5px 0 15px;
 }
 /* MessageIndex */
-#topic_header {
+#messageindex #topic_header {
 	border-radius: 4px;
 }
-#topic_header .board_stats,
-#topic_container .board_stats {
+#messageindex #topic_header .board_stats,
+#messageindex #topic_container .board_stats {
 	text-align: right;
 	margin-right: 15px;
 }
-#topic_container .board_stats p strong {
+#messageindex #topic_container .board_stats p strong {
 	font-size: initial;
 }
-#topic_container .board_stats p {
+#messageindex #topic_container .board_stats p {
 	font-size: 0.68em;
 }
-#topic_container .lastpost {
+#messageindex #topic_container .lastpost {
 	display: flex;
 	align-items: center;
 	gap: 10px;
 	padding: 5px 10px;
 }
-#topic_container .lastpost a.avatar,
-#topic_container .lastpost img.avatar_dot {
+#messageindex #topic_container .lastpost a.avatar,
+#messageindex #topic_container .lastpost img.avatar_dot {
 	display: flex;
 	align-items: flex-end;
 }
-#topic_container .lastpost img.avatar_dot {
+#messageindex #topic_container .lastpost img.avatar_dot {
 	width: 40px;
 	height: 40px;
 }
-#topic_container .lastpost,
-#topic_header .lastpost {
+#messageindex #topic_container .lastpost,
+#messageindex #topic_header .lastpost {
 	width: 22%;
 }
-#topic_container .up_contain {
+#messageindex #topic_container .up_contain {
 	min-height: 30px;
 }
-#topic_container .up_contain:first-child {
+#messageindex #topic_container .up_contain:first-child {
 	border-radius: 0;
 }
-#topic_container .info p {
+#messageindex #topic_container .info p {
 	font-size: 0.9em;
 }
 /* Topic Status */
