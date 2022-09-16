@@ -2261,7 +2261,7 @@ fieldset.admin_group a span.large_admin_menu_icon {
 
 /* Settings Tabs */
 dl.settings {
-	margin-block: 1px;
+	margin-block: 1px !important;
 	margin-inline: 0;
 	padding-inline: 6px;
 	padding-block: 0;
