@@ -1,5 +1,8 @@
 # Changelog
 
+#### 1.0.4 - 16 September 2022
+- ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed gender icons.
+
 #### 1.0.3 - 19 August 2022
 - ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed an issue with recent and unread posts.
 

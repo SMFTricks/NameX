@@ -65,11 +65,11 @@ h3.catbg .icon {
 }
 /* Gender 1 */
 .main_icons.gender_1::before {
-	content: "\f221";
+	content: "\f222";
 }
 /* Gender 2 */
 .main_icons.gender_2::before {
-	content: "\f222";
+	content: "\f221";
 }
 /* Watch */
 .main_icons.watch::before,
