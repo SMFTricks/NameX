@@ -15,7 +15,7 @@
  */
 function template_popup()
 {
-	global $context, $settings, $txt;
+	global $context, $txt;
 
 	// Since this is a popup of its own we need to start the html, etc.
 	echo '<!DOCTYPE html>
@@ -24,8 +24,8 @@ function template_popup()
 		<meta charset="', $context['character_set'], '">
 		<meta name="robots" content="noindex">
 		<title>', $context['page_title'], '</title>
-		<link rel="stylesheet" href="', $settings['theme_url'], '/css/index', $context['theme_variant'], '.css', $context['browser_cache'], '">
-		<script src="', $settings['default_theme_url'], '/scripts/script.js', $context['browser_cache'], '"></script>
+		', template_css(), '
+		', template_javascript(), '
 	</head>
 	<body id="likes_popup">
 		<div class="windowbg">
