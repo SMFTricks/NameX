@@ -753,7 +753,8 @@ h3.profile_hd::before,
 	background: none !important;
 }
 /* Topic Collections */
-.main_icons.collections::before {
+.main_icons.collections::before,
+.fa-collections::before {
 	content: "\e0bb";
 }
 .main_icons.collections_save::before,
