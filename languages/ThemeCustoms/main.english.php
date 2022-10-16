@@ -79,7 +79,7 @@ $txt['st_menu_icons'] = 'Enable the menu icons';
 $txt['st_menu_icons_desc'] = 'With this you\'ll enable the menu icons in the main menu';
 $txt['st_collapse_menu'] = 'Always show side menu in desktop view';
 $txt['st_footer_actions'] = 'Menu footer actions';
-$txt['st_footer_actions_desc'] = 'Here you can put any action you want to displayin the footer/bottom menu. Each action has to be separated with a comma. e.g. <i>admin,profile,mlist</i>';
+$txt['st_footer_actions_desc'] = 'Here you can put any action you want to display in the footer/bottom menu. Each action has to be separated with a comma. e.g. <i>admin,profile,mlist</i>';
 
 // Special Menu
 $txt['st_special_menu'] = 'Special Menu items';
