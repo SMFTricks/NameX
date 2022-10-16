@@ -866,8 +866,6 @@ p.moderators > :is(a, a:visited, a:hover) {
 }
 .pagesection > div {
 	display: flex;
-	flex-basis: 0;
-	flex-grow: 1;
 	gap: 0.5em;
 }
 .pagesection > div.mobile_buttons {
@@ -894,6 +892,7 @@ p.moderators > :is(a, a:visited, a:hover) {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 5px;
+	flex-grow: 1;
 }
 .mobile_buttons a.button,
 .buttonlist a,

@@ -496,8 +496,10 @@ h3.catbg .icon {
 .fa-delete::before,
 .fa-remove_topic::before,
 .fa-remove_button::before,
+.fa-collections_remove::before,
 .main_icons.remove_button::before,
-.main_icons.delete::before {
+.main_icons.delete::before,
+.main_icons.collections_remove::before {
 	content: "\f2ed";
 }
 /* Restore */
@@ -635,7 +637,8 @@ h3.catbg .icon {
 .fa-quick_edit_button::before,
 .fa-modify_button::before,
 .main_icons.quick_edit_button::before,
-.main_icons.modify_button::before {
+.main_icons.modify_button::before,
+.main_icons.collections_edit::before {
 	content: "\f044";
 }
 /* Report */
@@ -748,4 +751,15 @@ h3.profile_hd::before,
 .fa-optimus::before {
 	content: "\f0e8";
 	background: none !important;
+}
+/* Topic Collections */
+.main_icons.collections::before {
+	content: "\e0bb";
+}
+.main_icons.collections_save::before,
+.fa-collections_save::before {
+	content: "\f02e";
+}
+.main_icons.collections_bookmark::before {
+	content: "\f518";
 }
