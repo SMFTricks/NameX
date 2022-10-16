@@ -38,7 +38,7 @@ function themecustoms_carousel($carousel = false)
 		return;
 
 	echo '
-	<div id="themecustoms-carousel" class="carousel slide st_carousel" data-bs-ride="carousel"', (empty($settings['st_carousel_speed']) ? ' data-bs-interval="false"' : ''), '>
+	<div id="themecustoms-carousel" class="carousel slide st_carousel"', (!empty($settings['st_carousel_speed']) ? ' data-bs-ride="carousel"' : ''), '>
 		<div class="carousel-indicators">';
 
 	// Carousel indicators
@@ -49,7 +49,9 @@ function themecustoms_carousel($carousel = false)
 			continue;
 
 		echo '
-			<a role="button" data-bs-target="#themecustoms-carousel" data-bs-slide-to="', ($number - 1), '"', (!empty($item['active']) ? ' class="active"' : ''), ' aria-current="true" aria-label="', $txt['st_slide'], ' ', $number, '"></a>';
+			<a role="button" data-bs-target="#themecustoms-carousel" data-bs-slide-to="', ($number - 1), '"', (!empty($item['active']) ? ' class="active"' : ''), ' aria-current="true" aria-label="', $txt['st_slide'], ' ', $number, '">
+				<span class="title">', $item['title'], '</span>
+			</a>';
 	}
 
 	echo  '
