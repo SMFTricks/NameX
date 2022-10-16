@@ -7,13 +7,13 @@
 ((window, document, Math) => {
   const ctx = document.createElement('canvas').getContext('2d');
   const currentColor = { r: 0, g: 0, b: 0, h: 0, s: 0, v: 0, a: 1 };
-  let picker, colorArea, colorAreaDims, colorMarker, colorPreview, colorValue, clearButton,
+  let container, picker, colorArea, colorAreaDims, colorMarker, colorPreview, colorValue, clearButton,
       hueSlider, hueMarker, alphaSlider, alphaMarker, currentEl, currentFormat, oldColor;
 
   // Default settings
   const settings = {
     el: '[data-coloris]',
-    parent: null,
+    parent: 'body',
     theme: 'default',
     themeMode: 'light',
     wrap: true,
@@ -26,13 +26,10 @@
     forceAlpha: false,
     focusInput: true,
     selectInput: false,
-    autoClose: false,
     inline: false,
     defaultColor: '#000000',
-    clearButton: {
-      show: false,
-      label: 'Clear'
-    },
+    clearButton: false,
+    clearLabel: 'Clear',
     a11y: {
       open: 'Open color picker',
       close: 'Close color picker',
@@ -45,6 +42,12 @@
       instruction: 'Saturation and brightness selector. Use up, down, left and right arrow keys to select.'
     }
   };
+
+  // Virtual instances cache
+  const instances = {};
+  let currentInstanceId = '';
+  let defaultInstance = {};
+  let hasInstance = false;
 
   /**
    * Configure the color picker.
@@ -64,9 +67,15 @@
           }
           break;
         case 'parent':
-          settings.parent = document.querySelector(options.parent);
-          if (settings.parent) {
-            settings.parent.appendChild(picker);
+          container = document.querySelector(options.parent);
+          if (container) {
+            container.appendChild(picker);
+            settings.parent = options.parent;
+
+            // document.body is special
+            if (container === document.body) {
+              container = null;
+            }
           }
           break;
         case 'themeMode':
@@ -98,8 +107,9 @@
           }
           break;
         case 'formatToggle':
-          getEl('clr-format').style.display = options.formatToggle ? 'block' : 'none';
-          if (options.formatToggle) {
+          settings.formatToggle = !!options.formatToggle;
+          getEl('clr-format').style.display = settings.formatToggle ? 'block' : 'none';
+          if (settings.formatToggle) {
             settings.format = 'auto';
           }
           break;
@@ -112,15 +122,12 @@
             });
 
             getEl('clr-swatches').innerHTML = swatches.length ? `<div>${swatches.join('')}</div>` : '';
+            settings.swatches = options.swatches.slice();
           }
           break;
         case 'swatchesOnly':
           settings.swatchesOnly = !!options.swatchesOnly;
           picker.setAttribute('data-minimal', settings.swatchesOnly);
-
-          if (settings.swatchesOnly) {
-            settings.autoClose = true;
-          }
           break;
         case 'alpha':
           settings.alpha = !!options.alpha;
@@ -139,17 +146,22 @@
           }
           break;
         case 'clearButton':
-          let display = 'none';
+          // Backward compatibility
+          if (typeof options.clearButton === 'object') {
+            if (options.clearButton.label) {
+              settings.clearLabel = options.clearButton.label;
+              clearButton.innerHTML = settings.clearLabel;
+            }
 
-          if (options.clearButton.show) {
-            display = 'block';
+            options.clearButton = options.clearButton.show;
           }
 
-          if (options.clearButton.label) {
-            clearButton.innerHTML = options.clearButton.label;
-          }
-
-          clearButton.style.display = display;
+          settings.clearButton = !!options.clearButton;
+          clearButton.style.display = settings.clearButton ? 'block' : 'none';
+          break;
+        case 'clearLabel':
+          settings.clearLabel = options.clearLabel;
+          clearButton.innerHTML = settings.clearLabel;
           break;
         case 'a11y':
           const labels = options.a11y;
@@ -183,6 +195,78 @@
   }
 
   /**
+   * Add or update a virtual instance.
+   * @param {String} selector The CSS selector of the elements to which the instance is attached.
+   * @param {Object} options Per-instance options to apply.
+   */
+  function setVirtualInstance(selector, options) {
+    if (typeof selector === 'string' && typeof options === 'object') {
+      instances[selector] = options;
+      hasInstance = true;
+    }
+  }
+
+  /**
+   * Remove a virtual instance.
+   * @param {String} selector The CSS selector of the elements to which the instance is attached.
+   */
+  function removeVirtualInstance(selector) {
+    delete instances[selector];
+
+    if (Object.keys(instances).length === 0) {
+      hasInstance = false;
+
+      if (selector === currentInstanceId) {
+        resetVirtualInstance();
+      }
+    }
+  }
+
+  /**
+   * Attach a virtual instance to an element if it matches a selector.
+   * @param {Object} element Target element that will receive a virtual instance if applicable.
+   */
+  function attachVirtualInstance(element) {
+    if (hasInstance) {
+      // These options can only be set globally, not per instance
+      const unsupportedOptions = ['el', 'wrap', 'inline', 'defaultColor', 'a11y'];
+
+      for (let selector in instances) {
+        const options = instances[selector];
+
+        // If the element matches an instance's CSS selector
+        if (element.matches(selector)) {
+          currentInstanceId = selector;
+          defaultInstance = {};
+
+          // Delete unsupported options
+          unsupportedOptions.forEach(option => delete options[option]);
+
+          // Back up the default options so we can restore them later
+          for (let option in options) {
+            defaultInstance[option] = Array.isArray(settings[option]) ? settings[option].slice() : settings[option];
+          }
+
+          // Set the instance's options
+          configure(options);
+          break;
+        }
+      }
+    }
+  }
+
+  /**
+   * Revert any per-instance options that were previously applied.
+   */
+  function resetVirtualInstance() {
+    if (Object.keys(defaultInstance).length > 0) {
+      configure(defaultInstance);
+      currentInstanceId = '';
+      defaultInstance = {};
+    }
+  }
+
+  /**
    * Bind the color picker to input fields that match the selector.
    * @param {string} selector One or more selectors pointing to input fields.
    */
@@ -193,6 +277,9 @@
       if (settings.inline) {
         return;
       }
+
+      // Apply any per-instance options first
+      attachVirtualInstance(event.target);
 
       currentEl = event.target;
       oldColor = currentEl.value;
@@ -229,7 +316,7 @@
    * Update the color picker's position and the color gradient's offset
    */
   function updatePickerPosition() {
-    const parent = settings.parent;
+    const parent = container;
     const scrollY = window.scrollY;
     const pickerWidth = picker.offsetWidth;
     const pickerHeight = picker.offsetHeight;
@@ -263,8 +350,10 @@
         }
 
         if (top + pickerHeight >  parent.clientHeight - parentMarginTop) {
-          top -= coords.height + pickerHeight + settings.margin * 2;
-          reposition.top = true;
+          if (pickerHeight + settings.margin <= coords.top - (offset.y - scrollY)) {
+            top -= coords.height + pickerHeight + settings.margin * 2;
+            reposition.top = true;
+          }
         }
 
         top += parent.scrollTop;
@@ -277,8 +366,10 @@
         }
 
         if (top + pickerHeight - scrollY > document.documentElement.clientHeight) {
-          top = scrollY + coords.y - pickerHeight - settings.margin;
-          reposition.top = true;
+          if (pickerHeight + settings.margin <= coords.top) {
+            top = scrollY + coords.y - pickerHeight - settings.margin;
+            reposition.top = true;
+          }
         }
       }
 
@@ -322,28 +413,44 @@
    */
   function closePicker(revert) {
     if (currentEl && !settings.inline) {
+      const prevEl = currentEl;
+
       // Revert the color to the original value if needed
-      if (revert && oldColor !== currentEl.value) {
-        currentEl.value = oldColor;
+      if (revert) {
+        // This will prevent the "change" event on the colorValue input to execute its handler
+        currentEl = null;
 
-        // Trigger an "input" event to force update the thumbnail next to the input field
-        currentEl.dispatchEvent(new Event('input', { bubbles: true }));
+        if (oldColor !== prevEl.value) {
+          prevEl.value = oldColor;
+
+          // Trigger an "input" event to force update the thumbnail next to the input field
+          prevEl.dispatchEvent(new Event('input', { bubbles: true }));
+        }
       }
 
-      if (oldColor !== currentEl.value) {
-        currentEl.dispatchEvent(new Event('change', { bubbles: true }));
-      }
+      // Trigger a "change" event if needed
+      setTimeout(() => { // Add this to the end of the event loop
+        if (oldColor !== prevEl.value) {
+          prevEl.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+      });
 
       // Hide the picker dialog
       picker.classList.remove('clr-open');
 
+      // Reset any previously set per-instance options
+      if (hasInstance) {
+        resetVirtualInstance();
+      }
+
       // Trigger a "close" event
-      currentEl.dispatchEvent(new Event('close', { bubbles: true }));
+      prevEl.dispatchEvent(new Event('close', { bubbles: true }));
 
       if (settings.focusInput) {
-        currentEl.focus({ preventScroll: true });
+        prevEl.focus({ preventScroll: true });
       }
-      
+
+      // This essentially marks the picker as closed
       currentEl = null;
     }
   }
@@ -457,8 +564,8 @@
     let x = pointer.pageX - colorAreaDims.x;
     let y = pointer.pageY - colorAreaDims.y;
 
-    if (settings.parent) {
-      y += settings.parent.scrollTop;
+    if (container) {
+      y += container.scrollTop;
     }
 
     x = (x < 0) ? 0 : (x > colorAreaDims.width) ? colorAreaDims.width : x;
@@ -758,6 +865,7 @@
    */
   function init() {
     // Render the UI
+    container = null;
     picker = document.createElement('div');
     picker.setAttribute('id', 'clr-picker');
     picker.className = 'clr-picker';
@@ -788,7 +896,7 @@
       '</fieldset>'+
     '</div>'+
     '<div id="clr-swatches" class="clr-swatches"></div>'+
-    `<button type="button" id="clr-clear" class="clr-clear">${settings.clearButton.label}</button>`+
+    `<button type="button" id="clr-clear" class="clr-clear">${settings.clearLabel}</button>`+
     `<button type="button" id="clr-color-preview" class="clr-preview" aria-label="${settings.a11y.close}"></button>`+
     `<span id="clr-open-label" hidden>${settings.a11y.open}</span>`+
     `<span id="clr-swatch-label" hidden>${settings.a11y.swatch}</span>`;
@@ -833,8 +941,10 @@
     });
 
     addListener(colorValue, 'change', event => {
-      setColorFromStr(colorValue.value);
-      pickColor();
+      if (currentEl || settings.inline) {
+        setColorFromStr(colorValue.value);
+        pickColor();
+      }
     });
 
     addListener(clearButton, 'click', event => {
@@ -857,7 +967,7 @@
       setColorFromStr(event.target.textContent);
       pickColor();
 
-      if (settings.autoClose) {
+      if (settings.swatchesOnly) {
         closePicker();
       }
     });
@@ -884,6 +994,12 @@
     });
 
     addListener(document, 'click', '.clr-field button', event => {
+      // Reset any previously set per-instance options
+      if (hasInstance) {
+        resetVirtualInstance();
+      }
+
+      // Open the color picker
       event.target.nextElementSibling.dispatchEvent(new Event('click', { bubbles: true }));
     });
 
@@ -969,6 +1085,8 @@
       set: configure,
       wrap: wrapFields,
       close: closePicker,
+      setInstance: setVirtualInstance,
+      removeInstance: removeVirtualInstance,
       updatePosition: updatePickerPosition
     };
 
