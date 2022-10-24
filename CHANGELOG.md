@@ -1,5 +1,8 @@
 # Changelog
 
+#### 1.0.6 - 23 October 2022
+- ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Added option to choose 'Auto' for mode selection.
+
 #### 1.0.5 - 16 October 2022
 - ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed issues with buttonlist alignment.
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Updated FontAwesome to v6.2.0

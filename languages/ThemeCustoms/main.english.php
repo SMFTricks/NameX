@@ -240,6 +240,7 @@ $txt['st_theme_mode_default_desc'] = 'If user selection is disabled, this will b
 $txt['st_enable_dark_mode'] = 'Enable user mode selection';
 $txt['st_dark_mode'] = 'Dark Mode';
 $txt['st_light_mode'] = 'Light Mode';
+$txt['st_auto_mode'] = 'Auto Mode';
 
 // Theme information
 $txt['st_themeinfo_details'] = 'Theme Details';

@@ -110,6 +110,7 @@ class DarkMode
 			'options' => [
 				'light' => $txt['st_light_mode'],
 				'dark' => $txt['st_dark_mode'],
+				'auto' => $txt['st_auto_mode'],
 			],
 			'type' => 'list',
 			'default' => 'light',
@@ -150,6 +151,7 @@ class DarkMode
 					'options' => [
 						'light' => $txt['st_light_mode'],
 						'dark' => $txt['st_dark_mode'],
+						'auto' => $txt['st_auto_mode'],
 					],
 					'default' => isset($settings['st_theme_mode_default']) && !empty($settings['st_theme_mode_default']) ? $settings['st_theme_mode_default'] : 'light',
 					'enabled' => !empty($settings['st_enable_dark_mode']),
@@ -171,7 +173,7 @@ class DarkMode
 		global $settings, $options;
 
 		// Do we need dark mode?
-		if (empty($settings['st_enable_dark_mode']) && (!isset($settings['st_theme_mode_default']) ||$settings['st_theme_mode_default'] !== 'dark'))
+		if (empty($settings['st_enable_dark_mode']) && (!isset($settings['st_theme_mode_default']) ||$settings['st_theme_mode_default'] === 'light'))
 			return;
 
 		// Add the HTML data attribute for color mode
@@ -192,12 +194,12 @@ class DarkMode
 	{
 		global $options, $settings;
 
-		// Can users select the mode?
-		if (empty($settings['st_enable_dark_mode']))
+		// Do we need dark mode?
+		if (empty($settings['st_enable_dark_mode']) && (!isset($settings['st_theme_mode_default']) ||$settings['st_theme_mode_default'] === 'light'))
 			return;
 
 		// Theme Mode
-		addJavaScriptVar('smf_darkmode', '\'' . (isset($options['st_theme_mode']) && $options['st_theme_mode'] === 'dark' ? 'dark' : 'light') . '\'');
+		addJavaScriptVar('smf_darkmode', '\'' . (isset($options['st_theme_mode']) && !empty($settings['st_enable_dark_mode']) ? $options['st_theme_mode'] : $settings['st_theme_mode_default']) . '\'');
 
 		// Load the javascript file
 		loadJavascriptFile(
