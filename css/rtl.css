@@ -690,15 +690,17 @@ code.bbc_code, pre.file_content {
 .custom_search select,
 .custom_search input[name="search"] {
 	border-radius: 8px;
-	border: 1px solid hsl(var(--primary-color-hue), 25%, 75%);
+	/* border-width: 1px; */
 }
 .custom_search select{
-	border-right: none;
+	border-right-width: 0;
+	border-left-width: 1px;
 	border-bottom-right-radius: 0;
 	border-top-right-radius: 0;
 }
 .custom_search input[name="search"] {
-	border-left: none;
+	border-left-width: 0;
+	border-right-width: 1px;
 	border-bottom-left-radius: 0;
 	border-top-left-radius: 0;
 }

@@ -1051,16 +1051,17 @@ p.moderators > :is(a, a:visited, a:hover) {
 	padding: 1px 0;
 	border-radius: 8px;
 	border-color: var(--input-accent-color);
+	border-width: 1px;
 	color: var(--input-txt-color);
 }
 .custom_search select{
-	border-left: none;
+	border-left-width: 0;
 	border-bottom-left-radius: 0;
 	border-top-left-radius: 0;
 	background: var(--input-bg);
 }
 .custom_search input[name="search"] {
-	border-right: none;
+	border-right-width: none;
 	border-bottom-right-radius: 0;
 	border-top-right-radius: 0;
 	padding: 1px 8px;

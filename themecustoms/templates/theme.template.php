@@ -180,9 +180,9 @@ function themecustoms_languageselector()
 /**
  * Avatar display
  */
-function themecustoms_avatar($avatar, $memID =  0, $pos = 'left')
+function themecustoms_avatar($avatar, $memID =  0)
 {
-	global $scripturl, $context;
+	global $scripturl;
 
 	// No avatar? Go away
 	if (empty($avatar))
@@ -192,10 +192,10 @@ function themecustoms_avatar($avatar, $memID =  0, $pos = 'left')
 
 	// Build a link?
 	if (!empty($memID))
-		$user_avatar .= '<a class="avatar" href="' . $scripturl . '?action=profile;u=' . $memID . '"' . ($pos === 'right' ? ($context['right_to_left'] ? ' style="order:0;"' : ' style="order:1;"') : ($context['right_to_left'] ? ' style="order:1;' : ' style="order:0;"')) . '>';
+		$user_avatar .= '<a class="avatar" href="' . $scripturl . '?action=profile;u=' . $memID . '">';
 
 	// Show the image
-	$user_avatar .= '<img class="avatar avatar_dot" src="' . $avatar . '" alt=""' . ($pos === 'right' ? ($context['right_to_left'] ? ' style="order:0;"' : ' style="order:1;"') : ($context['right_to_left'] ? ' style="order:1;' : ' style="order:0;"')) . '>';
+	$user_avatar .= '<img class="avatar avatar_dot" src="' . $avatar . '" alt="">';
 
 	// Close the link
 	if (!empty($memID))

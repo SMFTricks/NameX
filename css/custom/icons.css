@@ -546,6 +546,7 @@ h3.catbg .icon {
 /* Members */
 .fa-view_all_members::before,
 .fa-mlist::before,
+.fa-people::before,
 .main_icons.mlist::before,
 .main_icons.people::before {
 	content: "\f0c0";
