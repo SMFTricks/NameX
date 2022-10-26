@@ -1061,7 +1061,7 @@ p.moderators > :is(a, a:visited, a:hover) {
 	background: var(--input-bg);
 }
 .custom_search input[name="search"] {
-	border-right-width: none;
+	border-right-width: 0;
 	border-bottom-right-radius: 0;
 	border-top-right-radius: 0;
 	padding: 1px 8px;
