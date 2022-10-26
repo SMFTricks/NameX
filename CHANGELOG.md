@@ -1,5 +1,9 @@
 # Changelog
 
+#### 1.0.7 - 25 October 2022
+- ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed RTL issues.
+- ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Added missing icon for members.
+
 #### 1.0.6 - 23 October 2022
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Added option to choose 'Auto' for mode selection.
 

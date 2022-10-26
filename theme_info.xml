@@ -2,7 +2,7 @@
 <theme-info xmlns="http://www.simplemachines.org/xml/theme-info" xmlns:smf="http://www.simplemachines.org/">
 	<id>smftricks:NameX</id>
 	<!-- The theme's version -->
-	<version>1.0.6</version>
+	<version>1.0.7</version>
 	<install for="2.1 - 2.1.99" />
 	<name>NameX</name>
 	<author name="SMF Tricks">admin@smftricks.com</author>
