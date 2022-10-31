@@ -139,7 +139,9 @@ h3.catbg .icon {
 }
 /* Membergroups */
 .main_icons.membergroups::before,
-.large_admin_menu_icon.membergroups::before {
+.large_admin_menu_icon.membergroups::before,
+.fa-team::before,
+.main_icons.team::before {
 	content: "\f509";
 }
 /* Www */
@@ -228,6 +230,7 @@ h3.catbg .icon {
 }
 /* Themes */
 .main_icons.themes::before,
+.fa-features::before,
 .large_admin_menu_icon.themes::before {
 	content: "\f5fd";
 }
@@ -324,10 +327,6 @@ h3.catbg .icon {
 .main_icons.post_moderation_attach::before {
 	content: "\f127";
 }
-/* Post Moderation Allow */
-.main_icons.post_moderation_allow::before {
-	content: "\f3c1";
-}
 /* Permissions */
 .main_icons.permissions::before,
 .large_admin_menu_icon.permissions::before {
@@ -421,6 +420,7 @@ h3.catbg .icon {
 }
 /* Features */
 .main_icons.features::before,
+.fa-tasksmanager::before,
 .large_admin_menu_icon.features::before {
 	content: "\f0ae";
 }
@@ -531,7 +531,8 @@ h3.catbg .icon {
 }
 /* Unlock Topic */
 .fa-set_unlock::before,
-.main_icons.unlock::before {
+.main_icons.unlock::before,
+.main_icons.post_moderation_allow::before {
 	content: "\f3c1";
 }
 /* Merge Topic */
@@ -582,7 +583,9 @@ h3.catbg .icon {
 	content: "\f2f6";
 }
 /* Logout */
-.main_icons.logout::before {
+.main_icons.logout::before,
+.fa-logout::before,
+.main_icons.exit::before {
 	content: "\f2f5";
 }
 /* Notifications */
@@ -703,16 +706,6 @@ h3.profile_hd::before,
 .main_icons.inbox::before {
 	content: "\f01c";
 }
-/* Logout */
-.fa-logout::before,
-.main_icons.exit::before {
-	content: "\f2f5";
-}
-/* Team */
-.fa-team::before,
-.main_icons.team::before {
-	content: "\f509";
-}
 /* Shop */
 .main_icons.shop::before,
 .fa-shop::before {
@@ -739,14 +732,6 @@ h3.profile_hd::before,
 .fa-members::before {
 	content: "\f2c2";
 }
-/* Look and Layout */
-.fa-features::before {
-	content: "\f5fd";
-}
-/* Tasks Manager */
-.fa-tasksmanager::before {
-	content: "\f0ae";
-}
 /* Optimus */
 .main_icons.optimus::before,
 .large_admin_menu_icon.optimus::before,
@@ -767,6 +752,7 @@ h3.profile_hd::before,
 	content: "\f518";
 }
 /* Quiz */
-.main_icons.quiz::before {
+.main_icons.quiz::before,
+.fa-quiz::before {
 	content: "\f559";
 }
