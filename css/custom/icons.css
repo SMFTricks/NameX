@@ -714,6 +714,7 @@ h3.profile_hd::before,
 	content: "\f509";
 }
 /* Shop */
+.main_icons.shop::before,
 .fa-shop::before {
 	content: "\f07a";
 }
@@ -764,4 +765,8 @@ h3.profile_hd::before,
 }
 .main_icons.collections_bookmark::before {
 	content: "\f518";
+}
+/* Quiz */
+.main_icons.quiz::before {
+	content: "\f559";
 }
