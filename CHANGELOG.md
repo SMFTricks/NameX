@@ -1,5 +1,8 @@
 # Changelog
 
+#### 1.0.8 - 31 October 2022
+- ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Updated icons.css file.
+
 #### 1.0.7 - 25 October 2022
 - ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed RTL issues.
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Added missing icon for members.
