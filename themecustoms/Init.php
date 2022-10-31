@@ -37,9 +37,9 @@ class Init extends Config
 	protected $_theme_details = [
 		'support' => [
 			'github_url' => 'https://github.com/SMFTricks/NameX',
-			'smf_site_id' => 0,
-			'smf_support_topic' => 0,
-			'custom_support_url' => 'https://smftricks.com',
+			'smf_site_id' => 3003,
+			'smf_support_topic' => 583206,
+			'custom_support_url' => 'https://smftricks.com/index.php?topic=1040.0',
 		],
 	];
 
