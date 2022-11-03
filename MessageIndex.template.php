@@ -77,7 +77,7 @@ function template_main()
 					function_exists('themecustoms_' . $board['type'] . '_lastpost') ? call_user_func('themecustoms_' . $board['type'] . '_lastpost', $board) : themecustoms_board_lastpost($board);
 
 					// Won't somebody think of the children!
-					function_exists('themecustoms_' . $board['type'] . '_children') ? call_user_func('themecustoms_' . $board['type'] . '_children', $board, 'dropdown') : themecustoms_board_children($board, 'dropdown');
+					function_exists('themecustoms_' . $board['type'] . '_children') ? call_user_func('themecustoms_' . $board['type'] . '_children', $board) : themecustoms_board_children($board);
 
 					echo '
 				</div><!-- #board_[id] -->';
