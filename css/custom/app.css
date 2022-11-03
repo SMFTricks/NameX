@@ -877,6 +877,8 @@ p.moderators > :is(a, a:visited, a:hover) {
 }
 .pagesection > div.floatright {
 	justify-content: flex-end;
+	flex-grow: 1;
+    align-items: center;
 }
 .pagesection div.pagelinks {
 	align-items: center;
