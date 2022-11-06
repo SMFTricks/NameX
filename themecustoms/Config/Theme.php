@@ -390,7 +390,7 @@ class Theme
 	 */
 	private function theme_variants() : void
 	{
-		global $settings;
+		global $settings, $context;
 
 		// Theme Variants enabled?
 		if (!isset(Init::$_color_options['variants']) || empty(Init::$_color_options['variants']))
@@ -402,6 +402,10 @@ class Theme
 
 		// Add the variants to the list of available themes
 		add_integration_function('integrate_theme_context', 'ThemeCustoms\Color\Variants::userSelection#', false, '$themedir/themecustoms/Color/Variants.php');
+
+		// If we are in the admin area, check we are editing the current theme
+		if (!empty($context['current_action']) && $context['current_action'] == 'admin' && isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] != $settings['theme_id'])
+			return;
 
 		// Add the theme variants as a theme option too
 		add_integration_function('integrate_theme_options', 'ThemeCustoms\Color\Variants::userOptions#', false, '$themedir/themecustoms/Color/Variants.php');
@@ -416,7 +420,7 @@ class Theme
 	 */
 	private function theme_darkmode() : void
 	{
-		global $settings;
+		global $settings, $context;
 
 		// Theme Dark Mode enabled?
 		if (!isset(Init::$_color_options['darkmode']) || empty(Init::$_color_options['darkmode']))
@@ -428,6 +432,10 @@ class Theme
 
 		// Add the dark mode to the theme variables
 		add_integration_function('integrate_theme_context', 'ThemeCustoms\Color\DarkMode::themeVar#', false, '$themedir/themecustoms/Color/DarkMode.php');
+
+		// If we are in the admin area, check we are editing the current theme
+		if (!empty($context['current_action']) && $context['current_action'] == 'admin' && isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] != $settings['theme_id'])
+			return;
 
 		// Add the dark mode as a theme option too
 		add_integration_function('integrate_theme_options', 'ThemeCustoms\Color\DarkMode::userOptions#', false, '$themedir/themecustoms/Color/DarkMode.php');
