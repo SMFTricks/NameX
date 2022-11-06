@@ -2,6 +2,7 @@
 
 #### 1.0.9 - 06 November 2022
 - ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed issues when changing member options from the admin.
+- ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Added TinyPortal forum icon to the icons file.
 
 #### 1.0.8 - 31 October 2022
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Updated icons.css file.

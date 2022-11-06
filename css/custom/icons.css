@@ -89,6 +89,7 @@ h3.catbg .icon {
 .main_icons.boards::before,
 .large_admin_menu_icon.boards::before,
 .menu_icon.fa-forum::before,
+.menu_icon.menu_tpforum::before,
 .fa-forum::before {
 	content: "\f07c";
 }
