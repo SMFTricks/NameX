@@ -1,5 +1,8 @@
 # Changelog
 
+#### 1.0.10 - 21 November 2022
+- ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) SMF 2.1.3 patch updates.
+
 #### 1.0.9 - 06 November 2022
 - ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed issues when changing member options from the admin.
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Added TinyPortal forum icon to the icons file.
