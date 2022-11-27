@@ -79,11 +79,11 @@ function themecustoms_carousel($carousel = false)
 
 	echo '
 		</div>
-		<a role="button" class="carousel-control carousel-control-prev" type="button" data-bs-target="#themecustoms-carousel" data-bs-slide="prev">
+		<a role="button" class="carousel-control carousel-control-prev" data-bs-target="#themecustoms-carousel" data-bs-slide="prev" title="', $txt['st_previous'], '">
 			<span class="fa fa-chevron-left" aria-hidden="true"></span>
 			<span class="visually-hidden">', $txt['st_previous'], '</span>
 		</a>
-		<a role="button" class="carousel-control carousel-control-next" type="button" data-bs-target="#themecustoms-carousel" data-bs-slide="next">
+		<a role="button" class="carousel-control carousel-control-next" data-bs-target="#themecustoms-carousel" data-bs-slide="next" title="', $txt['st_next'], '">
 			<span class="fa fa-chevron-right" aria-hidden="true"></span>
 			<span class="visually-hidden">', $txt['st_next'], '</span>
 		</a>

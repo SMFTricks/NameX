@@ -128,7 +128,7 @@ class InfoCenter
 			$context['list_users_online'][$item] = (
 				'<span class="user-online-block">
 					<a class="online-avatar" href="' . $scripturl . '?action=profile;u=' . $user_id . '">
-						<img src="' . $memberContext[$user_id]['avatar']['href'] . '" alt="' . $memberContext[$user_id]['name'] . '" title="' . $memberContext[$user_id]['name'] . '" class="avatar" />
+						<img src="' . $memberContext[$user_id]['avatar']['href'] . '" alt="' . $memberContext[$user_id]['name'] . '" title="' . $memberContext[$user_id]['name'] . '" class="avatar">
 					</a>
 					<span class="online-name">' . $user_online . '</span>
 				</span>

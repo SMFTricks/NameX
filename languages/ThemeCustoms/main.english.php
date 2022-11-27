@@ -190,13 +190,12 @@ $txt['st_enable_colcategories_desc'] = 'It will display two categories per row i
 
 // Theme Effects
 $txt['st_enable_tooltips'] = 'Enable title tooltips';
-$txt['st_enable_tooltips_desc'] = 'It will enable tooltips on mouse hover if the element has a title attribute';
+$txt['st_enable_tooltips_desc'] = 'It will enable tooltips on mouse hover if the element has a title attribute.';
 $txt['st_enable_nice_scroll'] = 'Enable NiceScroll';
 $txt['st_enable_nice_scroll_desc'] = 'This option will change the style of the scrollbar.';
 $txt['st_disable_theme_effects'] = 'Disable theme effects';
 $txt['st_disable_theme_effects_desc'] = 'This option will disable animations used in the theme.';
 $txt['st_enable_tooltips'] = 'Enable title tooltips';
-$txt['st_enable_tooltips_desc'] = 'It will enable tooltips on mouse hover if the element has a title attribute';
 
 // SM Descriptive Bar
 $txt['st_list_of_topics'] = 'List of topics of';
