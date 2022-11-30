@@ -21,7 +21,7 @@ class Init extends Config
 	/**
 	 * @var string Theme Version
 	 */
-	protected $_theme_version = '1.0.10';
+	protected $_theme_version = '1.1.0';
 
 	/**
 	 * @var array Theme Author
@@ -75,7 +75,15 @@ class Init extends Config
 	 */
 	public static function fonts() : void
 	{
-		global $context;
+		global $context, $settings;
+
+		// Loading locally?
+		if (empty($settings['st_fonts_source']))
+		{
+			// Load the fonts
+			loadCSSFile('font.css', ['order_pos' => -800]);
+			return;
+		}
 
 		// Passion One Font
 		if (empty($context['header_logo_url_html_safe']))

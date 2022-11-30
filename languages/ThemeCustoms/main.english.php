@@ -262,3 +262,14 @@ $txt['st_themeinfo_smfversion'] = 'SMF Version';
 $txt['themecustoms_addon_package'] = 'Custom Theme Addons';
 $txt['install_themecustoms_addon'] = 'Install Addon';
 $txt['uninstall_themecustoms_addon'] = 'Uninstall Addon';
+
+// CDN
+$txt['st_cdn_source'] = 'CDN Source';
+$txt['st_cdn_source_desc'] = 'Select the source to load this library or script.';
+$txt['st_cdn_local'] = 'Local';
+$txt['st_cdn_google'] = 'Google';
+$txt['st_cdn_cloudflare'] = 'Cloudflare';
+$txt['st_fonts'] = 'Fonts';
+$txt['st_fonts_desc'] = 'This will determine the source used to load any custom fonts used in the theme.';
+$txt['st_jqueryui'] = 'jQuery UI';
+$txt['st_fontawesome'] = 'Font Awesome';

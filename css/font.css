@@ -1,0 +1,35 @@
+@font-face {
+	font-family: "Lato";
+	src:
+		url("../fonts/Lato-Regular.ttf") format("truetype"),
+		url("../fonts/Lato-Thin.ttf") format("truetype"),
+		url("../fonts/Lato-Bold.ttf") format("truetype"),
+		url("../fonts/Lato-Black.ttf") format("truetype"),
+		url("../fonts/Lato-Light.ttf") format("truetype"),
+		url("../fonts/Lato-Italic.ttf") format("truetype"),
+		url("../fonts/Lato-ThinItalic.ttf") format("truetype"),
+		url("../fonts/Lato-BoldItalic.ttf") format("truetype"),
+		url("../fonts/Lato-BlackItalic.ttf") format("truetype"),
+		url("../fonts/Lato-LightItalic.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Noto Sans";
+	src:
+		url("../fonts/NotoSans-Regular.ttf") format("truetype"),
+		url("../fonts/NotoSans-Thin.ttf") format("truetype"),
+		url("../fonts/NotoSans-Bold.ttf") format("truetype"),
+		url("../fonts/NotoSans-Black.ttf") format("truetype"),
+		url("../fonts/NotoSans-Light.ttf") format("truetype"),
+		url("../fonts/NotoSans-Italic.ttf") format("truetype"),
+		url("../fonts/NotoSans-Medium.ttf") format("truetype"),
+		url("../fonts/NotoSans-SemiBold.ttf") format("truetype"),
+		url("../fonts/NotoSans-ExtraBold.ttf") format("truetype"),
+		url("../fonts/NotoSans-ThinItalic.ttf") format("truetype"),
+		url("../fonts/NotoSans-BoldItalic.ttf") format("truetype"),
+		url("../fonts/NotoSans-BlackItalic.ttf") format("truetype"),
+		url("../fonts/NotoSans-LightItalic.ttf") format("truetype"),
+		url("../fonts/NotoSans-MediumItalic.ttf") format("truetype"),
+		url("../fonts/NotoSans-SemiBoldItalic.ttf") format("truetype"),
+		url("../fonts/NotoSans-ExtraBoldItalic.ttf") format("truetype");
+}

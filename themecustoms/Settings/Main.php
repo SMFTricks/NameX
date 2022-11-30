@@ -99,6 +99,41 @@ class Main
 
 		// Theme Settings
 		$this->_settings = [
+			// Fonts
+			[
+				'section_title' => $txt['st_cdn_source'],
+				'id' => 'st_fonts_source',
+				'label' => $txt['st_fonts'],
+				'description' => $txt['st_fonts_desc'],
+				'type' => 'list',
+				'options' => [
+					0 => $txt['st_cdn_local'],
+					1 => $txt['st_cdn_google'],
+				]
+			],
+			// jQuery UI CDN
+			[
+				'id' => 'st_jquery_ui_source',
+				'label' => $txt['st_jqueryui'],
+				'description' => $txt['st_cdn_source_desc'],
+				'type' => 'list',
+				'options' => [
+					0 => $txt['st_cdn_local'],
+					1 => $txt['st_cdn_google'],
+				]
+			],
+			// Font Awesome CDN
+			[
+				'id' => 'st_fontawesome_source',
+				'label' => $txt['st_fontawesome'],
+				'description' => $txt['st_cdn_source_desc'],
+				'type' => 'list',
+				'options' => [
+					0 => $txt['st_cdn_local'],
+					1 => $txt['st_cdn_cloudflare'],
+				]
+			],
+			// Additional settings
 			[
 				'section_title' => $txt['st_additional_settings'],
 				'id' => 'st_remove_items',

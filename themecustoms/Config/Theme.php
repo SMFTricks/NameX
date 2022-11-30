@@ -14,6 +14,16 @@ use ThemeCustoms\Init;
 class Theme
 {
 	/**
+	 * @var const Font Awesome version
+	 */
+	const FONTAWESOME_VERSION = '6.2.1';
+
+	/**
+	 * @var const jQuery UI version
+	 */
+	const JQUERYUI_VERSION = '1.13.2';
+
+	/**
 	 * @var array The libraries or frameworks to load, populated in libOptions()
 	 */
 	private $_lib_options = [];
@@ -134,9 +144,20 @@ class Theme
 			// FontAwesome
 			'fontawesome' => [
 				'css' => [
-					'file' => 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css',
-					'external' => true,
+					'file' => 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/' . Theme::FONTAWESOME_VERSION . '/css/all.min.css',
+					'file' => (!empty($settings['st_fontawesome_source']) ? 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/' . Theme::FONTAWESOME_VERSION . '/css/all.min.css' : 'all'),
+					'external' => !empty($settings['st_fontawesome_source']),
+					'minified' => empty($settings['st_fontawesome_source']),
 				],
+			],
+			// jQuery UI
+			'jqueryui' => [
+				'js' => [
+					'file' => (!empty($settings['st_jquery_ui_source']) ? 'https://ajax.googleapis.com/ajax/libs/jqueryui/' . Theme::JQUERYUI_VERSION . '/jquery-ui.min.js' : 'jquery-ui'),
+					'external' => !empty($settings['st_jquery_ui_source']),
+					'defer' => true,
+					'minified' => empty($settings['st_jquery_ui_source']),
+				]
 			],
 			// Bootstrap
 			'bootstrap' => [
@@ -155,14 +176,6 @@ class Theme
 				'css' => [
 					'minified' => true,
 				],
-			],
-			// jQuery UI
-			'jqueryui' => [
-				'js' => [
-					'file' => 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js',
-					'external' => true,
-					'defer' => true,
-				]
 			],
 		];
 	}
