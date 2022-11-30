@@ -1,5 +1,8 @@
 # Changelog
 
+#### 1.1.0 - 29 November 2022
+- ![New Feature](https://smftricks.com/assets/changelog/tag--plus.png) Select CDN Source for fonts, scripts and libraries.
+---
 #### 1.0.10 - 21 November 2022
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) SMF 2.1.3 patch updates.
 
