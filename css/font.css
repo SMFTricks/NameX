@@ -16,20 +16,5 @@
 @font-face {
 	font-family: "Noto Sans";
 	src:
-		url("../fonts/NotoSans-Regular.ttf") format("truetype"),
-		url("../fonts/NotoSans-Thin.ttf") format("truetype"),
-		url("../fonts/NotoSans-Bold.ttf") format("truetype"),
-		url("../fonts/NotoSans-Black.ttf") format("truetype"),
-		url("../fonts/NotoSans-Light.ttf") format("truetype"),
-		url("../fonts/NotoSans-Italic.ttf") format("truetype"),
-		url("../fonts/NotoSans-Medium.ttf") format("truetype"),
-		url("../fonts/NotoSans-SemiBold.ttf") format("truetype"),
-		url("../fonts/NotoSans-ExtraBold.ttf") format("truetype"),
-		url("../fonts/NotoSans-ThinItalic.ttf") format("truetype"),
-		url("../fonts/NotoSans-BoldItalic.ttf") format("truetype"),
-		url("../fonts/NotoSans-BlackItalic.ttf") format("truetype"),
-		url("../fonts/NotoSans-LightItalic.ttf") format("truetype"),
-		url("../fonts/NotoSans-MediumItalic.ttf") format("truetype"),
-		url("../fonts/NotoSans-SemiBoldItalic.ttf") format("truetype"),
-		url("../fonts/NotoSans-ExtraBoldItalic.ttf") format("truetype");
+		url("../fonts/NotoSans-Bold.ttf") format("truetype");
 }
