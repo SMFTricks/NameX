@@ -384,7 +384,7 @@ class Theme
 		$ST = 'Theme by <a href="https://smftricks.com">SMF Tricks</a>';
 		// Return it
 		if ($return)
-			return (!empty($settings['theme_support_information']['theme_link']) ? $settings['theme_support_information']['theme_link'] . ' | ' : '') . $ST;
+			return (!empty($settings['theme_name']) ? $settings['theme_name'] . ' | ' : '') . $ST;
 		// Stick it
 		elseif (!isset($settings['theme_remove_copyright']) || empty($settings['theme_remove_copyright']))
 			$buffer = preg_replace(
