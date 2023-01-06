@@ -746,7 +746,10 @@ h3.profile_hd::before,
 	content: "\e0bb";
 }
 .main_icons.collections_save::before,
-.fa-collections_save::before {
+.fa-collections_save::before,
+.main_icons.bookmarks::before,
+.fa-sticky::before,
+.main_icons.sticky::before {
 	content: "\f02e";
 }
 .main_icons.collections_bookmark::before {
