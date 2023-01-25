@@ -79,6 +79,11 @@ function themecustoms_socials()
 		echo '
 		<a href="' . $settings['st_discord'] . '" target="_blank" rel="noopener" class="discord">', themecustoms_icon('fab fa-discord'), '</a>';
 
+	// Steam
+	if (!empty($settings['st_steam']))
+		echo '
+		<a href="' . $settings['st_steam'] . '" target="_blank" rel="noopener" class="steam">', themecustoms_icon('fab fa-steam-symbol'), '</a>';
+
 	// RSS
 	if (!empty($settings['st_rss_url']))
 		echo '

@@ -196,6 +196,13 @@ class Main
 				'theme_type' => 'social',
 			],
 			[
+				'id' => 'st_steam',
+				'label' => $txt['st_steam_link'],
+				'description' => $txt['st_social_desc'],
+				'type' => 'text',
+				'theme_type' => 'social',
+			],
+			[
 				'id' => 'st_rss_url',
 				'label' => $txt['st_rss_url'],
 				'description' => $txt['st_rss_url_desc'] . '<br>' . $txt['st_social_desc'],
