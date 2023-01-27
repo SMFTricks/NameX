@@ -246,6 +246,9 @@ header h1.forumtitle a:hover span.theme-logo span:last-child {
 .social_icons a.steam {
 	background-color: hsl(222, 18%, var(--social-icon-light));
 }
+.social_icons a.github {
+	background-color: hsl(0, 0%, var(--social-icon-light));
+}
 .social_icons a.rss {
 	background-color: hsl(25, 85%, var(--social-icon-light));
 }

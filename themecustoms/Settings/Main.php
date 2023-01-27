@@ -3,7 +3,7 @@
 /**
  * @package Theme Customs
  * @author Diego Andrés <diegoandres_cortes@outlook.com>
- * @copyright Copyright (c) 2021, SMF Tricks
+ * @copyright Copyright (c) 2023, SMF Tricks
  * @license MIT
  */
 
@@ -198,6 +198,13 @@ class Main
 			[
 				'id' => 'st_steam',
 				'label' => $txt['st_steam_link'],
+				'description' => $txt['st_social_desc'],
+				'type' => 'text',
+				'theme_type' => 'social',
+			],
+			[
+				'id' => 'st_github',
+				'label' => $txt['st_github_link'],
 				'description' => $txt['st_social_desc'],
 				'type' => 'text',
 				'theme_type' => 'social',

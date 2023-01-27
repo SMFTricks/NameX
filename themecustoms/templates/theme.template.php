@@ -3,7 +3,7 @@
 /**
  * @package Theme Customs
  * @author Diego Andrés <diegoandres_cortes@outlook.com>
- * @copyright Copyright (c) 2022, SMF Tricks
+ * @copyright Copyright (c) 2023, SMF Tricks
  * @license MIT
  */
 
@@ -83,6 +83,12 @@ function themecustoms_socials()
 	if (!empty($settings['st_steam']))
 		echo '
 		<a href="' . $settings['st_steam'] . '" target="_blank" rel="noopener" class="steam">', themecustoms_icon('fab fa-steam-symbol'), '</a>';
+
+
+	// GitHub
+	if (!empty($settings['st_github']))
+		echo '
+		<a href="' . $settings['st_github'] . '" target="_blank" rel="noopener" class="github">', themecustoms_icon('fab fa-github'), '</a>';
 
 	// RSS
 	if (!empty($settings['st_rss_url']))
@@ -218,9 +224,8 @@ function themecustoms_themeinfo()
 	global $settings, $txt;
 
 	echo '
-		<div class="st-theme-information">
-			<!-- Theme Details -->
-			<div class="block">
+		<div class="st-theme-information"><!-- Theme information -->
+			<div class="block"><!-- Theme Block -->
 				<h4>', $txt['st_themeinfo_details'], '</h4>
 				<div class="block-content">
 					<div class="icon">
@@ -231,30 +236,28 @@ function themecustoms_themeinfo()
 						<span>', (empty($settings['theme_support']['smf_site_id']) ? 
 							$settings['theme_name'] : 
 							'<a href="https://custom.simplemachines.org/index.php?theme=' . $settings['theme_support']['smf_site_id'] . '">' . $settings['theme_name'] . '</a>'), '
-						</span><br />
+						</span><br>
 
 						<strong>', $txt['st_themeinfo_author'], ':</strong>
 						<span>', (empty($settings['theme_author']['smf_id']) ? 
 							$settings['theme_author']['name'] : 
 							'<a href="https://simplemachines.org/community/index.php?action=profile;u=' . $settings['theme_author']['smf_id'] . '">' . $settings['theme_author']['name'] . '</a>'), '
-						</span><br />
+						</span><br>
 
 						<strong>', $txt['st_themeinfo_version'] , ':</strong>
-						<span>', $settings['theme_real_version'], '</span><br />
+						<span>', $settings['theme_real_version'], '</span><br>
 
 						<strong>', $txt['st_themeinfo_smfversion'], ':</strong>
 						<span>', $settings['theme_version'], '</span>
 					</div>
 				</div>
-			</div>
-			<!-- Theme Details -->';
+			</div><!-- Theme Block -->';
 
 		// Check for SMF link or External link
 		if (!empty($settings['theme_support']['smf_support_topic']) || !empty($settings['theme_support']['custom_support_url']))
 		{
 				echo '
-			<!-- Theme Support -->
-			<div class="block">
+			<div class="block"><!-- Theme Block -->
 				<h4>', $txt['st_themeinfo_support'], '</h4>
 				<div class="block-content">
 					<div class="icon">
@@ -262,30 +265,33 @@ function themecustoms_themeinfo()
 					</div>
 					<div class="details">';
 
-					// Support topic
-					if (!empty($settings['theme_support']['smf_support_topic']))
-						echo '
-							<strong>', $txt['st_themeinfo_support_topic'], ':</strong> <a href="https://simplemachines.org/community/index.php?topic='. $settings['theme_support']['smf_support_topic']. '.0">', $txt['st_themeinfo_support_topic_desc'], '</a><br />';
+				// Support topic
+				if (!empty($settings['theme_support']['smf_support_topic']))
+					echo '
+						<strong>', $txt['st_themeinfo_support_topic'], ':</strong>
+						<a href="https://simplemachines.org/community/index.php?topic='. $settings['theme_support']['smf_support_topic']. '.0">', $txt['st_themeinfo_support_topic_desc'], '</a><br>';
 
-					// Review Link
-					if (!empty($settings['theme_support']['smf_site_id']))
-						echo '
-							<strong>', $txt['st_themeinfo_review'], ':</strong>
-							<a href="https://custom.simplemachines.org/index.php?theme=' . $settings['theme_support']['smf_site_id'] . '">', $txt['st_themeinfo_review_desc'], '</a><br />';
+				// Review Link
+				if (!empty($settings['theme_support']['smf_site_id']))
+					echo '
+						<strong>', $txt['st_themeinfo_review'], ':</strong>
+						<a href="https://custom.simplemachines.org/index.php?theme=' . $settings['theme_support']['smf_site_id'] . '">', $txt['st_themeinfo_review_desc'], '</a><br>';
 
-					// External
-					if (!empty($settings['theme_support']['custom_support_url']))
-						echo '
-							<strong>', $txt['st_themeinfo_support_board'], ':</strong> <a href="', $settings['theme_support']['custom_support_url'], '">', $txt['st_themeinfo_support_board_desc'], '</a><br />';
+				// External
+				if (!empty($settings['theme_support']['custom_support_url']))
+					echo '
+						<strong>', $txt['st_themeinfo_support_board'], ':</strong>
+						<a href="', $settings['theme_support']['custom_support_url'], '">', $txt['st_themeinfo_support_board_desc'], '</a><br>';
 
-					// GitHub
-					if (!empty($settings['theme_support']['github_url']))
-						echo '
-						<strong>', $txt['st_themeinfo_github'] , ':</strong> <a href="', $settings['theme_support']['github_url'], '">', $txt['st_themeinfo_github_desc'], '</a><br />
+				// GitHub
+				if (!empty($settings['theme_support']['github_url']))
+					echo '
+						<strong>', $txt['st_themeinfo_github'] , ':</strong>
+						<a href="', $settings['theme_support']['github_url'], '">', $txt['st_themeinfo_github_desc'], '</a><br>';
+				echo '
 					</div>
 				</div>
-			</div>
-			<!-- Theme Details -->';
+			</div><!-- Theme Block -->';
 		}
 
 	echo '

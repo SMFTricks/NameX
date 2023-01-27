@@ -3,7 +3,7 @@
 /**
  * @package Theme Customs
  * @author Diego Andrés <diegoandres_cortes@outlook.com>
- * @copyright Copyright (c) 2022, SMF Tricks
+ * @copyright Copyright (c) 2023, SMF Tricks
  * @license MIT
  */
 
@@ -179,6 +179,8 @@ $txt['st_twitch'] = 'Twitch';
 $txt['st_twitch_username'] = 'Twitch username';
 $txt['st_steam'] = 'Steam';
 $txt['st_steam_link'] = 'Steam link';
+$txt['st_github'] = 'GitHub';
+$txt['st_github_link'] = 'GitHub link';
 $txt['st_rss_url'] = 'RSS URL';
 $txt['st_rss'] = 'RSS Feed';
 $txt['st_social_desc'] = 'Leave blank to disable.';
