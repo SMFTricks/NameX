@@ -226,28 +226,34 @@ header h1.forumtitle a:hover span.theme-logo span:last-child {
 	--social-icon-light: 40%
 }
 .social_icons a.facebook {
-	background-color: hsl(214, 89%, var(--social-icon-light));
+	background-color: hsl(213, 99%, var(--social-icon-light));
 }
 .social_icons a.twitter {
-	background-color: hsl(203, 89%, var(--social-icon-light));
+	background-color: hsl(204, 88%, var(--social-icon-light));
 }
 .social_icons a.instagram {
-	background-color: hsl(340, 75%, var(--social-icon-light));
+	background-color: hsl(326, 57%, var(--social-icon-light))
 }
 .social_icons a.youtube {
 	background-color: hsl(0, 100%, var(--social-icon-light));
+}
+.social_icons a.tiktok {
+	background-color: hsl(178, 90%, var(--social-icon-light));
 }
 .social_icons a.twitch {
 	background-color: hsl(264, 100%, var(--social-icon-light));
 }
 .social_icons a.discord {
-	background-color: hsl(227, 58%, var(--social-icon-light));
+	background-color: hsl(235, 86%, var(--social-icon-light));
 }
 .social_icons a.steam {
-	background-color: hsl(222, 18%, var(--social-icon-light));
+	background-color: hsl(213, 35%, var(--social-icon-light));
 }
 .social_icons a.github {
 	background-color: hsl(0, 0%, var(--social-icon-light));
+}
+.social_icons a.linkedin {
+	background-color: hsl(210, 90%, var(--social-icon-light));
 }
 .social_icons a.rss {
 	background-color: hsl(25, 85%, var(--social-icon-light));

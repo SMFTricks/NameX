@@ -69,6 +69,11 @@ function themecustoms_socials()
 		echo '
 		<a href="' . $settings['st_youtube'] . '" target="_blank" rel="noopener" class="youtube">', themecustoms_icon('fab fa-youtube'), '</a>';
 
+	// TikTok
+	if (!empty($settings['st_tiktok']))
+		echo '
+		<a href="https://tiktok.com/@' . $settings['st_tiktok'] . '" target="_blank" rel="noopener" class="tiktok">', themecustoms_icon('fab fa-tiktok'), '</a>';
+
 	// Twitch
 	if (!empty($settings['st_twitch']))
 		echo '
@@ -84,11 +89,15 @@ function themecustoms_socials()
 		echo '
 		<a href="' . $settings['st_steam'] . '" target="_blank" rel="noopener" class="steam">', themecustoms_icon('fab fa-steam-symbol'), '</a>';
 
-
 	// GitHub
 	if (!empty($settings['st_github']))
 		echo '
 		<a href="' . $settings['st_github'] . '" target="_blank" rel="noopener" class="github">', themecustoms_icon('fab fa-github'), '</a>';
+
+	// LinkedIn
+	if (!empty($settings['st_linkedin']))
+		echo '
+		<a href="' . $settings['st_linkedin'] . '" target="_blank" rel="noopener" class="linkedin">', themecustoms_icon('fab fa-linkedin'), '</a>';
 
 	// RSS
 	if (!empty($settings['st_rss_url']))

@@ -182,6 +182,13 @@ class Main
 				'theme_type' => 'social',
 			],
 			[
+				'id' => 'st_tiktok',
+				'label' => $txt['st_tiktok_username'],
+				'description' => $txt['st_social_desc'],
+				'type' => 'text',
+				'theme_type' => 'social',
+			],
+			[
 				'id' => 'st_twitch',
 				'label' => $txt['st_twitch_username'],
 				'description' => $txt['st_social_desc'],
@@ -205,6 +212,13 @@ class Main
 			[
 				'id' => 'st_github',
 				'label' => $txt['st_github_link'],
+				'description' => $txt['st_social_desc'],
+				'type' => 'text',
+				'theme_type' => 'social',
+			],
+			[
+				'id' => 'st_linkedin',
+				'label' => $txt['st_linkedin_link'],
 				'description' => $txt['st_social_desc'],
 				'type' => 'text',
 				'theme_type' => 'social',

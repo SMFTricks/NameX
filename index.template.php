@@ -541,7 +541,7 @@ function template_button_strip($button_strip, $direction = '', $strip_options = 
 				$value['id'] = $key;
 
 			$button = '
-				<a class="button normal_button_strip_' . $key . (!empty($value['active']) ? ' active' : '') . (isset($value['class']) ? ' ' . $value['class'] : '') . (!empty($value['sub_buttons']) ? ' buttonlist_sub' : '') . '" ' . (!empty($value['url']) ? 'href="' . $value['url'] . '"' : 'href="javascript:void();"') . ' ' . (isset($value['custom']) ? ' ' . $value['custom'] : '') . '>
+				<a class="button normal_button_strip_' . $key . (!empty($value['active']) ? ' active' : '') . (isset($value['class']) ? ' ' . $value['class'] : '') . (!empty($value['sub_buttons']) ? ' buttonlist_sub' : '') . '" ' . (!empty($value['url']) ? 'href="' . $value['url'] . '"' : 'href="javascript:void(0);"') . ' ' . (isset($value['custom']) ? ' ' . $value['custom'] : '') . '>
 					' . themecustoms_icon('fa fa-' . (!empty($value['icon']) ? $value['icon'] : $value['text'])) . '
 					<span>' . $txt[$value['text']] . '</span>
 				</a>';
