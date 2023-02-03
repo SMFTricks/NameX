@@ -224,8 +224,8 @@
 	}
 	.boardindex_table .lastpost a.avatar,
 	.boardindex_table .lastpost img.avatar_dot {
-		width: 32px;
-		height: 32px;
+		width: 25px;
+		height: 25px;
 	}
 	span.postby {
 		display: inline-block;
@@ -713,7 +713,14 @@
 	}
 	#info_center_blocks ul {
 		flex-direction: row;
-		margin: 0 15px;
+		margin-inline: 0;
+	}
+	#recent_posts_content ul li.windowbg {
+		padding-inline: 0.25em;
+	}
+	#recent_posts_content ul li img.avatar {
+		width: 20px;
+		height: 20px;
 	}
 	#info_center_blocks .ui-tabs-nav li.title_bar.ui-tabs-active {
 		background: var(--titlebg-bg);

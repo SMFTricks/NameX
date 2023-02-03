@@ -1771,7 +1771,7 @@ li.post_like_button {
 	flex-basis: 0;
 	margin: 0;
 	padding: 0;
-	align-self: center;
+	align-self: flex-end;
 }
 .keyinfo .postinfo a,
 .keyinfo .postinfo a strong {
@@ -1820,12 +1820,13 @@ li.post_like_button {
 	order: 	2;
 	flex-grow: 1;
 	flex-basis: 100%;
-	font-size: 115%;
-	margin: 2px 5px 2px 10px;
 }
-.inner {
+.post .inner {
 	box-shadow: none;
 	border-width: 0;
+	padding-block: 0;
+	padding-inline: 0.5em;
+	margin: 0;
 }
 .quickModifyMargin {
 	width: 100%;
