@@ -4,6 +4,7 @@
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Fixed font size and spacing in posts.
 - ![New Feature](https://smftricks.com/assets/changelog/tag--plus.png) Added new socials (Steam, Tiktok, LinkedIn, GitHub).
 - ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed small layout issues.
+- ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed input background in registration form.
 
 #### 1.1.0 - 29 November 2022
 - ![New Feature](https://smftricks.com/assets/changelog/tag--plus.png) Select CDN Source for fonts, scripts and libraries.

@@ -92,6 +92,13 @@ input[type="submit"]:hover, input[type="submit"]:focus,
 	margin: 0;
 }
 
+input.invalid_input {
+	background: var(--errorbox-bg);
+}
+input.valid_input {
+	background: var(--success-bg);
+}
+
 /* Popup Window and Container */
 .popup_container {
 	background: var(--popup-container-bg);
