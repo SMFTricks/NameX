@@ -1,6 +1,6 @@
 # Changelog
 
-#### 1.1.0 - 02 February 2023
+#### 1.1.1 - 02 February 2023
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Fixed font size and spacing in posts.
 - ![New Feature](https://smftricks.com/assets/changelog/tag--plus.png) Added new socials (Steam, Tiktok, LinkedIn, GitHub).
 - ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed small layout issues.
