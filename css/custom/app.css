@@ -1987,7 +1987,7 @@ ul.quickbuttons li ul.dropmenu li a:focus {
 .pagination_container a.nav_page,
 .pagination_container span.expand_pages {
 	font-size: 0.75em;
-	line-height: normal;
+	line-height: 1;
 	padding: 5px 9px;
 	background: var(--buttonlist-bg);
 	border-style: solid;
