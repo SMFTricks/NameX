@@ -17,6 +17,9 @@ function template_customs_init()
 	// The version this template/theme is for. This should probably be the version of SMF it was created for.
 	$settings['theme_version'] = '2.1';
 
+	// This defines the formatting for the page indexes used throughout the forum.
+	$settings['page_index'] = themecustoms_page_index();
+
 	// Integration hooks are always fun.
 	add_integration_function('integrate_load_theme', 'ThemeCustoms\Config\Integration::initialize#', false, '$themedir/themecustoms/Config/Integration.php');
 }

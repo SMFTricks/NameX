@@ -41,6 +41,7 @@ class Theme
 			'order_pos' => 100,
 		],
 		'app',
+		'custom_edits',
 		'icons'
 	];
 
@@ -108,9 +109,6 @@ class Theme
 
 		// Set the following variable to true if this theme wants to display the avatar of the user that posted the last post on the board index.
 		$settings['avatars_on_boardIndex'] = Init::$_avatar_options['boards'];
-
-		// This defines the formatting for the page indexes used throughout the forum.
-		$settings['page_index'] = themecustoms_page_index();
 
 		// Set the following variable to true if this theme wants to display the login and register buttons in the main forum menu.
 		$settings['login_main_menu'] = isset(Init::$_settings['login_main_menu']) && !empty(Init::$_settings['login_main_menu']) ? true : false;
