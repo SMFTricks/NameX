@@ -1,5 +1,9 @@
 # Changelog
 
+#### 1.1.2 - 03 February 2023
+- ![New Feature](https://smftricks.com/assets/changelog/tag--plus.png) Load a custom_edits.css file for users to keep their edits safe from updates.
+- ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed issue with pagination styles not loading in some instances.
+
 #### 1.1.1 - 02 February 2023
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Fixed font size and spacing in posts.
 - ![New Feature](https://smftricks.com/assets/changelog/tag--plus.png) Added new socials (Steam, Tiktok, LinkedIn, GitHub).
