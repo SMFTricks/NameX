@@ -1,6 +1,7 @@
 # Changelog
 
 #### 1.1.3 - 20 February 2023
+- ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed socials not wrapping on mobile.
 - ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed topic list issues.
 
 #### 1.1.2 - 03 February 2023

@@ -208,7 +208,7 @@ function template_theme_header()
  */
 function template_theme_userarea()
 {
-	global $context, $scripturl, $maintenance, $txt;
+	global $context, $scripturl, $maintenance, $txt, $settings;
 
 	// Firstly, the user's menu
 	echo '
