@@ -815,6 +815,9 @@ p.moderators > :is(a, a:visited, a:hover) {
 #messageindex #topic_header {
 	border-radius: 4px;
 }
+#messageindex #topic_container .info {
+	width: 50%;
+}
 #messageindex #topic_header .board_stats,
 #messageindex #topic_container .board_stats {
 	text-align: right;

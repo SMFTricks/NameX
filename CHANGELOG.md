@@ -1,5 +1,8 @@
 # Changelog
 
+#### 1.1.3 - 20 February 2023
+- ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed topic list issues.
+
 #### 1.1.2 - 03 February 2023
 - ![New Feature](https://smftricks.com/assets/changelog/tag--plus.png) Load a custom_edits.css file for users to keep their edits safe from updates.
 - ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed issue with pagination styles not loading in some instances.

@@ -240,7 +240,8 @@
 	}
 
 	/* MessageIndex */
-	#messageindex .board_icon, #messageindex .lastpost {
+	#messageindex .board_icon, #messageindex .lastpost,
+	#messageindex #topic_container .lastpost {
 		display: none;
 	}
 	#messageindex .info {
