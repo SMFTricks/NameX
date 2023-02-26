@@ -334,6 +334,7 @@ nav#main_nav ul.menu_nav li a {
 	font-weight: normal;
 	display: flex;
 	gap: 5px;
+	outline: revert;
 }
 nav#main_nav ul.menu_nav li a:hover,
 nav#main_nav ul.menu_nav li:hover a {
@@ -401,6 +402,7 @@ nav#main_nav ul.menu_nav ul li a:hover span.amt {
 	min-height: 30px;
 	display: flex;
 	align-items: center;
+	outline: revert;
 }
 .dropmenu li a.active,
 .dropmenu li a.active:hover,
@@ -911,6 +913,7 @@ p.moderators > :is(a, a:visited, a:hover) {
 }
 .buttonlist.floatright {
 	order: 2;
+	justify-content: flex-end;
 }
 .buttonlist {
 	display: flex;
