@@ -112,7 +112,7 @@ class Integration
 	{
 		$hooks = [
 			'menu_buttons' => 'main_menu',
-			'current_action' => 'strip_menu',
+			'current_action' => 'strip_menu#',
 			'actions' => 'hookActions',
 			'buffer' => 'hookBuffer#',
 			'theme_context' => 'htmlAttributes#',
@@ -161,6 +161,23 @@ class Integration
 			'show' => allowedTo('admin_forum'),
 		];
 		$buttons['admin']['sub_buttons'] = array_merge([$current_theme], $buttons['admin']['sub_buttons']);
+
+		// Add the community button if it's enabled.
+		$temp_buttons = [];
+		foreach ($buttons as $k => $v)
+		{
+			$temp_buttons[$k] = $v;
+			if ($k == 'home')
+			{
+				$temp_buttons['community'] = [
+					'title' => $txt['st_community'],
+					'href' => $scripturl . (!empty($settings['st_community_forum']) ? '?action=forum' : ''),
+					'icon' => 'members',
+					'show' => !empty($settings['st_enable_community']),
+				];
+			}
+		}
+		$buttons = $temp_buttons;
 	}
 
 	/**
@@ -168,17 +185,13 @@ class Integration
 	 *
 	 * Hook our menu icons setting for enabling/disabling.
 	 * Will also remove buttons using the provided setting.
-	 * This includes some additional checks for portal mods
+	 * This includes some additional checks for portal mods.
 	 * 
 	 * @return void
 	 */
-	public static function strip_menu() : void
+	public function strip_menu() : void
 	{
 		global $context, $settings, $txt;
-
-		// Anything to do here?
-		if (empty($settings['st_disable_menu_icons']) && empty($settings['st_remove_items']))
-			return;
 
 		// Remove elements?
 		$remove = !empty($settings['st_remove_items']) ? explode(',', $settings['st_remove_items']) : [];
@@ -189,11 +202,46 @@ class Integration
 			// Disable menu icons?
 			$current_menu[$key]['icon'] = (isset($settings['st_disable_menu_icons']) && !empty($settings['st_disable_menu_icons']) ? '' : themecustoms_icon('fa fa-' . (isset($txt['lp_forum']) && $key == 'home' ? 'forum' : $key)));
 
-			// Remove the element if it's in the setting
-			if (in_array($key, $remove))
+			// Remove the element if it's in the setting.
+			// Community shouldn't be removed
+			if (in_array($key, $remove) && $key !== 'community')
 				unset($current_menu[$key]);
 		}
 		$context['menu_buttons'] = $current_menu;
+
+		// Community button
+		$this->community();
+	}
+
+	
+	/**
+	 * Integration::community()
+	 *
+	 * Group menu items inside a 'Community' button.
+	 * Excludes the desired items from it.
+	 * 
+	 * @return void
+	 */
+	private function community() : void
+	{
+		global $context, $settings;
+
+		// Is community enabled?
+		if (empty($settings['st_enable_community']))
+			return;
+
+		// Alright, put into community those that are not outside?
+		$temp_menu = [];
+		foreach ($context['menu_buttons'] as $action => $button)
+		{
+			// Don't check for home, community or excluded items
+			if ($action == 'home' || $action == 'community' || (!empty($settings['st_not_community']) && in_array($action, explode(',', $settings['st_not_community']))))
+				$temp_menu[$action] = $button;
+			// Add the buttons?
+			elseif (!in_array($action, explode(',', $settings['st_not_community'])))
+				$temp_menu['community']['sub_buttons'][$action] = $button;
+		}
+		$context['menu_buttons'] = $temp_menu;
 	}
 
 	/**

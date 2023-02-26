@@ -66,6 +66,7 @@ $txt['st_game_serverip'] = 'Server IP: ';
 $txt['st_game_sampver'] = 'SAMP version: ';
 
 // Main Menu
+$txt['st_menu_settings'] = 'Menu settings';
 $txt['st_disable_menu_icons'] = 'Disable icons in the main menu';
 $txt['st_disable_menu_icons_desc'] = 'This will disable main menu icons, either images or classes.';
 $txt['st_remove_items'] = 'Remove Menu items';
@@ -73,10 +74,11 @@ $txt['st_remove_items_desc'] = 'Here you can put any action/key you want to remo
 $txt['st_enable_community'] = 'Enable community button';
 $txt['st_community'] = 'Community';
 $txt['forum'] = 'Forum';
-$txt['st_enable_community_desc'] = 'This will add a community button, which will include inside all your forum buttons, except for those you specify below. Also will add a "Home" button at the beginning of the menu.';
+$txt['st_enable_community_desc'] = 'This will add a community button, which will include inside all your forum buttons, except for those you specify below. It will keep "Home" at the beginning, but you can still remove it with the other setting.';
 $txt['st_not_community'] = 'Exclude action from community';
-$txt['st_menu_icons'] = 'Enable the menu icons';
-$txt['st_menu_icons_desc'] = 'With this you\'ll enable the menu icons in the main menu';
+$txt['st_not_community_desc'] = 'Exclude from the community button any item you want using the action/key.<br><span class="smalltext">Each value has to be separated with a comma. e.g. <i>admin,moderate</i></span>';
+$txt['st_community_forum'] = 'Redirect "Community" button to ?action=forum';
+$txt['st_community_forum_desc'] = 'Use this if you installed a portal mod, otherwise it will display an error page.';
 $txt['st_collapse_menu'] = 'Always show side menu in desktop view';
 $txt['st_footer_actions'] = 'Menu footer actions';
 $txt['st_footer_actions_desc'] = 'Here you can put any action you want to display in the footer/bottom menu. Each action has to be separated with a comma. e.g. <i>admin,profile,mlist</i>';

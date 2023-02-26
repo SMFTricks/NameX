@@ -86,17 +86,6 @@ class Main
 			]
 		], $context['theme_settings']);
 
-		// Add compatibility for the 'disable icon' setting
-		if (!isset($settings['disable_menu_icons']))
-			$context['theme_settings'] = array_merge([
-				[
-					'id' => 'st_disable_menu_icons',
-					'label' => $txt['st_disable_menu_icons'],
-					'description' => $txt['st_disable_menu_icons_desc'],
-					'type' => 'checkbox',
-				]
-			], $context['theme_settings']);
-
 		// Theme Settings
 		$this->_settings = [
 			// Fonts
@@ -133,15 +122,39 @@ class Main
 					1 => $txt['st_cdn_cloudflare'],
 				]
 			],
-			// Additional settings
+			// Menu Settings
 			[
-				'section_title' => $txt['st_additional_settings'],
+				'section_title' => $txt['st_menu_settings'],
+				'id' => 'st_disable_menu_icons',
+				'label' => $txt['st_disable_menu_icons'],
+				'description' => $txt['st_disable_menu_icons_desc'],
+				'type' => 'checkbox',
+			],
+			[
 				'id' => 'st_remove_items',
 				'label' => $txt['st_remove_items'],
 				'description' => $txt['st_remove_items_desc'],
 				'type' => 'text',
-			],		
+			],
 			[
+				'id' => 'st_enable_community',
+				'label' => $txt['st_enable_community'],
+				'description' => $txt['st_enable_community_desc'],
+			],
+			[
+				'id' => 'st_not_community',
+				'label' => $txt['st_not_community'],
+				'description' => $txt['st_not_community_desc'],
+				'type' => 'text',
+			],
+			[
+				'id' => 'st_community_forum',
+				'label' => $txt['st_community_forum'],
+				'description' => $txt['st_community_forum_desc'],
+			],
+			// Additional settings
+			[
+				'section_title' => $txt['st_additional_settings'],
 				'id' => 'st_separate_sticky_locked',
 				'label' => $txt['st_separate_sticky_locked'],
 				'description' => $txt['st_separate_sticky_locked_desc'],
