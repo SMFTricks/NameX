@@ -8,7 +8,7 @@
   const ctx = document.createElement('canvas').getContext('2d');
   const currentColor = { r: 0, g: 0, b: 0, h: 0, s: 0, v: 0, a: 1 };
   let container, picker, colorArea, colorAreaDims, colorMarker, colorPreview, colorValue, clearButton,
-      hueSlider, hueMarker, alphaSlider, alphaMarker, currentEl, currentFormat, oldColor;
+      closeButton, hueSlider, hueMarker, alphaSlider, alphaMarker, currentEl, currentFormat, oldColor;
 
   // Default settings
   const settings = {
@@ -16,6 +16,7 @@
     parent: 'body',
     theme: 'default',
     themeMode: 'light',
+    rtl: false,
     wrap: true,
     margin: 2,
     format: 'hex',
@@ -30,9 +31,13 @@
     defaultColor: '#000000',
     clearButton: false,
     clearLabel: 'Clear',
+    closeButton: false,
+    closeLabel: 'Close',
+    onChange: () => undefined,
     a11y: {
       open: 'Open color picker',
       close: 'Close color picker',
+      clear: 'Clear the selected color',
       marker: 'Saturation: {s}. Brightness: {v}.',
       hueSlider: 'Hue slider',
       alphaSlider: 'Opacity slider',
@@ -96,6 +101,10 @@
           if (settings.inline) {
             updatePickerPosition();
           }
+          break;
+        case 'rtl':
+          settings.rtl = !!options.rtl;
+          document.querySelectorAll('.clr-field').forEach(field => field.classList.toggle('clr-rtl', settings.rtl));
           break;
         case 'margin':
           options.margin *= 1;
@@ -163,6 +172,20 @@
           settings.clearLabel = options.clearLabel;
           clearButton.innerHTML = settings.clearLabel;
           break;
+        case 'closeButton':
+          settings.closeButton = !!options.closeButton;
+
+          if (settings.closeButton) {
+            picker.insertBefore(closeButton, colorPreview);
+          } else {
+            colorPreview.appendChild(closeButton);
+          }
+
+          break;
+        case 'closeLabel':
+          settings.closeLabel = options.closeLabel;
+          closeButton.innerHTML = settings.closeLabel;
+          break;
         case 'a11y':
           const labels = options.a11y;
           let update = false;
@@ -182,12 +205,14 @@
 
             openLabel.innerHTML = settings.a11y.open;
             swatchLabel.innerHTML = settings.a11y.swatch;
-            colorPreview.setAttribute('aria-label', settings.a11y.close);
+            closeButton.setAttribute('aria-label', settings.a11y.close);
+            clearButton.setAttribute('aria-label', settings.a11y.clear);
             hueSlider.setAttribute('aria-label', settings.a11y.hueSlider);
             alphaSlider.setAttribute('aria-label', settings.a11y.alphaSlider);
             colorValue.setAttribute('aria-label', settings.a11y.input);
             colorArea.setAttribute('aria-label', settings.a11y.instruction);
           }
+          break;
         default:
           settings[key] = options[key];
       }
@@ -229,7 +254,7 @@
   function attachVirtualInstance(element) {
     if (hasInstance) {
       // These options can only be set globally, not per instance
-      const unsupportedOptions = ['el', 'wrap', 'inline', 'defaultColor', 'a11y'];
+      const unsupportedOptions = ['el', 'wrap', 'rtl', 'inline', 'defaultColor', 'a11y'];
 
       for (let selector in instances) {
         const options = instances[selector];
@@ -377,13 +402,15 @@
       picker.classList.toggle('clr-top', reposition.top);
       picker.style.left = `${left}px`;
       picker.style.top = `${top}px`;
+      offset.x += picker.offsetLeft;
+      offset.y += picker.offsetTop;
     }
     
     colorAreaDims = {
       width: colorArea.offsetWidth,
       height: colorArea.offsetHeight,
-      x: picker.offsetLeft + colorArea.offsetLeft + offset.x,
-      y: picker.offsetTop + colorArea.offsetTop + offset.y
+      x: colorArea.offsetLeft + offset.x,
+      y: colorArea.offsetTop + offset.y
     };
   }
 
@@ -397,10 +424,15 @@
 
       if (!parentNode.classList.contains('clr-field')) {
         const wrapper = document.createElement('div');
+        let classes = 'clr-field';
+
+        if (settings.rtl || field.classList.contains('clr-rtl')) {
+          classes += ' clr-rtl';
+        }
 
         wrapper.innerHTML = `<button type="button" aria-labelledby="clr-open-label"></button>`;
         parentNode.insertBefore(wrapper, field);
-        wrapper.setAttribute('class', 'clr-field');
+        wrapper.setAttribute('class', classes);
         wrapper.style.color = field.value;
         wrapper.appendChild(field);
       }
@@ -505,6 +537,10 @@
       currentEl.dispatchEvent(new Event('input', { bubbles: true }));
     }
 
+    if (settings.onChange) {
+      settings.onChange.call(window, color);
+    }
+
     document.dispatchEvent(new CustomEvent('coloris:pick', { detail: { color } }));
   }
 
@@ -568,13 +604,7 @@
       y += container.scrollTop;
     }
 
-    x = (x < 0) ? 0 : (x > colorAreaDims.width) ? colorAreaDims.width : x;
-    y = (y < 0) ? 0 : (y > colorAreaDims.height) ? colorAreaDims.height : y;
-
-    colorMarker.style.left = `${x}px`;
-    colorMarker.style.top = `${y}px`;
-
-    setColorAtPosition(x, y);
+    setMarkerPosition(x, y);
 
     // Prevent scrolling while dragging the marker
     event.preventDefault();
@@ -584,16 +614,34 @@
   /**
    * Move the color marker when the arrow keys are pressed.
    * @param {number} offsetX The horizontal amount to move.
-   * * @param {number} offsetY The vertical amount to move.
+   * @param {number} offsetY The vertical amount to move.
    */
   function moveMarkerOnKeydown(offsetX, offsetY) {
-    const x = colorMarker.style.left.replace('px', '') * 1 + offsetX;
-    const y =  colorMarker.style.top.replace('px', '') * 1 + offsetY;
+    let x = colorMarker.style.left.replace('px', '') * 1 + offsetX;
+    let y = colorMarker.style.top.replace('px', '') * 1 + offsetY;
 
+    setMarkerPosition(x, y);
+  }
+
+  /**
+   * Set the color marker's position.
+   * @param {number} x Left position.
+   * @param {number} y Top position.
+   */
+  function setMarkerPosition(x, y) {
+    // Make sure the marker doesn't go out of bounds
+    x = (x < 0) ? 0 : (x > colorAreaDims.width) ? colorAreaDims.width : x;
+    y = (y < 0) ? 0 : (y > colorAreaDims.height) ? colorAreaDims.height : y;
+
+    // Set the position
     colorMarker.style.left = `${x}px`;
     colorMarker.style.top = `${y}px`;
 
+    // Update the color
     setColorAtPosition(x, y);
+
+    // Make sure the marker is focused
+    colorMarker.focus();
   }
 
   /**
@@ -870,16 +918,16 @@
     picker.setAttribute('id', 'clr-picker');
     picker.className = 'clr-picker';
     picker.innerHTML =
-    `<input id="clr-color-value" class="clr-color" type="text" value="" spellcheck="false" aria-label="${settings.a11y.input}">`+
+    `<input id="clr-color-value" name="clr-color-value" class="clr-color" type="text" value="" spellcheck="false" aria-label="${settings.a11y.input}">`+
     `<div id="clr-color-area" class="clr-gradient" role="application" aria-label="${settings.a11y.instruction}">`+
       '<div id="clr-color-marker" class="clr-marker" tabindex="0"></div>'+
     '</div>'+
     '<div class="clr-hue">'+
-      `<input id="clr-hue-slider" type="range" min="0" max="360" step="1" aria-label="${settings.a11y.hueSlider}">`+
+      `<input id="clr-hue-slider" name="clr-hue-slider" type="range" min="0" max="360" step="1" aria-label="${settings.a11y.hueSlider}">`+
       '<div id="clr-hue-marker"></div>'+
     '</div>'+
     '<div class="clr-alpha">'+
-      `<input id="clr-alpha-slider" type="range" min="0" max="100" step="1" aria-label="${settings.a11y.alphaSlider}">`+
+      `<input id="clr-alpha-slider" name="clr-alpha-slider" type="range" min="0" max="100" step="1" aria-label="${settings.a11y.alphaSlider}">`+
       '<div id="clr-alpha-marker"></div>'+
       '<span></span>'+
     '</div>'+
@@ -896,8 +944,10 @@
       '</fieldset>'+
     '</div>'+
     '<div id="clr-swatches" class="clr-swatches"></div>'+
-    `<button type="button" id="clr-clear" class="clr-clear">${settings.clearLabel}</button>`+
-    `<button type="button" id="clr-color-preview" class="clr-preview" aria-label="${settings.a11y.close}"></button>`+
+    `<button type="button" id="clr-clear" class="clr-clear" aria-label="${settings.a11y.clear}">${settings.clearLabel}</button>`+
+    '<div id="clr-color-preview" class="clr-preview">'+
+      `<button type="button" id="clr-close" class="clr-close" aria-label="${settings.a11y.close}">${settings.closeLabel}</button>`+
+    '</div>'+
     `<span id="clr-open-label" hidden>${settings.a11y.open}</span>`+
     `<span id="clr-swatch-label" hidden>${settings.a11y.swatch}</span>`;
 
@@ -908,6 +958,7 @@
     colorArea = getEl('clr-color-area');
     colorMarker = getEl('clr-color-marker');
     clearButton = getEl('clr-clear');
+    closeButton = getEl('clr-close');
     colorPreview = getEl('clr-color-preview');
     colorValue = getEl('clr-color-value');
     hueSlider = getEl('clr-hue-slider');
@@ -952,7 +1003,7 @@
       closePicker();
     });
 
-    addListener(colorPreview, 'click', event => {
+    addListener(closeButton, 'click', event => {
       pickColor();
       closePicker();
     });
@@ -986,9 +1037,13 @@
     });
 
     addListener(document, 'keydown', event => {
+      const navKeys = ['Tab', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
+
       if (event.key === 'Escape') {
         closePicker(true);
-      } else if (event.key === 'Tab') {
+
+      // Display focus rings when using the keyboard
+      } else if (navKeys.includes(event.key)) {
         picker.classList.add('clr-keyboard-nav');
       }
     });
@@ -1011,7 +1066,7 @@
         ArrowRight: [1, 0]
       };
 
-      if (Object.keys(movements).indexOf(event.key) !== -1) {
+      if (Object.keys(movements).includes(event.key)) {
         moveMarkerOnKeydown(...movements[event.key]);
         event.preventDefault();
       }
