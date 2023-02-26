@@ -670,7 +670,8 @@ h3.catbg .icon {
 }
 
 /* Community */
-.menu_icon.fa-community::before {
+.menu_icon.fa-community::before,
+.fa-community::before {
 	content: "\f022";
 }
 /* FA Nav */
@@ -759,4 +760,9 @@ h3.profile_hd::before,
 .main_icons.quiz::before,
 .fa-quiz::before {
 	content: "\f559";
+}
+/* Affiliates */
+.main_icons.affiliates::before,
+.fa-affiliates::before {
+	content: "\f0ac";
 }
