@@ -394,18 +394,16 @@ function template_ic_block_online()
 	{
 		echo '
 				', sprintf($txt['users_active'], $modSettings['lastActive']), ': <br>
-				<span class="onlinemembers_list">';
+				<span class="onlinemembers_list' . (empty($settings['st_enable_avatars_online']) ? ' only-name' : '') . '">';
 
 			// Show the regular list
 			if (empty($settings['st_enable_avatars_online']))
-				echo implode(', ', $context['list_users_online']);
+				echo implode(',&nbsp;', $context['list_users_online']);
 			// Avatars
 			else
 				foreach ($context['list_users_online'] as $user)
-				{
 					echo '
 						<span class="show_member">' . $user, '</span>';
-				}
 			
 			echo '
 				</span>';

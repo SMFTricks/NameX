@@ -1405,6 +1405,17 @@ footer .footer-other span.help-links a i.fa {
 	width: 24px;
 	vertical-align: middle;
 }
+#info_center_blocks span.onlinemembers_list span {
+	padding-block: 0;
+}
+#info_center_blocks span.user-online-block {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+#info_center_blocks span.onlinemembers_list.only-name {
+	gap: 0;
+}
 
 /* Profile */
 #detailedinfo dl, #tracking dl {

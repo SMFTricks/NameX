@@ -474,7 +474,7 @@
 	}
 }
 
-@media (min-width: 768px) 
+@media (min-width: 767px) 
 {
 	#mobile_user_menu.popup_container {
 		display: block !important;
@@ -527,7 +527,7 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background: rgba(40, 64, 80, 0.5);
+		background: rgba(0, 0, 0, 0.5);
 		z-index: 5;
 	}
 	#main_menu .popup_heading,
