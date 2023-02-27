@@ -1,5 +1,10 @@
 # Changelog
 
+#### 1.2.1 - 27 February 2023
+- ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed issues with online list when avatars are disabled.
+- ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed background color of popups.
+- ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Added more support for closing popups with keyboard.
+
 #### 1.2.0 - 26 February 2023
 - ![New Feature](https://smftricks.com/assets/changelog/tag--plus.png) Added 'community' button and options.
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Updated coloris to the latest version.
