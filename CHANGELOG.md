@@ -1,6 +1,6 @@
 # Changelog
 
-#### 1.2.0 - 26 February 2022
+#### 1.2.0 - 26 February 2023
 - ![New Feature](https://smftricks.com/assets/changelog/tag--plus.png) Added 'community' button and options.
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Updated coloris to the latest version.
 - ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed minor layout issues.
