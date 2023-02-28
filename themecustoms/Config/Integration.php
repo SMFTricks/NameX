@@ -189,9 +189,13 @@ class Integration
 	 * 
 	 * @return void
 	 */
-	public function strip_menu() : void
+	public function strip_menu(&$current_action) : void
 	{
 		global $context, $settings, $txt;
+
+		// Check for Ultimate Menu doing witchcraft?
+		if (!empty($current_action) && $current_action == 'admin' && isset($_REQUEST['area']) && $_REQUEST['area'] == 'umen')
+			return;
 
 		// Remove elements?
 		$remove = !empty($settings['st_remove_items']) ? explode(',', $settings['st_remove_items']) : [];
@@ -210,7 +214,7 @@ class Integration
 		$context['menu_buttons'] = $current_menu;
 
 		// Community button
-		$this->community();
+		$this->community($current_action);
 	}
 
 	
@@ -222,7 +226,7 @@ class Integration
 	 * 
 	 * @return void
 	 */
-	private function community() : void
+	private function community(&$current_action) : void
 	{
 		global $context, $settings;
 
@@ -242,6 +246,10 @@ class Integration
 				$temp_menu['community']['sub_buttons'][$action] = $button;
 		}
 		$context['menu_buttons'] = $temp_menu;
+
+		// Update the active button
+		if (isset($context['menu_buttons']['community']['sub_buttons'][$current_action]) && array_key_exists($current_action, $context['menu_buttons']['community']['sub_buttons']))
+			$context['menu_buttons']['community']['active_button'] = true;
 	}
 
 	/**

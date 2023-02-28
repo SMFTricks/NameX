@@ -816,14 +816,29 @@ function template_pick()
 		{
 			echo '
 					<label for="variant', $theme['id'], '"><strong>', $theme['pick_label'], '</strong></label>:
-					<select id="variant', $theme['id'], '" name="vrt[', $theme['id'], ']" onchange="changeVariant(', $theme['id'], ', this);">';
+					<select id="variant', $theme['id'], '" name="vrt[', $theme['id'], ']" onchange="profileChangeVariant(this.value);">';
 
 			foreach ($theme['variants'] as $key => $variant)
 				echo '
 						<option value="', $key, '"', $theme['selected_variant'] == $key ? ' selected' : '', '>', $variant['label'], '</option>';
 
 			echo '
-					</select>';
+					</select>
+					<script>
+						var vThumbnails = {';
+
+						// All the variant thumbnails.
+						$count = 1;
+						foreach ($theme['variants'] as $key => $variant)
+						{
+							echo '
+							\'', $key, '\': \'', $variant['thumbnail'], '\'', (count($theme['variants']) == $count ? '' : ',');
+							$count++;
+						}
+
+						echo '
+						}
+					</script>';
 		}
 
 		echo '

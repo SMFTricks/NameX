@@ -118,3 +118,9 @@ $(function() {
 		}
 	});
 });
+
+// Variants in the pick theme area
+function profileChangeVariant(sVariant)
+{
+	document.getElementById('theme_thumb_' + smf_theme_id).src = vThumbnails[sVariant];
+}
