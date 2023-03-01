@@ -16,7 +16,7 @@ class Theme
 	/**
 	 * @var const Font Awesome version
 	 */
-	const FONTAWESOME_VERSION = '6.2.1';
+	const FONTAWESOME_VERSION = '6.3.0';
 
 	/**
 	 * @var const jQuery UI version

@@ -773,3 +773,13 @@ h3.profile_hd::before,
 .fa-gallery::before {
 	content: "\f87c";
 }
+/* Arcade */
+.main_icons.arcade::before,
+.fa-arcade::before {
+	content: "\f11b";
+}
+/* Battle */
+.main_icons.battle::before,
+.fa-battle::before {
+	content: "\f66d";
+}
