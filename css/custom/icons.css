@@ -88,9 +88,8 @@ h3.catbg .icon {
 /* Boards */
 .main_icons.boards::before,
 .large_admin_menu_icon.boards::before,
-.menu_icon.fa-forum::before,
-.main_icons.menu_tpforum::before,
-.fa-forum::before {
+.fa-forum::before,
+.main_icons.menu_tpforum::before {
 	content: "\f07c";
 }
 /* General */
@@ -670,8 +669,8 @@ h3.catbg .icon {
 }
 
 /* Community */
-.menu_icon.fa-community::before,
-.fa-community::before {
+.fa-community::before,
+.main_icons.fa-community::before {
 	content: "\f022";
 }
 /* FA Nav */
@@ -753,7 +752,8 @@ h3.profile_hd::before,
 .main_icons.sticky::before {
 	content: "\f02e";
 }
-.main_icons.collections_bookmark::before {
+.main_icons.collections_bookmark::before,
+.fa-collections_bookmark::before {
 	content: "\f518";
 }
 /* Quiz */
@@ -765,4 +765,11 @@ h3.profile_hd::before,
 .main_icons.affiliates::before,
 .fa-affiliates::before {
 	content: "\f0ac";
+}
+/* Gallery */
+.main_icons.media::before,
+.fa-media::before,
+.main_icons.gallery::before,
+.fa-gallery::before {
+	content: "\f87c";
 }
