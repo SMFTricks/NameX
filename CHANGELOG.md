@@ -1,5 +1,8 @@
 # Changelog
 
+#### 1.2.3 - 27 May 2023
+- ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) SMF 2.1.4 patch updates.
+
 #### 1.2.2 - 28 February 2023
 - ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed issues when selecting variants in profile.
 - ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed problems when editing the menu using [Ultimate Menu](https://custom.simplemachines.org/index.php?mod=3674).
