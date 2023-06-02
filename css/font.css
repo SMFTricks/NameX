@@ -1,20 +1,71 @@
+/** Regular **/
 @font-face {
 	font-family: "Lato";
-	src:
-		url("../fonts/Lato-Regular.ttf") format("truetype"),
-		url("../fonts/Lato-Thin.ttf") format("truetype"),
-		url("../fonts/Lato-Bold.ttf") format("truetype"),
-		url("../fonts/Lato-Black.ttf") format("truetype"),
-		url("../fonts/Lato-Light.ttf") format("truetype"),
-		url("../fonts/Lato-Italic.ttf") format("truetype"),
-		url("../fonts/Lato-ThinItalic.ttf") format("truetype"),
-		url("../fonts/Lato-BoldItalic.ttf") format("truetype"),
-		url("../fonts/Lato-BlackItalic.ttf") format("truetype"),
-		url("../fonts/Lato-LightItalic.ttf") format("truetype");
+	src: url("../fonts/Lato-Regular.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Lato";
+	src: url("../fonts/Lato-Thin.ttf") format("truetype");
+	font-style: normal;
+	font-weight: 100;
+}
+@font-face {
+	font-family: "Lato";
+	src: url("../fonts/Lato-Light.ttf") format("truetype");
+	font-style: normal;
+	font-weight: 300;
+}
+@font-face {
+	font-family: "Lato";
+	src: url("../fonts/Lato-Bold.ttf") format("truetype");
+	font-style: normal;
+	font-weight: 700;
+}
+@font-face {
+	font-family: "Lato";
+	src: url("../fonts/Lato-Black.ttf") format("truetype");
+	font-style: normal;
+	font-weight: 900;
 }
 
+/** Italic **/
+@font-face {
+	font-family: "Lato";
+	src: url("../fonts/Lato-Italic.ttf") format("truetype");
+	font-style: italic;
+	font-weight: normal;
+}
+@font-face {
+	font-family: "Lato";
+	src: url("../fonts/Lato-ThinItalic.ttf") format("truetype");
+	font-style: italic;
+	font-weight: 100;
+}
+@font-face {
+	font-family: "Lato";
+	src: url("../fonts/Lato-LightItalic.ttf") format("truetype");
+	font-style: italic;
+	font-weight: 300;
+}
+@font-face {
+	font-family: "Lato";
+	src: url("../fonts/Lato-BoldItalic.ttf") format("truetype");
+	font-style: italic;
+	font-weight: 700;
+}
+@font-face {
+	font-family: "Lato";
+	src: url("../fonts/Lato-BlackItalic.ttf") format("truetype");
+	font-style: italic;
+	font-weight: 900;
+}
+
+/** Noto **/
 @font-face {
 	font-family: "Noto Sans";
-	src:
-		url("../fonts/NotoSans-Bold.ttf") format("truetype");
+	src: url("../fonts/NotoSans-Bold.ttf") format("truetype");
+	font-weight: 700;
+	font-style: normal;
 }
