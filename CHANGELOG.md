@@ -1,6 +1,6 @@
 # Changelog
 
-#### 1.2.3 - 02 June 2023
+#### 1.2.3 - 10 June 2023
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) SMF 2.1.4 patch updates.
 - ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed local font face.
 
