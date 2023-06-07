@@ -29,6 +29,9 @@ hr {
 	box-shadow: 0 1px 0 var(--header-border-color) inset;
 	background: var(--titlebg-bg);
 }
+strong, b  {
+	font-weight: 900;
+}
 
 /* Wrappers */
 #top_section .inner_wrap, #wrapper,
@@ -2448,4 +2451,8 @@ div#settingtype-information[aria-hidden="false"]~input[type="submit"] {
 }
 .st-theme-information .block:hover .details {
 	background: var(--windowbg-bg-hover);
+}
+
+#personal_messages #postmodify ~ div.windowbg {
+	padding: 15px;
 }
