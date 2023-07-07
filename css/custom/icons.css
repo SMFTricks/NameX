@@ -521,7 +521,8 @@ h3.catbg .icon {
 /* Sticky Topic */
 .fa-set_sticky::before,
 .fa-set_nonsticky::before,
-.main_icons.sticky::before {
+.main_icons.sticky::before,
+.fa-sticky::before {
 	content: "\f08d";
 }
 /* Lock Topic */
@@ -747,9 +748,7 @@ h3.profile_hd::before,
 }
 .main_icons.collections_save::before,
 .fa-collections_save::before,
-.main_icons.bookmarks::before,
-.fa-sticky::before,
-.main_icons.sticky::before {
+.main_icons.bookmarks::before {
 	content: "\f02e";
 }
 .main_icons.collections_bookmark::before,
@@ -758,8 +757,15 @@ h3.profile_hd::before,
 }
 /* Quiz */
 .main_icons.quiz::before,
-.fa-quiz::before {
+.main_icons.SMFQuiz::before,
+.fa-quiz::before,
+.fa-SMFQuiz:before {
 	content: "\f559";
+}
+/* Downloads */
+.main_icons.downloads::before,
+.fa-downloads::before {
+	content: "\f019";
 }
 /* Affiliates */
 .main_icons.affiliates::before,

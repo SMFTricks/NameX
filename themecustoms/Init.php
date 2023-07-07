@@ -53,6 +53,8 @@ class Init extends Config
 
 	/**
 	 * Init::loadHooks()
+	 * 
+	 * @return void
 	 */
 	protected function loadHooks() : void
 	{
@@ -71,7 +73,7 @@ class Init extends Config
 	 * 
 	 * Load some google fonts
 	 * 
-	 * @param array $assets The assets array
+	 * @return void
 	 */
 	public static function fonts() : void
 	{
