@@ -4,11 +4,11 @@
  * https://github.com/mdbassit/Coloris
  */
 
-((window, document, Math) => {
+((window, document, Math, undefined) => {
   const ctx = document.createElement('canvas').getContext('2d');
   const currentColor = { r: 0, g: 0, b: 0, h: 0, s: 0, v: 0, a: 1 };
-  let container, picker, colorArea, colorAreaDims, colorMarker, colorPreview, colorValue, clearButton,
-      closeButton, hueSlider, hueMarker, alphaSlider, alphaMarker, currentEl, currentFormat, oldColor;
+  let container, picker, colorArea, colorAreaDims, colorMarker, colorPreview, colorValue, clearButton, closeButton,
+      hueSlider, hueMarker, alphaSlider, alphaMarker, currentEl, currentFormat, oldColor, keyboardNav;
 
   // Default settings
   const settings = {
@@ -79,7 +79,7 @@
 
             // document.body is special
             if (container === document.body) {
-              container = null;
+              container = undefined;
             }
           }
           break;
@@ -316,10 +316,16 @@
 
       if (settings.focusInput || settings.selectInput) {
         colorValue.focus({ preventScroll: true });
+        colorValue.setSelectionRange(currentEl.selectionStart, currentEl.selectionEnd);
       }
       
       if (settings.selectInput) {
         colorValue.select();
+      }
+
+      // Always focus the first element when using keyboard navigation
+      if (keyboardNav || settings.swatchesOnly) {
+        getFocusableElements().shift().focus();
       }
 
       // Trigger an "open" event
@@ -450,7 +456,7 @@
       // Revert the color to the original value if needed
       if (revert) {
         // This will prevent the "change" event on the colorValue input to execute its handler
-        currentEl = null;
+        currentEl = undefined;
 
         if (oldColor !== prevEl.value) {
           prevEl.value = oldColor;
@@ -483,7 +489,7 @@
       }
 
       // This essentially marks the picker as closed
-      currentEl = null;
+      currentEl = undefined;
     }
   }
 
@@ -538,10 +544,10 @@
     }
 
     if (settings.onChange) {
-      settings.onChange.call(window, color);
+      settings.onChange.call(window, color, currentEl);
     }
 
-    document.dispatchEvent(new CustomEvent('coloris:pick', { detail: { color } }));
+    document.dispatchEvent(new CustomEvent('coloris:pick', { detail: { color, currentEl } }));
   }
 
   /**
@@ -913,7 +919,7 @@
    */
   function init() {
     // Render the UI
-    container = null;
+    container = undefined;
     picker = document.createElement('div');
     picker.setAttribute('id', 'clr-picker');
     picker.className = 'clr-picker';
@@ -992,9 +998,11 @@
     });
 
     addListener(colorValue, 'change', event => {
+      const value = colorValue.value;
+
       if (currentEl || settings.inline) {
-        setColorFromStr(colorValue.value);
-        pickColor();
+        const color = value === '' ? value : setColorFromStr(value);
+        pickColor(color);
       }
     });
 
@@ -1008,7 +1016,7 @@
       closePicker();
     });
 
-    addListener(document, 'click', '.clr-format input', event => {
+    addListener(getEl('clr-format'), 'click', '.clr-format input', event => {
       currentFormat = event.target.value;
       updateColor();
       pickColor();
@@ -1032,19 +1040,39 @@
     });
 
     addListener(document, 'mousedown', event => {
+      keyboardNav = false;
       picker.classList.remove('clr-keyboard-nav');
       closePicker();
     });
 
     addListener(document, 'keydown', event => {
+      const key = event.key;
+      const target = event.target;
+      const shiftKey = event.shiftKey;
       const navKeys = ['Tab', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
 
-      if (event.key === 'Escape') {
+      if (key === 'Escape') {
         closePicker(true);
 
       // Display focus rings when using the keyboard
-      } else if (navKeys.includes(event.key)) {
+      } else if (navKeys.includes(key)) {
+        keyboardNav = true;
         picker.classList.add('clr-keyboard-nav');
+      }
+
+      // Trap the focus within the color picker while it's open
+      if (key === 'Tab' && target.matches('.clr-picker *')) {
+        const focusables = getFocusableElements();
+        const firstFocusable = focusables.shift();
+        const lastFocusable = focusables.pop();
+
+        if (shiftKey && target === firstFocusable) {
+          lastFocusable.focus();
+          event.preventDefault();
+        } else if (!shiftKey && target === lastFocusable) {
+          firstFocusable.focus();
+          event.preventDefault();
+        }
       }
     });
 
@@ -1078,6 +1106,17 @@
   }
 
   /**
+   * Return a list of focusable elements within the color picker.
+   * @return {array} The list of focusable DOM elemnts.
+   */
+  function getFocusableElements() {
+    const controls = Array.from(picker.querySelectorAll('input, button'));
+    const focusables = controls.filter(node => !!node.offsetWidth);
+
+    return focusables;
+  }
+
+  /**
    * Shortcut for getElementById to optimize the minified JS.
    * @param {string} id The element id.
    * @return {object} The DOM element with the provided id.
@@ -1105,7 +1144,7 @@
       });
 
     // If the selector is not a string then it's a function
-    // in which case we need regular event listener
+    // in which case we need a regular event listener
     } else {
       fn = selector;
       context.addEventListener(type, fn);
