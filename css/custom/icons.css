@@ -493,6 +493,7 @@ h3.catbg .icon {
 }
 /* Delete */
 .fa-remove_poll::before,
+.fa-poll_remove::before,
 .fa-delete::before,
 .fa-remove_topic::before,
 .fa-remove_button::before,
@@ -527,11 +528,13 @@ h3.catbg .icon {
 }
 /* Lock Topic */
 .fa-set_lock::before,
+.fa-poll_lock::before,
 .main_icons.lock::before {
 	content: "\f023";
 }
 /* Unlock Topic */
 .fa-set_unlock::before,
+.fa-poll_unlock::before,
 .main_icons.unlock::before,
 .main_icons.post_moderation_allow::before {
 	content: "\f3c1";
@@ -640,6 +643,7 @@ h3.catbg .icon {
 }
 /* Edit */
 .fa-quick_edit_button::before,
+.fa-poll_edit::before,
 .fa-modify_button::before,
 .main_icons.quick_edit_button::before,
 .main_icons.modify_button::before,

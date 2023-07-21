@@ -271,4 +271,8 @@
 		--alert-bg-hover: hsl(var(--primary-color-hue), 15%, 95%);
 		/* Border */
 		--alert-border-color: hsl(var(--primary-color-hue), 50%, 85%);
+
+	/* Stats Pie **/
+		/* Hue */
+		--stats-pie-hue: 347deg;
 }

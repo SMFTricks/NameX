@@ -47,7 +47,7 @@ function themecustoms_page_index()
  */
 function themecustoms_socials()
 {
-	global $settings;
+	global $settings, $txt;
 
 	echo '
 	<div class="social_icons">';
@@ -55,57 +55,57 @@ function themecustoms_socials()
 	// Facebook
 	if (!empty($settings['st_facebook']))
 		echo '
-		<a href="https://facebook.com/' . $settings['st_facebook'] . '" target="_blank" rel="noopener" class="facebook">', themecustoms_icon('fab fa-facebook-f'), '</a>';
+		<a href="https://facebook.com/' . $settings['st_facebook'] . '" target="_blank" rel="noopener" class="facebook" aria-label="', $txt['st_facebook'], '">', themecustoms_icon('fab fa-facebook-f'), '</a>';
 
 	// Twitter
 	if (!empty($settings['st_twitter']))
 		echo '
-		<a href="https://twitter.com/' . $settings['st_twitter'] . '" target="_blank" rel="noopener" class="twitter">', themecustoms_icon('fab fa-twitter'), '</a>';
+		<a href="https://twitter.com/' . $settings['st_twitter'] . '" target="_blank" rel="noopener" class="twitter" aria-label="', $txt['st_twitter'], '">', themecustoms_icon('fab fa-twitter'), '</a>';
 
 	// Instagram
 	if (!empty($settings['st_instagram']))
 		echo '
-		<a href="https://instagram.com/' . $settings['st_instagram'] . '" target="_blank" rel="noopener" class="instagram">', themecustoms_icon('fab fa-instagram'), '</a>';
+		<a href="https://instagram.com/' . $settings['st_instagram'] . '" target="_blank" rel="noopener" class="instagram" aria-label="', $txt['st_instagram'], '">', themecustoms_icon('fab fa-instagram'), '</a>';
 
 	// Youtube
 	if (!empty($settings['st_youtube']))
 		echo '
-		<a href="' . $settings['st_youtube'] . '" target="_blank" rel="noopener" class="youtube">', themecustoms_icon('fab fa-youtube'), '</a>';
+		<a href="' . $settings['st_youtube'] . '" target="_blank" rel="noopener" class="youtube" aria-label="', $txt['st_youtube'], '">', themecustoms_icon('fab fa-youtube'), '</a>';
 
 	// TikTok
 	if (!empty($settings['st_tiktok']))
 		echo '
-		<a href="https://tiktok.com/@' . $settings['st_tiktok'] . '" target="_blank" rel="noopener" class="tiktok">', themecustoms_icon('fab fa-tiktok'), '</a>';
+		<a href="https://tiktok.com/@' . $settings['st_tiktok'] . '" target="_blank" rel="noopener" class="tiktok" aria-label="', $txt['st_tiktok'], '">', themecustoms_icon('fab fa-tiktok'), '</a>';
 
 	// Twitch
 	if (!empty($settings['st_twitch']))
 		echo '
-		<a href="https://twitch.tv/' . $settings['st_twitch'] . '" target="_blank" rel="noopener" class="twitch">', themecustoms_icon('fab fa-twitch'), '</a>';
+		<a href="https://twitch.tv/' . $settings['st_twitch'] . '" target="_blank" rel="noopener" class="twitch" aria-label="', $txt['st_twitch'], '">', themecustoms_icon('fab fa-twitch'), '</a>';
 
 	// Discord
 	if (!empty($settings['st_discord']))
 		echo '
-		<a href="' . $settings['st_discord'] . '" target="_blank" rel="noopener" class="discord">', themecustoms_icon('fab fa-discord'), '</a>';
+		<a href="' . $settings['st_discord'] . '" target="_blank" rel="noopener" class="discord" aria-label="', $txt['st_discord'], '">', themecustoms_icon('fab fa-discord'), '</a>';
 
 	// Steam
 	if (!empty($settings['st_steam']))
 		echo '
-		<a href="' . $settings['st_steam'] . '" target="_blank" rel="noopener" class="steam">', themecustoms_icon('fab fa-steam-symbol'), '</a>';
+		<a href="' . $settings['st_steam'] . '" target="_blank" rel="noopener" class="steam" aria-label="', $txt['st_steam'], '">', themecustoms_icon('fab fa-steam-symbol'), '</a>';
 
 	// GitHub
 	if (!empty($settings['st_github']))
 		echo '
-		<a href="' . $settings['st_github'] . '" target="_blank" rel="noopener" class="github">', themecustoms_icon('fab fa-github'), '</a>';
+		<a href="' . $settings['st_github'] . '" target="_blank" rel="noopener" class="github" aria-label="', $txt['st_github'], '">', themecustoms_icon('fab fa-github'), '</a>';
 
 	// LinkedIn
 	if (!empty($settings['st_linkedin']))
 		echo '
-		<a href="' . $settings['st_linkedin'] . '" target="_blank" rel="noopener" class="linkedin">', themecustoms_icon('fab fa-linkedin'), '</a>';
+		<a href="' . $settings['st_linkedin'] . '" target="_blank" rel="noopener" class="linkedin" aria-label="', $txt['st_linkedin'], '">', themecustoms_icon('fab fa-linkedin'), '</a>';
 
 	// RSS
 	if (!empty($settings['st_rss_url']))
 		echo '
-		<a href="' . $settings['st_rss_url'] . '" target="_blank" rel="noopener" class="rss">', themecustoms_icon('fas fa-rss'), '</a>';
+		<a href="' . $settings['st_rss_url'] . '" target="_blank" rel="noopener" class="rss" aria-label="', $txt['st_rss'], '">', themecustoms_icon('fas fa-rss'), '</a>';
 
 	echo '
 	</div>';

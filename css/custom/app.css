@@ -1718,7 +1718,7 @@ li#user_thememode a span::before {
 	background: var(--content-section-bg);
 }
 .generic_bar .bar, .progress_bar .bar {
-	box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.1) inset, 0px -1px 1px 0px rgba(0, 0, 0, 0.1) inset;;
+	box-shadow: none !important;
 	background: var(--header-bg);
 	border-radius: 0;
 }
@@ -1726,6 +1726,9 @@ li#user_thememode a span::before {
 	color: var(--titlebg-txt-color);
 	text-shadow: none;
 	font-size: 0.75em;
+}
+.profile_pie {
+	filter: hue-rotate(var(--stats-pie-hue));
 }
 
 /* Like me */
@@ -2455,4 +2458,9 @@ div#settingtype-information[aria-hidden="false"]~input[type="submit"] {
 
 #personal_messages #postmodify ~ div.windowbg {
 	padding: 15px;
+}
+
+.activity_stats li span {
+	background: var(--roundframe-bg);
+	border-color: var(--catbg-bg);
 }

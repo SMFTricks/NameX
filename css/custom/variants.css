@@ -2,6 +2,7 @@
 :root[data-themecolor="red"] {
 	--primary-color-hue: 360;
 	--catbg-bg: hsl(var(--primary-color-hue), 40%, 45%);
+	--stats-pie-hue: 145deg;
 }
 /* Red */
 
@@ -9,6 +10,7 @@
 :root[data-themecolor="green"] {
 	--primary-color-hue: 115;
 	--catbg-bg: hsl(var(--primary-color-hue), 30%, 45%);
+	--stats-pie-hue: 245deg;
 }
 /* Green */
 
@@ -16,6 +18,7 @@
 :root[data-themecolor="blue"] {
 	--primary-color-hue: 205;
 	--catbg-bg: hsl(var(--primary-color-hue), 40%, 45%);
+	--stats-pie-hue: 0deg;
 }
 /* Blue */
 
@@ -23,6 +26,7 @@
 :root[data-themecolor="yellow"] {
 	--primary-color-hue: 50;
 	--catbg-bg: hsl(var(--primary-color-hue), 65%, 50%);
+	--stats-pie-hue: 200deg;
 }
 /* Yellow Dark Mode */
 :root[data-themecolor="yellow"][data-colormode="dark"]{
@@ -34,6 +38,7 @@
 :root[data-themecolor="pink"] {
 	--primary-color-hue: 340;
 	--catbg-bg: hsl(var(--primary-color-hue), 40%, 45%);
+	--stats-pie-hue: 120deg;
 }
 /* Pink */
 
@@ -41,5 +46,6 @@
 :root[data-themecolor="purple"] {
 	--primary-color-hue: 310;
 	--catbg-bg: hsl(var(--primary-color-hue), 35%, 45%);
+	--stats-pie-hue: 75deg;
 }
 /* Purple */

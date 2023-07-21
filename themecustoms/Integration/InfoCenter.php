@@ -107,30 +107,32 @@ class InfoCenter
 	 */
 	protected function online_users() : void
 	{
-		global $context, $scripturl, $memberContext;
+		global $context, $scripturl, $memberContext, $txt;
 
 		// Need a list of users online...
 		if (empty($context['list_users_online']))
 			return;
 
-		foreach ($context['list_users_online'] as $item => $user_online)
+		foreach ($context['users_online'] as $item => $user_online)
 		{
 			// Search the id in the user link using a regular expression
-			if (!preg_match('~<a.+?href="' . preg_quote($scripturl) . '\?action=profile;u=(\d+)"~', $user_online, $user_id))
+			if (empty($user_online['id']))
 				continue;
 
-			$user_id = (int) $user_id[1];
-			if (!in_array($user_id, $this->_members_id))
+			// Check if the user was in our list before
+			if (!in_array($user_online['id'], $this->_members_id))
 				continue;
 
 			// Add the avatar
-			loadMemberContext($user_id);
+			loadMemberContext($user_online['id']);
 			$context['list_users_online'][$item] = (
-				'<span class="user-online-block">
-					<a class="online-avatar" href="' . $scripturl . '?action=profile;u=' . $user_id . '">
-						<img src="' . $memberContext[$user_id]['avatar']['href'] . '" alt="' . $memberContext[$user_id]['name'] . '" title="' . $memberContext[$user_id]['name'] . '" class="avatar">
+				'<span class="user-online-block' . (!empty($user_online['is_buddy']) ? ' buddy' : '') . '">
+					<a class="online-avatar"
+						href="' . $scripturl . '?action=profile;u=' . $user_online['id'] . '"
+						aria-label="' . sprintf($txt['view_profile_of_username'], $user_online['name']) . '">
+						<img src="' . $memberContext[$user_online['id']]['avatar']['href'] . '" alt="' . $user_online['name'] . '" title="' . $user_online['name'] . '" class="avatar' . (!empty($memberContext[$user_online['id']]['group_color']) ? ' group-border" style="border-color: ' . $memberContext[$user_online['id']]['group_color'] . ';"' : '"') . '>
 					</a>
-					<span class="online-name">' . $user_online . '</span>
+					<span class="online-name">' . $user_online['link'] . '</span>
 				</span>
 				'
 			);
