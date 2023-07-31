@@ -130,16 +130,8 @@ $txt['st_custom_links_enabled'] = 'Enable custom links';
 $txt['st_custom_link_other'] = 'Other Links';
 $txt['st_custom_link_title'] = 'Title for the link';
 $txt['st_custom_link_url'] = 'Set the URL for the link';
-$txt['st_custom_link1'] = 'Custom URL 1';
-$txt['st_custom_link2'] = 'Custom URL 2';
-$txt['st_custom_link3'] = 'Custom URL 3';
-$txt['st_custom_link4'] = 'Custom URL 4';
-$txt['st_custom_link5'] = 'Custom URL 5';
-$txt['st_custom_link6'] = 'Custom URL 6';
-$txt['st_custom_link7'] = 'Custom URL 7';
-$txt['st_custom_link8'] = 'Custom URL 8';
-$txt['st_custom_link9'] = 'Custom URL 9';
-$txt['st_custom_link10'] = 'Custom URL 10';
+$txt['st_custom_link'] = 'Custom URL %d';
+$txt['st_custom_link_default'] = 'Link %d';
 
 // Header
 $txt['st_header_background'] = 'Header background URL';

@@ -10,7 +10,7 @@
 // Carousel
 $txt['st_carousel'] = 'Carousel';
 $txt['st_enable_carousel'] = 'Enable carousel';
-$txt['st_carousel_desc'] = 'If you have the Carousel Addon, you will have the options to upload below, once this setting is enabled.';
+$txt['st_enable_carousel_desc'] = 'Enable to display more settings. If you have the Carousel Addon, you will have the options to upload below, once this setting is enabled.';
 $txt['st_carousel_index'] = 'Display only in home page';
 $txt['st_carousel_enable_images'] = 'Enable carousel images';
 $txt['st_carousel_speed'] = 'Carousel autoplay speed';
@@ -19,13 +19,11 @@ $txt['st_carousel_link_text'] = 'Carousel link text';
 $txt['st_carousel_link_text_desc'] = 'Text to display in the link. <span class="smalltext">Default is "Go to link"</span>';
 $txt['st_carousel_go_to_link'] = 'Go to link';
 $txt['st_carousel_add_new'] = 'Add new';
+$txt['st_carousel_slides'] = 'Number of slides';
+$txt['st_carousel_slides_desc'] = 'Set number of slides for the carousel. Limited to a range between 1-6';
+$txt['st_carousel_bbc_allowed'] = 'BBC tags, such as [b], [i] and [u], are allowed in your slides, as well as smileys.';
 
 // Sliders
-$txt['st_slider_1']	= 'Slider 1';
-$txt['st_slider_2']	= 'Slider 2';
-$txt['st_slider_3']	= 'Slider 3';
-$txt['st_slider_4']	= 'Slider 4';
-$txt['st_slider_5']	= 'Slider 5';
 $txt['st_slider'] = 'Slider';
 $txt['st_slider_x'] = 'Slider %d';
 $txt['st_slide'] = 'Slide';

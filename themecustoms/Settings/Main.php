@@ -16,20 +16,19 @@ class Main
 	/**
 	 * @var array The common theme settings
 	 */
-	private $_settings = [];
+	private array $_settings = [];
 
 	/**
-	 * @var array Setting types. Will allow to separate the settings if needed.
+	 * Will allow to separate the settings if needed.
 	 * No type means the setting is either a default setting or a main setting.
+	 * @var array Setting types.
 	 */
-	private $_setting_types = [
-		'social',
-	];
+	private array $_setting_types = [];
 
 	/**
 	 * @var array Unwanted settings from the default theme (or custom theme even).
 	 */
-	private $_remove_settings = [
+	private array $_remove_settings = [
 		'site_slogan',
 		'enable_news',
 		'forum_width',
@@ -38,7 +37,7 @@ class Main
 	/**
 	 * @var array The custom settings that are not listed here
 	 */
-	private $_custom_settings = [];
+	private array $_custom_settings = [];
 
 	/**
 	 * Main::settings()
@@ -68,7 +67,7 @@ class Main
 	 */
 	private function create() : void
 	{
-		global $txt, $settings, $context;
+		global $txt, $context;
 
 		// Insert forum width setting at the beginning
 		$context['theme_settings'] = array_merge([
@@ -165,7 +164,42 @@ class Main
 				'label' => $txt['st_disable_info_center'],
 				'description' => $txt['st_disable_info_center_desc'],
 				'type' => 'checkbox'
-			],	
+			],
+		];
+		
+		/** Socials */
+		$this->socials();
+		
+		/** Avatars */
+		$this->avatars();
+
+		/** Custom Links */
+		$this->links();
+
+		// Any custom changes?
+		call_integration_hook('integrate_customtheme_settings', [&$this->_custom_settings, &$this->_setting_types, &$this->_remove_settings]);
+
+		// Add any custom settings
+		if (!empty($this->_custom_settings) && is_array($this->_custom_settings))
+			$this->_settings = array_merge($this->_settings, $this->_custom_settings);
+	}
+
+	/**
+	 * Main::socials()
+	 * 
+	 * Add settings for socials
+	 * 
+	 * @return void
+	 */
+	private function socials() : void
+	{
+		global $txt;
+
+		// Add the type
+		$this->_setting_types[] = 'social';
+
+		// Social settings
+		array_push($this->_settings, 
 			[
 				'id' => 'st_facebook',
 				'label' => $txt['st_facebook_username'],
@@ -243,46 +277,95 @@ class Main
 				'type' => 'text',
 				'theme_type' => 'social',
 			],
+		);
+	}
+
+	/**
+	 * Main::avatars()
+	 * 
+	 * Add settings for avatars
+	 * 
+	 * @return void
+	 */
+	private function avatars() : void
+	{
+		global $txt;
+
+		// Are avatars enabled?
+		if (empty(Init::$_avatar_options))
+			return;
+
+		// Boards
+		$this->_settings[] = [
+			'section_title' => $txt['st_avatar_settings'],
+			'id' => 'st_enable_avatars_boards',
+			'label' => $txt['st_enable_avatars_boards'],
+			'type' => 'checkbox',
+		];
+		// Topics
+		$this->_settings[] = [
+			'id' => 'st_enable_avatars_topics',
+			'label' => $txt['st_enable_avatars_topics'],
+			'type' => 'checkbox',
+		];
+		// Recent Posts
+		$this->_settings[] = [
+			'id' => 'st_enable_avatars_recent',
+			'label' => $txt['st_enable_avatars_recent'],
+			'type' => 'checkbox',
+		];
+		// Users Online
+		$this->_settings[] = [
+			'id' => 'st_enable_avatars_online',
+			'label' => $txt['st_enable_avatars_online'],
+			'type' => 'checkbox',
+		];
+	}
+
+	/**
+	 * Main::links()
+	 * 
+	 * Add custom links settings
+	 * 
+	 * @return void
+	 */
+	private function links() : void
+	{
+		global $txt;
+
+		// Adding links settings?
+		if (empty(Init::$_settings['custom_links_limit']))
+			return;
+
+		// Add the type
+		$this->_setting_types[] = 'custom_links';
+
+		// Enable custom links
+		$this->_settings[] = [
+			'id' => 'st_custom_links_enabled',
+			'label' => $txt['st_custom_links_enabled'],
+			'theme_type' => 'custom_links',
 		];
 
-		/** Avatars */
-		// Boards
-		if (!empty(Init::$_avatar_options['boards']))
-			// Boards
+		// Add the links settings
+		for ($link = 1; $link <= Init::$_settings['custom_links_limit']; $link++)
+		{
+			// Title
 			$this->_settings[] = [
-				'section_title' => $txt['st_avatar_settings'],
-				'id' => 'st_enable_avatars_boards',
-				'label' => $txt['st_enable_avatars_boards'],
-				'type' => 'checkbox',
+				'id' => 'st_custom_link' . $link. '_title',
+				'label' => $txt['st_custom_link_title'],
+				'type' => 'text',
+				'theme_type' => 'custom_links',
 			];
-		// Topics
-		if (!empty(Init::$_avatar_options['topics_list']))
+			// Link
 			$this->_settings[] = [
-				'id' => 'st_enable_avatars_topics',
-				'label' => $txt['st_enable_avatars_topics'],
-				'type' => 'checkbox',
+				'id' => 'st_custom_link' . $link,
+				'label' => sprintf($txt['st_custom_link'], $link),
+				'description' => $txt['st_custom_link_url'],
+				'type' => 'text',
+				'theme_type' => 'custom_links',
 			];
-		// Recent Posts
-		if (!empty(Init::$_avatar_options['recent_posts']))
-			$this->_settings[] = [
-				'id' => 'st_enable_avatars_recent',
-				'label' => $txt['st_enable_avatars_recent'],
-				'type' => 'checkbox',
-			];
-		// Users Online
-		if (!empty(Init::$_avatar_options['users_online']))
-			$this->_settings[] = [
-				'id' => 'st_enable_avatars_online',
-				'label' => $txt['st_enable_avatars_online'],
-				'type' => 'checkbox',
-			];
-
-		// Any custom changes?
-		call_integration_hook('integrate_customtheme_settings', [&$this->_custom_settings, &$this->_setting_types, &$this->_remove_settings]);
-
-		// Add any custom settings
-		if (!empty($this->_custom_settings) && is_array($this->_custom_settings))
-			$this->_settings = array_merge($this->_settings, $this->_custom_settings);
+		}
 	}
 
 	/**

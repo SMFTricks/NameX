@@ -47,22 +47,17 @@ abstract class Config
 	public static $_settings = [
 		'include_bootstrap' => false,
 		'login_main_menu' => false,
-		'carousel' => false,
+		'custom_links_limit' => false,
+		'addons' => [
+			'carousel' => false,
+			'profile_cover' => false,
+		],
 	];
 
 	/**
 	 * @var array Avatar options
 	 */
-	public static $_avatar_options = [
-		// Enable avatars on topic list
-		'topics_list' => true,
-		// Enable avatars on board list
-		'boards' => true,
-		// Enable avatars on recent posts (info center)
-		'recent_posts' => true,
-		// Enable avatars on users online list
-		'users_online' => true,
-	];
+	public static $_avatar_options = true;
 
 	/**
 	 * @var array Color Options

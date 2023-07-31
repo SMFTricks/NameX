@@ -31,7 +31,7 @@ function themecustoms_page_index()
 {
 	global $txt;
 
-	return array(
+	return [
 		'extra_before' => '<span class="pagination_container"><span class="pages">' . $txt['pages'] . '</span>',
 		'previous_page' => themecustoms_icon('fa fa-angle-left'),
 		'current_page' => '<span class="current_page">%1$d</span> ',
@@ -39,7 +39,7 @@ function themecustoms_page_index()
 		'expand_pages' => '<span class="expand_pages" onclick="expandPages(this, {LINK}, {FIRST_PAGE}, {LAST_PAGE}, {PER_PAGE});"> ... </span>',
 		'next_page' => themecustoms_icon('fa fa-angle-right'),
 		'extra_after' => '</span>',
-	);
+	];
 }
 
 /**
@@ -315,80 +315,27 @@ function themecustoms_themeinfo()
  */
 function themecustoms_customlinks()
 {
-	global $settings;
+	global $settings, $txt;
+
+	// Links enabled?
+	if (empty($settings['st_custom_links_limit']) || empty($settings['st_custom_links_enabled']))
+		return;
 
 	echo '
 	<div class="st_custom_links">';
 
-	// Link 1
-	if (!empty($settings['st_custom_link1']) && !empty($settings['st_custom_link1_title']))
-		echo '
-		<span>
-			<a href="', $settings['st_custom_link1'], '" target="_blank" rel="noopener">', $settings['st_custom_link1_title'], '</a>
-		</span>';
+	// Loop through the links
+	for ($link = 1; $link <= $settings['st_custom_links_limit']; $link++)
+	{
+		// Link set?
+		if (empty($settings['st_custom_link' . $link]))
+			continue;
 
-	// Link 2
-	if (!empty($settings['st_custom_link2']) && !empty($settings['st_custom_link2_title']))
 		echo '
 		<span>
-			<a href="', $settings['st_custom_link2'], '" target="_blank" rel="noopener">', $settings['st_custom_link2_title'], '</a>
+			<a href="', $settings['st_custom_link' . $link], '" target="_blank" rel="noopener">', $settings['st_custom_link' . $link. '_title'] ?: sprintf($txt['st_custom_link_default'], $link), '</a>
 		</span>';
-
-	// Link 3
-	if (!empty($settings['st_custom_link3']) && !empty($settings['st_custom_link3_title']))
-		echo '
-		<span>
-			<a href="', $settings['st_custom_link3'], '" target="_blank" rel="noopener">', $settings['st_custom_link3_title'], '</a>
-		</span>';
-
-	// Link 4
-	if (!empty($settings['st_custom_link4']) && !empty($settings['st_custom_link4_title']))
-		echo '
-		<span>
-			<a href="', $settings['st_custom_link4'], '" target="_blank" rel="noopener">', $settings['st_custom_link4_title'], '</a>
-		</span>';
-
-	// Link 5
-	if (!empty($settings['st_custom_link5']) && !empty($settings['st_custom_link5_title']))
-		echo '
-		<span>
-			<a href="', $settings['st_custom_link5'], '" target="_blank" rel="noopener">', $settings['st_custom_link5_title'], '</a>
-		</span>';
-
-	// Link 6
-	if (!empty($settings['st_custom_link6']) && !empty($settings['st_custom_link6_title']))
-		echo '
-		<span>
-			<a href="', $settings['st_custom_link6'], '" target="_blank" rel="noopener">', $settings['st_custom_link6_title'], '</a>
-		</span>';
-
-	// Link 7
-	if (!empty($settings['st_custom_link7']) && !empty($settings['st_custom_link7_title']))
-		echo '
-		<span>
-			<a href="', $settings['st_custom_link7'], '" target="_blank" rel="noopener">', $settings['st_custom_link7_title'], '</a>
-		</span>';
-
-	// Link 8
-	if (!empty($settings['st_custom_link8']) && !empty($settings['st_custom_link8_title']))
-		echo '
-		<span>
-			<a href="', $settings['st_custom_link8'], '" target="_blank" rel="noopener">', $settings['st_custom_link8_title'], '</a>
-		</span>';
-
-	// Link 9
-	if (!empty($settings['st_custom_link9']) && !empty($settings['st_custom_link9_title']))
-		echo '
-		<span>
-			<a href="', $settings['st_custom_link9'], '" target="_blank" rel="noopener">', $settings['st_custom_link9_title'], '</a>
-		</span>';
-
-	// Link 10
-	if (!empty($settings['st_custom_link10']) && !empty($settings['st_custom_link10_title']))
-		echo '
-		<span>
-			<a href="', $settings['st_custom_link10'], '" target="_blank" rel="noopener">', $settings['st_custom_link10_title'], '</a>
-		</span>';
+	}
 
 	echo '
 	</div>';

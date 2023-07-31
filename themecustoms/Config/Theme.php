@@ -83,6 +83,9 @@ class Theme
 		// Addons?
 		$this->addons();
 
+		// Carousel
+		$this->theme_carousel();
+
 		// Theme Variants
 		$this->theme_variants();
 
@@ -105,13 +108,13 @@ class Theme
 		global $settings;
 
 		// Set the following variable to true if this theme wants to display the avatar of the user that posted the last and the first post on the message index and recent pages.
-		$settings['avatars_on_indexes'] = Init::$_avatar_options['topics_list'];
+		$settings['avatars_on_indexes'] = Init::$_avatar_options;
 
 		// Set the following variable to true if this theme wants to display the avatar of the user that posted the last post on the board index.
-		$settings['avatars_on_boardIndex'] = Init::$_avatar_options['boards'];
+		$settings['avatars_on_boardIndex'] = Init::$_avatar_options;
 
 		// Set the following variable to true if this theme wants to display the login and register buttons in the main forum menu.
-		$settings['login_main_menu'] = isset(Init::$_settings['login_main_menu']) && !empty(Init::$_settings['login_main_menu']) ? true : false;
+		$settings['login_main_menu'] = Init::$_settings['login_main_menu'] ?? false;
 
 		// Allow css/js files to be disabled for this specific theme.
 		// Add the identifier as an array key. IE array('smf_script'); Some external files might not add identifiers, on those cases SMF uses its filename as reference.
@@ -121,6 +124,9 @@ class Theme
 		// Add any custom attribute to the html tag
 		// This is useful for using along the variants, dark mode, etc.
 		$settings['themecustoms_html_attributes'] = [];
+
+		// Define the total amount of custom links to use.
+		$settings['st_custom_links_limit'] = Init::$_settings['custom_links_limit'] ?? 0;
 
 		// Add inline styles for any setting that requires it
 		add_integration_function('integrate_pre_css_output', 'ThemeCustoms\Settings\Styles::addCss#', false, '$themedir/themecustoms/Settings/Styles.php');
@@ -197,6 +203,9 @@ class Theme
 				case 'forum':
 					loadTemplate('themecustoms/templates/board');
 					break;
+				case 'profile':
+					loadTemplate('themecustoms/templates/profile');
+					break;
 				default:
 					break;
 			}
@@ -204,10 +213,6 @@ class Theme
 		// Board
 		elseif (empty($topic))
 			loadTemplate('themecustoms/templates/board');
-
-		// Carousel?
-		if (!empty(Init::$_settings['carousel']))
-			loadTemplate('themecustoms/templates/carousel');
 	}
 
 	/**
@@ -390,6 +395,32 @@ class Theme
 				'<li>'. $ST . '</li>' . "$1 ",
 				$buffer
 			);
+	}
+
+	/**
+	 * Theme:carousel()
+	 * 
+	 * Load the theme carousel
+	 * 
+	 * @return void
+	 */
+	private function theme_carousel() : void
+	{
+		global $settings;
+
+		// Carousel enabled?
+		if (empty(Init::$_settings['addons']['carousel']))
+			return;
+
+		// Carousel language file
+		loadLanguage('ThemeCustoms/carousel');
+
+		// Carousel template file
+		loadTemplate('themecustoms/templates/carousel');
+
+		// Carousel settings
+		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] == $settings['theme_id'])
+			add_integration_function('integrate_theme_settings', 'ThemeCustoms\Settings\Carousel::settings#', false, '$themedir/themecustoms/Settings/Carousel.php');
 	}
 
 	/**

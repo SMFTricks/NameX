@@ -488,6 +488,7 @@ h3.catbg .icon {
 .fa-post_poll::before,
 .fa-new_poll::before,
 .fa-add_poll::before,
+.fa-poll_results::before,
 .main_icons.poll::before {
 	content: "\f682";
 }

@@ -72,7 +72,7 @@ class InfoCenter
 		global $context, $settings;
 
 		// Check if there's anything to do
-		if (empty($settings['number_recent_posts']) || empty(Init::$_avatar_options['recent_posts']) || empty($context['latest_posts']))
+		if (empty($settings['number_recent_posts']) || empty(Init::$_avatar_options) || empty($context['latest_posts']))
 			return;
 
 		foreach ($context['latest_posts'] as $post)
@@ -91,7 +91,7 @@ class InfoCenter
 		global $context;
 
 		// Check if there's anything to do
-		if (empty(Init::$_avatar_options['users_online']) || empty($context['users_online']))
+		if (empty(Init::$_avatar_options) || empty($context['users_online']))
 			return;
 
 		foreach ($context['users_online'] as $user)
