@@ -35,7 +35,7 @@ class Carousel
 	 */
 	public function settings() : void
 	{
-		global $txt, $context;
+		global $txt, $context, $settings;
 
 		// Setting type
 		if (!empty($context['st_themecustoms_setting_types']))
