@@ -14,17 +14,17 @@ class Carousel
 	/**
 	 * @var int Number of carousel slides.
 	 */
-	private int $_slides = 1;
+	private $_slides = 1;
 
 	/**
 	 * @var int Slides limit
 	 */
-	private int $_slides_limit = 5;
+	private $_slides_limit = 5;
 
 	/**
 	 * @var array Theme settings.
 	 */
-	public array $_settings = [];
+	public $_settings = [];
 
 	/**
 	 * Carousel::settings()

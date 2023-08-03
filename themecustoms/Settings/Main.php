@@ -16,19 +16,19 @@ class Main
 	/**
 	 * @var array The common theme settings
 	 */
-	private array $_settings = [];
+	private $_settings = [];
 
 	/**
 	 * Will allow to separate the settings if needed.
 	 * No type means the setting is either a default setting or a main setting.
 	 * @var array Setting types.
 	 */
-	private array $_setting_types = [];
+	private $_setting_types = [];
 
 	/**
 	 * @var array Unwanted settings from the default theme (or custom theme even).
 	 */
-	private array $_remove_settings = [
+	private $_remove_settings = [
 		'site_slogan',
 		'enable_news',
 		'forum_width',
@@ -37,7 +37,7 @@ class Main
 	/**
 	 * @var array The custom settings that are not listed here
 	 */
-	private array $_custom_settings = [];
+	private $_custom_settings = [];
 
 	/**
 	 * Main::settings()
@@ -276,7 +276,7 @@ class Main
 				'description' => $txt['st_rss_url_desc'] . '<br>' . $txt['st_social_desc'],
 				'type' => 'text',
 				'theme_type' => 'social',
-			],
+			]
 		);
 	}
 
