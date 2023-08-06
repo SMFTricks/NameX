@@ -30,3 +30,34 @@ div.sceditor-group {
 .sceditor-container iframe {
 	padding: 0;
 }
+div.sceditor-dropdown,
+div.sceditor-smileyPopup {
+	background: var(--nav-dropdown-bg);
+	color: var(--nav-dropdown-txt-color);
+	border-color: var(--nav-dropdown-border-color);
+}
+div.sceditor-dropdown label {
+	color: var(--nav-dropdown-txt-color);
+}
+div.sceditor-dropdown .button {
+	background: var(--button-bg);
+	color: var(--button-txt-color);
+	box-shadow: var(--buttonlist-shadow);
+	text-shadow: var(--buttonlist-txt-shadow);
+	padding: 1px 12px;
+	display: inline-flex;
+	min-height: 30px;
+	margin: 0 1px;
+	border-radius: 4px;
+	border-width: 1px;
+	border-color: var(--button-border-color);
+	align-items: center;
+	gap: 5px;
+}
+div.sceditor-dropdown .button:is(:hover, :focus) {
+	background: var(--button-bg-hover);
+	color: var(--button-txt-color-hover);
+	box-shadow: var(--buttonlist-shadow);
+	border-radius: 4px;
+	border-color: var(--button-border-color-hover);
+}
