@@ -28,6 +28,8 @@ a, a:visited {
 hr {
 	box-shadow: 0 1px 0 var(--header-border-color) inset;
 	background: var(--titlebg-bg);
+	height: 2px;
+	border-width: 0;
 }
 strong, b  {
 	font-weight: 900;
@@ -2266,17 +2268,27 @@ fieldset.admin_group a span.large_admin_menu_icon {
 }
 
 /* Quote */
-.quoteheader {
+.quoteheader,
+blockquote cite {
 	color: var(--body-txt-color-strong);
+	display: block;
+	font-size: 0.9em;
+	margin-bottom: 3px;
 }
-.bbc_standard_quote {
-	background: var(--quote-bg);
+.bbc_standard_quote,
+blockquote {
+	background: var(--quote-bg);	
+	padding: 6px 10px;
+	margin-block: 5px;
+	margin-inline: 0;
 }
-.bbc_alternate_quote {
+.bbc_alternate_quote,
+blockquote > blockquote {
 	background: var(--qutoe-alternate-bg);
 }
 .bbc_standard_quote,
-.bbc_alternate_quote {
+.bbc_alternate_quote,
+blockquote {
 	border-width: 0 0 0 3px;
 	border-style: solid;
 	border-color: var(--quote-border-color);
@@ -2285,11 +2297,17 @@ fieldset.admin_group a span.large_admin_menu_icon {
 .codeheader {
 	color: var(--body-txt-color-strong);
 }
-.bbc_code {
+.bbc_code,
+code {
+	display: block;
 	background: var(--code-bg);
 	border-width: 2px 0 4px;
 	border-style: solid;
 	border-color: var(--code-border-color);
+	border-radius: 2px;
+	margin-block: 2px;
+	margin-inline: 0;
+	overflow: auto;
 }
 
 /* Alerts */

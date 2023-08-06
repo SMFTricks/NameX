@@ -1,0 +1,139 @@
+@import 'custom/theme_colors.css';
+@import 'custom/app.css';
+@import 'custom/dark.css';
+@import 'custom/variants.css';
+
+/*! SCEditor | (C) 2011-2013, Sam Clarke | sceditor.com/license */
+html, p, code::before, table {
+	margin: 0;
+	padding: 0;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	line-height: 1.25;
+	overflow: visible;
+}
+html {
+	height: 100%;
+}
+.ios {
+	/* Needed for iOS scrolling bug fix */
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+}
+.ios body {
+	/* Needed for iOS scrolling bug fix */
+	position: relative;
+	overflow: auto;
+}
+body {
+	/* Needed to make sure body covers the whole editor and that
+		long lines don't cause horizontal scrolling */
+	min-height: 100%;
+	word-wrap: break-word;
+	margin: 0 5px;
+	padding: 0;
+	background: var(--input-bg);
+	color: var(--input-txt-color);
+}
+
+ul, ol {
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+table, td {
+	border: 1px dotted var(--table-border-color);
+	empty-cells: show;
+	min-width: 0.5ch;
+}
+
+code::before {
+	position: absolute;
+	content: 'Code:';
+	top: -1.35em;
+	left: 0;
+}
+code[data-title]::before {
+	content: 'Code: (' attr(data-title) ')';
+}
+code {
+	white-space: pre;
+}
+.ie6 code, .ie7 code {
+	margin-top: 0;
+}
+code::before, code {
+	display: block;
+	text-align: left;
+}
+
+blockquote {
+	font-size: small;
+}
+
+blockquote cite::before {
+	font-size: 22px;
+	font-style: normal;
+	content: '\275D';
+	vertical-align: middle;
+	padding-inline: 5px;
+}
+blockquote cite + br,
+blockquote br:last-child {
+	display: none;
+}
+
+hr {
+	width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	padding: 0;
+	margin: 0;
+}
+
+/* Make sure images stay within bounds */
+img {
+	max-width: 100%;
+}
+
+/* Responsive Youtube embed */
+.videocontainer {
+	max-width: 560px;
+}
+.videocontainer div {
+	position: relative;
+	padding-bottom: 56.25%;
+}
+.videocontainer iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100% !important;
+	height: 100% !important;
+}
+
+.floatleft, .floatright {
+	max-width: 45%;
+	border: 1px dashed var(--table-border-color);
+	padding: 1px;
+	min-height: 1em;
+}
+.floatleft {
+	float: left;
+	clear: left;
+	margin: 0 1em 1em 0;
+}
+.floatright {
+	float: right;
+	clear: right;
+	margin: 0 0 1em 1em;
+}
+@media (max-width: 480px) {
+	.floatleft, .floatright {
+		max-width: 100% !important;
+		margin: 0 0.5em 1em !important;
+	}
+}

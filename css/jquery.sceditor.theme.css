@@ -27,3 +27,6 @@ div.sceditor-group {
 .sceditor-button:hover {
 	background: var(--sceditor-group-bg-active);
 }
+.sceditor-container iframe {
+	padding: 0;
+}
