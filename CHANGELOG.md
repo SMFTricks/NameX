@@ -1,5 +1,9 @@
 # Changelog
 
+#### 1.2.5 - 05 August 2023
+- ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixes for styles in wysiwyg mode.
+- ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Improved styling for some sceditor elements.
+
 #### 1.2.4 - 31 July 2023
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Improved stats pie colors.
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Improved displaying users online in info center.
