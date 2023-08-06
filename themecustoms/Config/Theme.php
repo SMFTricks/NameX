@@ -451,6 +451,9 @@ class Theme
 
 		// Add the theme variants as a theme option too
 		add_integration_function('integrate_theme_options', 'ThemeCustoms\Color\Variants::userOptions#', false, '$themedir/themecustoms/Color/Variants.php');
+
+		// Style sceditor cuz it's dumb and stupid
+		add_integration_function('integrate_sceditor_options', 'ThemeCustoms\Color\Variants::sceditor#', false, '$themedir/themecustoms/Color/Variants.php');
 	}
 
 	/**
@@ -481,6 +484,9 @@ class Theme
 
 		// Add the dark mode as a theme option too
 		add_integration_function('integrate_theme_options', 'ThemeCustoms\Color\DarkMode::userOptions#', false, '$themedir/themecustoms/Color/DarkMode.php');
+
+		// Style sceditor cuz it's dumb and stupid
+		add_integration_function('integrate_sceditor_options', 'ThemeCustoms\Color\DarkMode::sceditor#', false, '$themedir/themecustoms/Color/DarkMode.php');
 	}
 
 	/**

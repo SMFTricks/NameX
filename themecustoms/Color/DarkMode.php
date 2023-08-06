@@ -195,7 +195,7 @@ class DarkMode
 		global $options, $settings;
 
 		// Do we need dark mode?
-		if (empty($settings['st_enable_dark_mode']) && (!isset($settings['st_theme_mode_default']) ||$settings['st_theme_mode_default'] === 'light'))
+		if (empty($settings['st_enable_dark_mode']) && (!isset($settings['st_theme_mode_default']) || $settings['st_theme_mode_default'] === 'light'))
 			return;
 
 		// Theme Mode
@@ -211,5 +211,29 @@ class DarkMode
 			],
 			'smftheme_js_darkmode'
 		);
+	}
+
+	/**
+	 * DarkMode::sceditor()
+	 * 
+	 * The sceditor styling is extremely stupid, so you need to overengineer things to style it accordingly.
+	 * 
+	 * @return void
+	 */
+	public function sceditor() : void
+	{
+		global $options, $settings;
+
+		// Do we need dark mode?
+		if (empty($settings['st_enable_dark_mode']) && (!isset($settings['st_theme_mode_default']) ||$settings['st_theme_mode_default'] === 'light'))
+			return;
+
+		addInlineJavaScript('
+			$(document).ready(function() {
+				$(\'.sceditor-container iframe\').each(function() {
+					$(this).contents().find(\'html\').attr(\'data-colormode\', "' . (!empty($settings['st_enable_dark_mode']) ? ((isset($options['st_theme_mode']) && $options['st_theme_mode'] === 'dark' ? 'dark' : 'light')) : 'dark') . '");
+				});
+			});
+		', true);
 	}
 }

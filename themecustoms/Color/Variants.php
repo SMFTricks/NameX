@@ -281,4 +281,28 @@ class Variants
 				'smftheme_js_variants'
 			);
 	}
+
+	/**
+	 * Variants::sceditor()
+	 * 
+	 * The sceditor styling is extremely stupid, so you need to overengineer things to style it accordingly.
+	 * 
+	 * @return void
+	 */
+	public function sceditor() : void
+	{
+		global $settings, $context;
+
+		// Check for JS
+		if (empty($settings['st_color_variants_javascript']) || empty($settings['theme_variants']))
+			return;
+
+		addInlineJavaScript('
+			$(document).ready(function() {
+				$(\'.sceditor-container iframe\').each(function() {
+					$(this).contents().find(\'html\').attr(\'data-themecolor\', "' . $context['theme_variant'] . '");
+				});
+			});
+		', true);
+	}
 }
