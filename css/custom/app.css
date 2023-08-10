@@ -1238,7 +1238,7 @@ footer .footer-other span.help-links a i.fa {
 	margin: 0;
 	padding: 1px 10px 2px;
 	min-height: 35px;
-	align-items: center;
+	align-items: flex-start;
 	font-size: 0.9em;
 }
 .forum_news #smf_slider,
@@ -1249,6 +1249,7 @@ footer .footer-other span.help-links a i.fa {
 }
 .forum_news .sy-box .sy-slides-wrap {
 	flex-grow: 1;
+	padding-block: 0.75em;
 }
 .forum_news .sy-box .sy-pager {
 	margin: 0;
