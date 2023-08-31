@@ -333,7 +333,7 @@ function template_theme_colorpicker()
 	{
 		echo '
 		<li id="user_colorpicker">
-			<a href="javascript:void(0);">', themecustoms_icon('fa fa-palette'), '</a>
+			<a href="javascript:void(0);" aria-label="', $txt['variant_pick'], '" title="', $txt['variant_pick'], '">', themecustoms_icon('fa fa-palette'), '</a>
 			<ul id="colorpicker_menu" class="top_menu dropmenu">';
 		
 		// Theme variants
@@ -358,13 +358,13 @@ function template_theme_colorpicker()
  */
 function template_theme_darkmode()
 {
-	global $settings;
+	global $settings, $txt;
 	
 	if (!empty($settings['st_enable_dark_mode']) && !empty($settings['customtheme_darkmode']))
 	{
 		echo '
 		<li id="user_thememode">
-			<a href="javascript:void(0);" class="theme-mode-toggle">
+			<a href="javascript:void(0);" class="theme-mode-toggle" aria-label="', $txt['st_theme_mode'], '" title="', $txt['st_theme_mode'], '">
 				<span></span>
 			</a>
 		</li>';
@@ -378,7 +378,7 @@ function template_theme_darkmode()
  */
 function theme_linktree($force_show = false)
 {
-	global $context, $shown_linktree;
+	global $context, $shown_linktree, $txt;
 
 	// If linktree is empty, just return - also allow an override.
 	// Additionally, don't show the linktree if we are at home.
@@ -389,7 +389,7 @@ function theme_linktree($force_show = false)
 				<div class="navigate_section">
 					<ul>
 						<li class="trigger">
-							<a href="javascript:void(0);">
+							<a href="javascript:void(0);" aria-label="', $txt['see_all'], '" title="', $txt['see_all'], '">
 								', themecustoms_icon('fa fa-bars'), '
 							</a>
 						</li>';
