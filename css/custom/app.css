@@ -2078,6 +2078,9 @@ ul.quickbuttons li ul.dropmenu li a:focus {
 	border-color: var(--buttonlist-border-color);
 	border-style: solid;
 }
+.navigate_section ul li.trigger {
+	display: none;
+}
 .navigate_section ul li::after,
 .navigate_section ul li::before {
 	content: "";
