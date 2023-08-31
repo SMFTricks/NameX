@@ -299,7 +299,6 @@
 	.poster ul.user_info li.avatar img.avatar {
 		width: 64px;
 		height: 64px;
-		border-radius: 50%;
 		margin: 0 5px 0 0;
 	}
 	.postarea {
@@ -495,6 +494,9 @@
 
 @media (max-width: 767px)
 {
+	.navigate_section ul li.trigger {
+		display: inline-flex;
+	}
 	.navigate_section ul li:not(:last-child, :first-child, :nth-child(2)) {
 		display: none;
 	}
