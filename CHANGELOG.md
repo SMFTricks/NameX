@@ -1,5 +1,9 @@
 # Changelog
 
+#### 1.2.6 - 31 August 2023
+- ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Added aria labels and titles to icons for toggle button, theme mode and variants.
+- ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Only display navigation toggler on mobile.
+
 #### 1.2.5 - 05 August 2023
 - ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixes for styles in wysiwyg mode.
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Improved styling for some sceditor elements.
