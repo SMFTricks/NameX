@@ -9,9 +9,14 @@
 $(function() {
 
 	// Settings tabs
-	$( '#st_settings_tabs').tabs();
+	$('#st_settings_tabs').tabs({
+		activate: (event, ui) => {
+			$('#st_settings_tabs').parent()[0].action = smf_scripturl + '?action=admin;area=theme;sa=list;th=' + smf_theme_id + '#' + ui.newPanel[0].id;
+		}
+	});
+
 	// Info center tabs
-	$( '#info_center_blocks').tabs();
+	$('#info_center_blocks').tabs();
 
 	// Replace stats icon
 	$("img[src=\'"+smf_images_url+"/icons/stats_info.png\']").replaceWith("<i class=\'main_icons stats\'></i>");
