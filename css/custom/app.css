@@ -2478,11 +2478,15 @@ div#settingtype-information[aria-hidden="false"]~input[type="submit"] {
 	background: var(--windowbg-bg-hover);
 }
 
-#personal_messages #postmodify ~ div.windowbg {
+#personal_messages #postmodify ~ div.windowbg,
+#personal_messages #preview_body {
 	padding: 15px;
 }
 
 .activity_stats li span {
 	background: var(--roundframe-bg);
 	border-color: var(--catbg-bg);
+}
+.signature {
+	word-break: break-all;
 }
