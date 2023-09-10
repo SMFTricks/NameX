@@ -1,5 +1,9 @@
 # Changelog
 
+#### 1.2.7 - 10 September 2023
+- ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Theme Settings tabs now go back to the same tab after saving.
+- ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed minor layout issues.
+
 #### 1.2.6 - 31 August 2023
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Added aria labels and titles to icons for toggle button, theme mode and variants.
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Only display navigation toggler on mobile.
