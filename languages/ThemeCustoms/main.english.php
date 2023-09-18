@@ -114,6 +114,7 @@ $txt['st_profile_cover'] = 'Profile cover';
 $txt['st_news_prom'] = 'News and Promotions';
 $txt['st_previous'] = 'Previous';
 $txt['st_next'] = 'Next';
+$txt['st_post_by'] = '%1$s <span class="post_by">by %2$s</span>';
 
 // Colorpicker
 $txt['st_colorpicker1_admin'] = 'Choose primary theme color';

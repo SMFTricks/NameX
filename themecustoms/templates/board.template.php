@@ -141,8 +141,7 @@ function themecustoms_board_lastpost($board)
 			', !empty($settings['st_enable_avatars_boards']) && !empty($board['last_post']['member']['avatar']) ? themecustoms_avatar($board['last_post']['member']['avatar']['href'], $board['last_post']['member']['id']) : '', '
 			<p>
 				<span class="last_post">
-					', $board['last_post']['link'], ' 
-					<span class="post_by">', $txt['by'], ' ', $board['last_post']['member']['link'], '</span>
+					', sprintf($txt['st_post_by'], $board['last_post']['link'], $board['last_post']['member']['link']), '
 				</span>
 				<span class="time">', themecustoms_icon('far fa-clock'), ' ', timeformat($board['last_post']['timestamp']), '</span>
 			</p>';

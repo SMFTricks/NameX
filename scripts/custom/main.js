@@ -12,6 +12,9 @@ $(function() {
 	$('#st_settings_tabs').tabs({
 		activate: (event, ui) => {
 			$('#st_settings_tabs').parent()[0].action = smf_scripturl + '?action=admin;area=theme;sa=list;th=' + smf_theme_id + '#' + ui.newPanel[0].id;
+		},
+		create: (event, ui) => {
+			$('#st_settings_tabs').parent()[0].action = smf_scripturl + '?action=admin;area=theme;sa=list;th=' + smf_theme_id + '#' + ui.panel[0].id;
 		}
 	});
 
