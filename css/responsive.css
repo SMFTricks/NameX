@@ -220,6 +220,9 @@
 		border-width: 1px 0 0;
 		border-style: solid;
 	}
+	.boardindex_table .b_redirect .lastpost {
+		display: none;
+	}
 	.boardindex_table .lastpost p span {
 		display: inline;
 	}
