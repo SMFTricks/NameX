@@ -32,3 +32,4 @@ Free & Premium Themes for SMF
 [size=12pt][url="https://github.com/SMFTricks/NameX/blob/main/CHANGELOG.md"][color=#cc5d31]Changelog[/color][/url][/size]
 [size=12pt][url="http://demo21.smftricks.com/index.php?theme=4"][color=navy]Demo Online[/color][/url][/size]
 [size=12pt][url="https://github.com/SMFTricks/NameX"][color=purple]GitHub[/color][/url][/size]
+[size=3][url="https://crowdin.com/project/smf-theme-customs"][color=#495475]Crowdin[/color][/url][/size]
