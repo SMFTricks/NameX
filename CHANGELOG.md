@@ -1,5 +1,9 @@
 # Changelog
 
+#### 1.2.8 - 01 October 2023
+- ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Minor layout improvements for boards layout.
+- ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Theme Settings tabs minor tweaks.
+
 #### 1.2.7 - 10 September 2023
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Theme Settings tabs now go back to the same tab after saving.
 - ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed minor layout issues.
