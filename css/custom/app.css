@@ -761,6 +761,10 @@ p.moderators {
 .boardindex_table .lastpost p span.last_post {
 	display: flex;
 	gap: 0.25em;
+	flex-wrap: wrap;
+}
+.boardindex_table .lastpost p span.last_post > br {
+	display: none;
 }
 .boardindex_table .lastpost p span.time {
 	display: block;
