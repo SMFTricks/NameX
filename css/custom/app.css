@@ -2496,5 +2496,5 @@ div#settingtype-information[aria-hidden="false"]~input[type="submit"] {
 	border-color: var(--catbg-bg);
 }
 .signature {
-	word-break: break-all;
+	word-break: break-word;
 }
