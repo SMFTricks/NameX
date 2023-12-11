@@ -1,0 +1,37 @@
+#
+# Your Crowdin credentials
+#  - The _env versions replace the non-_env versions when using a public repository for security
+#  - These environment variables must be defined in the env: section in your GitHub workflow
+#
+project_id_env: CROWDIN_PROJECT_ID
+api_token_env: CROWDIN_API_TOKEN
+base_path : "../."
+base_url : "https://api.crowdin.com"
+
+#
+# Whether to use the existing file system hierarchy or to flatten it out
+#  - true or false, SMF needs this to be true, since our hierarchy isn't flat (agreement.txt vs others)
+#
+preserve_hierarchy: true
+
+#
+# Source files & their translation patterns
+#
+files: [
+ {
+  source: "languages/ThemeCustoms/carousel.english.php",
+  translation: "languages/ThemeCustoms/carousel.%language%.php",
+ },
+ {
+  source: "languages/ThemeCustoms/cover.english.php",
+  translation: "languages/ThemeCustoms/cover.%language%.php",
+ },
+ {
+  source: "languages/ThemeCustoms/main.english.php",
+  translation: "languages/ThemeCustoms/main.%language%.php",
+ },
+ {
+  source: "languages/ThemeCustoms/profile.english.php",
+  translation: "languages/ThemeCustoms/profile.%language%.php",
+ },
+]
