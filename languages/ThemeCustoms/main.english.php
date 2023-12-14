@@ -7,8 +7,6 @@
  * @license MIT
  */
 
-global $scripturl, $settings;
-
 // Additional Settings
 $txt['current_theme'] = 'Theme settings';
 $txt['st_main'] = 'Main';
@@ -23,9 +21,11 @@ $txt['st_boards'] = 'Boards';
 $txt['st_about'] = 'About ';
 $txt['st_description_default'] = 'Welcome to the community!';
 $txt['st_description'] = 'Forum description';
-$txt['st_description_desc'] = 'Add a description of the forum. Default is: <span class="smalltext">' . $txt['st_description_default'] . '</span>';
+/* Argument: $txt['st_description_default'] */
+$txt['st_description_desc'] = 'Add a description of the forum. Default is: <span class="smalltext">%1$s</span>';
 $txt['st_description_title'] = 'Description Title';
-$txt['st_description_title_desc'] = 'Use a custom title for your description. Default is: <span class="smalltext">' . $txt['st_about'] . '</span>';
+/* Argument: $txt['st_about'] */
+$txt['st_description_title_desc'] = 'Use a custom title for your description. Default is: <span class="smalltext">%1$s</span>';
 
 // Separate sticky topics
 $txt['st_sticky_topic'] = 'Important Topics';
@@ -182,11 +182,13 @@ $txt['st_linkedin_link'] = 'LinkedIn link';
 $txt['st_rss_url'] = 'RSS URL';
 $txt['st_rss'] = 'RSS Feed';
 $txt['st_social_desc'] = 'Leave blank to disable.';
-$txt['st_rss_url_desc'] = 'The default forum URL is: <em>'.$scripturl. '?action=.xml;type=rss</em>';
+/* Argument: $scripturl */
+$txt['st_rss_url_desc'] = 'The default forum URL is: <em>%1$s?action=.xml;type=rss</em>';
 
 // Categories
 $txt['st_catcover_enable'] = 'Enable cover in categories';
-$txt['st_catcover_enable_desc'] = 'This will show a cover for each category.<br>If you need to manually upload them, you can do so on this path:<br><em class="smalltext">'. $settings['theme_dir']. '/images/catcover/{category id}.jpg</em>.<br>If you have the Categories Cover Addon, you will have the options to upload below, once this setting is enabled.';
+/* Argument: $settings['theme_dir'] */
+$txt['st_catcover_enable_desc'] = 'This will show a cover for each category.<br>If you need to manually upload them, you can do so on this path:<br><em class="smalltext">%1$s/images/catcover/{category id}.jpg</em>.<br>If you have the Categories Cover Addon, you will have the options to upload below, once this setting is enabled.';
 $txt['st_enable_colcategories'] = 'Enable categories in columns';
 $txt['st_enable_colcategories_desc'] = 'It will display two categories per row in desktop';
 

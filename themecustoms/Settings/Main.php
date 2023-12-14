@@ -193,7 +193,7 @@ class Main
 	 */
 	private function socials() : void
 	{
-		global $txt;
+		global $txt, $scripturl;
 
 		// Add the type
 		$this->_setting_types[] = 'social';
@@ -273,7 +273,7 @@ class Main
 			[
 				'id' => 'st_rss_url',
 				'label' => $txt['st_rss_url'],
-				'description' => $txt['st_rss_url_desc'] . '<br>' . $txt['st_social_desc'],
+				'description' => sprintf($txt['st_rss_url_desc'], $scripturl) . '<br>' . $txt['st_social_desc'],
 				'type' => 'text',
 				'theme_type' => 'social',
 			]
