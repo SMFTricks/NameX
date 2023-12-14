@@ -36,7 +36,7 @@ jobs:
 
       - name: Copy main-repo contents to new directory
         run: |
-          rsync -av --exclude='.git' --exclude='.gitignore' --delete-before --ignore-times temp_clone/ $GITHUB_WORKSPACE/_theme-customs
+          rsync -av --exclude='.git' --exclude="crowdin.yml" --exclude='.gitignore' --delete-before --ignore-times temp_clone/ $GITHUB_WORKSPACE/_theme-customs
 
       - name: Verify GitHub Workspace Contents
         run: ls -la $GITHUB_WORKSPACE

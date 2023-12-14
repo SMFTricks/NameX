@@ -1,9 +1,0 @@
-files:
-  - source: /languages/ThemeCustoms/main.english.php
-    translation: /%original_path%/main.%language%.%file_extension%
-  - source: /languages/ThemeCustoms/carousel.english.php
-    translation: /%original_path%/carousel.%language%.%file_extension%
-  - source: /languages/ThemeCustoms/cover.english.php
-    translation: /%original_path%/cover.%language%.%file_extension%
-  - source: /languages/ThemeCustoms/profile.english.php
-    translation: /%original_path%/profile.%language%.%file_extension%
