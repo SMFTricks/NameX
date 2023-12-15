@@ -7,7 +7,7 @@ on:
     inputs:
       main_repo_branch:
         description: 'Theme Customs'
-        default: 'main'
+        default: 'for2.1'
 
 jobs:
   sync:
@@ -36,7 +36,7 @@ jobs:
 
       - name: Copy main-repo contents to new directory
         run: |
-          rsync -av --exclude='.git' --exclude="crowdin.yml" --exclude='.gitignore' --delete-before --ignore-times temp_clone/ $GITHUB_WORKSPACE/_theme-customs
+          rsync -av --exclude='.git' --exclude="crowdin.yml" --exclude="README.md" --exclude='.gitignore' --delete-before --ignore-times temp_clone/ $GITHUB_WORKSPACE/_theme-customs
 
       - name: Verify GitHub Workspace Contents
         run: ls -la $GITHUB_WORKSPACE
