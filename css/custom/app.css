@@ -813,6 +813,9 @@ img#attached_image_new.avatar {
 	font-weight: 900;
 	content: "\f0c1";
 }
+.board_icon a:has(img, i, span)::before {
+	display: none;
+}
 .info .subject {
 	font-size: 1.08em;
 	font-weight: normal;
