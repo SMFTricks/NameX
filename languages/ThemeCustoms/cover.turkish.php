@@ -8,7 +8,7 @@
  */
 
 $txt['st_category_upload'] = 'Kapağı Yükle';
-$txt['st_category_cover_current'] = '<div class="noticebox Smalltext">Yeni bir kapak yüklendiğinde mevcut kapağın yerini alacaktır.<br>
+$txt['st_category_cover_current'] = '<div class="noticebox smalltext">Yeni bir kapak yüklendiğinde mevcut kapağın yerini alacaktır.<br>
 <span class="smalltext">Mevcut Kapak:</span><br>%1$s</div>';
-$txt['st_category_nocover'] = '<div class="noticebox Smalltext">Bu kategorinin kapağı yoktur.</div>';
+$txt['st_category_nocover'] = '<div class="noticebox smalltext">Bu kategorinin kapağı yoktur.</div>';
 $txt['st_category_cover_clear'] = 'Kapağı Temizle';
