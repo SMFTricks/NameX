@@ -12,26 +12,19 @@
  *
  * @param array $board Current board information.
  */
-function themecustoms_board_icon($board)
+function template_bi_board_icon($board)
 {
 	global $context, $scripturl;
 
-	echo '
-		<div class="board_icon">';
-
-	if (function_exists('template_bi_' . $board['type'] . '_icon'))
+	if (function_exists('themecustoms_bi' . $board['type'] . '_icon'))
 	{
-			call_user_func('template_bi_' . $board['type'] . '_icon', $board);
-
-			echo '
-		</div>';
+		call_user_func('themecustoms_bi' . $board['type'] . '_icon', $board);
 
 		return;
 	}
 
 	echo '
-			<a href="', ($context['user']['is_guest'] || $board['type'] == 'redirect' ? $board['href'] : $scripturl . '?action=unread;board=' . $board['id'] . '.0;children'), '" class="board_', $board['board_class'], '"', !empty($board['board_tooltip']) ? ' title="' . $board['board_tooltip'] . '"' : '', '></a>
-		</div>';
+			<a href="', ($context['user']['is_guest'] || $board['type'] == 'redirect' ? $board['href'] : $scripturl . '?action=unread;board=' . $board['id'] . '.0;children'), '" class="board_', $board['board_class'], '"', !empty($board['board_tooltip']) ? ' title="' . $board['board_tooltip'] . '"' : '', '></a>';
 }
 
  /**
@@ -39,19 +32,13 @@ function themecustoms_board_icon($board)
  *
  * @param array $board Current board information.
  */
-function themecustoms_board_info($board)
+function template_bi_board_info($board)
 {
 	global $context, $scripturl, $txt;
 
-	echo '
-		<div class="info">';
-
-	if (function_exists('template_bi_' . $board['type'] . '_info'))
+	if (function_exists('themecustoms_bi' . $board['type'] . '_info'))
 	{
-			call_user_func('template_bi_' . $board['type'] . '_info', $board);
-
-			echo '
-		</div>';
+		call_user_func('themecustoms_bi' . $board['type'] . '_info', $board);
 
 		return;
 	}
@@ -75,9 +62,6 @@ function themecustoms_board_info($board)
 			<p class="moderators">
 				', count($board['link_moderators']) === 1 ? $txt['moderator'] : $txt['moderators'], ': ', implode(', ', $board['link_moderators']), '
 			</p>';
-
-	echo '
-		</div>';
 }
 
 /**
@@ -85,19 +69,13 @@ function themecustoms_board_info($board)
  *
  * @param array $board Current board information.
  */
-function themecustoms_board_stats($board)
+function template_bi_board_stats($board)
 {
 	global $txt;
 
-	echo '
-		<div class="board_stats">';
-
-	if (function_exists('template_bi_' . $board['type'] . '_stats'))
+	if (function_exists('themecustoms_bi' . $board['type'] . '_stats'))
 	{
-		call_user_func('template_bi_' . $board['type'] . '_stats', $board);
-
-			echo '
-		</div>';
+		call_user_func('themecustoms_bi' . $board['type'] . '_stats', $board);
 
 		return;
 	}
@@ -108,8 +86,7 @@ function themecustoms_board_stats($board)
 					<strong class="posts">' . comma_format($board['posts']) . '</strong> ' . $txt['posts'] . '<br>
 					<strong class="topics">' . comma_format($board['topics']) . '</strong> ' . $txt['board_topics'] : '
 					<strong class="redirects">' . comma_format($board['posts']) . '</strong> ' . $txt['redirects']), '
-			</p>
-		</div>';
+			</p>';
 }
 
 /**
@@ -118,19 +95,13 @@ function themecustoms_board_stats($board)
  *
  * @param array $board Current board information.
  */
-function themecustoms_board_lastpost($board)
+function template_bi_board_lastpost($board)
 {
 	global $settings, $txt;
 
-	echo '
-		<div class="lastpost">';
-
-	if (function_exists('template_bi_' . $board['type'] . '_lastpost'))
+	if (function_exists('themecustoms_bi' . $board['type'] . '_lastpost'))
 	{
-		call_user_func('template_bi_' . $board['type'] . '_lastpost', $board);
-
-			echo '
-		</div>';
+		call_user_func('themecustoms_bi' . $board['type'] . '_lastpost', $board);
 
 		return;
 	}
@@ -145,9 +116,6 @@ function themecustoms_board_lastpost($board)
 				</span>
 				<span class="time">', themecustoms_icon('far fa-clock'), ' ', timeformat($board['last_post']['timestamp']), '</span>
 			</p>';
-
-	echo '
-		</div>';
 }
 
 /**
@@ -155,17 +123,17 @@ function themecustoms_board_lastpost($board)
  *
  * @param array $board Current board information.
  */
-function themecustoms_board_children($board, $style = false)
+function template_bi_board_children($board, $style = false)
 {
 	global $txt, $scripturl, $context;
 
 	if (empty($board['children']))
 		return;
 
-	if (function_exists('template_bi_' . $board['type'] . '_children'))
+	if (function_exists('themecustoms_bi' . $board['type'] . '_children'))
 	{
-		call_user_func('template_bi_' . $board['type'] . '_children', $board);
-	
+		call_user_func('themecustoms_bi' . $board['type'] . '_children', $board);
+
 		return;
 	}
 
