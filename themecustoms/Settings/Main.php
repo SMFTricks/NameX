@@ -123,6 +123,10 @@ class Main
 			],
 			// Menu Settings
 			[
+				'id' => 'st_loginlogout_menu',
+				'label' => sprintf($txt['st_loginlogout_menu'], $txt['logout'], $txt['login'], $txt['register']),
+			],
+			[
 				'section_title' => $txt['st_menu_settings'],
 				'id' => 'st_disable_menu_icons',
 				'label' => $txt['st_disable_menu_icons'],

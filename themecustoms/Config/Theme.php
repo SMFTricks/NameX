@@ -114,7 +114,7 @@ class Theme
 		$settings['avatars_on_boardIndex'] = Init::$_avatar_options;
 
 		// Set the following variable to true if this theme wants to display the login and register buttons in the main forum menu.
-		$settings['login_main_menu'] = Init::$_settings['login_main_menu'] ?? false;
+		$settings['login_main_menu'] = $settings['st_loginlogout_menu'] ?? false;
 
 		// Allow css/js files to be disabled for this specific theme.
 		// Add the identifier as an array key. IE array('smf_script'); Some external files might not add identifiers, on those cases SMF uses its filename as reference.
