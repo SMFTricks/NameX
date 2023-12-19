@@ -1,5 +1,12 @@
 # Changelog
 
+#### 1.3.0 - 18 December 2023
+- ![New Feature](https://smftricks.com/assets/changelog/tag--plus.png) Added new menu setting to enable logout, login and signout buttons.
+- ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed layout issues.
+- ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Improved board layout compatibility.
+- ![Translation](https://smftricks.com/assets/changelog/language.png) Turkish translation.
+- ![Translation](https://smftricks.com/assets/changelog/language.png) Dutch translation.
+---
 #### 1.2.8 - 01 October 2023
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Minor layout improvements for boards layout.
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Theme Settings tabs minor tweaks.
@@ -103,6 +110,7 @@
 - ![New Feature](https://smftricks.com/assets/changelog/tag--plus.png) Initial Release
 
 ## Legend
+- ![Translation](https://smftricks.com/assets/changelog/language.png) Translation
 - ![New Feature](https://smftricks.com/assets/changelog/tag--plus.png) New Feature
 - ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Bug Fix
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Improvement
