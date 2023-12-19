@@ -123,15 +123,15 @@ class Main
 			],
 			// Menu Settings
 			[
-				'id' => 'st_loginlogout_menu',
-				'label' => sprintf($txt['st_loginlogout_menu'], $txt['logout'], $txt['login'], $txt['register']),
-			],
-			[
 				'section_title' => $txt['st_menu_settings'],
 				'id' => 'st_disable_menu_icons',
 				'label' => $txt['st_disable_menu_icons'],
 				'description' => $txt['st_disable_menu_icons_desc'],
 				'type' => 'checkbox',
+			],
+			[
+				'id' => 'st_loginlogout_menu',
+				'label' => sprintf($txt['st_loginlogout_menu'], $txt['logout'], $txt['login'], $txt['register']),
 			],
 			[
 				'id' => 'st_remove_items',
