@@ -82,6 +82,7 @@ $txt['st_community_forum_desc'] = 'Gebruik deze opties als je een portaal mod ge
 $txt['st_collapse_menu'] = 'Altijd het zij-menu tonen in desktop weergave';
 $txt['st_footer_actions'] = 'Acties voor voettekst menu';
 $txt['st_footer_actions_desc'] = 'Hier kun je acties/sleutels opgeven die je wilt opnemen in het voettekst menu. Elke waarde moet gescheiden worden met een komma, dus <i>admin,profile,mlist</i>';
+$txt['st_loginlogout_menu'] = 'Voeg %1$s, %2$s en %3$s knoppen toe aan het hoofdmenu';
 
 // Special Menu
 $txt['st_special_menu'] = 'Speciale menu items';
