@@ -75,7 +75,7 @@ $txt['st_enable_community'] = 'Gebruik de community optie';
 $txt['st_community'] = 'Community';
 $txt['forum'] = 'Forum';
 $txt['st_enable_community_desc'] = 'Hiermee wordt een aparte community menu optie geactiveerd, waaronder al je forum menu opties worden getoond, behalve de opties die je hieronder expliciet uitsluit. De "Index" optie aan de start van het menu blijft, desgewenst kun je deze met de andere instelling verwijderen.';
-$txt['st_not_community'] = 'Sluit deze acties uit van de community optie';
+$txt['st_not_community'] = 'Sluit deze actie uit van de community optie';
 $txt['st_not_community_desc'] = 'Hier kun je acties/sleutels opgeven die je niet wilt onder de community optie.<br><span class="smalltext">Elke waarde moet gescheiden worden met een komma, dus <i>admin,moderate</i></span>';
 $txt['st_community_forum'] = 'Verwijs de "Community" optie naar ?action=forum';
 $txt['st_community_forum_desc'] = 'Gebruik deze opties als je een portaal mod gebruikt, anders zal deze optie een foutmelding geven.';
@@ -109,10 +109,10 @@ $txt['see_all'] = 'Toon alles';
 $txt['see_more'] = 'Toon meer';
 $txt['st_all_rights'] = 'Alle rechten voorbehouden';
 $txt['st_other_settings'] = 'Andere instellingen';
-$txt['st_join'] = 'Wordt lid';
+$txt['st_join'] = 'Word lid';
 $txt['sort_by'] = 'Sorteren op';
 $txt['st_profile_cover'] = 'Profiel afbeelding';
-$txt['st_news_prom'] = 'Nieuws and aanbideingen';
+$txt['st_news_prom'] = 'Nieuws and aanbiedingen';
 $txt['st_previous'] = 'Vorige';
 $txt['st_next'] = 'Volgende';
 
@@ -187,17 +187,17 @@ $txt['st_social_desc'] = 'Laat leeg om niet te gebruiken.';
 $txt['st_rss_url_desc'] = 'De standaard forum URL is:<em>%1$s?action=.xml;type=rss</em>';
 
 // Categories
-$txt['st_catcover_enable'] = 'Enable cover in categories';
+$txt['st_catcover_enable'] = 'Schakel omslag in categorieën in';
 /* Argument: $settings['theme_dir'] */
 $txt['st_catcover_enable_desc'] = 'Dit toont een omslag voor elke categorie.<br>Als u ze handmatig wilt uploaden, dan kunt u dit op dit pad:<br><em class="smalltext">%1$s/images/catcover/{category id}.jpg</em>.<br>Als u de Categorieën Cover Addon heeft, hebben u de opties om hieronder te uploaden, zodra deze instelling is ingeschakeld.';
-$txt['st_enable_colcategories'] = 'Enable categories in columns';
-$txt['st_enable_colcategories_desc'] = 'It will display two categories per row in desktop';
+$txt['st_enable_colcategories'] = 'Categorieën in kolommen inschakelen';
+$txt['st_enable_colcategories_desc'] = 'Het zal twee categorieën per rij op het bureaublad weergeven';
 
 // Theme Effects
 $txt['st_enable_tooltips'] = 'Activeer titel tooltips';
 $txt['st_enable_tooltips_desc'] = 'Hiermee worden tootips getoond als met de muis een element wordt aangewezen met een titel attribuut.';
 $txt['st_enable_nice_scroll'] = 'Gebruik NiceScroll';
-$txt['st_enable_nice_scroll_desc'] = 'Deze optie verandert de style van de shuifbalk.';
+$txt['st_enable_nice_scroll_desc'] = 'Deze optie verandert de style van de schuifbalk.';
 $txt['st_disable_theme_effects'] = 'Deactiveer thema effecten';
 $txt['st_disable_theme_effects_desc'] = 'Deze optie deactiveert animaties die gebruikt worden in het thema.';
 $txt['st_enable_tooltips'] = 'Activeer titel tooltips';
@@ -252,13 +252,13 @@ $txt['st_themeinfo_author'] = 'Auteur';
 $txt['st_themeinfo_author_dashboard'] = 'Auteur dashboard';
 $txt['st_themeinfo_name'] = 'Thema naam';
 $txt['st_themeinfo_version'] = 'Thema versie';
-$txt['st_themeinfo_github'] = 'GitHub';
+$txt['st_themeinfo_github'] = 'GitHub repository';
 $txt['st_themeinfo_github_desc'] = 'Bug tracker en meer.';
 $txt['st_themeinfo_support'] = 'Support';
 $txt['st_themeinfo_support_topic'] = 'Support topic';
 $txt['st_themeinfo_support_topic_desc'] = 'Support en discussie voor dit thema.';
 $txt['st_themeinfo_support_board'] = 'Support board';
-$txt['st_themeinfo_support_board_desc'] = 'Support board and discussion for this theme.';
+$txt['st_themeinfo_support_board_desc'] = 'Support en discussie voor dit thema.';
 $txt['st_themeinfo_review'] = 'Beoordeel';
 $txt['st_themeinfo_review_desc'] = 'Beoordeel dit thema.';
 $txt['st_themeinfo_smfversion'] = 'SMF versie';
@@ -274,7 +274,7 @@ $txt['st_cdn_source_desc'] = 'Selecter de bron voor het laden van deze bibliothe
 $txt['st_cdn_local'] = 'Lokaal';
 $txt['st_cdn_google'] = 'Google';
 $txt['st_cdn_cloudflare'] = 'Cloudflare';
-$txt['st_fonts'] = 'Fonts';
-$txt['st_fonts_desc'] = 'Dit bepaalt de bron voor het laden van aangepaste fonts welke in het thema gebruikt worden.';
+$txt['st_fonts'] = 'Lettertypen';
+$txt['st_fonts_desc'] = 'Dit bepaalt de bron voor het laden van aangepaste lettertypen welke in het thema gebruikt worden.';
 $txt['st_jqueryui'] = 'jQuery UI';
 $txt['st_fontawesome'] = 'Font Awesome';

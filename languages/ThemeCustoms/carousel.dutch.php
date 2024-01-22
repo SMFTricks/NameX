@@ -10,7 +10,7 @@
 // Carousel
 $txt['st_carousel'] = 'Carrousel';
 $txt['st_enable_carousel'] = 'Schakel carrousel in';
-$txt['st_enable_carousel_desc'] = 'Inschakelen om meer instellingen weer te geven. Als je de Carousel Addon gebruikt, heb je de opties om hieronder te uploaden, zodra deze instelling is ingeschakeld.';
+$txt['st_enable_carousel_desc'] = 'Inschakelen om meer instellingen weer te geven. Als je de Carousel add-on gebruikt, heb je de opties om hieronder te uploaden, zodra deze instelling is ingeschakeld.';
 $txt['st_carousel_index'] = 'Alleen op de startpagina weergeven';
 $txt['st_carousel_enable_images'] = 'Carrousel afbeeldingen inschakelen';
 $txt['st_carousel_speed'] = 'Carrousel autoplay snelheid';
