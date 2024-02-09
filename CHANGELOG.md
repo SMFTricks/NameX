@@ -1,5 +1,8 @@
 # Changelog
 
+### 1.3.1 - 08 February 2024
+- ![Translation](https://smftricks.com/assets/changelog/language.png) Updated translations.
+
 #### 1.3.0 - 18 December 2023
 - ![New Feature](https://smftricks.com/assets/changelog/tag--plus.png) Added new menu setting to enable logout, login and signout buttons.
 - ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed layout issues.
