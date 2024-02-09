@@ -2501,3 +2501,8 @@ div#settingtype-information[aria-hidden="false"]~input[type="submit"] {
 .signature {
 	word-break: break-word;
 }
+#ajax_in_progress {
+	background: var(--roundframe-bg);
+	color: var(--body-txt-color);
+	border-color: var(--catbg-bg);
+}
