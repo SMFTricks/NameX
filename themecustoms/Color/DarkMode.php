@@ -28,10 +28,12 @@ class DarkMode
 	 * 
 	 * @return void
 	 */
-	public function __construct()
+	public function __construct($initialize = true)
 	{
 		// Init the dark mode
-		$this->initDarkMode();
+		if (!empty($initialize)) {
+			$this->initDarkMode();
+		}
 	}
 
 	/**
@@ -168,7 +170,7 @@ class DarkMode
 	 *
 	 * @return void
 	 */
-	private function darkCSS()
+	public function darkCSS()
 	{
 		global $settings, $options;
 

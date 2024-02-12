@@ -36,13 +36,16 @@ class Variants
 	 * 
 	 * @return void
 	 */
-	public function __construct()
+	public function __construct($initialize = true)
 	{
-		// Init the theme color variants
-		$this->initVariants();
+		if (!empty($initialize))
+		{
+			// Init the theme color variants
+			$this->initVariants();
 
-		// Load the current variant
-		$this->currentVariant();
+			// Load the current variant
+			$this->currentVariant();
+		}
 	}
 
 	/**
@@ -205,7 +208,7 @@ class Variants
 	 *
 	 * @return void
 	 */
-	private function variantCSS()
+	public function variantCSS()
 	{
 		global $context, $settings;
 

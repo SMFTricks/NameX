@@ -9,6 +9,8 @@
 
 namespace ThemeCustoms\Config;
 
+use ThemeCustoms\Color\DarkMode;
+use ThemeCustoms\Color\Variants;
 use ThemeCustoms\Init;
 
 class Theme
@@ -432,11 +434,21 @@ class Theme
 	 */
 	private function theme_variants() : void
 	{
-		global $settings, $context;
+		global $settings, $context, $maintenance, $modSettings, $user_info;
 
 		// Theme Variants enabled?
 		if (!isset(Init::$_color_options['variants']) || empty(Init::$_color_options['variants']))
 			return;
+
+		// Maintenance Mode or Kicking guests?
+		if ((!empty($maintenance) && !allowedTo('admin_forum')) || (empty($modSettings['allow_guestAccess']) && $user_info['is_guest']))
+		{
+			$context['theme_variant'] = $settings['default_variant'] ?? Init::$_color_options[0];
+			$theme_variants = new Variants(false);
+			$theme_variants->variantCSS();
+
+			return;
+		}
 
 		// Variants settings
 		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] == $settings['theme_id'])
@@ -465,11 +477,21 @@ class Theme
 	 */
 	private function theme_darkmode() : void
 	{
-		global $settings, $context;
+		global $settings, $context, $maintenance, $modSettings, $user_info, $options;
 
 		// Theme Dark Mode enabled?
 		if (!isset(Init::$_color_options['darkmode']) || empty(Init::$_color_options['darkmode']))
 			return;
+
+		// Maintenance Mode or Kicking guests?
+		if ((!empty($maintenance) && !allowedTo('admin_forum')) || (empty($modSettings['allow_guestAccess']) && $user_info['is_guest']))
+		{
+			$settings['st_enable_dark_mode'] = false;
+			$theme_darkmode = new DarkMode(false);
+			$theme_darkmode->darkCSS();
+
+			return;
+		}
 
 		// Insert the variants using the theme settings.
 		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] == $settings['theme_id'])
@@ -498,7 +520,11 @@ class Theme
 	 */
 	private function color_changer() : void
 	{
-		global $settings;
+		global $settings, $maintenance, $modSettings, $user_info;
+
+		// Maintenance Mode or Kicking guests?
+		if ((!empty($maintenance) && !allowedTo('admin_forum')) || (empty($modSettings['allow_guestAccess']) && $user_info['is_guest']))
+			return;
 
 		// Theme Color Changer enabled?
 		if (!isset(Init::$_color_options['colorchanger']) || empty(Init::$_color_options['colorchanger']))
