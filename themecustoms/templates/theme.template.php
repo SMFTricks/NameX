@@ -131,7 +131,7 @@ function themecustoms_search()
 		echo '
 			<form class="custom_search" action="', $scripturl, '?action=search2" method="post" accept-charset="', $context['character_set'], '">
 				<input type="search" name="search" value="" placeholder="', $txt['search'], '">
-				<button title="', $txt['search'], '" title="', $txt['search'], '">', themecustoms_icon('fas fa-search'), '</button>';
+				<button title="', $txt['search'], '" aria-label="', $txt['search'], '">', themecustoms_icon('fas fa-search'), '</button>';
 
 		// Using the quick search dropdown?
 		$selected = !empty($context['current_topic']) ? 'current_topic' : (!empty($context['current_board']) ? 'current_board' : 'all');
