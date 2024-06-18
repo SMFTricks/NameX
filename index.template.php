@@ -341,7 +341,7 @@ function template_theme_colorpicker()
 		{
 			echo '
 				<li>
-					<a href="', $scripturl, '?variant=' . $variant . '" class="theme-variant-toggle', ($context['theme_variant'] == $variant ? ' active' : '') , '" data-color="', $variant, '">
+					<a href="', $scripturl, '?variant=' . $variant . '" class="theme-variant-toggle', ($context['theme_variant'] == $variant ? ' active' : '') , '" data-variant="', $variant, '">
 						', $txt['variant_'. $variant], '
 					</a>
 				</li>';
