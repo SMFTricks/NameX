@@ -2506,3 +2506,23 @@ div#settingtype-information[aria-hidden="false"]~input[type="submit"] {
 	color: var(--body-txt-color);
 	border-color: var(--catbg-bg);
 }
+
+/** Member List **/
+#mlist {
+	display: grid;
+	gap: .75em;
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+	&:not(:has(.block-member)) {
+		grid-template-columns: 1fr;
+		text-align: center;
+	}
+	.block-member {
+		align-content: flex-start;
+		display: grid;
+		gap: .25em;
+		margin: 0;
+		justify-content: center;
+		text-align: center;
+	}
+}
