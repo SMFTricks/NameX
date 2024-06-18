@@ -3,19 +3,22 @@
 /**
  * @package Theme Customs
  * @author Diego Andrés <diegoandres_cortes@outlook.com>
- * @copyright Copyright (c) 2023, SMF Tricks
+ * @copyright Copyright (c) 2024, SMF Tricks
  * @license MIT
  */
 
+use ThemeCustoms\Config;
+
 /**
  * Carousel main layout
+ * @param bool $carousel If the carousel is being displayed. This doesn't need to be set ever, it's just for internal use.
  */
-function themecustoms_carousel($carousel = false)
+function themecustoms_carousel($carousel = false) : void
 {
 	global $settings, $txt, $context, $board;
 
 	// Is the carousel enabled?
-	if (empty($settings['st_enable_carousel']) || empty($settings['st_carousel_slides']))
+	if (empty($settings['st_enable_carousel']) || empty($settings['st_carousel_slides']) )
 		return;
 
 	// Always enabled?
@@ -96,7 +99,7 @@ function themecustoms_carousel($carousel = false)
 /**
  * Build the carousel settings for the normal carousel
  */
-function carousel_settings()
+function carousel_settings() : void
 {
 	global $settings, $context;
 

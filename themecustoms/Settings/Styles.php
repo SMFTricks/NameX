@@ -9,73 +9,55 @@
 
 namespace ThemeCustoms\Settings;
 
+use ThemeCustoms\Config;
+
 class Styles
 {
 	/**
-	 * @var array The settings that affect or add styles to the theme.
+	 * The settings that affect or add styles to the theme.
 	 * Use the name of the setting for each element
 	 */
-	private $_style_settings;
+	private array $settings = [
+		'st_custom_width' => false,
+	];
 
 	/**
-	 * @var string The inline CSS output
+	 * The inline CSS output
 	 */
-	private $_css;
+	private string $css = '';
 
 	/**
-	 * Style::__construct()
-	 *
-	 * Load each setting function
-	 * 
-	 * @return void
+	 * Exclude these specific files from various functions
 	 */
-	public function __construct()
+	private array $exclude = [
+		'custom_edits',
+	];
+
+	/**
+	 * Build the style settings array and the CSS
+	 */
+	public function buildCSS() : void
 	{
-		global $settings;
-
-		// Set the css to empty
-		$this->_css = '';
-
-		// Load the settings
-		$this->style_settings();
+		// Other settings can hook into here as well.
+		call_integration_hook('integrate_customtheme_style_settings', array(&$this->_style_settings));
 
 		// Fire up the function if the setting is set or enabled
-		foreach ($this->_style_settings as $style_setting => $style_function)
-			if (!empty($settings[$style_setting]))
-				$this->_css .= (empty($style_function) ? $this->$style_setting($settings[$style_setting]) : call_user_func($style_function));
+		foreach ($this->settings as $style_setting => $style_function) {
+			if (!empty($settings[$style_setting])) {
+				$this->css .= (empty($style_function) ? $this->$style_setting($settings[$style_setting]) : call_user_func($style_function));
+			}
+		}
 	}
 
 	/**
-	 * Style::style_settings()
-	 * 
-	 * Build the style settings array
-	 * 
-	 * @return void
-	 */
-	public function style_settings() : void
-	{
-		// Settings
-		$this->_style_settings = [
-			'st_custom_width' => false,
-		];
-		call_integration_hook('integrate_customtheme_style_settings', array(&$this->_style_settings));
-	}
-
-	/**
-	 * Style::addCss()
-	 * 
 	 * Output the inline CSS to the theme
-	 * 
-	 * @return void
 	 */
-	public function addCss() : void
+	public function printCSS() : void
 	{
-		addInlineCss($this->_css);
+		addInlineCss($this->css);
 	}
 
 	/**
-	 * Style::st_custom_width()
-	 *
 	 * It adjusts the forum width to match the setting
 	 * Thanks to Sycho for the idea from his Forum Width Mod
 	 * https://custom.simplemachines.org/index.php?mod=4223
@@ -83,22 +65,58 @@ class Styles
 	 * @param string $setting The setting to use
 	 * @return string The CSS output
 	 */
-	public function st_custom_width($setting) : string
+	public function st_custom_width(string $setting) : string
 	{
 		// Adjust the max-width accorrdinly
 		return '
-			#top_section .inner_wrap, #wrapper, #header, footer .inner_wrap, #nav_wrapper
+			.content-wrapper, #top_section .inner_wrap, #wrapper, #header,
+			footer .inner_wrap, #nav_wrapper, .main-wrapper
 			{
 				max-width: ' . $setting. ';
 				width: ' . $setting. ';
 			}
 			@media screen and (max-width: 991px)
 			{
-				#top_section .inner_wrap, #wrapper, #header, footer .inner_wrap, #nav_wrapper
+				.content-wrapper, #top_section .inner_wrap, #wrapper, #header,
+				footer .inner_wrap, #nav_wrapper, .main-wrapper
 				{
 					max-width: 95%;
 					width: 100%;
 				}
 			}';
+	}
+
+	/**
+	 * Style the SCEditor
+	 * @param array $sce_options The current sceditor options
+	 */
+	public function sceditor(array &$sce_options) : void
+	{
+		global $settings, $context;
+
+		// Load the index.css if included
+		if (file_exists(Config::$current->dir . '/css/index.css')) {
+			$sce_options['style'] = $sce_options['style'] . '" /><link rel="stylesheet" href="' . $settings['theme_url'] . '/css/index.css';
+		}
+
+		// Sort the styles by 'order_pos'
+		uasort($context['css_customfiles'], function ($a, $b) {
+			if (!isset($a['order_pos']) || !isset($b['order_pos'])) {
+				return 0;
+			}
+			return $a['order_pos'] <=> $b['order_pos'];
+		});
+
+		$style = '';
+		foreach ($context['css_customfiles'] as $file => $options) {
+			if ($file === 0 || in_array($file, $this->exclude))
+				continue;
+
+			// Add the file to the list
+			$style .= '" /><link rel="stylesheet" href="' . $settings['theme_url'] . '/css/custom/' . $file . '.css';
+		}
+
+		// Add the style to the options
+		$sce_options['style'] = $sce_options['style'] . $style;
 	}
 }

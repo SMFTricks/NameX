@@ -463,30 +463,34 @@ function template_set_settings()
 				</h3>
 			</div>
 			<div id="st_settings_tabs">
-  				<ul>';
+  				<ul role="tablist" id="themesettings_tabs" class="buttonlist" aria-orientation="horizontal">';
 
-		// Get the rest of the setting types
-		if (!empty($context['st_themecustoms_setting_types']))
-		{
-			foreach ($context['st_themecustoms_setting_types'] as $setting_type)
-			{
-				if (!empty($setting_type))
-				{
-					echo '
-					<li class="title_bar"><a href="#settingtype-', $setting_type, '">', $txt['st_' . $setting_type], '</a></li>';
-				}
+	// Get the rest of the setting types
+	if (!empty($context['st_themecustoms_setting_types'])) {
+		foreach ($context['st_themecustoms_setting_types'] as $setting_type) {
+			if (!empty($setting_type)) {
+				echo '
+					<li role="presentation">
+						<button type="button" id="b_settingtype-'. $setting_type . '" role="tab" aria-selected="', $setting_type === 'main' ? 'true' : 'false', '" aria-controls="settingtype-'. $setting_type . '"', $setting_type === 'main' ? ' class="active"' : '', '>', $txt['st_' . $setting_type], '</button>
+					</li>';
 			}
 		}
+	}
 
-			echo '
-					<li class="title_bar"><a href="#settingtype-configuration">', $txt['st_config'], '</a></li>
-					', (!empty($context['st_themecustoms_setting_types']) ? '<li class="title_bar"><a href="#settingtype-information">' . $txt['st_information'] . '</a></li>' : ''), '
+	echo '
+					<li role="presentation">
+						<button type="button" id="b_settingtype-configuration" role="tab" aria-selected="false" aria-controls="settingtype-configuration">', $txt['st_config'], '</button>
+					</li>
+					', (!empty($context['st_themecustoms_setting_types']) ? '
+					<li role="presentation">
+						<button type="button" id="b_settingtype-information" role="tab" aria-selected="false" aria-controls="settingtype-information">' . $txt['st_information'] . '</button>
+					</li>' : ''), '
   				</ul>
-				<div class="windowbg">
-					<div id="settingtype-configuration">';
+				<div class="windowbg" id="themesettings_tabsContent">
+					<div id="settingtype-configuration" role="tabpanel" aria-labelledby="b_settingtype-configuration" class="fade">';
 
 	// @todo Why can't I edit the default theme popup.
-	if ($context['theme_settings']['theme_id'] != 1)
+	if ($context['theme_settings']['theme_id'] != 1) {
 		echo '
 						<div class="title_bar">
 							<h3 class="titlebg">
@@ -504,6 +508,7 @@ function template_set_settings()
 								</li>
 							</ul>
 						</div>';
+	}
 
 	echo '
 						<div class="title_bar">
@@ -556,48 +561,7 @@ function template_set_settings()
 		foreach ($context['st_themecustoms_setting_types'] as $setting_type)
 		{
 			echo '
-					<div id="settingtype-', $setting_type, '">';
-
-			// Do we allow theme variants?
-			if (!empty($context['theme_variants']) && $setting_type === 'color')
-			{
-				echo '
-						<div class="title_bar">
-							<h3 class="titlebg">
-								', $txt['theme_variants'], '
-							</h3>
-						</div>
-						<dl class="settings">
-							<dt>
-								<label for="variant">
-									<strong>', $txt['theme_variants_default'], ':</strong>
-									</label>
-									<br>
-									<span class="smalltext">
-										<img src="', $context['theme_variants'][$context['default_variant']]['thumbnail'], '" id="variant_preview" class="theme_thumbnail" alt="">
-									</span>
-							</dt>
-							<dd>
-								<select id="variant" name="options[default_variant]" onchange="changeVariant(this.value)">';
-
-				foreach ($context['theme_variants'] as $key => $variant)
-					echo '
-									<option value="', $key, '"', $context['default_variant'] == $key ? ' selected' : '', '>', $variant['label'], '</option>';
-
-				echo '
-								</select>
-							</dd>
-							<dt>
-								<label for="disable_user_variant">
-									<strong>', $txt['theme_variants_user_disable'], ':</strong>
-								</label>
-							</dt>
-							<dd>
-								<input type="hidden" name="options[disable_user_variant]" value="0">
-								<input type="checkbox" name="options[disable_user_variant]" id="disable_user_variant"', !empty($context['theme_settings']['disable_user_variant']) ? ' checked' : '', ' value="1">
-							</dd>
-						</dl>';
-			}
+					<div id="settingtype-', $setting_type, '" role="tabpanel" aria-labelledby="b_settingtype-', $setting_type, '" class="fade', $setting_type === 'main' ? ' show active' : '', '">';
 
 					// The theme settings
 					template_custom_list_settings($first_setting_key, $titled_section, $setting_type);
@@ -608,14 +572,14 @@ function template_set_settings()
 
 		// Theme Information
 		echo '
-			<div id="settingtype-information">
+			<div id="settingtype-information" role="tabpanel" aria-labelledby="b_settingtype-information" class="fade">
 				', themecustoms_themeinfo(), '
 			</div>';
 	}
 	else
 	{
 		echo '
-		<div id="settingtype-main">
+		<div id="settingtype-main" role="tabpanel" aria-labelledby="b_settingtype-main" class="fade active">
 			', template_custom_list_settings($first_setting_key, $titled_section), '
 		</div>';
 	}
@@ -628,26 +592,6 @@ function template_set_settings()
 			</div>
 		</form>
 	</div><!-- #admin_form_wrapper -->';
-
-	if (!empty($context['theme_variants']))
-	{
-		echo '
-		<script>
-		var oThumbnails = {';
-
-		// All the variant thumbnails.
-		$count = 1;
-		foreach ($context['theme_variants'] as $key => $variant)
-		{
-			echo '
-			\'', $key, '\': \'', $variant['thumbnail'], '\'', (count($context['theme_variants']) == $count ? '' : ',');
-			$count++;
-		}
-
-		echo '
-		}
-		</script>';
-	}
 }
 
 function template_custom_list_settings($first_setting_key, &$titled_section, $setting_type = 'main')
@@ -745,7 +689,7 @@ function template_custom_list_settings($first_setting_key, &$titled_section, $se
 			{
 				echo '
 							<dd>
-								<input type="file" name="', !empty($setting['default']) ? 'default_' : '', '', $setting['id'], '" id="options_', $setting['id'], '">
+								<input type="file" name="', !empty($setting['default']) ? 'default_' : '', '', $setting['id'], '" id="options_', $setting['id'], '"', (!empty($setting['custom']) ? ' ' . $setting['custom'] : ''), '>
 							</dd>';
 			}
 			// A regular input box, then?

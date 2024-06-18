@@ -9,8 +9,15 @@
 
 namespace ThemeCustoms\Color;
 
+use ThemeCustoms\Config;
+
 class Changer
 {
+	/**
+	 * @var array Theme settings
+	 */
+	private array $settings = [];
+
 	/**
 	 * @var array The color changer options
 	 */
@@ -25,21 +32,39 @@ class Changer
 	 * @var array Root selectors
 	 * The exptected dark mode is added by default
 	 */
-	private $_root_selectors = [
-		'[data-colormode="dark"]',
+	private array $root = [
+		'[data-mode="dark"]',
+		'[data-mode="system"]',
 	];
 
 	/**
-	 * Changer::__construct()
-	 * 
 	 * Initializes the theme color changer related features
-	 * 
-	 * @return void
 	 */
 	public function __construct()
 	{
-		// Load the color changes
-		$this->setChanges();
+		// Are there any palettes or color changes?
+		if (empty(Config::$current->colorChanges) || Config::$current->variants !== [])
+			return;
+
+		// Initialize the color changer
+		$this->init();
+	}
+
+	/**
+	 * Load the color changer
+	 */
+	private function init() : void
+	{
+		global $context, $settings;
+
+		// Load the javascript
+		$this->js();
+
+		// Are we viewing this theme?
+		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] != Config::$current->id)
+			return;
+
+		add_integration_function('integrate_customtheme_settings', __CLASS__ . '::settings', false, Config::$current->dir . '/themecustoms/Color/Changer.php', true);
 	}
 
 	/**
@@ -83,35 +108,25 @@ class Changer
 	}
 
 	/**
-	 * Changer::settings()
-	 * 
 	 * Adds the color changer settings to the theme
-	 * 
-	 * @return void
+	 * @param array $theme_settings The current theme settings
+	 * @param array $settings_types The current types of settings
 	 */
-	public function settings()
+	public function settings(array &$theme_settings, array &$settings_types) : void
 	{
 		global $context, $txt, $settings;
-
-		// Do nothing when there are variants or no color changes
-		if (!empty($settings['theme_variants']) || empty($settings['color_changes']))
-			return;
-
+		
 		// Load the Color Changer language file
 		loadLanguage('ColorChanger');
 
-		// Setting type
-		if (!empty($context['st_themecustoms_setting_types']))
-		{
-			// Add the color setting type
-			array_push($context['st_themecustoms_setting_types'], 'color');
-			// Don't duplicate it if it's already there
-			$context['st_themecustoms_setting_types'] = array_unique($context['st_themecustoms_setting_types']);
-		}
+		// Load the color changer js... Sometimes is not loaded
+		loadJavaScriptFile('ColorChanger.js', ['defer' => true, 'default_theme' => true, 'minimize' => true,], 'smf_color_changer');
 
-		// Add the color changes to the settings
-		if (!empty($this->_color_changes) && is_array($this->_color_changes))
-		{
+		// Add color setting type
+		$settings_types[] = 'color';
+
+		// Settings
+		$this->settings = [
 			// Admin only?
 			$context['theme_settings'][] = [
 				'section_title' => $txt['cc_color_changer'] . (!empty($this->_color_palettes['default']) ? ' <a onclick="return applyColorPalette(\'default\')" id="cc_reset_all">[' . $txt['cc_reset_all'] . ']</a>' : ''),
@@ -119,36 +134,17 @@ class Changer
 				'label' => $txt['cc_admin_only'],
 				'description' => $txt['cc_admin_only_help'],
 				'theme_type' => 'color',
-			];
-
+			],
 			// Remove Shadows
 			$context['theme_settings'][] = [
 				'id' => 'cc_remove_shadows',
 				'label' => $txt['cc_remove_shadows'],
 				'theme_type' => 'color',
-			];
+			]
+		];
 
-			// Add the color changes as settings
-			foreach ($this->_color_changes as $cc_color => $color)
-			{
-				$context['theme_settings'][] = [
-					'id' => 'cc_' . $cc_color,
-					'label' => $txt['cc_' . $cc_color],
-					'description' => $this->control($cc_color),
-					'type' => 'text',
-					'size' => 35,
-					'theme_type' => 'color',
-					'data' => 'data-coloris',
-				];
-			}
-		}
-
-		// Add coloris
-		$this->coloris();
-
-		// Any color palettes?
-		if (!empty($this->_color_palettes))
-			$this->changerJS();
+		// Add them to the settings
+		$theme_settings = array_merge($this->settings, $theme_settings);
 	}
 
 	/**
@@ -175,36 +171,13 @@ class Changer
 	}
 
 	/**
-	 * Changer::coloris()
-	 * 
-	 * Load Coloris
-	 * 
-	 * @return void
+	 * Loads the color changer JS.
 	 */
-	private function coloris()
-	{
-		// CSS
-		loadCSSFile('custom/coloris.css', ['minimize' => true], 'smf_coloris');
-		// Javascript
-		loadJavascriptFile('custom/coloris.js', ['minimize' => true, 'defer' => true], 'smftheme_js_coloris');
-	}
-
-	/**
-	 * Changer::changerJS()
-	 * 
-	 * Adds the color changer JS files
-	 * 
-	 * @return void
-	 */
-	private function changerJS()
+	private function js() : void
 	{
 		global $txt;
 
-		// Load the color changer js... Sometimes is not loaded
-		loadJavaScriptFile('ColorChanger.js', ['minimize' => true, 'defer' => true], 'smf_color_changer');
-
-		// Add the vars
 		addJavaScriptVar('color_palettes', json_encode($this->_color_palettes));
-		addJavaScriptVar('txt_cc_palettes', '\'' . $txt['cc_palettes_title'] . '\'');
+		addJavaScriptVar('txt_cc_palettes', $txt['cc_palettes_title'], true);
 	}
 }

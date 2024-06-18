@@ -18,7 +18,7 @@ $txt['st_footer'] = 'Footer';
 $txt['st_boards'] = 'Boards';
 
 // Regular description
-$txt['st_about'] = 'About ';
+$txt['st_about'] = 'About';
 $txt['st_description_default'] = 'Welcome to the community!';
 $txt['st_description'] = 'Forum description';
 /* Argument: $txt['st_description_default'] */
@@ -92,17 +92,24 @@ $txt['st_avatar_settings'] = 'Avatar Settings';
 $txt['st_enable_avatars_boards'] = 'Enable avatars on boards';
 $txt['st_enable_avatars_topics'] = 'Enable avatars on topic list';
 $txt['st_enable_avatars_recent'] = 'Enable avatars on recent posts (info center)';
-$txt['st_enable_avatars_online'] = 'Enable avatars on online list';
+$txt['st_enable_avatars_online'] = 'Enable avatars on online list (who)';
+$txt['st_enable_avatars_mlist'] = 'Enable avatars on member list';
+
+// New Topic Button
+$txt['st_new_topic_button'] = 'Enable new topic button';
+$txt['st_new_topic_button_desc'] = 'This will add a new topic button in user area';
 
 // General strings
 $txt['st_stats'] = 'Stats';
 $txt['st_golink'] = 'Go Link';
 $txt['st_menu'] = 'Menu';
+$txt['st_menu_toggle'] = 'Toggle Menu';
 $txt['st_remember'] = 'Remember me';
 $txt['close'] = 'Close';
 $txt['st_gotop'] = 'Go to top';
 $txt['st_config'] = 'Configuration';
 $txt['st_information'] = 'Information';
+$txt['st_theme_information'] = 'Theme Information';
 $txt['st_tasks'] = 'Tasks';
 $txt['pm'] = 'Personal Messages';
 $txt['see_all'] = 'See All';
@@ -115,6 +122,16 @@ $txt['st_profile_cover'] = 'Profile cover';
 $txt['st_news_prom'] = 'News and Promotions';
 $txt['st_previous'] = 'Previous';
 $txt['st_next'] = 'Next';
+$txt['st_breadcrumb'] = 'Breadcrumb';
+$txt['st_options'] = 'Options';
+$txt['st_more'] = 'More';
+$txt['st_actions'] = 'Actions';
+
+// Calendar strings
+$txt['start_date'] = 'Start Date';
+$txt['end_date'] = 'End Date';
+$txt['start_time'] = 'Start Time';
+$txt['end_time'] = 'End Time';
 
 // Colorpicker
 $txt['st_colorpicker1_admin'] = 'Choose primary theme color';
@@ -240,11 +257,11 @@ $txt['variant_white'] = 'White';
 $txt['st_theme_mode'] = 'Theme Mode';
 $txt['st_theme_mode_select'] = 'Select Theme Mode';
 $txt['st_theme_mode_default'] = 'Default Theme Mode';
-$txt['st_theme_mode_default_desc'] = 'If user selection is disabled, this will be the default and locked mode.';
-$txt['st_enable_dark_mode'] = 'Enable user mode selection';
+$txt['st_theme_mode_default_desc'] = 'If user selection is disabled, this will be the default and locked mode. Admins can still change their preference.';
+$txt['st_enable_mode_selection'] = 'Enable user mode selection';
 $txt['st_dark_mode'] = 'Dark Mode';
 $txt['st_light_mode'] = 'Light Mode';
-$txt['st_auto_mode'] = 'Auto Mode';
+$txt['st_system_mode'] = 'System Mode';
 
 // Theme information
 $txt['st_themeinfo_details'] = 'Theme Details';

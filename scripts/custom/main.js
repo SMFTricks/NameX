@@ -7,22 +7,13 @@
 
 // Some theme bits
 $(function() {
-
-	// Settings tabs
-	$('#st_settings_tabs').tabs({
-		activate: (event, ui) => {
-			$('#st_settings_tabs').parent()[0].action = smf_scripturl + '?action=admin;area=theme;sa=list;th=' + smf_theme_id + '#' + ui.newPanel[0].id;
-		},
-		create: (event, ui) => {
-			$('#st_settings_tabs').parent()[0].action = smf_scripturl + '?action=admin;area=theme;sa=list;th=' + smf_theme_id + '#' + ui.panel[0].id;
-		}
-	});
-
 	// Info center tabs
-	$('#info_center_blocks').tabs();
+	if ($.isFunction($.fn.tabs)) {
+		$('#info_center_blocks').tabs();
+	}
 
 	// Replace stats icon
-	$("img[src=\'"+smf_images_url+"/icons/stats_info.png\']").replaceWith("<i class=\'main_icons stats\'></i>");
+	$("img[src=\'"+smf_images_url+"/icons/stats_info.png\']").replaceWith("<span class=\'main_icons stats\'></span>");
 
 	// Change the behaviour of the notify button
 	$('.normal_button_strip_notify').next().find('a').click(function (e) {
@@ -41,6 +32,29 @@ $(function() {
 			$('.normal_button_strip_notify > span').text(new_text);
 			$('.normal_button_strip_notify i.fa').removeClass();
 			$('.normal_button_strip_notify i').addClass('fa fa-' + new_text_lCase);
+		});
+
+		return false;
+	});
+
+	// Change the behaviour of the notify button
+	$('.button_item_notify').next().find('a').click(function (e) {
+		var $obj = $(this);
+		// All of the sub buttons are now without the active class if they had it.
+		$('[data-button-dropdown="notify_dropdown"] a').removeClass('active');
+		// Toggle this new selection as active
+		$obj.toggleClass('active');
+		e.preventDefault();
+		ajax_indicator(true);
+
+		// Get the icon from this item
+		var noti_icon = $obj.find('span.main_icons');
+
+		$.get($obj.attr('href') + ';xml', function () {
+			ajax_indicator(false);
+
+			// Replace the element with the new one
+			$('.button_item_notify > span.main_icons').replaceWith(noti_icon.clone());
 		});
 
 		return false;
@@ -131,4 +145,107 @@ $(function() {
 function profileChangeVariant(sVariant)
 {
 	document.getElementById('theme_thumb_' + smf_theme_id).src = vThumbnails[sVariant];
+}
+
+/** Buttonlist **/
+document.addEventListener('DOMContentLoaded', () => {
+	const dropMenus = document.querySelectorAll('.buttonlist li > .top_menu');
+	for (const item of dropMenus) {
+		const prevElement = item.previousElementSibling;
+		prevElement.addEventListener('click', e => {
+			e.stopPropagation();
+			e.preventDefault();
+
+			// Close other buttonlist menus
+			const openMenu = document.querySelectorAll('.buttonlist li > .top_menu.visible');
+			for (const listItem of openMenu) {
+				if (listItem !== item) {
+					listItem.classList.remove('visible');
+				}
+			}
+
+			if (item.classList.contains('visible')) {
+				item.classList.remove('visible')
+				return true;
+			}
+
+			item.classList.add('visible');
+		});
+
+		item.querySelector('.close').addEventListener('click', () => item.classList.remove('visible'));
+		document.addEventListener('click', e => {
+			if (!item.firstElementChild.contains(e.target)) {
+				item.classList.remove('visible');
+			}
+		});
+		document.addEventListener('keydown', e => {
+			if (e.key === 'Escape') {
+				item.classList.remove('visible');
+			}
+		});
+	}
+
+	const settingsTabs = document.querySelector('#st_settings_tabs');
+	if (settingsTabs) {
+		const settingsHash = window.location.hash;
+		const tabs = settingsTabs.querySelectorAll('button');
+		for (const tab of tabs) {
+			// Disable tab navigation but keep it accessible
+			if (!tab.classList.contains('active'))
+				tab.setAttribute('tabindex', '-1');
+			if (settingsHash) {
+				tab.classList.remove('active');
+				tab.setAttribute('aria-selected', 'false');
+				settingsTabs.querySelector('#' + tab.getAttribute('aria-controls')).classList.remove('active', 'show');
+			}
+			tab.addEventListener('click', e => {
+				st_activateTab(settingsTabs, tabs, tab, e);
+			});
+			tab.addEventListener('keydown', e => {
+				// Navigate tabs with arrow keys
+				if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+					const index = Array.from(tabs).indexOf(tab);
+					const nextTab = e.key === 'ArrowRight' ? tabs[index + 1] || tabs[0] : tabs[index - 1] || tabs[tabs.length - 1];
+					nextTab.focus();
+					st_activateTab(settingsTabs, tabs, nextTab, e);
+				}
+			});
+		}
+
+		// Activate the tab if there is a hash
+		if (settingsHash) {
+			const tab = settingsTabs.querySelector('button[aria-controls="' + settingsHash.replace('#', '') + '"]');
+			if (tab) {
+				// only if it exists
+				st_activateTab(settingsTabs, tabs, tab, null);
+			}
+			// If nothing was activated, activate the first one
+			if (!settingsTabs.querySelector('button.active')) {
+				settingsTabs.querySelector('#b_settingtype-main').classList.add('active');
+				settingsTabs.querySelector('#b_settingtype-main').setAttribute('aria-selected', 'true');
+				settingsTabs.querySelector('#settingtype-main').classList.add('active', 'show');
+			}
+		}
+	}
+});
+
+function st_activateTab(settingsTabs, tabs, tab, e) {
+	tabs.forEach(tab => {
+		tab.classList.remove('active');
+		tab.setAttribute('aria-selected', 'false');
+		tab.tabIndex = -1;
+	});
+	tab.setAttribute('aria-selected', 'true');
+	tab.tabIndex = 0;
+	tab.classList.add('active');
+	settingsTabs.querySelectorAll('#themesettings_tabsContent > div').forEach(e => {
+		e.classList.remove('active', 'show');
+		if (e.id === tab.getAttribute('aria-controls')) {
+			e.classList.add('active', 'show');
+		}
+	});
+
+	// Add the type as an anchor to the action
+	let form = settingsTabs.parentElement;
+	form.action = form.action.split('#')[0] + '#' + tab.getAttribute('aria-controls');
 }

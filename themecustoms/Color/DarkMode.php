@@ -9,138 +9,160 @@
 
 namespace ThemeCustoms\Color;
 
+use ThemeCustoms\Config;
+
 class DarkMode
 {
 	/**
-	 * @var bool The dark mode master setting
-	 */
-	private $_darkmode = false;
-
-	/**
 	 * @var int Order position for the dark mode file
 	 */
-	private $_order_position = 150;
+	private int $order = 150;
 
 	/**
-	 * DarkMode::__construct()
-	 *
+	 * @var array Theme settings
+	 */
+	private array $settings = [];
+
+	/**
 	 * Initializes the theme dark mode related features
-	 * 
-	 * @return void
 	 */
-	public function __construct($initialize = true)
+	public function __construct()
 	{
-		// Init the dark mode
-		if (!empty($initialize)) {
-			$this->initDarkMode();
+		// Is dark mode enabled?
+		if (empty(Config::$current->darkMode))
+			return;
+
+		// Initialize the dark mode
+		$this->init();
+	}
+
+	/**
+	 * Load the dark mode
+	 */
+	private function init() : void
+	{
+		global $context, $settings;
+
+		// Set the mode selection
+		$this->selection();
+
+		// No need to load if the setting is disabled and default mode is light
+		if (!empty($context['theme_can_change_mode']) || $settings['st_theme_mode_default'] !== 'light') {
+			// Load the css
+			$this->css();
+
+			// Load the javascript
+			$this->js();
+
+			// Style sceditor needs extra help
+			add_integration_function('integrate_sceditor_options', __CLASS__ . '::sceditor', false, Config::$current->dir . '/themecustoms/Color/DarkMode.php', true);
+		}
+
+		// User options
+		add_integration_function('integrate_theme_options', __CLASS__ . '::options', false, Config::$current->dir . '/themecustoms/Color/DarkMode.php', true);
+
+		// Are we viewing this theme?
+		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] != Config::$current->id)
+			return;
+
+		// Settings
+		add_integration_function('integrate_customtheme_settings', __CLASS__ . '::settings', false, Config::$current->dir . '/themecustoms/Color/DarkMode.php', true);
+	}
+
+	/**
+	 * Set the currently selected mode
+	 */
+	private function selection() : void
+	{
+		global $context, $settings, $smcFunc, $options;
+
+		$context['theme_colormode'] = '';
+		$context['theme_can_change_mode'] = !empty($settings['st_enable_mode_selection']) || allowedTo('admin_forum');
+		$settings['theme_colormodes'] = ['light', 'dark', 'system'];
+
+		// Overriding - for previews and that.
+		if (!empty($_REQUEST['mode'])) {
+			$_SESSION['theme_colormode'] = $_REQUEST['mode'];
+
+			// If the user is logged, save this to their profile
+			if ($context['user']['is_logged'] && in_array($_SESSION['theme_colormode'], $settings['theme_colormodes'])) {
+				$smcFunc['db_insert'](
+					'replace',
+					'{db_prefix}themes',
+					['id_theme' => 'int', 'id_member' => 'int', 'variable' => 'string-255', 'value' => 'string-65534'],
+					[Config::$current->id, $context['user']['id'], 'st_theme_mode', $_SESSION['theme_colormode']],
+					['id_theme', 'id_member', 'variable'],
+				);
+			}
+		}
+
+		// User selection?
+		if (!empty($context['theme_can_change_mode'])) {
+			$context['theme_colormode'] = !empty($_SESSION['theme_colormode']) && in_array($_SESSION['theme_colormode'], $settings['theme_colormodes']) && $context['user']['is_guest'] ? $_SESSION['theme_colormode'] : (!empty($options['st_theme_mode']) && in_array($options['st_theme_mode'], $settings['theme_colormodes']) ? $options['st_theme_mode'] : '');
+		}
+
+		// If no color mode, set a default
+		if (empty($context['theme_colormode']) || !in_array($context['theme_colormode'], $settings['theme_colormodes'])) {
+			$context['theme_colormode'] = !empty($settings['st_theme_mode_default']) && in_array($settings['st_theme_mode_default'], $settings['theme_colormodes']) ? $settings['st_theme_mode_default'] : $settings['theme_colormodes'][0];
 		}
 	}
 
 	/**
-	 * DarkMode::initDarkMode()
-	 * 
-	 * Initializes the theme dark mode
-	 * 
-	 * @return void
+	 * Loads the dark CSS.
 	 */
-	private function initDarkMode()
+	private function css()
 	{
-		global $settings;
+		global $settings, $context;
 
-		// Set the dark mode?
-		call_integration_hook('integrate_customtheme_color_darkmode', [&$this->_darkmode]);
+		// Add the HTML data attribute for color mode
+		$settings['themecustoms_html_attributes']['data']['mode'] = 'data-mode="' . $context['theme_colormode'] . '"';
 
-		// Add the dark mode to the variables
-		$settings['customtheme_darkmode'] = $this->_darkmode;
+		// Load the dark CSS
+		loadCSSFile('custom/dark.css', ['order_pos' => $this->order, 'attributes' => (isset($context['theme_colormode']) && $context['theme_colormode'] == 'system' ? ['media' => '(prefers-color-scheme: dark)'] : [])], 'smf_darkmode');
 	}
 
 	/**
-	 * DarkMode::themeVar()
-	 * 
-	 * Add a variable for theme settings to have more control over the dark mode
-	 * 
-	 * @return void
+	 * Loads the dark mode JS.
 	 */
-	public function themeVar()
+	private function js()
 	{
-		global $settings;
+		global $context;
 
-		// Load the dark mode... Again?
-		$settings['customtheme_darkmode'] = $this->_darkmode;
+		// Theme Mode
+		addJavaScriptVar('smf_theme_colormode', $context['theme_colormode'], true);
 
-		// Dark mode is enabled?
-		if (empty($settings['customtheme_darkmode']))
-			return;
-
-		// Load dark mode CSS
-		$this->darkCSS();
-
-		// Load the javascript
-		$this->darkJS();
+		// Load the javascript file
+		loadJavascriptFile('custom/dark.js', ['async' => true, 'defer' => true, 'minimize' => true,],'smf_darkmode');
 	}
 
 	/**
-	 * DarkMode::setting()
-	 *
-	 * Inserts the theme settings for the dark mode
-	 * 
-	 * @return void
+	 * The sceditor styling is extremely stupid, so you need to overengineer things to style it accordingly.
+	 * @param array $sce_options The current sceditor options
 	 */
-	public function settings()
+	public function sceditor(array &$sce_options) : void
 	{
-		global $context, $txt, $settings;
+		global $context, $settings;
 
-		// Dark mode is enabled?
-		if (empty($settings['customtheme_darkmode']))
-			return;
+		$sce_options['style'] = $sce_options['style'] . '"/><link rel="stylesheet" href="' . $settings['theme_url']. '/css/custom/dark.css' . (isset($context['theme_colormode']) && $context['theme_colormode'] == 'system' ? '" media="(prefers-color-scheme: dark)' : '');
 
-		// Setting type
-		if (!empty($context['st_themecustoms_setting_types']))
-		{
-			// Add the color setting type
-			array_push($context['st_themecustoms_setting_types'], 'color');
-			// Don't duplicate it if it's already there
-			$context['st_themecustoms_setting_types'] = array_unique($context['st_themecustoms_setting_types']);
-		}
-
-		// Master setting
-		$context['theme_settings'][] = [
-			'section_title' => $txt['st_dark_mode'],
-			'id' => 'st_theme_mode_default',
-			'label' => $txt['st_theme_mode_default'],
-			'description' => $txt['st_theme_mode_default_desc'],
-			'options' => [
-				'light' => $txt['st_light_mode'],
-				'dark' => $txt['st_dark_mode'],
-				'auto' => $txt['st_auto_mode'],
-			],
-			'type' => 'list',
-			'default' => 'light',
-			'theme_type' => 'color',
-		];
-
-		// Allow users to select mode?
-		$context['theme_settings'][] = [
-			'id' => 'st_enable_dark_mode',
-			'label' => $txt['st_enable_dark_mode'],
-			'type' => 'checkbox',
-			'theme_type' => 'color',
-		];
+		// Add the data attribute
+		addInlineJavaScript('
+			$(document).ready(function() {
+				$(\'.sceditor-container iframe\').each(function() {
+					$(this).contents().find(\'html\').attr(\'data-mode\', "' . $context['theme_colormode'] . '");
+				});
+			});
+		', true);
 	}
 
 	/**
-	 * DarkMode::userOptions()
-	 *
 	 * Adds the mode selection to the theme options
-	 *
-	 * @return void
 	 */
-	public function userOptions()
+	public function options() : void
 	{
 		global $context, $txt, $settings;
 
-		// Dark mode is enabled?
-		if (empty($settings['customtheme_darkmode']))
+		if (!empty($context['current_action']) && $context['current_action'] == 'admin' && isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] != Config::$current->id)
 			return;
 
 		// Insert the theme options
@@ -153,10 +175,10 @@ class DarkMode
 					'options' => [
 						'light' => $txt['st_light_mode'],
 						'dark' => $txt['st_dark_mode'],
-						'auto' => $txt['st_auto_mode'],
+						'system' => $txt['st_system_mode'],
 					],
-					'default' => isset($settings['st_theme_mode_default']) && !empty($settings['st_theme_mode_default']) ? $settings['st_theme_mode_default'] : 'light',
-					'enabled' => !empty($settings['st_enable_dark_mode']),
+					'default' => $settings['st_theme_mode_default'] ?? 'light',
+					'enabled' => $context['theme_can_change_mode'],
 				],
 			],
 			$context['theme_options']
@@ -164,78 +186,42 @@ class DarkMode
 	}
 
 	/**
-	 * DarkMode::darkCSS()
-	 *
-	 * Loads the dark CSS.
-	 *
-	 * @return void
+	 * Inserts the theme settings for the dark mode
+	 * @param array $theme_settings The current theme settings
+	 * @param array $settings_types The current types of settings
 	 */
-	public function darkCSS()
+	public function settings(array &$theme_settings, array &$settings_types) : void
 	{
-		global $settings, $options;
+		global $txt;
 
-		// Do we need dark mode?
-		if (empty($settings['st_enable_dark_mode']) && (!isset($settings['st_theme_mode_default']) ||$settings['st_theme_mode_default'] === 'light'))
-			return;
+		// Add color setting type
+		$settings_types[] = 'color';
 
-		// Add the HTML data attribute for color mode
-		$settings['themecustoms_html_attributes']['data']['darkmode'] = (!empty($settings['st_enable_dark_mode']) ? ('data-colormode="' . (isset($options['st_theme_mode']) && $options['st_theme_mode'] === 'dark' ? 'dark' : 'light') . '"') : 'data-colormode="dark"');
-
-		// Load the dark CSS
-		loadCSSFile('custom/dark.css', ['order_pos' => $this->_order_position], 'smf_darkmode');
-	}
-
-	/**
-	 * DarkMode::darkJS()
-	 *
-	 * Loads the dark mode JS.
-	 *
-	 * @return void
-	 */
-	private function darkJS()
-	{
-		global $options, $settings;
-
-		// Do we need dark mode?
-		if (empty($settings['st_enable_dark_mode']) && (!isset($settings['st_theme_mode_default']) || $settings['st_theme_mode_default'] === 'light'))
-			return;
-
-		// Theme Mode
-		addJavaScriptVar('smf_darkmode', '\'' . (isset($options['st_theme_mode']) && !empty($settings['st_enable_dark_mode']) ? $options['st_theme_mode'] : $settings['st_theme_mode_default']) . '\'');
-
-		// Load the javascript file
-		loadJavascriptFile(
-			'custom/dark.js',
+		// Settings
+		$this->settings = [
 			[
-				'minimize' => true,
-				'defer' => true,
-				'async' => true,
+				'section_title' => $txt['st_dark_mode'],
+				'id' => 'st_theme_mode_default',
+				'label' => $txt['st_theme_mode_default'],
+				'description' => $txt['st_theme_mode_default_desc'],
+				'options' => [
+					'light' => $txt['st_light_mode'],
+					'dark' => $txt['st_dark_mode'],
+					'system' => $txt['st_system_mode'],
+				],
+				'type' => 'list',
+				'default' => 'light',
+				'theme_type' => 'color',
 			],
-			'smftheme_js_darkmode'
-		);
-	}
+			[
+				'id' => 'st_enable_mode_selection',
+				'label' => $txt['st_enable_mode_selection'],
+				'type' => 'checkbox',
+				'theme_type' => 'color',
+			]
+		];
 
-	/**
-	 * DarkMode::sceditor()
-	 * 
-	 * The sceditor styling is extremely stupid, so you need to overengineer things to style it accordingly.
-	 * 
-	 * @return void
-	 */
-	public function sceditor() : void
-	{
-		global $options, $settings;
-
-		// Do we need dark mode?
-		if (empty($settings['st_enable_dark_mode']) && (!isset($settings['st_theme_mode_default']) ||$settings['st_theme_mode_default'] === 'light'))
-			return;
-
-		addInlineJavaScript('
-			$(document).ready(function() {
-				$(\'.sceditor-container iframe\').each(function() {
-					$(this).contents().find(\'html\').attr(\'data-colormode\', "' . (!empty($settings['st_enable_dark_mode']) ? ((isset($options['st_theme_mode']) && $options['st_theme_mode'] === 'dark' ? 'dark' : 'light')) : 'dark') . '");
-				});
-			});
-		', true);
+		// Add them to the settings
+		$theme_settings = array_merge($this->settings, $theme_settings);
 	}
 }

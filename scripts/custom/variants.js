@@ -1,57 +1,44 @@
 /**
  * @package Theme Customs
  * @author Diego Andrés <diegoandres_cortes@outlook.com>
- * @copyright Copyright (c) 2023, SMF Tricks
+ * @copyright Copyright (c) 2024, SMF Tricks
  * @license MIT
  */
 
-// Get the current theme variant
-let themeVariant = smf_theme_variant;
+let localVariant = localStorage.getItem('st_theme_variant');
+let toggleVariant = document.querySelectorAll('.theme-variant-toggle');
 
-// Local Variant
-let localVariant = localStorage.getItem('themeVariant');
-
-// Theme Color on reload
-let themeColor = null;
-
-// Easy color switching
-let switchVariant = (setColor) => 
-{
-	// Update the theme variant
-	localStorage.setItem('themeVariant', setColor);
-
-	// Replace the theme variant
-	document.documentElement.dataset.themecolor = setColor;
-
-	// Update user option
-	smf_setThemeOption('theme_variant', setColor, smf_theme_id, smf_session_id, smf_session_var, null);
-
-	// Update the theme Variant with the new color
-	themeVariant = setColor;
-	themeColor = true;
+if (!smf_member_id && localVariant !== null) {
+	document.documentElement.dataset.mode = localVariant;
 }
 
-// Update the theme variant using the request variant
-if (themeColor === null && localVariant !== 'null' && localVariant !== null)
-	switchVariant(smf_member_id ? themeVariant : localVariant);
+function switchVariant(variant) {
+	document.documentElement.dataset.variant = variant;
 
-// When someone clicks the button
-$(".theme-variant-toggle").click(function() {
-	// Get the theme color for the variant
-	themeColor = $(this).attr('data-color');
-  	// Switch the theme variant with the selected color
-	switchVariant(themeColor);
+	// User
+	if (smf_member_id !== 0) {
+		smf_setThemeOption('theme_variant', variant, smf_theme_id, smf_session_id, smf_session_var, null);
+	}
+	// Guest
+	else {
+		localStorage.setItem('st_theme_variant', variant);
+	}
+}
 
-	return false;
-});
+// Toggle theme variant
+toggleVariant.forEach(toggle => {
+	toggle.addEventListener('click', () => {
+		switchVariant(toggle.dataset.variant)
+	});
+})
 
-// Select the active variant
-$(function() {
-	$('li#user_colorpicker > a').next().find('a').click(function (e) {
-		var $obj = $(this);
-		// All of the variants are now without the active class if they had it.
-		$('ul#colorpicker_menu li a').removeClass('active');
-		// Toggle this new selection as active
-		$obj.toggleClass('active');
+// SCEditor
+$(document).ready(function() {
+	$(toggleVariant).each((index, toggle) => {
+		$(toggle).click(() => {
+			$('.sceditor-container iframe').each(function() {
+				$(this).contents().find('html').attr('data-variant', $(toggle).data('variant'));
+			});
+		});
 	});
 });

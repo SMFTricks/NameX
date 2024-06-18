@@ -7,27 +7,24 @@
  * @license MIT
  */
 
+use ThemeCustoms\Config;
+
  /**
  * Initialize the customs template along with the theme version and the custom files
  */
-function template_customs_init()
+function template_customs_init() : void
 {
 	global $settings;
 
-	// The version this template/theme is for. This should probably be the version of SMF it was created for.
-	$settings['theme_version'] = '2.1';
-
-	// This defines the formatting for the page indexes used throughout the forum.
-	$settings['page_index'] = themecustoms_page_index();
-
 	// Integration hooks are always fun.
-	add_integration_function('integrate_load_theme', 'ThemeCustoms\Config\Integration::initialize#', false, '$themedir/themecustoms/Config/Integration.php');
+	add_integration_function('integrate_load_theme', 'ThemeCustoms\Theme\Integration::initialize#', false, $settings['theme_dir'] . '/themecustoms/Theme/Integration.php');
 }
 
 /** 
  * The pagination style
+ * @return array The parameters to style the page index
  */
-function themecustoms_page_index()
+function themecustoms_page_index() : array
 {
 	global $txt;
 
@@ -45,7 +42,7 @@ function themecustoms_page_index()
 /**
  * Social icons
  */
-function themecustoms_socials()
+function themecustoms_socials() : void
 {
 	global $settings, $txt;
 
@@ -55,52 +52,52 @@ function themecustoms_socials()
 	// Facebook
 	if (!empty($settings['st_facebook']))
 		echo '
-		<a href="https://facebook.com/' . $settings['st_facebook'] . '" target="_blank" rel="noopener" class="facebook" aria-label="', $txt['st_facebook'], '">', themecustoms_icon('fab fa-facebook-f'), '</a>';
+		<a href="https://facebook.com/' . $settings['st_facebook'] . '" target="_blank" rel="noopener" class="facebook" aria-label="', $txt['st_facebook'], '">', themecustoms_icon('fa-brands fa-facebook-f'), '</a>';
 
 	// Twitter
 	if (!empty($settings['st_twitter']))
 		echo '
-		<a href="https://twitter.com/' . $settings['st_twitter'] . '" target="_blank" rel="noopener" class="twitter" aria-label="', $txt['st_twitter'], '">', themecustoms_icon('fab fa-twitter'), '</a>';
+		<a href="https://twitter.com/' . $settings['st_twitter'] . '" target="_blank" rel="noopener" class="twitter" aria-label="', $txt['st_twitter'], '">', themecustoms_icon('fa-brands fa-x-twitter'), '</a>';
 
 	// Instagram
 	if (!empty($settings['st_instagram']))
 		echo '
-		<a href="https://instagram.com/' . $settings['st_instagram'] . '" target="_blank" rel="noopener" class="instagram" aria-label="', $txt['st_instagram'], '">', themecustoms_icon('fab fa-instagram'), '</a>';
+		<a href="https://instagram.com/' . $settings['st_instagram'] . '" target="_blank" rel="noopener" class="instagram" aria-label="', $txt['st_instagram'], '">', themecustoms_icon('fa-brands fa-instagram'), '</a>';
 
 	// Youtube
 	if (!empty($settings['st_youtube']))
 		echo '
-		<a href="' . $settings['st_youtube'] . '" target="_blank" rel="noopener" class="youtube" aria-label="', $txt['st_youtube'], '">', themecustoms_icon('fab fa-youtube'), '</a>';
+		<a href="' . $settings['st_youtube'] . '" target="_blank" rel="noopener" class="youtube" aria-label="', $txt['st_youtube'], '">', themecustoms_icon('fa-brands fa-youtube'), '</a>';
 
 	// TikTok
 	if (!empty($settings['st_tiktok']))
 		echo '
-		<a href="https://tiktok.com/@' . $settings['st_tiktok'] . '" target="_blank" rel="noopener" class="tiktok" aria-label="', $txt['st_tiktok'], '">', themecustoms_icon('fab fa-tiktok'), '</a>';
+		<a href="https://tiktok.com/@' . $settings['st_tiktok'] . '" target="_blank" rel="noopener" class="tiktok" aria-label="', $txt['st_tiktok'], '">', themecustoms_icon('fa-brands fa-tiktok'), '</a>';
 
 	// Twitch
 	if (!empty($settings['st_twitch']))
 		echo '
-		<a href="https://twitch.tv/' . $settings['st_twitch'] . '" target="_blank" rel="noopener" class="twitch" aria-label="', $txt['st_twitch'], '">', themecustoms_icon('fab fa-twitch'), '</a>';
+		<a href="https://twitch.tv/' . $settings['st_twitch'] . '" target="_blank" rel="noopener" class="twitch" aria-label="', $txt['st_twitch'], '">', themecustoms_icon('fa-brands fa-twitch'), '</a>';
 
 	// Discord
 	if (!empty($settings['st_discord']))
 		echo '
-		<a href="' . $settings['st_discord'] . '" target="_blank" rel="noopener" class="discord" aria-label="', $txt['st_discord'], '">', themecustoms_icon('fab fa-discord'), '</a>';
+		<a href="' . $settings['st_discord'] . '" target="_blank" rel="noopener" class="discord" aria-label="', $txt['st_discord'], '">', themecustoms_icon('fa-brands fa-discord'), '</a>';
 
 	// Steam
 	if (!empty($settings['st_steam']))
 		echo '
-		<a href="' . $settings['st_steam'] . '" target="_blank" rel="noopener" class="steam" aria-label="', $txt['st_steam'], '">', themecustoms_icon('fab fa-steam-symbol'), '</a>';
+		<a href="' . $settings['st_steam'] . '" target="_blank" rel="noopener" class="steam" aria-label="', $txt['st_steam'], '">', themecustoms_icon('fa-brands fa-steam'), '</a>';
 
 	// GitHub
 	if (!empty($settings['st_github']))
 		echo '
-		<a href="' . $settings['st_github'] . '" target="_blank" rel="noopener" class="github" aria-label="', $txt['st_github'], '">', themecustoms_icon('fab fa-github'), '</a>';
+		<a href="' . $settings['st_github'] . '" target="_blank" rel="noopener" class="github" aria-label="', $txt['st_github'], '">', themecustoms_icon('fa-brands fa-github'), '</a>';
 
 	// LinkedIn
 	if (!empty($settings['st_linkedin']))
 		echo '
-		<a href="' . $settings['st_linkedin'] . '" target="_blank" rel="noopener" class="linkedin" aria-label="', $txt['st_linkedin'], '">', themecustoms_icon('fab fa-linkedin'), '</a>';
+		<a href="' . $settings['st_linkedin'] . '" target="_blank" rel="noopener" class="linkedin" aria-label="', $txt['st_linkedin'], '">', themecustoms_icon('fa-brands fa-linkedin'), '</a>';
 
 	// RSS
 	if (!empty($settings['st_rss_url']))
@@ -113,8 +110,9 @@ function themecustoms_socials()
 
 /**
  * Icons
+ * @return string The printed icon using FA styles
  */
-function themecustoms_icon($icon)
+function themecustoms_icon($icon) : string
 {
 	return '<i class="' . $icon . '"></i>';
 }
@@ -122,7 +120,7 @@ function themecustoms_icon($icon)
 /**
  * Search form
 */
-function themecustoms_search()
+function themecustoms_search() : void
 {
 	global $txt, $context, $scripturl;
 
@@ -177,7 +175,7 @@ function themecustoms_search()
 /**
  * Language selector form
  */
-function themecustoms_languageselector()
+function themecustoms_languageselector() : void
 {
 	global $modSettings, $context, $txt;
 
@@ -201,7 +199,10 @@ function themecustoms_languageselector()
 }
 
 /**
- * Avatar display
+ * Print the user's avatar
+ * @param string $avatar The avatar URL
+ * @param int $memID The user ID to build a URL to their profile
+ * @todo Add return type
  */
 function themecustoms_avatar($avatar, $memID =  0)
 {
@@ -229,9 +230,32 @@ function themecustoms_avatar($avatar, $memID =  0)
 }
 
 /**
+ * Users online list
+ * @param array $user_online The data of the online user
+ */
+function themecustoms_useronline(array $user_online) : string
+{
+	global $memberContext, $scripturl, $txt;
+
+	// Custom layout?
+	if (function_exists('themecustoms_useronline_custom'))
+	{
+		return call_user_func('themecustoms_useronline_custom', $user_online);
+	}
+
+	return '
+	<span class="user-online-block' . (!empty($user_online['is_buddy']) ? ' buddy' : '') . '">
+		<a class="online-avatar" href="' . $scripturl . '?action=profile;u=' . $user_online['id'] . '" aria-label="' . sprintf($txt['view_profile_of_username'], $user_online['name']) . '">
+			<img src="' . $memberContext[$user_online['id']]['avatar']['href'] . '" alt="' . $user_online['name'] . '" title="' . $user_online['name'] . '" class="avatar avatar_dot' . (!empty($memberContext[$user_online['id']]['group_color']) ? ' group-border" style="border-color: ' . $memberContext[$user_online['id']]['group_color'] . ';"' : '"') . '>
+		</a>
+		<span class="online-name">' . $user_online['link'] . '</span>
+	</span>';
+}
+
+/**
  * Theme info
  */
-function themecustoms_themeinfo()
+function themecustoms_themeinfo() : void
 {
 	global $settings, $txt;
 
@@ -239,68 +263,68 @@ function themecustoms_themeinfo()
 		<div class="st-theme-information"><!-- Theme information -->
 			<div class="block"><!-- Theme Block -->
 				<h4>', $txt['st_themeinfo_details'], '</h4>
-				<div class="block-content">
+				<div class="block-content windowbg">
 					<div class="icon">
-						', themecustoms_icon('fas fa-code-merge'), '
+						<i class="fas fa-code-merge"></i>
 					</div>
 					<div class="details">
 						<strong>', $txt['st_themeinfo_name'], ':</strong>
-						<span>', (empty($settings['theme_support']['smf_site_id']) ? 
+						<span>', (empty($settings['theme_custId']) ? 
 							$settings['theme_name'] : 
-							'<a href="https://custom.simplemachines.org/index.php?theme=' . $settings['theme_support']['smf_site_id'] . '">' . $settings['theme_name'] . '</a>'), '
+							'<a href="https://custom.simplemachines.org/index.php?theme=' . $settings['theme_custId'] . '">' . $settings['theme_name'] . '</a>'), '
 						</span><br>
 
 						<strong>', $txt['st_themeinfo_author'], ':</strong>
-						<span>', (empty($settings['theme_author']['smf_id']) ? 
-							$settings['theme_author']['name'] : 
-							'<a href="https://simplemachines.org/community/index.php?action=profile;u=' . $settings['theme_author']['smf_id'] . '">' . $settings['theme_author']['name'] . '</a>'), '
+						<span>', (empty($settings['theme_authorId']) ? 
+							$settings['theme_author'] : 
+							'<a href="https://simplemachines.org/community/index.php?action=profile;u=' . $settings['theme_authorId'] . '">' . $settings['theme_author'] . '</a>'), '
 						</span><br>
 
 						<strong>', $txt['st_themeinfo_version'] , ':</strong>
-						<span>', $settings['theme_real_version'], '</span><br>
+						<span>', $settings['theme_version'], '</span><br>
 
 						<strong>', $txt['st_themeinfo_smfversion'], ':</strong>
-						<span>', $settings['theme_version'], '</span>
+						<span>', SMF_VERSION, '</span>
 					</div>
 				</div>
 			</div><!-- Theme Block -->';
 
 		// Check for SMF link or External link
-		if (!empty($settings['theme_support']['smf_support_topic']) || !empty($settings['theme_support']['custom_support_url']))
+		if (!empty($settings['theme_suppoprt']) || !empty($settings['theme_support_url']))
 		{
-				echo '
+			echo '
 			<div class="block"><!-- Theme Block -->
 				<h4>', $txt['st_themeinfo_support'], '</h4>
-				<div class="block-content">
+				<div class="block-content windowbg">
 					<div class="icon">
-						', themecustoms_icon('fas fa-question'), '
+						<i class="fas fa-question"></i>
 					</div>
 					<div class="details">';
 
-				// Support topic
-				if (!empty($settings['theme_support']['smf_support_topic']))
-					echo '
-						<strong>', $txt['st_themeinfo_support_topic'], ':</strong>
-						<a href="https://simplemachines.org/community/index.php?topic='. $settings['theme_support']['smf_support_topic']. '.0">', $txt['st_themeinfo_support_topic_desc'], '</a><br>';
-
-				// Review Link
-				if (!empty($settings['theme_support']['smf_site_id']))
-					echo '
-						<strong>', $txt['st_themeinfo_review'], ':</strong>
-						<a href="https://custom.simplemachines.org/index.php?theme=' . $settings['theme_support']['smf_site_id'] . '">', $txt['st_themeinfo_review_desc'], '</a><br>';
-
-				// External
-				if (!empty($settings['theme_support']['custom_support_url']))
-					echo '
-						<strong>', $txt['st_themeinfo_support_board'], ':</strong>
-						<a href="', $settings['theme_support']['custom_support_url'], '">', $txt['st_themeinfo_support_board_desc'], '</a><br>';
-
-				// GitHub
-				if (!empty($settings['theme_support']['github_url']))
-					echo '
-						<strong>', $txt['st_themeinfo_github'] , ':</strong>
-						<a href="', $settings['theme_support']['github_url'], '">', $txt['st_themeinfo_github_desc'], '</a><br>';
+			// Support topic
+			if (!empty($settings['theme_suppoprt']))
 				echo '
+						<strong>', $txt['st_themeinfo_support_topic'], ':</strong>
+						<a href="https://simplemachines.org/community/index.php?topic='. $settings['theme_suppoprt']. '.0">', $txt['st_themeinfo_support_topic_desc'], '</a><br>';
+
+			// Review Link
+			if (!empty($settings['theme_custId']))
+				echo '
+						<strong>', $txt['st_themeinfo_review'], ':</strong>
+						<a href="https://custom.simplemachines.org/index.php?theme=' . $settings['theme_custId'] . '">', $txt['st_themeinfo_review_desc'], '</a><br>';
+
+			// External
+			if (!empty($settings['theme_support_url']))
+				echo '
+						<strong>', $txt['st_themeinfo_support_board'], ':</strong>
+						<a href="', $settings['theme_support_url'], '">', $txt['st_themeinfo_support_board_desc'], '</a><br>';
+
+			// GitHub
+			if (!empty($settings['theme_github']))
+				echo '
+						<strong>', $txt['st_themeinfo_github'] , ':</strong>
+						<a href="', $settings['theme_github'], '">', $txt['st_themeinfo_github_desc'], '</a><br>';
+			echo '
 					</div>
 				</div>
 			</div><!-- Theme Block -->';
@@ -313,7 +337,7 @@ function themecustoms_themeinfo()
 /**
  * Custom Links
  */
-function themecustoms_customlinks()
+function themecustoms_customlinks() : void
 {
 	global $settings, $txt;
 
@@ -339,4 +363,34 @@ function themecustoms_customlinks()
 
 	echo '
 	</div>';
+}
+
+/**
+ * Quick new topic
+ */
+function themecustoms_quicknewtopic() : void
+{
+	global $context, $modSettings, $scripturl, $settings, $topic, $txt;
+
+	// Is it enabled?
+	if (empty(Config::$current->quickNewTopic)) {
+		return;
+	}
+
+	// Check for permissions
+	$post_permissions = ['post_new'];
+	if ($modSettings['postmod_active'])
+			$post_permissions[] = 'post_unapproved_topics';
+
+	if (boardsAllowedTo($post_permissions) === [] || empty($settings['st_new_topic_button'])) {
+		return;
+	}
+
+	echo '
+		<li>
+			<a href="', $scripturl, '?action=post', (!empty($context['current_board']) ? ';board=' . $context['current_board'] . '.0' : ''), '"', $context['current_action'] == 'post' && empty($topic) ? ' class="active"' : '', ' title="', $txt['new_topic'], '">
+				<span class="main_icons newtopic"></span>
+				<span class="text-label">', $txt['new_topic'], '</span>
+			</a>
+		</li>';
 }

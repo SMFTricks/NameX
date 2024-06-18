@@ -12,13 +12,13 @@
  *
  * @param array $board Current board information.
  */
-function template_bi_board_icon($board)
+function template_bi_board_icon(array $board) : void
 {
 	global $context, $scripturl;
 
-	if (function_exists('themecustoms_bi' . $board['type'] . '_icon'))
+	if (function_exists('themecustoms_bi_' . $board['type'] . '_icon'))
 	{
-		call_user_func('themecustoms_bi' . $board['type'] . '_icon', $board);
+		call_user_func('themecustoms_bi_' . $board['type'] . '_icon', $board);
 
 		return;
 	}
@@ -32,19 +32,19 @@ function template_bi_board_icon($board)
  *
  * @param array $board Current board information.
  */
-function template_bi_board_info($board)
+function template_bi_board_info(array $board) : void
 {
 	global $context, $scripturl, $txt;
 
-	if (function_exists('themecustoms_bi' . $board['type'] . '_info'))
+	if (function_exists('themecustoms_bi_' . $board['type'] . '_info'))
 	{
-		call_user_func('themecustoms_bi' . $board['type'] . '_info', $board);
+		call_user_func('themecustoms_bi_' . $board['type'] . '_info', $board);
 
 		return;
 	}
 
 	echo '
-			<a class="subject mobile_subject" href="', $board['href'], '" id="b', $board['id'], '">
+			<a class="subject" href="', $board['href'], '" id="b', $board['id'], '">
 				', $board['name'], '
 			</a>';
 
@@ -69,13 +69,12 @@ function template_bi_board_info($board)
  *
  * @param array $board Current board information.
  */
-function template_bi_board_stats($board)
+function template_bi_board_stats(array $board) : void
 {
 	global $txt;
 
-	if (function_exists('themecustoms_bi' . $board['type'] . '_stats'))
-	{
-		call_user_func('themecustoms_bi' . $board['type'] . '_stats', $board);
+	if (function_exists('themecustoms_bi_' . $board['type'] . '_stats')) {
+		call_user_func('themecustoms_bi_' . $board['type'] . '_stats', $board);
 
 		return;
 	}
@@ -95,13 +94,12 @@ function template_bi_board_stats($board)
  *
  * @param array $board Current board information.
  */
-function template_bi_board_lastpost($board)
+function template_bi_board_lastpost(array $board) : void
 {
 	global $settings, $txt;
 
-	if (function_exists('themecustoms_bi' . $board['type'] . '_lastpost'))
-	{
-		call_user_func('themecustoms_bi' . $board['type'] . '_lastpost', $board);
+	if (function_exists('themecustoms_bi_' . $board['type'] . '_lastpost')) {
+		call_user_func('themecustoms_bi_' . $board['type'] . '_lastpost', $board);
 
 		return;
 	}
@@ -122,17 +120,18 @@ function template_bi_board_lastpost($board)
  * Outputs the board children for a standard board.
  *
  * @param array $board Current board information.
+ * @param string $style Which default style is being applied
  */
-function template_bi_board_children($board, $style = false)
+function template_bi_board_children(array $board, string $style = 'normal') : void
 {
 	global $txt, $scripturl, $context;
 
 	if (empty($board['children']))
 		return;
 
-	if (function_exists('themecustoms_bi' . $board['type'] . '_children'))
+	if (function_exists('themecustoms_bi_' . $board['type'] . '_children'))
 	{
-		call_user_func('themecustoms_bi' . $board['type'] . '_children', $board);
+		call_user_func('themecustoms_bi_' . $board['type'] . '_children', $board);
 
 		return;
 	}
@@ -159,9 +158,9 @@ function template_bi_board_children($board, $style = false)
 	}
 
 	// Template style
-	$func = 'board_children_' . (empty($style) ? 'normal' : $style);
+	$func = 'board_children_' . $style;
 	echo '
-		<div id="board_', $board['id'], '_children" class="children">
+		<div id="board_', $board['id'], '_children" class="children board_children">
 			', $func($board, $children), '
 		</div>';
 }
@@ -170,8 +169,9 @@ function template_bi_board_children($board, $style = false)
  * Child boards, standard and default view
  * 
  * @param array $board Current board information.
+ * @param array $children The subboards
  */
-function board_children_normal($board, $children)
+function board_children_normal(array $board, array $children) : void
 {
 	global $txt;
 
@@ -187,8 +187,9 @@ function board_children_normal($board, $children)
  * Child boards using the 'Details' tag.
  * 
  * @param array $board Current board information.
+ * @param array $children The subboards
  */
-function board_children_details($board, $children)
+function board_children_details(array $board, array $children) : void
 {
 	global $txt;
 
@@ -221,8 +222,9 @@ function board_children_details($board, $children)
  * Child boards using the 'Dropdown' tag.
  * 
  * @param array $board Current board information.
+ * @param array $children The subboards
  */
-function board_children_dropdown($board, $children)
+function board_children_dropdown(array $board, array $children) : void
 {
 	global $txt;
 

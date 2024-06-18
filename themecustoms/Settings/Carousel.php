@@ -12,42 +12,36 @@ namespace ThemeCustoms\Settings;
 class Carousel
 {
 	/**
-	 * @var int Number of carousel slides.
+	 * @var int @Number of carousel slides.
 	 */
-	private $_slides = 1;
+	private int $slides = 1;
 
 	/**
 	 * @var int Slides limit
 	 */
-	private $_slides_limit = 5;
+	private int $limit = 5;
 
 	/**
-	 * @var array Theme settings.
+	 * @var array Theme settings
 	 */
-	public $_settings = [];
+	private array $settings = [];
 
 	/**
-	 * Carousel::settings()
-	 * 
 	 * Add the main carousel settings
-	 * 
-	 * @return void
+	 * @param array $theme_settings The current theme settings
+	 * @param array $settings_types The current types of settings
 	 */
-	public function settings() : void
+	public function settings(array &$theme_settings, array &$settings_types) : void
 	{
-		global $txt, $context, $settings;
+		global $txt;
 
-		// Setting type
-		if (!empty($context['st_themecustoms_setting_types']))
-		{
-			// Add the color setting type
-			array_push($context['st_themecustoms_setting_types'], 'carousel');
-			// Don't duplicate it if it's already there
-			$context['st_themecustoms_setting_types'] = array_unique($context['st_themecustoms_setting_types']);
+		// Add carousel setting type
+		if (!empty($settings_types)) {
+			$settings_types[] = 'carousel';
 		}
 
 		// Settings
-		$this->_settings = [
+		$this->settings = [
 			// Enable carousel
 			[
 				'id' => 'st_enable_carousel',
@@ -80,37 +74,28 @@ class Carousel
 			],
 		];
 
-		// How many slides, if carousel is enabled...
-		if (!empty($settings['st_enable_carousel']))
-		{
-			// Carousel Number of Slides
-			$this->_settings[] = [
-				'id' => 'st_carousel_slides',
-				'label' => $txt['st_carousel_slides'],
-				'description' => $txt['st_carousel_slides_desc'],
-				'type' => 'number',
-				'min' => 1,
-				'max' => $this->_slides_limit,
-				'step' => '1',
-				'theme_type' => 'carousel',
-			];
-		}
+		// How many slides?
+		$this->settings[] = [
+			'id' => 'st_carousel_slides',
+			'label' => $txt['st_carousel_slides'],
+			'description' => $txt['st_carousel_slides_desc'],
+			'type' => 'number',
+			'max' => $this->limit,
+			'step' => '1',
+			'theme_type' => 'carousel',
+		];
 
 		// Slides
 		$this->slides();
 
 		// Add them to the settings
-		$context['theme_settings'] = array_merge($this->_settings, $context['theme_settings']);
+		$theme_settings = array_merge($this->settings, $theme_settings);
 	}
 
 	/**
-	 * Carousel::slides()
-	 * 
 	 * Add the slide options based on the number set.
-	 * 
-	 * @return void
 	 */
-	public function slides() : void
+	private function slides() : void
 	{
 		global $txt, $settings;
 
@@ -119,14 +104,13 @@ class Carousel
 			return;
 
 		// Set the number
-		if (!empty($settings['st_carousel_slides']) && $settings['st_carousel_slides'] <= $this->_slides_limit)
-			$this->_slides = $settings['st_carousel_slides'];
+		$this->slides = (!empty($settings['st_carousel_slides']) && $settings['st_carousel_slides'] <= $this->limit ? $settings['st_carousel_slides'] : 0);
 
 		// Add the slides settings
-		for($i = 1; $i <= $this->_slides; $i++)
+		for ($i = 1; $i <= $this->slides; $i++)
 		{
 			// Title
-			$this->_settings[] = [
+			$this->settings[] = [
 				'section_title' => sprintf($txt['st_slider_x'], $i),
 				'id' => 'st_carousel_title_' . $i,
 				'label' => $txt['st_carousel_title'],
@@ -135,21 +119,21 @@ class Carousel
 				'theme_type' => 'carousel',
 			];
 			// Caption
-			$this->_settings[] = [
+			$this->settings[] = [
 				'id' => 'st_carousel_text_' . $i,
 				'label' => $txt['st_carousel_text'],
 				'type' => 'textarea',
 				'theme_type' => 'carousel',
 			];
 			// Link
-			$this->_settings[] = [
+			$this->settings[] = [
 				'id' => 'st_carousel_link_' . $i,
 				'label' => $txt['st_carousel_link'],
 				'type' => 'text',
 				'theme_type' => 'carousel',
 			];
 			// Image
-			$this->_settings[] = [
+			$this->settings[] = [
 				'id' => 'st_carousel_image_url_' . $i,
 				'label' => $txt['st_carousel_image_url'],
 				'type' => 'text',

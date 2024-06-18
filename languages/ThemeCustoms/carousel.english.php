@@ -20,7 +20,7 @@ $txt['st_carousel_link_text_desc'] = 'Text to display in the link. <span class="
 $txt['st_carousel_go_to_link'] = 'Go to link';
 $txt['st_carousel_add_new'] = 'Add new';
 $txt['st_carousel_slides'] = 'Number of slides';
-$txt['st_carousel_slides_desc'] = 'Set number of slides for the carousel. Limited to a range between 1-6';
+$txt['st_carousel_slides_desc'] = 'Set number of slides for the carousel. Limited to a range between 1-5';
 $txt['st_carousel_bbc_allowed'] = 'BBC tags, such as [b], [i] and [u], are allowed in your slides, as well as smileys.';
 
 // Sliders

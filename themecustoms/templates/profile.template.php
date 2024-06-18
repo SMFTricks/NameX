@@ -3,14 +3,14 @@
 /**
  * @package Theme Customs
  * @author Diego Andrés <diegoandres_cortes@outlook.com>
- * @copyright Copyright (c) 2023, SMF Tricks
+ * @copyright Copyright (c) 2024, SMF Tricks
  * @license MIT
  */
 
 /**
  * Callback function for profile covers
  */
-function template_profile_cover()
+function template_profile_cover() : void
 {
 	global $txt, $context;
 
@@ -21,6 +21,6 @@ function template_profile_cover()
 		</dt>
 		<dd>
 			<input type="hidden" name="id_cover">
-			<input type="file" size="44" name="id_cover" id="id_cover" accept="image/gif, image/jpeg, image/jpg, image/png">
+			<input type="file" size="44" name="id_cover" id="id_cover" accept="image/gif, image/jpeg, image/jpg, image/png, image/webp">
 		</dd>';
 }

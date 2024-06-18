@@ -9,41 +9,37 @@
 
 namespace ThemeCustoms\Settings;
 
-use ThemeCustoms\Init;
+use ThemeCustoms\Config;
 
 class Main
 {
 	/**
-	 * @var array The common theme settings
+	 * The common theme settings
 	 */
-	private $_settings = [];
+	private array $settings = [];
 
 	/**
 	 * Will allow to separate the settings if needed.
 	 * No type means the setting is either a default setting or a main setting.
-	 * @var array Setting types.
 	 */
-	private $_setting_types = [];
+	private array $types = [];
 
 	/**
-	 * @var array Unwanted settings from the default theme (or custom theme even).
+	 * Unwanted settings from the default theme (or custom theme even).
 	 */
-	private $_remove_settings = [
+	private array $removed = [
 		'site_slogan',
 		'enable_news',
 		'forum_width',
 	];
 
 	/**
-	 * @var array The custom settings that are not listed here
+	 * The custom settings that are not listed here
 	 */
-	private $_custom_settings = [];
+	private array $custom = [];
 
 	/**
-	 * Main::settings()
-	 *
-	 * The monstrous theme settings array.
-	 * New settings are added in here.
+	 * Build the theme settings
 	 */
 	public function settings() : void
 	{
@@ -55,14 +51,9 @@ class Main
 
 		// Add theme settings
 		$this->add();
-
-		// Remove the values from undesired settings
-		$this->undo();
 	}
 
 	/**
-	 * Main::create()
-	 *
 	 * Adds settings to the theme
 	 */
 	private function create() : void
@@ -86,7 +77,7 @@ class Main
 		], $context['theme_settings']);
 
 		// Theme Settings
-		$this->_settings = [
+		$this->settings = [
 			// Fonts
 			[
 				'section_title' => $txt['st_cdn_source'],
@@ -170,40 +161,53 @@ class Main
 				'type' => 'checkbox'
 			],
 		];
-		
-		/** Socials */
+
+		// New Topic Button?
+		if (!empty(Config::$current->quickNewTopic))
+		{
+			$this->settings[] = [
+				'id' => 'st_new_topic_button',
+				'label' => $txt['st_new_topic_button'],
+				'description' => $txt['st_new_topic_button_desc'],
+				'type' => 'checkbox'
+			];
+		}
+
+		/** Socials **/
 		$this->socials();
 		
-		/** Avatars */
+		/** Avatars **/
 		$this->avatars();
 
-		/** Custom Links */
+		/** Custom Links **/
 		$this->links();
 
 		// Any custom changes?
-		call_integration_hook('integrate_customtheme_settings', [&$this->_custom_settings, &$this->_setting_types, &$this->_remove_settings]);
+		call_integration_hook('integrate_customtheme_settings', [&$this->custom, &$this->types, &$this->removed]);
 
 		// Add any custom settings
-		if (!empty($this->_custom_settings) && is_array($this->_custom_settings))
-			$this->_settings = array_merge($this->_settings, $this->_custom_settings);
+		if (!empty($this->custom) && is_array($this->custom))
+			$this->settings = array_merge($this->settings, $this->custom);
+
+		// Do not duplicate the setting types
+		$this->types = array_unique($this->types);
+
+		// Remove the values from undesired settings
+		$this->undo();
 	}
 
 	/**
-	 * Main::socials()
-	 * 
 	 * Add settings for socials
-	 * 
-	 * @return void
 	 */
 	private function socials() : void
 	{
 		global $txt, $scripturl;
 
 		// Add the type
-		$this->_setting_types[] = 'social';
+		$this->types[] = 'social';
 
 		// Social settings
-		array_push($this->_settings, 
+		array_push($this->settings, 
 			[
 				'id' => 'st_facebook',
 				'label' => $txt['st_facebook_username'],
@@ -248,7 +252,7 @@ class Main
 			],
 			[
 				'id' => 'st_discord',
-				'label' => $txt['st_discord'],
+				'label' => $txt['st_discord_link'],
 				'description' => $txt['st_social_desc'],
 				'type' => 'text',
 				'theme_type' => 'social',
@@ -285,84 +289,84 @@ class Main
 	}
 
 	/**
-	 * Main::avatars()
-	 * 
 	 * Add settings for avatars
-	 * 
-	 * @return void
 	 */
 	private function avatars() : void
 	{
 		global $txt;
 
 		// Are avatars enabled?
-		if (empty(Init::$_avatar_options))
+		if (empty(Config::$current->avatarOptions))
 			return;
 
-		// Boards
-		$this->_settings[] = [
-			'section_title' => $txt['st_avatar_settings'],
-			'id' => 'st_enable_avatars_boards',
-			'label' => $txt['st_enable_avatars_boards'],
-			'type' => 'checkbox',
-		];
-		// Topics
-		$this->_settings[] = [
-			'id' => 'st_enable_avatars_topics',
-			'label' => $txt['st_enable_avatars_topics'],
-			'type' => 'checkbox',
-		];
-		// Recent Posts
-		$this->_settings[] = [
-			'id' => 'st_enable_avatars_recent',
-			'label' => $txt['st_enable_avatars_recent'],
-			'type' => 'checkbox',
-		];
-		// Users Online
-		$this->_settings[] = [
-			'id' => 'st_enable_avatars_online',
-			'label' => $txt['st_enable_avatars_online'],
-			'type' => 'checkbox',
-		];
+		array_push($this->settings,
+			// Boards
+			[
+				'section_title' => $txt['st_avatar_settings'],
+				'id' => 'st_enable_avatars_boards',
+				'label' => $txt['st_enable_avatars_boards'],
+				'type' => 'checkbox',
+			],
+			// Topics
+			[
+				'id' => 'st_enable_avatars_topics',
+				'label' => $txt['st_enable_avatars_topics'],
+				'type' => 'checkbox',
+			],
+			// Recent Posts
+			[
+				'id' => 'st_enable_avatars_recent',
+				'label' => $txt['st_enable_avatars_recent'],
+				'type' => 'checkbox',
+			],
+			// Users Online
+			[
+				'id' => 'st_enable_avatars_online',
+				'label' => $txt['st_enable_avatars_online'],
+				'type' => 'checkbox',
+			],
+			// Member List
+			[
+				'id' => 'st_enable_avatars_mlist',
+				'label' => $txt['st_enable_avatars_mlist'],
+				'type' => 'checkbox',
+			],
+		);
 	}
 
 	/**
-	 * Main::links()
-	 * 
 	 * Add custom links settings
-	 * 
-	 * @return void
 	 */
 	private function links() : void
 	{
 		global $txt;
 
 		// Adding links settings?
-		if (empty(Init::$_settings['custom_links_limit']))
+		if (empty(Config::$current->customLinks))
 			return;
 
 		// Add the type
-		$this->_setting_types[] = 'custom_links';
+		$this->types[] = 'custom_links';
 
 		// Enable custom links
-		$this->_settings[] = [
+		$this->settings[] = [
 			'id' => 'st_custom_links_enabled',
 			'label' => $txt['st_custom_links_enabled'],
 			'theme_type' => 'custom_links',
 		];
 
 		// Add the links settings
-		for ($link = 1; $link <= Init::$_settings['custom_links_limit']; $link++)
+		for ($link = 1; $link <= Config::$current->customLinks; $link++)
 		{
 			// Title
-			$this->_settings[] = [
+			$this->settings[] = [
 				'id' => 'st_custom_link' . $link. '_title',
 				'label' => $txt['st_custom_link_title'],
 				'type' => 'text',
 				'theme_type' => 'custom_links',
 			];
 			// Link
-			$this->_settings[] = [
+			$this->settings[] = [
 				'id' => 'st_custom_link' . $link,
 				'label' => sprintf($txt['st_custom_link'], $link),
 				'description' => $txt['st_custom_link_url'],
@@ -373,24 +377,25 @@ class Main
 	}
 
 	/**
-	 * Main::remove()
-	 *
 	 * Remove any unwanted settingss
 	 */
 	private function remove() : void
 	{
 		global $context;
 
+		if (empty($this->removed)) {
+			return;
+		}
+
 		// Remove Settings
-		if (!empty($this->_remove_settings))
-			foreach ($context['theme_settings'] as $key => $theme_setting)
-				if (isset($theme_setting['id']) && in_array($theme_setting['id'], $this->_remove_settings))
-					unset($context['theme_settings'][$key]);
+		foreach ($context['theme_settings'] as $key => $theme_setting) {
+			if (isset($theme_setting['id']) && in_array($theme_setting['id'], $this->removed)) {
+				unset($context['theme_settings'][$key]);
+			}
+		}
 	}
 
 	/**
-	 * Main::add()
-	 *
 	 * Inserts the theme settings in the array
 	 */
 	private function add() : void
@@ -398,28 +403,25 @@ class Main
 		global $context;
 
 		// Add the setting types
-		if (!empty($this->_setting_types))
-			$context['st_themecustoms_setting_types'] = array_merge(['main'], $this->_setting_types);
+		if (!empty($this->types)) {
+			$context['st_themecustoms_setting_types'] = array_merge(['main'], $this->types);
+		}
 
 		// Insert the new theme settings in the array
-		$context['theme_settings'] = array_merge($context['theme_settings'], $this->_settings);
+		$context['theme_settings'] = array_merge($context['theme_settings'], $this->settings);
 	}
 
 	/**
-	 * Main::undo()
-	 *
 	 * Prevents undesired settings from affecting the forum.
 	 * It obviously doesn't remove any setting from the database, just "disables" them.
-	 * 
-	 * @return void
 	 */
 	private function undo() : void
 	{
-		global $settings;
-
 		// Good riddance!
-		if (!empty($this->_remove_settings))
-			foreach ($this->_remove_settings as $remove_setting)
-				unset($settings[$remove_setting]);
+		if (!empty($this->removed) && isset($_POST)) {
+			foreach ($this->removed as $remove_setting) {
+				$_POST['options'][$remove_setting] = '';
+			}
+		}
 	}
 }

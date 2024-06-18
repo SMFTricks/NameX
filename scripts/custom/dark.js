@@ -1,59 +1,44 @@
 /**
  * @package Theme Customs
  * @author Diego Andrés <diegoandres_cortes@outlook.com>
- * @copyright Copyright (c) 2023, SMF Tricks
+ * @copyright Copyright (c) 2024, SMF Tricks
  * @license MIT
  */
 
-// Check for dark mode enabled
-let darkMode = smf_darkmode;
+let localMode = localStorage.getItem('st_theme_mode');
+let toggleMode = document.querySelectorAll('.theme-mode-toggle');
 
-// Local Mode
-let localMode = localStorage.getItem('darkMode');
-
-// Set mode
-let themeMode = null;
-
-let switchThemeMode = (setMode) =>
-{
-	themeMode = true;
-	if (setMode == 'auto')
-	{
-		// Remove the local
-		localStorage.removeItem('darkMode');
-
-		// Toggle the theme mode
-		document.documentElement.dataset.colormode = (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-
-		// Update the mode too
-		darkMode = document.documentElement.dataset.colormode;
-
-		return;
-	}
-
-	// Update the dark mode status
-	localStorage.setItem('darkMode', setMode);
-
-	// Toggle the theme mode
-	document.documentElement.dataset.colormode = setMode;
-
-	// Update the mode in the user settings/options
-	smf_setThemeOption('st_theme_mode', setMode, smf_theme_id, smf_session_id, smf_session_var, null);
-
-	// Update the current theme mode
-	darkMode = setMode;
+if (!smf_member_id && localMode !== null) {
+	document.documentElement.dataset.mode = localMode;
 }
 
-if (darkMode === 'auto' && localMode === null)
-	switchThemeMode('auto');
+function switchMode(mode) {
+	document.documentElement.dataset.mode = mode;
 
-else if (themeMode === null && localMode !== 'null' && localMode !== null)
-	switchThemeMode(smf_member_id ? darkMode : localMode);
+	// User
+	if (smf_member_id !== 0) {
+		smf_setThemeOption('st_theme_mode', mode, smf_theme_id, smf_session_id, smf_session_var, null);
+	}
+	// Guest
+	else {
+		localStorage.setItem('st_theme_mode', mode);
+	}
+}
 
 // Toggle theme mode
-$('.theme-mode-toggle').click(function() {
-	// Switch the theme mode
-	switchThemeMode(darkMode === 'dark' ? 'light' : 'dark');
+toggleMode.forEach(toggle => {
+	toggle.addEventListener('click', () => {
+		switchMode(toggle.dataset.mode)
+	});
+})
 
-	return false;
+// SCEditor
+$(document).ready(function() {
+	$(toggleMode).each((index, toggle) => {
+		$(toggle).click(() => {
+			$('.sceditor-container iframe').each(function() {
+				$(this).contents().find('html').attr('data-mode', $(toggle).data('mode'));
+			});
+		});
+	});
 });
