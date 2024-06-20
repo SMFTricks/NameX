@@ -1,4 +1,5 @@
-:root[data-colormode="dark"] {
+:root[data-mode="dark"],
+:root[data-mode="system"]  {
 	--body-bg: hsl(var(--primary-color-hue), 80%, 2%);
 	--body-txt-color: hsl(0, 0%, 70%);
 	--body-txt-color-strong: hsl(0, 0%, 90%);
@@ -76,4 +77,9 @@
 	--alert-bg: hsl(var(--primary-color-hue), 25%, 10%);
 	--alert-bg-hover: hsl(var(--primary-color-hue), 15%, 13%);
 	--alert-border-color: hsl(var(--primary-color-hue), 25%, 15%);
+}
+
+:root[data-mode="system"] {
+	--mode-icon-content: "\e4e5";
+	--mode-icon-color: inherit;
 }

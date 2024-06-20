@@ -329,7 +329,7 @@ function template_theme_colorpicker()
 {
 	global $settings, $txt, $scripturl, $context;
 
-	if (!empty($settings['theme_variants']) && count($settings['theme_variants']) > 1 && empty($settings['disable_user_variant']))
+	if (!empty($context['theme_can_change_variants']))
 	{
 		echo '
 		<li id="user_colorpicker">
@@ -358,15 +358,30 @@ function template_theme_colorpicker()
  */
 function template_theme_darkmode()
 {
-	global $settings, $txt;
+	global $context, $txt, $scripturl, $settings;
 	
-	if (!empty($settings['st_enable_dark_mode']) && !empty($settings['customtheme_darkmode']))
+	if (!empty($context['theme_can_change_mode']))
 	{
 		echo '
-		<li id="user_thememode">
-			<a href="javascript:void(0);" class="theme-mode-toggle" aria-label="', $txt['st_theme_mode'], '" title="', $txt['st_theme_mode'], '">
-				<span></span>
+		<li id="user_mode">
+			<a href="javascript:void(0);" aria-label="', $txt['st_theme_mode_select'], '" title="', $txt['st_theme_mode_select'], '">
+				<span class="main_icons colormode"></span>
 			</a>
+			<ul id="modepicker_menu" class="top_menu dropmenu">';
+
+
+		// Theme Modes
+		foreach ($settings['theme_colormodes'] as $mode) {
+			echo '
+				<li>
+					<a href="', $scripturl,'?mode=' . $mode . '" class="theme-mode-toggle', ($context['theme_colormode'] == $mode ? ' active' : '') , '" data-mode="', $mode, '">
+						', $txt['st_'. $mode . '_mode'], '
+					</a>
+				</li>';
+		}
+
+	echo '
+			</ul>
 		</li>';
 	}
 }

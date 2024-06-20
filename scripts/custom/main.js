@@ -98,10 +98,23 @@ $(function() {
 	});
 
 	// Color Picker Menu and Theme Mode
-	$('#colorpicker_menu').each(function(index, item) {
+	$('#colorpicker_menu, #modepicker_menu').each(function(index, item) {
 		$(item).prev().click(function(e) {
 			e.stopPropagation();
 			e.preventDefault();
+
+			// IF a link was clicked
+			let options = item.querySelectorAll('ul > li > a');
+			for (const option of options) {
+				option.addEventListener('click', e => {
+					option.classList.add('active');
+					for (const other of options) {
+						if (other !== option) {
+							other.classList.remove('active');
+						}
+					}
+				});
+			}
 
 			if ($(item).is(':visible')) {
 				$(item).css('display', 'none');

@@ -1565,7 +1565,17 @@ li#user_colorpicker > ul#colorpicker_menu li {
 }
 #top_info > li#user_colorpicker > a:first-child {
 	color: var(--catbg-bg);
-
+}
+#top_info > li#user_mode {
+	position: relative;
+}
+li#user_mode > ul#modepicker_menu {
+	width: 10em;
+	min-width: 10em;
+	display: none;
+}
+li#user_mode > ul#modepicker_menu li {
+	display: block;
 }
 #top_info > li > a > span.amt,
 ul.quickbuttons li span.amt a {
@@ -1619,6 +1629,11 @@ li#user_thememode a span::before {
 	text-rendering: auto;
 	-webkit-font-smoothing: antialiased;
 	font-weight: 900;
+	content: var(--mode-icon-content);
+}
+/** Mode icon **/
+.main_icons.colormode::before {
+	color: var(--mode-icon-color);
 	content: var(--mode-icon-content);
 }
 
