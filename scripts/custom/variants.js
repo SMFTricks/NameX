@@ -27,7 +27,8 @@ function switchVariant(variant) {
 
 // Toggle theme variant
 toggleVariant.forEach(toggle => {
-	toggle.addEventListener('click', () => {
+	toggle.addEventListener('click', e => {
+		e.preventDefault();
 		switchVariant(toggle.dataset.variant)
 	});
 })

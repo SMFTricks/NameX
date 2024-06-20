@@ -27,7 +27,8 @@ function switchMode(mode) {
 
 // Toggle theme mode
 toggleMode.forEach(toggle => {
-	toggle.addEventListener('click', () => {
+	toggle.addEventListener('click', e => {
+		e.preventDefault();
 		switchMode(toggle.dataset.mode)
 	});
 })
