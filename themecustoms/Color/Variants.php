@@ -38,7 +38,7 @@ class Variants
 			return;
 		}
 
-		// INitialize the variants
+		// Initialize the variants
 		$this->init();
 	}
 

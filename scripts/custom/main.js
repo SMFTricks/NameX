@@ -29,9 +29,9 @@ $(function() {
 		var new_text_lCase = new_text.toLowerCase();
 		$.get($obj.attr('href') + ';xml', function () {
 			ajax_indicator(false);
-			$('.normal_button_strip_notify > span').text(new_text);
-			$('.normal_button_strip_notify i.fa').removeClass();
-			$('.normal_button_strip_notify i').addClass('fa fa-' + new_text_lCase);
+			$('.normal_button_strip_notify > span:last-child').text(new_text);
+			$('.normal_button_strip_notify > span:first-child').removeClass();
+			$('.normal_button_strip_notify > span:first-child').addClass('main_icons ' + new_text_lCase);
 		});
 
 		return false;

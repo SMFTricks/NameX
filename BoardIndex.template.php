@@ -167,7 +167,7 @@ function template_info_center()
 		echo '
 			<li class="title_bar">
 				<a href="#block-' . $block['txt'] . '" class="titlebg">
-					', themecustoms_icon('fa fa-'. $block['txt']) , '
+					<span class="main_icons ', $block['txt'] , '"></span>
 					<span>', $txt[$block['txt']], '</span>
 				</a>
 			</li>';
