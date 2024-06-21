@@ -475,6 +475,10 @@
 	#info_center_blocks #block-forum_stats > span {
 		text-align: center;
 	}
+	.st-theme-information {
+		grid-template-columns: 1fr;
+		grid-auto-flow: row;
+	}
 }
 
 @media (min-width: 767px) 

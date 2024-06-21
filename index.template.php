@@ -337,7 +337,7 @@ function template_theme_colorpicker()
 			<ul id="colorpicker_menu" class="top_menu dropmenu">';
 		
 		// Theme variants
-		foreach ($settings['theme_variants'] as $variant)
+		foreach ($settings['theme_colorvariants'] as $variant)
 		{
 			echo '
 				<li>
