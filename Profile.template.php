@@ -94,7 +94,7 @@ function template_profile_popup()
 		echo '
 				<li>
 					<a href="', $item_url, '">
-						<i class="fa fa-', $area['plain_class'], '"></i>
+						<span class="main_icons ', $area['plain_class'], '"></span>
 						<span>', !empty($item['title']) ? $item['title'] : $area['label'], '</span>
 					</a>
 				</li>';
