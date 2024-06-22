@@ -103,6 +103,14 @@ $(function() {
 			e.stopPropagation();
 			e.preventDefault();
 
+			// Close any other top_menu from top_info
+			const openMenu = document.querySelectorAll('.top_menu.visible');
+			for (const listItem of openMenu) {
+				if (listItem !== item) {
+					listItem.classList.remove('visible');
+				}
+			}
+
 			// IF a link was clicked
 			let options = item.querySelectorAll('ul > li > a');
 			for (const option of options) {

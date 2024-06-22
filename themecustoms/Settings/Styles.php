@@ -3,7 +3,7 @@
 /**
  * @package Theme Customs
  * @author Diego Andrés <diegoandres_cortes@outlook.com>
- * @copyright Copyright (c) 2023, SMF Tricks
+ * @copyright Copyright (c) 2024, SMF Tricks
  * @license MIT
  */
 
@@ -38,15 +38,25 @@ class Styles
 	 */
 	public function buildCSS() : void
 	{
+		global $settings;
+
 		// Other settings can hook into here as well.
-		call_integration_hook('integrate_customtheme_style_settings', array(&$this->_style_settings));
+		call_integration_hook('integrate_customtheme_style_settings', array(&$this->settings));
 
 		// Fire up the function if the setting is set or enabled
 		foreach ($this->settings as $style_setting => $style_function) {
 			if (!empty($settings[$style_setting])) {
-				$this->css .= (empty($style_function) ? $this->$style_setting($settings[$style_setting]) : call_user_func($style_function));
+				if (is_array($style_function) && is_callable($style_function)) {
+					print_r($style_function);
+					$this->css .= call_user_func($style_function);
+				} else {
+					$this->css .= (empty($style_function) ? $this->$style_setting($settings[$style_setting]) : call_user_func($style_function));
+				}
 			}
 		}
+
+		// Add the CSS to the theme
+		$this->printCSS();
 	}
 
 	/**
