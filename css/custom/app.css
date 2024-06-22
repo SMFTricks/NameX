@@ -2454,28 +2454,24 @@ dl.settings {
 
 
 /** Theme Settings **/
-#st_settings_tabs {
-	ul {
-		align-items: center;
-		display: flex;
-		margin: 0;
-		padding: .5em 0;
-		user-select: none;
-
-		li {
-			width: auto !important;
-		}
-		& + .windowbg > div[role="tabpanel"]:not(.active) {
-			display: none;
-		}
-	}
-	#settingtype-information {
-		--window-border-width: 2px 4px;
-
-		&.active ~ input[type="submit"] {
-			display: none;
-		}
-	}
+#st_settings_tabs ul {
+	align-items: center;
+	display: flex;
+	margin: 0;
+	padding: .5em 0;
+	user-select: none;
+}
+#st_settings_tabs ul li {
+	width: auto !important;
+}
+#st_settings_tabs ul  + .windowbg > div[role="tabpanel"]:not(.active) {
+	display: none;
+}
+#settingtype-information {
+	--window-border-width: 2px 4px;
+}
+#settingtype-information.active ~ input[type="submit"] {
+	display: none;
 }
 /** Theme Information **/
 .st-theme-information {

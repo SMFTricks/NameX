@@ -86,24 +86,18 @@ class Config extends Init
 	public bool $jqueryUI = true;
 
 	/**
-	 * Init::loadHooks()
-	 * 
-	 * @return void
+	 * Load the additional hooks
 	 */
 	public function loadHooks() : void
 	{
 		// Load fonts
-		add_integration_function('integrate_pre_css_output', __CLASS__ . '::fonts', false, __FILE__);
+		add_integration_function('integrate_pre_css_output', __CLASS__ . '::fonts#', false, __FILE__);
 	}
 
 	/**
-	 * Init::fonts()
-	 * 
-	 * Load some google fonts
-	 * 
-	 * @return void
+	 * Load some fonts
 	 */
-	public static function fonts() : void
+	public function fonts() : void
 	{
 		global $context, $settings;
 

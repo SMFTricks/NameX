@@ -1,5 +1,11 @@
 # Changelog
 
+#### 1.4 - 27 June 2024
+- ![New Feature](https://smftricks.com/assets/changelog/tag--plus.png) Changed the memberlist layout.
+- ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed not loading font locally when set in the settings.
+- ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Replaced 'Auto' color mode with 'System'.
+- ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Code improvements for 'Theme Customs'
+---
 #### 1.3.2 - 19 February 2024
 - ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed issues with dark mode or color variants when forum is closed to guests or in maintenance.
 
