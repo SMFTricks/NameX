@@ -81,7 +81,7 @@ function template_like()
 		echo '
 		<li class="post_like_button" id="', $context['data']['type'], '_', $context['data']['id_content'], '_likes"', '>
 			<a href="', $scripturl, '?action=likes;ltype=', $context['data']['type'], ';sa=like;quickbuttonlike;like=', $context['data']['id_content'], ';', $context['session_var'], '=', $context['session_id'], '" class="', $context['data']['type'], '_quicklike">
-				<i class="fa fa-', $context['data']['already_liked'] ? 'unlike' : 'like', '"></i>
+				<span class="main_icons ', $context['data']['already_liked'] ? 'unlike' : 'like', '"></span>
 				<span>
 					', $context['data']['already_liked'] ? $txt['unlike'] : $txt['like'], '
 				</span>
