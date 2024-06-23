@@ -78,40 +78,6 @@ class Main
 
 		// Theme Settings
 		$this->settings = [
-			// Fonts
-			[
-				'section_title' => $txt['st_cdn_source'],
-				'id' => 'st_fonts_source',
-				'label' => $txt['st_fonts'],
-				'description' => $txt['st_fonts_desc'],
-				'type' => 'list',
-				'options' => [
-					0 => $txt['st_cdn_local'],
-					1 => $txt['st_cdn_google'],
-				]
-			],
-			// jQuery UI CDN
-			[
-				'id' => 'st_jquery_ui_source',
-				'label' => $txt['st_jqueryui'],
-				'description' => $txt['st_cdn_source_desc'],
-				'type' => 'list',
-				'options' => [
-					0 => $txt['st_cdn_local'],
-					1 => $txt['st_cdn_google'],
-				]
-			],
-			// Font Awesome CDN
-			[
-				'id' => 'st_fontawesome_source',
-				'label' => $txt['st_fontawesome'],
-				'description' => $txt['st_cdn_source_desc'],
-				'type' => 'list',
-				'options' => [
-					0 => $txt['st_cdn_local'],
-					1 => $txt['st_cdn_cloudflare'],
-				]
-			],
 			// Menu Settings
 			[
 				'section_title' => $txt['st_menu_settings'],
@@ -173,6 +139,9 @@ class Main
 			];
 		}
 
+		/** CDN Selection */
+		$this->cdn();
+
 		/** Socials **/
 		$this->socials();
 		
@@ -186,14 +155,65 @@ class Main
 		call_integration_hook('integrate_customtheme_settings', [&$this->custom, &$this->types, &$this->removed]);
 
 		// Add any custom settings
-		if (!empty($this->custom) && is_array($this->custom))
+		if (!empty($this->custom) && is_array($this->custom)) {
+			$this->settings[] = '';
 			$this->settings = array_merge($this->settings, $this->custom);
+		}
 
 		// Do not duplicate the setting types
 		$this->types = array_unique($this->types);
 
 		// Remove the values from undesired settings
 		$this->undo();
+	}
+
+	/**
+	 * Add settings for CDN
+	 */
+	private function cdn() : void
+	{
+		global $txt;
+
+		// Font Awesome CDN
+		$this->settings[] = [
+			'section_title' => $txt['st_cdn_source'],
+			'id' => 'st_fontawesome_source',
+			'label' => $txt['st_fontawesome'],
+			'description' => $txt['st_cdn_source_desc'],
+			'type' => 'list',
+			'options' => [
+				0 => $txt['st_cdn_local'],
+				1 => $txt['st_cdn_cloudflare'],
+			]
+		];
+
+		// Fonts
+		if (!empty(Config::$current->customFonts)) {
+			$this->settings[] = [
+				'id' => 'st_fonts_source',
+				'label' => $txt['st_fonts'],
+				'description' => $txt['st_fonts_desc'],
+				'type' => 'list',
+				'options' => [
+					0 => $txt['st_cdn_local'],
+					1 => $txt['st_cdn_google'],
+				]
+			];
+		}
+
+		// jQuery UI
+		if (!empty(Config::$current->jqueryUI)) {
+			$this->settings[] = [
+				'id' => 'st_jquery_ui_source',
+				'label' => $txt['st_jqueryui'],
+				'description' => $txt['st_cdn_source_desc'],
+				'type' => 'list',
+				'options' => [
+					0 => $txt['st_cdn_local'],
+					1 => $txt['st_cdn_google'],
+				]
+			];
+		}
 	}
 
 	/**

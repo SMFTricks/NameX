@@ -47,7 +47,6 @@ class Styles
 		foreach ($this->settings as $style_setting => $style_function) {
 			if (!empty($settings[$style_setting])) {
 				if (is_array($style_function) && is_callable($style_function)) {
-					print_r($style_function);
 					$this->css .= call_user_func($style_function);
 				} else {
 					$this->css .= (empty($style_function) ? $this->$style_setting($settings[$style_setting]) : call_user_func($style_function));

@@ -97,6 +97,11 @@ abstract class Init
 	public bool $quickLikes = false;
 
 	/**
+	 * @var bool Using custom for the theme
+	 */
+	public bool $customFonts = true;
+
+	/**
 	 * @var bool Add the quick new topic button
 	 */
 	public bool $quickNewTopic = false;
@@ -119,7 +124,7 @@ abstract class Init
 	/**
 	 * @var bool Wheter to include jQuery UI
 	 */
-	public bool $jqueryUI = true;
+	public bool $jqueryUI = false;
 
 	/**
 	 * @var bool Wheter to enable Carousel Addon
