@@ -10,7 +10,7 @@
 // Carousel
 $txt['st_carousel'] = 'Carousel';
 $txt['st_enable_carousel'] = 'Enable carousel';
-$txt['st_enable_carousel_desc'] = 'Enable to display more settings. If you have the Carousel Addon, you will have the options to upload below, once this setting is enabled.';
+$txt['st_enable_carousel_desc'] = 'This is a global setting to completely disable or enable the carousel.';
 $txt['st_carousel_index'] = 'Display only in home page';
 $txt['st_carousel_enable_images'] = 'Enable carousel images';
 $txt['st_carousel_speed'] = 'Carousel autoplay speed';
