@@ -8,7 +8,7 @@
 * Designed by [Harold Zapata](https://smftricks.com/index.php?action=profile;u=17)
 
 ### 🖼️ Preview
-![Theme Preview](https://github.com/SMFTricks/NameX/_assets/preview.gif)
+![Theme Preview](https://github.com/SMFTricks/NameX/blob/main/_assets/preview.gif)
 ### [Demo Online](http://demo21.smftricks.com/index.php?theme=4)
 ---
 ## ☑️ Features
