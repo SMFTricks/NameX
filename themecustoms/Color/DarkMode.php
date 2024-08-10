@@ -47,7 +47,7 @@ class DarkMode
 		$this->selection();
 
 		// No need to load if the setting is disabled and default mode is light
-		if (!empty($context['theme_can_change_mode']) || $settings['st_theme_mode_default'] !== 'light') {
+		if (!empty($context['theme_can_change_mode']) || (!empty($settings['st_theme_mode_default']) && $settings['st_theme_mode_default'] !== 'light')) {
 			// Load the css
 			$this->css();
 
@@ -115,7 +115,7 @@ class DarkMode
 		global $settings, $context;
 
 		// Add the HTML data attribute for color mode
-		$settings['themecustoms_html_attributes']['data']['mode'] = 'data-mode="' . $context['theme_colormode'] . '"';
+		$settings['themecustoms_html']['attributes'][] = 'data-mode="' . $context['theme_colormode'] . '"';
 
 		// Load the dark CSS
 		loadCSSFile('custom/dark.css', ['order_pos' => $this->order, 'attributes' => (isset($context['theme_colormode']) && $context['theme_colormode'] == 'system' ? ['media' => '(prefers-color-scheme: dark)'] : [])], 'smf_darkmode');
