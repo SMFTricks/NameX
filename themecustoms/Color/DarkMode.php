@@ -143,7 +143,7 @@ class DarkMode
 	{
 		global $context, $settings;
 
-		$sce_options['style'] = $sce_options['style'] . '"/><link rel="stylesheet" href="' . $settings['theme_url']. '/css/custom/dark.css' . (isset($context['theme_colormode']) && $context['theme_colormode'] == 'system' ? '" media="(prefers-color-scheme: dark)' : '');
+		$sce_options['style'] = $sce_options['style'] . '"/><link rel="stylesheet" href="' . $settings['theme_url'] . '/css/custom/dark.css' . (isset($context['theme_colormode']) && $context['theme_colormode'] == 'system' ? '" media="(prefers-color-scheme: dark)' : '');
 
 		// Add the data attribute
 		addInlineJavaScript('
@@ -210,7 +210,6 @@ class DarkMode
 					'system' => $txt['st_system_mode'],
 				],
 				'type' => 'list',
-				'default' => 'light',
 				'theme_type' => 'color',
 			],
 			[

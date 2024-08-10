@@ -159,9 +159,9 @@ class Variants
 		global $context, $settings;
 
 		// Check if the file exists
-		$variantStyle = file_exists($settings['theme_dir'] . '/css/custom/index_' . $context['theme_variant'] . '.css') ? '<link rel="stylesheet" href="' . $settings['theme_url']. '/css/custom/index_' . $context['theme_variant'] . '.css" />' : '';
+		$variantStyle = file_exists($settings['theme_dir'] . '/css/custom/index_' . $context['theme_variant'] . '.css') ? '<link rel="stylesheet" href="' . $settings['theme_url'] . '/css/custom/index_' . $context['theme_variant'] . '.css" />' : '';
 
-		$sce_options['style'] = $sce_options['style'] . '"/>' . $variantStyle . '<link rel="stylesheet" href="' . $settings['theme_url']. '/css/custom/variants.css';
+		$sce_options['style'] = $sce_options['style'] . '"/>' . $variantStyle . '<link rel="stylesheet" href="' . $settings['theme_url'] . '/css/custom/variants.css';
 
 		// Add the data attribute
 		addInlineJavaScript('
@@ -255,12 +255,11 @@ class Variants
 		$this->settings = [
 			[
 				'section_title' => $txt['theme_variants'],
-				'id' => 'variant',
+				'id' => 'default_variant',
 				'label' => $txt['theme_variants_default'],
 				'description' => '<img src="' . $settings['images_url'] . '/thumbnail' . (!empty($settings['default_variant']) && $settings['default_variant'] !== 'default' ? '_' . $settings['default_variant'] : '') . '.png" id="variant_preview" class="theme_thumbnail" alt="">',
 				'options' => $this->selectVariants,
 				'type' => 'list',
-				'default' => $settings['theme_colorvariants'][0],
 				'theme_type' => 'color',
 			],
 			[
