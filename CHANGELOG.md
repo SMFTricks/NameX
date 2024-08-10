@@ -1,5 +1,8 @@
 # Changelog
 
+#### 1.4.2 - 10 August 2024
+- ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed issue with minification of CSS and JS files.
+
 #### 1.4.1 - 09 August 2024
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Improved yellow variant for Dark Mode.
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) HTML attributes definition.
