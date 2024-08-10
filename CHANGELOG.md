@@ -1,5 +1,11 @@
 # Changelog
 
+#### 1.4.1 - 09 August 2024
+- ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Improved yellow variant in for Dark Mode.
+- ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) HTML attributes definition.
+- ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed issues with the defaults for Variants and Dark Mode.
+- ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed issues with the data attributes for the Variants and Dark Mode.
+
 #### 1.4 - 30 June 2024
 - ![New Feature](https://smftricks.com/assets/changelog/tag--plus.png) Changed the memberlist layout.
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Replaced 'Auto' color mode with 'System'.
