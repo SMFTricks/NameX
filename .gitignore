@@ -1,6 +1,9 @@
 ﻿node_modules
+package.json
 package-lock.json
 css/custom/custom_edits.css
+css/custom/bootstrap.min.css
+scripts/custom/bootstrap.bundle.min
 .DS_Store
 .AppleDouble
 .LSOverride
