@@ -25,7 +25,7 @@ html {
 	position: relative;
 	overflow: auto;
 }
-body {
+body[contenteditable] {
 	/* Needed to make sure body covers the whole editor and that
 		long lines don't cause horizontal scrolling */
 	min-height: 100%;
