@@ -214,12 +214,13 @@ abstract class Init
 
 		// Allow css/js files to be disabled for this specific theme.
 		// Add the identifier as an array key. IE array('smf_script'); Some external files might not add identifiers, on those cases SMF uses its filename as reference.
-		if (!isset($settings['disable_files']))
+		if (!isset($settings['disable_files'])) {
 			$settings['disable_files'] = [];
+		}
 
 		// Add any custom attribute to the html tag
 		// This is useful for things like variants, dark mode, etc.
-		$settings['themecustoms_html_attributes'] = [];
+		$settings['themecustoms_html_attributes'] = '';
 
 		// Define the total amount of custom links to use.
 		$settings['st_custom_links_limit'] = $this->customLinks;
@@ -246,8 +247,9 @@ abstract class Init
 	final public function settings() : void
 	{
 		// Are we viewing this theme?
-		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] != $this->id)
+		if (isset($_REQUEST['th']) && !empty($_REQUEST['th']) && $_REQUEST['th'] != $this->id) {
 			return;
+		}
 
 		// Load the theme settings
 		add_integration_function('integrate_theme_settings', 'ThemeCustoms\Settings\Main::settings', false, $this->dir . '/themecustoms/Settings/Main.php', true);
