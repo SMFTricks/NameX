@@ -234,7 +234,7 @@ header h1.forumtitle a:hover span.theme-logo span:last-child {
 	border-radius: 4px;
 	text-decoration: none;
 }
-.social_icons a:hover {
+.social_icons a:is(:hover, :focus, :focus-visible) {
 	--social-icon-light: 40%
 }
 .social_icons a.facebook {
@@ -269,6 +269,17 @@ header h1.forumtitle a:hover span.theme-logo span:last-child {
 }
 .social_icons a.rss {
 	background-color: hsl(25, 85%, var(--social-icon-light));
+}
+.social_icons a.threads {
+	--social-icon-light: 25%;
+	background-color: hsl(0, 0%, var(--social-icon-light));
+
+	&:is(:hover, :focus, :focus-visible) {
+		--social-icon-light: 0%;
+	}
+}
+.social_icons a.bluesky {
+	background-color: hsl(211, 99%, var(--social-icon-light));
 }
 .social_icons a i {
 	color: hsl(0, 0%, 100%)
