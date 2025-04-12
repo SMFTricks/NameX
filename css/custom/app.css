@@ -2566,16 +2566,16 @@ dl.settings {
 }
 
 /** Member List **/
-#mlist {
+#memberlist.main_section #mlist {
 	display: grid;
 	gap: .75em;
 	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
-#mlist:not(:has(.block-member)) {
+#memberlist.main_section #mlist:not(:has(.block-member)) {
 	grid-template-columns: 1fr;
 	text-align: center;
 }
-#mlist .block-member {
+#memberlist.main_section #mlist .block-member {
 	align-content: flex-start;
 	display: grid;
 	gap: .25em;
